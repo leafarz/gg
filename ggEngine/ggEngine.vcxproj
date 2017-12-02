@@ -92,8 +92,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)d.pdb</ProgramDataBaseFileName>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
       <Command>rmdir "$(SolutionDir)deps\$(ProjectName)\include" /S /Q
@@ -104,14 +105,19 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <BuildLog>
       <Path>$(IntDir)$(MSBuildProjectName)d.log</Path>
     </BuildLog>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)d.pdb</ProgramDataBaseFileName>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <PostBuildEvent>
       <Command>rmdir "$(SolutionDir)deps\$(ProjectName)\include" /S /Q
@@ -122,6 +128,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <BuildLog>
       <Path>$(IntDir)$(MSBuildProjectName)d.log</Path>
     </BuildLog>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -130,7 +140,8 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -141,6 +152,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
 xcopy "$(SolutionDir)$(ProjectName)\include" "$(SolutionDir)deps\$(ProjectName)\include" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(TargetFileName)" "$(SolutionDir)deps\$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\" /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -149,7 +164,8 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -160,6 +176,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
 xcopy "$(SolutionDir)$(ProjectName)\include" "$(SolutionDir)deps\$(ProjectName)\include" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(TargetFileName)" "$(SolutionDir)deps\$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\" /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\core\CoreEngine.h">
