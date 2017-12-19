@@ -182,11 +182,15 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\core\CoreEngine.h">
+    <ClInclude Include="include\core\Game.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\core\Game.h">
+    <ClInclude Include="include\core\Scene.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\core\Time.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -197,6 +201,11 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <ClInclude Include="include\math\Vec2f.h" />
     <ClInclude Include="include\math\Vec3f.h" />
     <ClInclude Include="include\math\Vec4f.h" />
+    <ClInclude Include="include\renderer\Window.h" />
+    <ClInclude Include="include\core\gg.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\util\Resource.h">
       <SubType>
       </SubType>
@@ -207,17 +216,22 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\core\Scene.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\core\Time.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\math\Complex.cpp" />
     <ClCompile Include="src\math\Mat4f.cpp" />
     <ClCompile Include="src\math\Quaternion.cpp" />
     <ClCompile Include="src\math\Vec2f.cpp" />
     <ClCompile Include="src\math\Vec3f.cpp" />
     <ClCompile Include="src\math\Vec4f.cpp" />
-    <ClCompile Include="src\core\CoreEngine.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="src\math\MathUtil.cpp" />
+    <ClCompile Include="src\renderer\Window.cpp" />
     <ClCompile Include="src\util\Resource.cpp">
       <SubType>
       </SubType>
