@@ -27,4 +27,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\basic.shader" />
+  </ItemGroup>
 </Project>

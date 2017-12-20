@@ -4,6 +4,7 @@
 
 namespace GGEngine
 {
+	class Camera;
 	class Scene
 	{
 	public:
@@ -15,6 +16,12 @@ namespace GGEngine
 		virtual void onFixedUpdate(void);
 		virtual void onUpdate(void);
 		virtual void onRender(void);
+
+		void	setActiveCamera(Camera* camera);
+		Camera* getActiveCamera(void) const;
+
+	private:
+		Camera* m_ActiveCamera;
 	}; // class Scene
 } // namespace GGEngine
 

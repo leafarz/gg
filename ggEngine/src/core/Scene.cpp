@@ -25,4 +25,12 @@ namespace GGEngine
 	void Scene::onRender(void)
 	{
 	}
+	void Scene::setActiveCamera(Camera* camera)
+	{
+		m_ActiveCamera = camera;
+	}
+	Camera* Scene::getActiveCamera(void) const
+	{
+		return m_ActiveCamera;
+	}
 } // namespace GGEngine

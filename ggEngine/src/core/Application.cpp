@@ -3,6 +3,8 @@
 #include "core/Scene.h"
 #include "core/Input.h"
 #include "core/Time.h"
+
+#include "util/Resource.h"
 namespace GGEngine
 {
 	Application::Application(const char* windowName, GLint width = 1280, GLint height = 720) :
@@ -12,6 +14,10 @@ namespace GGEngine
 		m_ActiveScene(nullptr)
 	{
 		m_Window = new Window(windowName, width, height);
+
+		// glew init
+		glewExperimental = GL_TRUE;
+		if (GLenum err = glewInit() != GLEW_OK) { LOG("[Error] " << glewGetErrorString(err)); }
 
 		Input::init();
 		Time::s_FixedDelta = m_FixedTimeStep;
@@ -34,12 +40,13 @@ namespace GGEngine
 		GLuint _frameCount = 0;
 
 		Time::s_StartTime = _prevTime;
+
+
 		while (m_IsRunning)
 		{
 			if (m_Window->shouldClose()) { stop(); }
 
 			m_Window->clear(GL_COLOR_BUFFER_BIT);
-			m_Window->swapBuffers();
 
 			GLdouble _currTime = Time::getCurrentTime();
 			GLdouble _delta = _currTime - _prevTime;
@@ -89,6 +96,8 @@ namespace GGEngine
 
 			// render
 			if (m_ActiveScene != nullptr) { m_ActiveScene->onRender(); }
+
+			m_Window->swapBuffers();
 		}
 	}
 

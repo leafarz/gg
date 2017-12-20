@@ -1,14 +1,15 @@
 #include "util/Resource.h"
 
+#include "core/gg.h"
 namespace GGEngine
 {
-	std::string read_file(const char *file)
+	std::string Resource::read_file(const char *file)
 	{
 		FILE* _file = fopen(file, "rt");
 
 		if (!_file)
 		{
-			std::cout << "read_file: File [" << file << "] not found.";
+			LOG("File [" << file << "] not found.");
 			return "";
 		}
 

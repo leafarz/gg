@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 #if _DEBUG
 	/* Logs str with function name and line number.
@@ -11,7 +12,7 @@
 	 */
 	#define LOG(str)\
 	{\
-		std::cout << str << std::endl << "(" << __FUNCTION__ << ":" << __LINE__ << ")" << std::endl << std::endl;\
+		std::cout << str << std::endl << "(" << __FUNCTION__ << "():" << __LINE__ << ")" << std::endl << std::endl;\
 	}
 #else
 	/* Does nothing.

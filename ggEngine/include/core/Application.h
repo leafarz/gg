@@ -2,6 +2,8 @@
 #define		GGENGINE_APPLICATION_H
 #pragma once
 
+#include "GL/glew.h"
+
 #include "renderer/Window.h"
 #include "core/gg.h"
 #include <vector>
@@ -13,7 +15,6 @@ namespace GGEngine
 	class Application
 	{
 	public:
-		Application(void) = delete;
 		Application(const char* windowName, GLint width, GLint height);
 		~Application(void);
 
@@ -28,6 +29,10 @@ namespace GGEngine
 		void		setFixedTimeStep(GLuint fps);
 
 	private:
+		Application(void) = delete;
+
+
+	private:
 		Window*			m_Window;
 		GLdouble		m_TimeStep;
 		GLdouble		m_FixedTimeStep;
@@ -36,7 +41,6 @@ namespace GGEngine
 		Scene*			m_ActiveScene;
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
-
 	}; // class Application
 } // namespace GGEngine
 
