@@ -186,6 +186,8 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\core\Input.h" />
+    <ClInclude Include="include\core\InputDefines.h" />
     <ClInclude Include="include\core\Scene.h">
       <SubType>
       </SubType>
@@ -216,6 +218,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\core\Input.cpp" />
     <ClCompile Include="src\core\Scene.cpp">
       <SubType>
       </SubType>

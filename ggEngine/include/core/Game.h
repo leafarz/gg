@@ -17,6 +17,7 @@ namespace GGEngine
 		Game(const char* windowName, GLint width, GLint height);
 		~Game(void);
 
+		void init(void);
 		void run(void);
 		void stop(void);
 
@@ -29,11 +30,11 @@ namespace GGEngine
 
 	private:
 		Window*			m_Window;
-		GLdouble		m_TimeStep = 1 / 60.0;
-		GLdouble		m_FixedTimeStep = 1 / 60.0;
-		GLboolean		m_IsRunning = false;
+		GLdouble		m_TimeStep;
+		GLdouble		m_FixedTimeStep;
+		GLboolean		m_IsRunning;
 
-		Scene*			m_ActiveScene = nullptr;
+		Scene*			m_ActiveScene;
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
 

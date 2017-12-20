@@ -2,14 +2,14 @@
 
 namespace GGEngine
 {
-	Window::Window(void)
+	Window::Window(void) :
+		m_windowTitle("")
 	{
 		/* Initialize the library */
 		if (!glfwInit()) { return; }
 
 		/* Create a windowed mode window and its OpenGL context */
 		m_Window = glfwCreateWindow(1280, 720, "", NULL, NULL);
-		m_windowTitle = "";
 
 		if (!m_Window)
 		{
@@ -21,14 +21,14 @@ namespace GGEngine
 		glfwMakeContextCurrent(m_Window);
 	}
 
-	Window::Window(const std::string& windowName, GLint width, GLint height)
+	Window::Window(const std::string& windowTitle, GLint width, GLint height) :
+		m_windowTitle(windowTitle)
 	{
 		/* Initialize the library */
 		if (!glfwInit()) { return; }
 
 		/* Create a windowed mode window and its OpenGL context */
-		m_Window = glfwCreateWindow(width, height, windowName.c_str(), NULL, NULL);
-		m_windowTitle = windowName;
+		m_Window = glfwCreateWindow(width, height, windowTitle.c_str(), NULL, NULL);
 
 		if (!m_Window)
 		{

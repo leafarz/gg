@@ -1,16 +1,19 @@
 #include "core/Game.h"
 #include "core/gg.h"
 #include "core/Scene.h"
-
+#include "core/Input.h"
 #include "core/Time.h"
 namespace GGEngine
 {
-	Game::Game(const char* windowName, GLint width = 1280, GLint height = 720)
+	Game::Game(const char* windowName, GLint width = 1280, GLint height = 720) :
+		m_TimeStep(1 / 60.0),
+		m_FixedTimeStep(1 / 60.0),
+		m_IsRunning(false),
+		m_ActiveScene(nullptr)
 	{
 		m_Window = new Window(windowName, width, height);
-		GLuint a = 5;
-		GLdouble b = 1/a;
 
+		Input::init();
 		Time::s_FixedDelta = m_FixedTimeStep;
 	}
 
@@ -37,7 +40,6 @@ namespace GGEngine
 
 			m_Window->clear(GL_COLOR_BUFFER_BIT);
 			m_Window->swapBuffers();
-			m_Window->pollEvents();
 
 			GLdouble _currTime = Time::getCurrentTime();
 			GLdouble _delta = _currTime - _prevTime;
@@ -45,6 +47,13 @@ namespace GGEngine
 
 			_timer += _delta;
 			_fixedTimer += _delta;
+
+			// input update
+			if (_timer >= m_TimeStep)
+			{
+				Input::update();
+				m_Window->pollEvents();
+			}
 
 			// physics update
 			GLuint _fixedSteps = (GLuint)(_fixedTimer / m_FixedTimeStep);

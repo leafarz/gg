@@ -15,15 +15,19 @@
 	}
 #else
 	/* Does nothing.
-	 * This does not affect performance even if declared.
+	 * This does not affect performance even if LOG is used.
 	 */
 	#define LOG(str)
 #endif
 
-/* for loop from [a] to [b-1]*/
-#define FOR(a,b)		for(int i=a-1; ++i < b; )
+/* for loop from [a] to [b-1]
+ * [i] is the index per iteration
+ */
+#define FOR(a,b)	for(int i=a-1; ++i < b; )
 
-/* iterate std::vector */
+/* iterate std::vector
+ * [it] is the iterator variable per iteration
+ */
 #define VFOR(vec)	for(auto it = vec.begin() ; it != vec.end(); ++it)
 
 #endif

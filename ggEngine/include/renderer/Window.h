@@ -11,7 +11,7 @@ namespace GGEngine
 	{
 	public:
 		Window(void);
-		Window(const std::string& windowName, GLint width, GLint height);
+		Window(const std::string& windowTitle, GLint width, GLint height);
 		~Window(void);
 
 		bool			shouldClose(void) const;

@@ -17,7 +17,6 @@ namespace GGEngine
 		void onUnload(void) override;
 		void onFixedUpdate(void) override;
 		void onUpdate(void) override;
-		void onRender(void) override;
 	}; // class TestScene
 } // namespace GGEngine
 
