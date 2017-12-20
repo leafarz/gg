@@ -6,10 +6,10 @@
 
 namespace GGEngine
 {
-	class Game;
+	class Application;
 	class Time
 	{
-		friend class Game;
+		friend class Application;
 	public:
 		Time(void) = delete;
 		~Time(void) = delete;

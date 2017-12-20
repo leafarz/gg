@@ -1,21 +1,22 @@
 #include <iostream>
 
-#include "core/Game.h"
+#include "core/Application.h"
 //#include "util/Resource.h"
 //#include "math/Vec2f.h"
 //#include "math/Vec3f.h"
 //#include "math/Mat4f.h"
 //#include "../../deps/glm-0.9.7.6/glm/glm.hpp"
 #include "TestScene.h"
+
 using namespace GGEngine;
 //using namespace GGEngine::Math;
 
 int main()
 {
-	Game* _game = new Game("Game", 1280, 720);
-	_game->addScene(new TestScene(), "TestScene", true);
-	_game->run();
-
+	Application* _app = new Application("Game", 1280, 720);
+	_app->addScene(new TestScene(), "TestScene", true);
+	_app->run();
+	
 	//Vec2f v21 = Vec2f(0, 1);
 	//Vec2f v22 = Vec2f(1, 0);
 	//std::cout << v21.dot(v22) << std::endl;

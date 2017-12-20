@@ -1,5 +1,5 @@
-#ifndef		GGENGINE_GAME_H
-#define		GGENGINE_GAME_H
+#ifndef		GGENGINE_APPLICATION_H
+#define		GGENGINE_APPLICATION_H
 #pragma once
 
 #include "renderer/Window.h"
@@ -10,14 +10,13 @@
 namespace GGEngine
 {
 	class Scene;
-	class Game
+	class Application
 	{
 	public:
-		Game(void) = delete;
-		Game(const char* windowName, GLint width, GLint height);
-		~Game(void);
+		Application(void) = delete;
+		Application(const char* windowName, GLint width, GLint height);
+		~Application(void);
 
-		void init(void);
 		void run(void);
 		void stop(void);
 
@@ -38,7 +37,7 @@ namespace GGEngine
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
 
-	}; // class Game
+	}; // class Application
 } // namespace GGEngine
 
 #endif

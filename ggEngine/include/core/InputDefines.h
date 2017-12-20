@@ -141,7 +141,7 @@ enum class KEY : GLshort {
 
 #pragma region MOUSE
 
-enum class CURSOR_MODE : unsigned char {
+enum class CURSOR_MODE : GLuint {
 	VISIBLE		= GLFW_CURSOR_NORMAL,
 	DISABLED	= GLFW_CURSOR_DISABLED,
 	HIDDEN		= GLFW_CURSOR_HIDDEN

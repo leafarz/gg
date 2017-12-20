@@ -1,5 +1,5 @@
 #include "TestScene.h"
-
+#include "core/Input.h"
 #include "core/Time.h"
 
 namespace GGEngine
@@ -25,9 +25,9 @@ namespace GGEngine
 	void TestScene::onUpdate(void)
 	{
 		//LOG("onUpdate");
-	}
-	void TestScene::onRender(void)
-	{
-		//LOG("onRender");
+		if (Input::getKeyDown(KEY::A))
+		{
+			LOG(Time::getCurrentTime() << ":onUpdate");
+		}
 	}
 } // namespace GGEngine

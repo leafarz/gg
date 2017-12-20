@@ -1,11 +1,11 @@
-#include "core/Game.h"
+#include "core/Application.h"
 #include "core/gg.h"
 #include "core/Scene.h"
 #include "core/Input.h"
 #include "core/Time.h"
 namespace GGEngine
 {
-	Game::Game(const char* windowName, GLint width = 1280, GLint height = 720) :
+	Application::Application(const char* windowName, GLint width = 1280, GLint height = 720) :
 		m_TimeStep(1 / 60.0),
 		m_FixedTimeStep(1 / 60.0),
 		m_IsRunning(false),
@@ -17,12 +17,12 @@ namespace GGEngine
 		Time::s_FixedDelta = m_FixedTimeStep;
 	}
 
-	Game::~Game(void)
+	Application::~Application(void)
 	{
 		delete m_Window;
 	}
 
-	void Game::run(void)
+	void Application::run(void)
 	{
 		m_IsRunning = GL_TRUE;
 		GLdouble _prevTime = Time::getCurrentTime();
@@ -92,13 +92,13 @@ namespace GGEngine
 		}
 	}
 
-	void Game::stop(void)
+	void Application::stop(void)
 	{
 		if (!m_IsRunning) { return; }
 		m_IsRunning = false;
 	}
 
-	void Game::addScene(Scene * scene, const std::string& sceneName, GLboolean setAsActive)
+	void Application::addScene(Scene * scene, const std::string& sceneName, GLboolean setAsActive)
 	{
 		m_Scenes.insert({ sceneName, scene });
 
@@ -107,7 +107,7 @@ namespace GGEngine
 		m_ActiveScene->onInit();
 	}
 
-	void Game::unloadScene(void)
+	void Application::unloadScene(void)
 	{
 		if (m_ActiveScene == nullptr) { return; }
 
@@ -115,7 +115,7 @@ namespace GGEngine
 		m_ActiveScene = nullptr;
 	}
 
-	GLboolean Game::setScene(const std::string& sceneName)
+	GLboolean Application::setScene(const std::string& sceneName)
 	{
 		if (m_Scenes.find(sceneName) == m_Scenes.end())
 		{
@@ -127,12 +127,12 @@ namespace GGEngine
 		return true;
 	}
 
-	void Game::setTimeStep(GLuint fps)
+	void Application::setTimeStep(GLuint fps)
 	{
 		m_TimeStep = 1 / (GLdouble)fps;
 	}
 
-	void Game::setFixedTimeStep(GLuint fps)
+	void Application::setFixedTimeStep(GLuint fps)
 	{
 		m_FixedTimeStep = 1 / (GLdouble)fps;
 		Time::s_FixedDelta = m_FixedTimeStep;
