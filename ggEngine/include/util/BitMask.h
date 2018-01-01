@@ -1,8 +1,8 @@
-#ifndef		GGENGINE_BITMASK_H
-#define		GGENGINE_BITMASK_H
+#ifndef		GG_BITMASK_H
+#define		GG_BITMASK_H
 #pragma once
 
-namespace GGEngine
+namespace gg
 {
 	class BitMask
 	{
@@ -30,6 +30,6 @@ namespace GGEngine
 		~BitMask(void) = delete;
 	};
 	// class BitMask
-} // namespace GGEngine
+} // namespace gg
 
 #endif

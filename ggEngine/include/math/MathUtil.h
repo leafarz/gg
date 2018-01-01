@@ -1,10 +1,10 @@
-#ifndef		GGENGINE_MATHUTIL_H
-#define		GGENGINE_MATHUTIL_H
+#ifndef		GG_MATHUTIL_H
+#define		GG_MATHUTIL_H
 #pragma once
 #include <math.h>
 #include "math/Vec3f.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -35,5 +35,5 @@ namespace GGEngine
 
 		Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t);
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg
 #endif

@@ -1,8 +1,8 @@
-#ifndef		GGENGINE_CRC32_H
-#define		GGENGINE_CRC32_H
+#ifndef		GG_CRC32_H
+#define		GG_CRC32_H
 #pragma once
 
-namespace GGEngine {
+namespace gg {
 
 	class Crc32
 	{
@@ -16,6 +16,6 @@ namespace GGEngine {
 		static unsigned int uiCRC32_Table[256];
 	};
 
-} // namespace GGEngine
+} // namespace gg
 
 #endif

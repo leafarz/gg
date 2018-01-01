@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_RESOURCE_H
-#define		GGENGINE_RESOURCE_H
+#ifndef		GG_RESOURCE_H
+#define		GG_RESOURCE_H
 #pragma once
 
 #include <iostream>
 #include <string>
 
-namespace GGEngine
+namespace gg
 {
 	class Resource
 	{
@@ -15,6 +15,6 @@ namespace GGEngine
 
 		static std::string read_file(const char *file);
 	}; // class Resource
-} // namespace GGEngine
+} // namespace gg
 
 #endif

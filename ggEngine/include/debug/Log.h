@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_Log_H
-#define		GGENGINE_Log_H
+#ifndef		GG_LOG_H
+#define		GG_LOG_H
 #pragma once
 
 #include <string>
 #include <sstream>
 
-namespace GGEngine
+namespace gg
 {
 #if _DEBUG
 	/* Logs str with function name, file name and line number. */
@@ -70,6 +70,6 @@ namespace GGEngine
 	private:
 		static unsigned char s_LogLevel;
 	}; // class Log
-} // namespace GGEngine
+} // namespace gg
 
 #endif

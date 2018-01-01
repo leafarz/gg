@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_WINDOW_H
-#define		GGENGINE_WINDOW_H
+#ifndef		GG_WINDOW_H
+#define		GG_WINDOW_H
 #pragma once
 
 #include "GLFW/glfw3.h"
 #include <string>
 
-namespace GGEngine
+namespace gg
 {
 	class Window
 	{
@@ -30,6 +30,6 @@ namespace GGEngine
 		GLFWwindow* m_Window;
 		std::string m_windowTitle;
 	}; // class Window
-} // namespace GGEngine
+} // namespace gg
 
 #endif

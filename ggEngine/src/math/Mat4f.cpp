@@ -6,7 +6,7 @@
 #include "math/Vec3f.h"
 #include "math/Quaternion.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -528,4 +528,4 @@ namespace GGEngine
 			);
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

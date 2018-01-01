@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_INPUT_H
-#define		GGENGINE_INPUT_H
+#ifndef		GG_INPUT_H
+#define		GG_INPUT_H
 #pragma once
 #include "GLFW/glfw3.h"
 #include "core/InputDefines.h"
 #include "math/Vec2f.h"
 
-namespace GGEngine
+namespace gg
 {
 	class Input
 	{
@@ -133,5 +133,5 @@ namespace GGEngine
 		/* Callback for setting mouse pos variable. */
 		static GLvoid mousePosCallback(GLFWwindow* window, GLdouble x, GLdouble y);
 	};// class Input
-}// namespace GGEngine
+}// namespace gg
 #endif

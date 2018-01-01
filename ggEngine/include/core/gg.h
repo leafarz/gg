@@ -1,5 +1,5 @@
-#ifndef		GGENGINE_GG_H
-#define		GGENGINE_GG_H
+#ifndef		GG_GG_H
+#define		GG_GG_H
 #pragma once
 
 #include <vector>

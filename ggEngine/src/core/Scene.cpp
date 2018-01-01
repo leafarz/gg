@@ -1,6 +1,6 @@
 #include "core/Scene.h"
 
-namespace GGEngine
+namespace gg
 {
 	Scene::Scene(void)
 	{
@@ -33,4 +33,4 @@ namespace GGEngine
 	{
 		return m_ActiveCamera;
 	}
-} // namespace GGEngine
+} // namespace gg

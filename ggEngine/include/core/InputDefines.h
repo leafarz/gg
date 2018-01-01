@@ -1,5 +1,5 @@
-#ifndef		GGENGINE_INPUTDEFINES_H
-#define		GGENGINE_INPUTDEFINES_H
+#ifndef		GG_INPUTDEFINES_H
+#define		GG_INPUTDEFINES_H
 #pragma once
 
 /* Defines obtained from GLFW */

@@ -1,10 +1,10 @@
-#ifndef		GGENGINE_TIME_H
-#define		GGENGINE_TIME_H
+#ifndef		GG_TIME_H
+#define		GG_TIME_H
 #pragma once
 
 #include "GLFW/glfw3.h"
 
-namespace GGEngine
+namespace gg
 {
 	class Application;
 	class Time
@@ -24,6 +24,6 @@ namespace GGEngine
 		static GLdouble s_Delta;
 		static GLdouble s_FixedDelta;
 	}; // class Time
-} // namespace GGEngine
+} // namespace gg
 
 #endif

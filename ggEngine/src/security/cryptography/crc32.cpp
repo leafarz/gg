@@ -1,6 +1,6 @@
 #include "security/cryptography/crc32.h"
 
-namespace GGEngine
+namespace gg
 {
 	unsigned int Crc32::uiCRC32_Table[256] = {
 		0x00000000L, 0x77073096L, 0xEE0E612CL,
@@ -104,4 +104,4 @@ namespace GGEngine
 		return (uiCRC32 ^ 0xFFFFFFFF);
 	}
 
-} // namespace GGEngine
+} // namespace gg

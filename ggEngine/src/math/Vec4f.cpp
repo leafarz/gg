@@ -3,7 +3,7 @@
 #include <math.h>
 #include "math/MathUtil.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -240,4 +240,4 @@ namespace GGEngine
 			return from + (to - from) * p;
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

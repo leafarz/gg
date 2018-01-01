@@ -5,7 +5,7 @@
 
 #include "math/MathUtil.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -275,4 +275,4 @@ namespace GGEngine
 			return atan2(_determinant, _dot);
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

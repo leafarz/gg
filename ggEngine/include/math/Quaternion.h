@@ -1,9 +1,9 @@
-#ifndef		GGENGINE_QUATERNION_H
-#define		GGENGINE_QUATERNION_H
+#ifndef		GG_QUATERNION_H
+#define		GG_QUATERNION_H
 #pragma once
 #include <iomanip>
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -114,5 +114,5 @@ namespace GGEngine
 
 		};// struct Quaternion
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg
 #endif

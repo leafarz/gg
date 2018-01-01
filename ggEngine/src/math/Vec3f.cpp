@@ -4,7 +4,7 @@
 #include "math/Quaternion.h"
 #include "math/MathUtil.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -341,4 +341,4 @@ namespace GGEngine
 			return Vec3f(_w.x, _w.y, _w.z);
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

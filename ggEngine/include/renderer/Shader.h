@@ -1,5 +1,5 @@
-#ifndef		GGENGINE_SHADER_H
-#define		GGENGINE_SHADER_H
+#ifndef		GG_SHADER_H
+#define		GG_SHADER_H
 #pragma once
 
 #include "GL/glew.h"
@@ -9,7 +9,7 @@
 #include "math/Vec3f.h"
 #include "math/Mat4f.h"
 
-namespace GGEngine
+namespace gg
 {
 	class Shader
 	{
@@ -62,6 +62,6 @@ namespace GGEngine
 
 
 	}; // class Shader
-} // namespace GGEngine
+} // namespace gg
 
 #endif

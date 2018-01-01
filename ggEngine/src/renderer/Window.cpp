@@ -1,6 +1,6 @@
 #include "renderer/Window.h"
 
-namespace GGEngine
+namespace gg
 {
 	Window::Window(void) :
 		m_windowTitle("")
@@ -87,4 +87,4 @@ namespace GGEngine
 		/* Poll for and process events */
 		glfwPollEvents();
 	}
-} // namespace GGEngine
+} // namespace gg

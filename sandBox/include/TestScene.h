@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_TESTSCENE_H
-#define		GGENGINE_TESTSCENE_H
+#ifndef		GG_TESTSCENE_H
+#define		GG_TESTSCENE_H
 #pragma once
 
 #include "core/Scene.h"
 #include "core/gg.h"
 
-namespace GGEngine
+namespace gg
 {
 	class TestScene : public Scene
 	{
@@ -18,6 +18,6 @@ namespace GGEngine
 		void onFixedUpdate(void) override;
 		void onUpdate(void) override;
 	}; // class TestScene
-} // namespace GGEngine
+} // namespace gg
 
 #endif

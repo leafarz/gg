@@ -1,9 +1,9 @@
-#ifndef		GGENGINE_VEC4F_H
-#define		GGENGINE_VEC4F_H
+#ifndef		GG_VEC4F_H
+#define		GG_VEC4F_H
 #pragma once
 #include <iomanip>
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -99,5 +99,5 @@ namespace GGEngine
 			static Vec4f lerp(const Vec4f& from, const Vec4f& to, float p);
 		};// struct vec4f
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg
 #endif

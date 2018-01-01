@@ -5,7 +5,7 @@
 #include "math/Mat4f.h"
 #include "math/Vec3f.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -265,4 +265,4 @@ namespace GGEngine
 				A.x * B.w;
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

@@ -1,10 +1,10 @@
-#ifndef		GGENGINE_COMPLEX_H
-#define		GGENGINE_COMPLEX_H
+#ifndef		GG_COMPLEX_H
+#define		GG_COMPLEX_H
 #pragma once
 #include <math.h>
 #include <iomanip>
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -68,5 +68,5 @@ namespace GGEngine
 			double getSqrMagnitude(void) const;
 		};// struct complex
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg
 #endif

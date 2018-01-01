@@ -1,7 +1,7 @@
 #include "math/MathUtil.h"
 #include <limits>
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -38,4 +38,4 @@ namespace GGEngine
 			);
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

@@ -1,7 +1,7 @@
 #include "core/Input.h"
 #include "core/gg.h"
 
-namespace GGEngine
+namespace gg
 {
 	GLboolean	Input::s_Keys[(int)KEY::LAST];
 	GLboolean	Input::s_KeyDown[(int)KEY::LAST];
@@ -213,4 +213,4 @@ namespace GGEngine
 	{
 		s_MousePos = Math::Vec2f((float)x, (float)y);
 	}
-}// namespace GGEngine
+}// namespace gg

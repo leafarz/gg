@@ -8,7 +8,7 @@
 //#include "../../deps/glm-0.9.7.6/glm/glm.hpp"
 #include "TestScene.h"
 
-using namespace GGEngine;
+using namespace gg;
 //using namespace GGEngine::Math;
 
 int main()

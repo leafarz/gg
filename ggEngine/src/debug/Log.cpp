@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "util/BitMask.h"
-namespace GGEngine
+namespace gg
 {
 	unsigned char Log::s_LogLevel = static_cast<unsigned char>(LogLevel::Error) | static_cast<unsigned char>(LogLevel::Warn) | static_cast<unsigned char>(LogLevel::Info);
 
@@ -23,4 +23,4 @@ namespace GGEngine
 			std::cout << str;
 		}
 	}
-} // namespace GGEngine
+} // namespace gg

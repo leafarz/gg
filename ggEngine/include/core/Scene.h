@@ -1,8 +1,8 @@
-#ifndef		GGENGINE_SCENE_H
-#define		GGENGINE_SCENE_H
+#ifndef		GG_SCENE_H
+#define		GG_SCENE_H
 #pragma once
 
-namespace GGEngine
+namespace gg
 {
 	class Camera;
 	class Scene
@@ -23,6 +23,6 @@ namespace GGEngine
 	private:
 		Camera* m_ActiveCamera;
 	}; // class Scene
-} // namespace GGEngine
+} // namespace gg
 
 #endif

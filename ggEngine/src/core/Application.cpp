@@ -5,7 +5,7 @@
 #include "core/Time.h"
 
 #include "util/Resource.h"
-namespace GGEngine
+namespace gg
 {
 	Application::Application(const char* windowName, GLint width = 1280, GLint height = 720) :
 		m_TimeStep(1 / 60.0),
@@ -146,4 +146,4 @@ namespace GGEngine
 		m_FixedTimeStep = 1 / (GLdouble)fps;
 		Time::s_FixedDelta = m_FixedTimeStep;
 	}
-} // namespace GGEngine
+} // namespace gg

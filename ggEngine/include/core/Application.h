@@ -1,15 +1,17 @@
-#ifndef		GGENGINE_APPLICATION_H
-#define		GGENGINE_APPLICATION_H
+#ifndef		GG_APPLICATION_H
+#define		GG_APPLICATION_H
 #pragma once
 
 #include "GL/glew.h"
-
-#include "renderer/Window.h"
 #include "core/gg.h"
+
 #include <vector>
 #include <unordered_map>
 
-namespace GGEngine
+#include "renderer/Window.h"
+#include "renderer/Renderer.h"
+
+namespace gg
 {
 	class Scene;
 	class Application
@@ -18,8 +20,8 @@ namespace GGEngine
 		Application(const char* windowName, GLint width, GLint height);
 		~Application(void);
 
-		void run(void);
-		void stop(void);
+		void		run(void);
+		void		stop(void);
 
 		void		addScene(Scene* scene, const std::string& sceneName, GLboolean setAsActive = false);
 		void		unloadScene(void);
@@ -42,6 +44,6 @@ namespace GGEngine
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
 	}; // class Application
-} // namespace GGEngine
+} // namespace gg
 
 #endif

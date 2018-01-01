@@ -2,7 +2,7 @@
 
 #include "Math/MathUtil.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -152,4 +152,4 @@ namespace GGEngine
 			return this->re * this->re + this->im * this->im;
 		}
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg

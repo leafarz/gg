@@ -5,7 +5,7 @@
 #include <sstream>
 #include "security/cryptography/crc32.h"
 
-namespace GGEngine
+namespace gg
 {
 	std::unordered_map<unsigned int, GLuint> Shader::s_ShaderHash;
 
@@ -195,4 +195,4 @@ namespace GGEngine
 
 		return true;
 	}
-} // namespace GGEngine
+} // namespace gg

@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_VEC3F_H
-#define		GGENGINE_VEC3F_H
+#ifndef		GG_VEC3F_H
+#define		GG_VEC3F_H
 #pragma once
 
 #include <iomanip>
 #include "Vec2f.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -158,5 +158,5 @@ namespace GGEngine
 		};// struct vec3f
 
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg
 #endif

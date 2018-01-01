@@ -1,7 +1,7 @@
 #include "util/Resource.h"
 
 #include "core/gg.h"
-namespace GGEngine
+namespace gg
 {
 	std::string Resource::read_file(const char *file)
 	{
@@ -27,4 +27,4 @@ namespace GGEngine
 		delete[] _data;
 		return _text;
 	}
-} // namespace GGEngine
+} // namespace gg

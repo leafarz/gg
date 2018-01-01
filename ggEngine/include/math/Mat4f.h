@@ -1,11 +1,11 @@
-#ifndef		GGENGINE_MATRIX4F_H
-#define		GGENGINE_MATRIX4F_H
+#ifndef		GG_MATRIX4F_H
+#define		GG_MATRIX4F_H
 #pragma once
 
 #include <iomanip>
 #include "math/Vec4f.h"
 
-namespace GGEngine
+namespace gg
 {
 	namespace Math
 	{
@@ -113,5 +113,5 @@ namespace GGEngine
 			Vec3f getTransform(Vec3f A);
 		};// struct matrix4f
 	}// namespace Math
-}// namespace GGEngine
+}// namespace gg
 #endif

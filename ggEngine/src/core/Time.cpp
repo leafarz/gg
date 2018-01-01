@@ -1,6 +1,6 @@
 #include "core/Time.h"
 
-namespace GGEngine
+namespace gg
 {
 	GLdouble Time::s_StartTime = 0;
 	GLdouble Time::s_Delta = 0;
@@ -24,4 +24,4 @@ namespace GGEngine
 	{
 		return s_FixedDelta;
 	}
-} // namespace GGEngine
+} // namespace gg
