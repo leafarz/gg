@@ -5,8 +5,6 @@
 #include <string>
 #include <sstream>
 
-namespace gg
-{
 #if _DEBUG
 	/* Logs str with function name, file name and line number. */
 	#define LOG(msg)\
@@ -22,24 +20,37 @@ namespace gg
 		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
 		Log::log(_ss.str(), LogLevel::Warn);\
 	}
+	#define _SYS(msg)\
+	{\
+		std::stringstream _ss;\
+		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
+		Log::log(_ss.str(), LogLevel::System);\
+	}
 #else
 	/* Does nothing.
 	* This does not affect performance even if LOG is used.
 	*/
 	#define LOG(msg)
 	/* Does nothing.
-	* This does not affect performance even if LOG is used.
+	* This does not affect performance even if WARN is used.
 	*/
 	#define WARN(msg)
+	/* Does nothing.
+	* This does not affect performance even if _SYS is used.
+	*/
+	#define _SYS(msg)
 #endif
-	/* Logs str with function name, file name and line number. */
-	#define ERROR(msg)\
-	{\
-		std::stringstream _ss;\
-		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
-		Log::log(_ss.str(), LogLevel::Error);\
-	}
 
+/* Logs str with function name, file name and line number. */
+#define ERROR(msg)\
+{\
+	std::stringstream _ss;\
+	_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
+	Log::log(_ss.str(), LogLevel::Error);\
+}
+
+namespace gg
+{
 	enum class LogLevel : unsigned char
 	{
 		Info	= 1,
@@ -73,14 +84,4 @@ namespace gg
 		static unsigned char s_LogLevel;
 	}; // class Log
 } // namespace gg
-
-
-namespace gg { namespace internal {
-	#define _SYS(msg)\
-	{\
-		std::stringstream _ss;\
-		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
-		Log::log(_ss.str(), LogLevel::System);\
-	}
-} } // namespace gg
 #endif

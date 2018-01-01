@@ -5,10 +5,10 @@
 #include <GL/glew.h>
 #include <string>
 
+#define ASSERT(x) if(!(x)) __debugbreak();
+
 namespace gg
 {
-	#define ASSERT(x) if(!(x)) __debugbreak();
-
 	std::string getErrorName(GLenum error);
 	void glClearError(void);
 	bool glLog(const char* function, const char* file, int line);

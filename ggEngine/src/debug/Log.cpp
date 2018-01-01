@@ -5,7 +5,10 @@
 #include "util/BitMask.h"
 namespace gg
 {
-	unsigned char Log::s_LogLevel = static_cast<unsigned char>(LogLevel::Error) | static_cast<unsigned char>(LogLevel::Warn) | static_cast<unsigned char>(LogLevel::Info);
+	unsigned char Log::s_LogLevel = static_cast<unsigned char>(LogLevel::Info) |
+		static_cast<unsigned char>(LogLevel::Warn) |
+		static_cast<unsigned char>(LogLevel::Error) |
+		static_cast<unsigned char>(LogLevel::System);
 
 	void Log::addLog(LogLevel logLevel)
 	{
