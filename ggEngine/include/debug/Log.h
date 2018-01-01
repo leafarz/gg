@@ -42,9 +42,11 @@ namespace gg
 
 	enum class LogLevel : unsigned char
 	{
-		Error	= 1,
+		Info	= 1,
 		Warn	= 2,
-		Info	= 4
+		Error	= 4,
+		System	= 8
+		
 	};
 
 	class Log
@@ -72,4 +74,13 @@ namespace gg
 	}; // class Log
 } // namespace gg
 
+
+namespace gg { namespace internal {
+	#define _SYS(msg)\
+	{\
+		std::stringstream _ss;\
+		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
+		Log::log(_ss.str(), LogLevel::System);\
+	}
+} } // namespace gg
 #endif

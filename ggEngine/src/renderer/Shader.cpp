@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include "security/cryptography/crc32.h"
+#include "platform/opengl/GLCommon.h"
 
 namespace gg
 {
@@ -24,29 +25,29 @@ namespace gg
 		ShaderData _data = parseShader(file.c_str());
 		if (_data.vsString.empty())
 		{
-			LOG("No vertex shader found in\n:[" << file << "]!");
+			WARN("No vertex shader found in\n:[" << file << "]!");
 			return;
 		}
 		if (_data.fsString.empty())
 		{
-			LOG("No fragment shader found in\n:[" << file << "]!");
+			WARN("No fragment shader found in\n:[" << file << "]!");
 			return;
 		}
 
 		const char* _vsChar = _data.vsString.c_str();
 		const char* _fsChar = _data.fsString.c_str();
 
-		m_ProgramID = glCreateProgram();
+		GL(m_ProgramID = glCreateProgram());
 		if (m_ProgramID == 0)
 		{
-			LOG("Shader program creation failed. Could not find valid memory location in constructor");
+			ERROR("Shader program creation failed. Could not find valid memory location in constructor");
 			return;
 		}
-		LOG("Creating vertex shader");
+		_SYS("Creating vertex shader");
 		if (!attachShader(_vsChar, GL_VERTEX_SHADER))	{ return; }
-		LOG("Creating fragment shader");
+		_SYS("Creating fragment shader");
 		if (!attachShader(_fsChar, GL_FRAGMENT_SHADER)) { return; }
-		LOG("Compiling program");
+		_SYS("Compiling program");
 		if (!compileProgram())							{ return; }
 
 		addAllUniforms();
@@ -54,15 +55,15 @@ namespace gg
 
 	Shader::~Shader(void)
 	{
-		glDetachShader(m_ProgramID, GL_VERTEX_SHADER);
-		glDetachShader(m_ProgramID, GL_FRAGMENT_SHADER);
+		GL(glDetachShader(m_ProgramID, GL_VERTEX_SHADER));
+		GL(glDetachShader(m_ProgramID, GL_FRAGMENT_SHADER));
 
-		glDeleteProgram(m_ProgramID);
+		GL(glDeleteProgram(m_ProgramID));
 	}
 
 	void Shader::bind(void)
 	{
-		glUseProgram(m_ProgramID);
+		GL(glUseProgram(m_ProgramID));
 	}
 
 	void Shader::addAllUniforms(void)
@@ -73,7 +74,7 @@ namespace gg
 		GLenum _type = GL_ZERO;
 		char _name[256];
 
-		glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size);
+		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size));
 		for (int i = 0; i < _size; i++)
 		{
 			glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name);
@@ -113,15 +114,15 @@ namespace gg
 	void Shader::logShaderInfo(GLuint shader)
 	{
 		char _infoLog[512];
-		glGetShaderInfoLog(shader, 512, NULL, _infoLog);
-		LOG("[Error] Shader compilation failed!\n" << _infoLog);
+		GL(glGetShaderInfoLog(shader, 512, NULL, _infoLog));
+		ERROR("[Error] Shader compilation failed!\n" << _infoLog);
 	}
 
 	GLvoid Shader::logProgramInfo(GLuint program)
 	{
 		char _infoLog[512];
-		glGetProgramInfoLog(program, 512, NULL, _infoLog);
-		LOG("[Error] Invalid program!\n" << _infoLog);
+		GL(glGetProgramInfoLog(program, 512, NULL, _infoLog));
+		ERROR("[Error] Invalid program!\n" << _infoLog);
 	}
 
 	Shader::ShaderData Shader::parseShader(const char* file)
@@ -156,37 +157,37 @@ namespace gg
 
 	bool Shader::attachShader(const char * fileText, GLuint type)
 	{
-		GLuint _shader = glCreateShader(type);
+		GL(GLuint _shader = glCreateShader(type));
 
 		if (_shader == 0)
 		{
-			LOG("Shader creation failed. Could not find valid memory location in constructor");
+			ERROR("Shader creation failed. Could not find valid memory location in constructor");
 			return false;
 		}
 
-		glShaderSource(_shader, 1, &fileText, 0);
-		glCompileShader(_shader);
+		GL(glShaderSource(_shader, 1, &fileText, 0));
+		GL(glCompileShader(_shader));
 
 		GLint _success;
-		glGetShaderiv(_shader, GL_COMPILE_STATUS, &_success);
+		GL(glGetShaderiv(_shader, GL_COMPILE_STATUS, &_success));
 		if (!_success)
 		{
 			logShaderInfo(_shader);
 			return false;
 		}
 
-		glAttachShader(m_ProgramID, _shader);
-		glDeleteShader(_shader);
+		GL(glAttachShader(m_ProgramID, _shader));
+		GL(glDeleteShader(_shader));
 		return true;
 	}
 
 	bool Shader::compileProgram(void)
 	{
-		glLinkProgram(m_ProgramID);
-		glValidateProgram(m_ProgramID);
+		GL(glLinkProgram(m_ProgramID));
+		GL(glValidateProgram(m_ProgramID));
 
 		GLint _status = -1;
-		glGetProgramiv(m_ProgramID, GL_VALIDATE_STATUS, &_status);
+		GL(glGetProgramiv(m_ProgramID, GL_VALIDATE_STATUS, &_status));
 		if (_status == GL_FALSE)
 		{
 			logProgramInfo(m_ProgramID);
