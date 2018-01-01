@@ -1,0 +1,75 @@
+#ifndef		GGENGINE_Log_H
+#define		GGENGINE_Log_H
+#pragma once
+
+#include <string>
+#include <sstream>
+
+namespace GGEngine
+{
+#if _DEBUG
+	/* Logs str with function name, file name and line number. */
+	#define LOG(msg)\
+	{\
+		std::stringstream _ss;\
+		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
+		Log::log(_ss.str(), LogLevel::Info);\
+	}
+	/* Logs str with function name, file name and line number. */
+	#define WARN(msg)\
+	{\
+		std::stringstream _ss;\
+		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
+		Log::log(_ss.str(), LogLevel::Warn);\
+	}
+#else
+	/* Does nothing.
+	* This does not affect performance even if LOG is used.
+	*/
+	#define LOG(msg)
+	/* Does nothing.
+	* This does not affect performance even if LOG is used.
+	*/
+	#define WARN(msg)
+#endif
+	/* Logs str with function name, file name and line number. */
+	#define ERROR(msg)\
+	{\
+		std::stringstream _ss;\
+		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
+		Log::log(_ss.str(), LogLevel::Error);\
+	}
+
+	enum class LogLevel : unsigned char
+	{
+		Error	= 1,
+		Warn	= 2,
+		Info	= 4
+	};
+
+	class Log
+	{
+	public:
+		/* Enables the specific log level to be logged in console.
+		 * LogLevel is the type of log which can be filtered for logging.
+		 */
+		static void addLog(LogLevel logLevel);
+		/* Disables the specific log level to be logged in console.
+		 * LogLevel is the type of log which can be filtered for logging.
+		*/
+		static void removeLog(LogLevel logLevel);
+		/* Logs the [str] to console with the LogLevel type.
+		 * LogLevel is the type of log which can be filtered for logging.
+		*/
+		static void log(std::string str, LogLevel logLevel = LogLevel::Info);
+
+	private:
+		Log(void) = delete;
+		~Log(void) = delete;
+
+	private:
+		static unsigned char s_LogLevel;
+	}; // class Log
+} // namespace GGEngine
+
+#endif
