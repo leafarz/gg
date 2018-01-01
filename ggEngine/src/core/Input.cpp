@@ -30,7 +30,7 @@ namespace gg
 	GLvoid Input::init(GLvoid)
 	{
 		// initialize arrays
-		FOR(0, (int)KEY::LAST)
+		FOR(i, 0, (int)KEY::LAST)
 		{
 			s_Keys[i] = GL_FALSE;
 			s_KeyDown[i] = GL_FALSE;
@@ -39,7 +39,7 @@ namespace gg
 			s_KeyUpQueue[i] = GL_FALSE;
 		}
 
-		FOR(0, (int)MOUSE::LAST)
+		FOR(i, 0, (int)MOUSE::LAST)
 		{
 			s_MouseBtns[i] = GL_FALSE;
 			s_MouseBtnDown[i] = GL_FALSE;
@@ -87,11 +87,11 @@ namespace gg
 
 	GLvoid Input::clearKeyboardInput(GLvoid)
 	{
-		FOR(0, s_KeyDownCount)
+		FOR(i, 0, s_KeyDownCount)
 		{
 			s_KeyDown[s_KeyDownQueue[i]] = GL_FALSE;
 		}
-		FOR(0, s_KeyUpCount)
+		FOR(i, 0, s_KeyUpCount)
 		{
 			s_KeyUp[s_KeyUpQueue[i]] = GL_FALSE;
 		}
@@ -141,11 +141,11 @@ namespace gg
 
 	GLvoid Input::clearMouseBtnInput(GLvoid)
 	{
-		FOR(0, s_MouseBtnDownCount)
+		FOR(i, 0, s_MouseBtnDownCount)
 		{
 			s_MouseBtnDown[s_MouseBtnDownQueue[i]] = GL_FALSE;
 		}
-		FOR(0, s_MouseBtnUpCount)
+		FOR(i, 0, s_MouseBtnUpCount)
 		{
 			s_MouseBtnUp[s_MouseBtnUpQueue[i]] = GL_FALSE;
 		}

@@ -6,13 +6,13 @@
 #include "debug/Log.h"
 
 /* for loop from [a] to [b-1]
- * [i] is the index per iteration
+ * [var] is the index per iteration
  */
-#define FOR(a,b)	for(int i=a-1; ++i < b; )
+#define FOR(var,a,b)	for(int var = a-1; ++var < b; )
 
 /* iterate std::vector
  * [it] is the iterator variable per iteration
  */
-#define VFOR(vec)	for(auto it = vec.begin() ; it != vec.end(); ++it)
+#define VFOR(it,vec)	for(auto it = vec.begin() ; it != vec.end(); ++it)
 
 #endif

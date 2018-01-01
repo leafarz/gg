@@ -75,7 +75,7 @@ namespace gg
 			GLuint _fixedSteps = (GLuint)(_fixedTimer / m_FixedTimeStep);
 			if (_fixedSteps > 0)
 			{
-				FOR(0, _fixedSteps)
+				FOR(i, 0, _fixedSteps)
 				{
 					if (m_ActiveScene != nullptr) { m_ActiveScene->onFixedUpdate(); }
 				}
