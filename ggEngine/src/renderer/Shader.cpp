@@ -8,7 +8,7 @@
 
 namespace gg
 {
-	std::unordered_map<unsigned int, GLuint> Shader::s_ShaderHash;
+	std::unordered_map<uint, GLuint> Shader::s_ShaderHash;
 
 	Shader::Shader(const std::string& file)
 	{
@@ -75,7 +75,7 @@ namespace gg
 		char _name[256];
 
 		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size));
-		FOR(i, 0, _size)
+		FORU(i, 0, _size)
 		{
 			glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name);
 			// TODO: add uniforms

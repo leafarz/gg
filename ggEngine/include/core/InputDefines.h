@@ -2,6 +2,8 @@
 #define		GG_INPUTDEFINES_H
 #pragma once
 
+#include "core/Types.h"
+
 /* Defines obtained from GLFW */
 
 #pragma region KEYS
@@ -147,7 +149,7 @@ enum class CURSOR_MODE : GLuint {
 	HIDDEN		= GLFW_CURSOR_HIDDEN
 };
 
-enum class MOUSE : unsigned char {
+enum class MOUSE : byte {
 	B1		= GLFW_MOUSE_BUTTON_1,
 	B2		= GLFW_MOUSE_BUTTON_2,
 	B3		= GLFW_MOUSE_BUTTON_3,
@@ -167,7 +169,7 @@ enum class MOUSE : unsigned char {
 
 #pragma region JOYSTICK
 
-enum class JOYSTICK : unsigned char {
+enum class JOYSTICK : byte {
 	B1		= GLFW_JOYSTICK_1,
 	B2		= GLFW_JOYSTICK_2,
 	B3		= GLFW_JOYSTICK_3,

@@ -9,13 +9,13 @@ namespace gg
 
 		if (!_file)
 		{
-			LOG("File [" << file << "] not found.");
+			WARN("File [" << file << "] not found. Returning empty string.");
 			return "";
 		}
 
 		fseek(_file, 0, SEEK_END);
-		unsigned long _length = ftell(_file);
-		char* _data = new char[_length + 1];
+		uint _length = ftell(_file);
+		char* _data = new char[_length + 1]; 
 		memset(_data, 0, _length + 1);
 		fseek(_file, 0, SEEK_SET);
 

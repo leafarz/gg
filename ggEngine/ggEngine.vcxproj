@@ -186,6 +186,18 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\core\Types.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\debug\Log.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\platform\opengl\GLCommon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\core\Input.h" />
     <ClInclude Include="include\core\InputDefines.h" />
     <ClInclude Include="include\core\Scene.h">
@@ -203,6 +215,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <ClInclude Include="include\math\Vec2f.h" />
     <ClInclude Include="include\math\Vec3f.h" />
     <ClInclude Include="include\math\Vec4f.h" />
+    <ClInclude Include="include\platform\opengl\GLError.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\renderer\Shader.h">
       <SubType>
       </SubType>
@@ -213,6 +229,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClInclude>
     <ClInclude Include="include\security\cryptography\crc32.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\util\BitMask.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -235,6 +255,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\debug\Log.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\math\Complex.cpp" />
     <ClCompile Include="src\math\Mat4f.cpp" />
     <ClCompile Include="src\math\Quaternion.cpp" />
@@ -242,6 +266,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <ClCompile Include="src\math\Vec3f.cpp" />
     <ClCompile Include="src\math\Vec4f.cpp" />
     <ClCompile Include="src\math\MathUtil.cpp" />
+    <ClCompile Include="src\platform\opengl\GLError.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\renderer\Shader.cpp">
       <SubType>
       </SubType>

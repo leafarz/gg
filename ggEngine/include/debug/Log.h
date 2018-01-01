@@ -4,6 +4,7 @@
 
 #include <string>
 #include <sstream>
+#include "core/Types.h"
 
 #if _DEBUG
 	/* Logs str with function name, file name and line number. */
@@ -51,7 +52,7 @@
 
 namespace gg
 {
-	enum class LogLevel : unsigned char
+	enum class LogLevel : byte
 	{
 		Info	= 1,
 		Warn	= 2,
@@ -81,7 +82,7 @@ namespace gg
 		~Log(void) = delete;
 
 	private:
-		static unsigned char s_LogLevel;
+		static byte s_LogLevel;
 	}; // class Log
 } // namespace gg
 #endif

@@ -10,10 +10,11 @@ namespace gg
 	class Resource
 	{
 	public:
+		static std::string read_file(const char *file);
+
+	private:
 		Resource(void) = delete;
 		~Resource(void) = delete;
-
-		static std::string read_file(const char *file);
 	}; // class Resource
 } // namespace gg
 
