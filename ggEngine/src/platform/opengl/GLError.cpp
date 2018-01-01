@@ -34,4 +34,4 @@ namespace gg
 		}
 		return _hasNoError;
 	}
-}// namespace gg
+} // namespace gg
