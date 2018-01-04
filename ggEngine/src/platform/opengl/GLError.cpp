@@ -11,6 +11,9 @@ namespace gg
 		case GL_INVALID_ENUM:
 			return "Invalid enum.";
 
+		case GL_INVALID_OPERATION:
+			return "Invalid operation.";
+
 		default: break;
 		}
 		return "";

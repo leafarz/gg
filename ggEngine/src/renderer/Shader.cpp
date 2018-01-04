@@ -1,8 +1,10 @@
 #include "renderer/Shader.h"
 
-#include "core/gg.h"
 #include <fstream>
 #include <sstream>
+
+#include "core/gg.h"
+#include "Paths.h"
 #include "security/cryptography/crc32.h"
 #include "platform/opengl/GLCommon.h"
 
@@ -11,9 +13,11 @@ namespace gg
 	std::unordered_map<uint, GLuint> Shader::s_ShaderHash;
 
 	Shader::Shader(const std::string& file)
+		: m_FileName(file)
 	{
+		_SYS("Processing file: \"" << file << "\"");
 		// check first if file is already cached
-		int _hash = Crc32::getHash(file.c_str(), file.size());
+		uint _hash = Crc32::getHash(file.c_str(), file.size());
 		bool _isCached = s_ShaderHash.find(_hash) != s_ShaderHash.end();
 
 		if (_isCached)
@@ -51,6 +55,8 @@ namespace gg
 		if (!compileProgram())							{ return; }
 
 		addAllUniforms();
+
+		m_ShaderID = _hash;
 	}
 
 	Shader::~Shader(void)
@@ -77,8 +83,10 @@ namespace gg
 		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size));
 		FORU(i, 0, _size)
 		{
-			glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name);
-			// TODO: add uniforms
+			GL(glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
+			GL(GLint _uniformLoc = glGetUniformLocation(m_ProgramID, _name));
+			_SYS("Adding uniform: " << _name);
+			m_Uniforms.insert({ _name, _uniformLoc });
 		}
 	}
 
@@ -127,28 +135,61 @@ namespace gg
 
 	Shader::ShaderData Shader::parseShader(const char* file)
 	{
-		std::ifstream _stream(file);
-		std::string _line;
+		// only used within this function for organization
+		struct StreamData
+		{
+			std::ifstream stream;
+			std::string currLine;
+		};
+
+		std::vector<StreamData> _streams;
+		_streams.push_back({ std::ifstream(file), "" });
+
 		std::stringstream _ss[2];
 
 		ShaderType _type = ShaderType::NONE;
 
-		while (std::getline(_stream, _line))
+		int _currIndex = _streams.size() - 1;
+
+		while (_currIndex > -1)
 		{
-			if (_line.find("#shader") != std::string::npos)
+			std::string *_line = &_streams[_currIndex].currLine;
+			if (!std::getline(_streams[_currIndex].stream, *_line))
 			{
-				if (_line.find("vertex") != std::string::npos)
+				_streams.pop_back();
+				_currIndex--;
+				continue;
+			}
+			
+			if ((*_line).find("#shader") != std::string::npos)
+			{
+				if ((*_line).find("vertex") != std::string::npos)
 				{
 					_type = ShaderType::VERTEX;
 				}
-				else if (_line.find("fragment") != std::string::npos)
+				else if ((*_line).find("fragment") != std::string::npos)
 				{
 					_type = ShaderType::FRAGMENT;
 				}
 			}
+			else if ((*_line).find("#include") != std::string::npos)
+			{
+				int _first = (*_line).find('\"', 0);
+				int _second = (*_line).find('\"', _first + 1);
+
+				if ((_second - _first - 1) <= 0)
+				{
+					ERROR("Error parsing line: \"" << (*_line) << "\"");
+				}
+
+				// TODO: fix relative paths
+				std::string _filePath = ROOT_SHADER + (*_line).substr(_first + 1, _second - _first - 1);
+				_streams.push_back({ std::ifstream(_filePath), "" });
+				_currIndex++;
+			}
 			else if (_type != ShaderType::NONE)
 			{
-				_ss[(int)_type] << _line << std::endl;
+				_ss[(int)_type] << (*_line) << std::endl;
 			}
 		}
 

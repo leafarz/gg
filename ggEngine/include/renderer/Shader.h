@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <string>
 
+#include "core/Types.h"
 #include "math/Vec3f.h"
 #include "math/Mat4f.h"
 
@@ -14,19 +15,28 @@ namespace gg
 	class Shader
 	{
 	private:
+		enum class ShaderType
+		{
+			NONE = -1, VERTEX = 0, FRAGMENT = 1, LENGTH
+		};
+		enum class DataType { SAMPLER2D, VEC3, FLOAT, MAT4, OTHER };
+
 		struct ShaderData
 		{
 			std::string vsString;
 			std::string fsString;
 			ShaderData(const std::string& vsString, const std::string& fsString)
-			{
-				this->vsString = vsString;
-				this->fsString = fsString;
-			}
+				: vsString(vsString), fsString(fsString)
+			{ }
 		};
-		enum class ShaderType
+		struct UniformData
 		{
-			NONE = -1, VERTEX = 0, FRAGMENT = 1, LENGTH
+			std::string key;
+			DataType type;
+			GLint loc;
+			UniformData(const std::string& key, DataType type, GLint loc)
+				: key(key), type(type), loc(loc)
+			{ }
 		};
 
 	public:
@@ -56,9 +66,13 @@ namespace gg
 
 
 	private:
-		static std::unordered_map<unsigned int, GLuint> s_ShaderHash;
+		static std::unordered_map<uint, GLuint> s_ShaderHash;
 
 		GLuint m_ProgramID;
+		uint m_ShaderID;
+		std::string m_FileName;
+
+		std::unordered_map<std::string, GLint> m_Uniforms;
 
 
 	}; // class Shader

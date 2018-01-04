@@ -81,6 +81,9 @@
     <ClInclude Include="include\core\Types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\math\Complex.cpp">
@@ -134,5 +137,9 @@
     <ClCompile Include="src\platform\opengl\GLError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shader\common.glh" />
+    <None Include="res\shader\core.glh" />
   </ItemGroup>
 </Project>
