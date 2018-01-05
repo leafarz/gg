@@ -14,9 +14,9 @@ namespace gg
 		case GL_INVALID_OPERATION:
 			return "Invalid operation.";
 
-		default: break;
+		default:
+			return "Unidentified error! [" + error + std::string("]");
 		}
-		return "";
 	}
 
 	void glClearError(void)

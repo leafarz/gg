@@ -92,7 +92,7 @@ namespace gg
 			}
 			else
 			{
-				_SYS("Adding uniform: [" << dataTypeToString(glEnumToDataType(_type)) << "] " << _name << " (" << _uniformLoc << ")");
+				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
 				m_Uniforms.push_back(UniformData(_name, glEnumToDataType(_type), _uniformLoc));
 			}
 		}

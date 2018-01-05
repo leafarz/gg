@@ -17,19 +17,22 @@ namespace gg
 	private:
 		enum class ShaderType : int8
 		{
-			NONE = -1, VERTEX = 0, FRAGMENT = 1, LENGTH
+			NONE		= -1,
+			VERTEX		=  0,
+			FRAGMENT	=  1,
+			LENGTH
 		};
 		enum class DataType : byte
 		{
-			INT,
-			FLOAT,
-			VEC2,
-			VEC3,
-			VEC4,
-			MAT3,
-			MAT4,
-			SAMPLER2D,
-			UNKNOWN
+			INT			= 0,
+			FLOAT		= 1,
+			VEC2		= 2,
+			VEC3		= 3,
+			VEC4		= 4,
+			MAT3		= 5,
+			MAT4		= 6,
+			SAMPLER2D	= 7,
+			UNKNOWN		= 8
 		};
 
 		struct ShaderData
@@ -74,6 +77,7 @@ namespace gg
 		static void logProgramInfo(GLuint program);
 
 		const UniformData* getUniform(const std::string& key);
+
 		ShaderData parseShader(const char* file);
 		bool attachShader(const char* fileText, GLuint type);
 
