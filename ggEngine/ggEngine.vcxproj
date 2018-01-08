@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{17D4F307-807B-46F0-9D9D-BCBE29B10A8C}</ProjectGuid>
     <RootNamespace>ggEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -220,10 +220,14 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\renderer\IndexBuffer.h" />
     <ClInclude Include="include\renderer\Shader.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\renderer\VertexArray.h" />
+    <ClInclude Include="include\renderer\VertexBuffer.h" />
+    <ClInclude Include="include\renderer\VertexBufferLayout.h" />
     <ClInclude Include="include\renderer\Window.h" />
     <ClInclude Include="include\core\gg.h">
       <SubType>
@@ -271,10 +275,14 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\renderer\IndexBuffer.cpp" />
     <ClCompile Include="src\renderer\Shader.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\renderer\VertexArray.cpp" />
+    <ClCompile Include="src\renderer\VertexBuffer.cpp" />
+    <ClCompile Include="src\renderer\VertexBufferLayout.cpp" />
     <ClCompile Include="src\renderer\Window.cpp" />
     <ClCompile Include="src\security\cryptography\crc32.cpp">
       <SubType>

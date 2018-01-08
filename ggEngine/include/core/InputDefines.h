@@ -149,7 +149,7 @@ enum class CURSOR_MODE : GLuint {
 	HIDDEN		= GLFW_CURSOR_HIDDEN
 };
 
-enum class MOUSE : byte {
+enum class MOUSE : ubyte {
 	B1		= GLFW_MOUSE_BUTTON_1,
 	B2		= GLFW_MOUSE_BUTTON_2,
 	B3		= GLFW_MOUSE_BUTTON_3,
@@ -169,7 +169,7 @@ enum class MOUSE : byte {
 
 #pragma region JOYSTICK
 
-enum class JOYSTICK : byte {
+enum class JOYSTICK : ubyte {
 	B1		= GLFW_JOYSTICK_1,
 	B2		= GLFW_JOYSTICK_2,
 	B3		= GLFW_JOYSTICK_3,

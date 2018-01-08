@@ -22,7 +22,7 @@ namespace gg
 			FRAGMENT	=  1,
 			LENGTH
 		};
-		enum class DataType : byte
+		enum class DataType : ubyte
 		{
 			INT			= 0,
 			FLOAT		= 1,

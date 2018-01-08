@@ -52,7 +52,7 @@
 
 namespace gg
 {
-	enum class LogLevel : byte
+	enum class LogLevel : ubyte
 	{
 		Info	= 1,
 		Warn	= 2,
@@ -82,7 +82,7 @@ namespace gg
 		~Log(void) = delete;
 
 	private:
-		static byte s_LogLevel;
+		static ubyte s_LogLevel;
 	}; // class Log
 } // namespace gg
 #endif

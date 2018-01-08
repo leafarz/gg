@@ -14,7 +14,8 @@ typedef uint16_t	uint16;
 typedef uint32_t	uint32;
 typedef uint64_t	uint64;
 
-typedef uint8		byte;
+typedef uint8		ubyte;
+//typedef int8_t		byte;
 typedef uint32		uint;
 
 #endif
