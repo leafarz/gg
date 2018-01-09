@@ -268,7 +268,7 @@ namespace gg
 
 		ShaderType _type = ShaderType::NONE;
 
-		int _currIndex = _streams.size() - 1;
+		int _currIndex = (int)_streams.size() - 1;
 
 		while (_currIndex > -1)
 		{
@@ -293,8 +293,8 @@ namespace gg
 			}
 			else if ((*_line).find("#include") != std::string::npos)
 			{
-				int _first = (*_line).find('\"', 0);
-				int _second = (*_line).find('\"', _first + 1);
+				uint _first = (*_line).find('\"', 0);
+				uint _second = (*_line).find('\"', _first + 1);
 
 				if ((_second - _first - 1) <= 0)
 				{
