@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ggEngine", "ggEngine\ggEngine.vcxproj", "{17D4F307-807B-46F0-9D9D-BCBE29B10A8C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gg", "gg\gg.vcxproj", "{17D4F307-807B-46F0-9D9D-BCBE29B10A8C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sandBox", "sandBox\sandBox.vcxproj", "{F2637135-5D72-4379-9E8F-F81BB7560DA8}"
 	ProjectSection(ProjectDependencies) = postProject

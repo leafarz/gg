@@ -3,7 +3,7 @@
 #pragma once
 
 #if _DEBUG
-	#define ROOT_SHADER "../ggEngine/res/shader/"
+	#define ROOT_SHADER "../gg/res/shader/"
 #else
 	#define ROOT_SHADER "res/shader/"
 #endif

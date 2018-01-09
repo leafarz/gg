@@ -266,5 +266,5 @@ Build_x64_Debug
 Build_x64_Release
 Build_x86_Debug
 Build_x86_Release
-!ggEngine/include/debug
-!ggEngine/src/debug
+!gg/include/debug
+!gg/src/debug

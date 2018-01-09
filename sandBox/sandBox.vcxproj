@@ -90,12 +90,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ggEngine\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)gg\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)ggEngine\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ggEngined.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ggd.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -103,12 +103,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)ggEngine\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)gg\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)ggEngine\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ggEngined.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ggd.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -118,14 +118,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ggEngine\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\gg\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\ggEngine\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ggEngine.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gg.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,14 +135,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)deps\ggEngine\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)deps\gg\include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(ProjectDir)include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)deps\ggEngine\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ggEngine.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)deps\gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gg.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
