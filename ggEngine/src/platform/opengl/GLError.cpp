@@ -8,14 +8,12 @@ namespace gg
 	{
 		switch (error)
 		{
-		case GL_INVALID_ENUM:
-			return "Invalid enum.";
-
-		case GL_INVALID_OPERATION:
-			return "Invalid operation.";
+		case GL_INVALID_ENUM:		return "Invalid enum.";
+		case GL_INVALID_OPERATION:	return "Invalid operation.";
+		case GL_INVALID_VALUE:		return "Invalid value.";
 
 		default:
-			return "Unidentified error! [" + error + std::string("]");
+			return "Unidentified error! [" + std::to_string(error) + std::string("]");
 		}
 	}
 
