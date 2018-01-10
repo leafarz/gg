@@ -28,6 +28,7 @@ namespace gg
 	VertexArray va;
 	IndexBuffer ib;
 	VertexBuffer vb;
+	Shader *s;
 	void TestScene::onInit(void)
 	{
 		//TODO: test on x,y only
@@ -53,19 +54,14 @@ namespace gg
 
 		va.init();
 		va.addBuffer(vb, _layout);
-		//glGenBuffers(1, &vao);
-		//glBindVertexArray(vao);
-		//	vb.bind();
-
-		//	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
-		//	glEnableVertexAttribArray(0);
-
-		//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		//glBindVertexArray(0);
 		
-		Shader *s = new Shader("src/basic.shader");
+		s = new Shader("src/basic.shader");
 		s->bind();
+
+		va.unbind();
+		s->unbind();
+		vb.unbind();
+		ib.unbind();
 	}
 	void TestScene::onUnload(void)
 	{
@@ -83,6 +79,7 @@ namespace gg
 
 			va.bind();
 			ib.bind();
+			s->bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 			glBindVertexArray(0);
 		}
