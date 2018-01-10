@@ -45,11 +45,12 @@ namespace gg
 		};
 		struct UniformData
 		{
-			std::string key;
 			DataType dataType;
 			GLint loc;
-			UniformData(const std::string& key, DataType dataType, GLint loc)
-				: key(key), dataType(dataType), loc(loc)
+			UniformData(void)
+			{ }
+			UniformData(DataType dataType, GLint loc)
+				: dataType(dataType), loc(loc)
 			{ }
 		};
 
@@ -57,7 +58,8 @@ namespace gg
 		Shader(const std::string& file);
 		~Shader(void);
 
-		void bind(void);
+		void bind(void) const;
+		void unbind(void) const;
 	
 		void setUniformi(const std::string& key, uint val);
 		void setUniformf(const std::string& key, float val);
@@ -94,7 +96,7 @@ namespace gg
 		uint m_ShaderID;
 		std::string m_FilePath;
 
-		std::vector<UniformData> m_Uniforms;
+		std::unordered_map<std::string, UniformData> m_Uniforms;
 
 
 	}; // class Shader

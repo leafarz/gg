@@ -55,6 +55,8 @@ namespace gg
 		if (!compileProgram())							{ return; }
 
 		addAllUniforms();
+
+		s_ShaderHash.insert({ _hash, m_ProgramID });
 		m_ShaderID = _hash;
 	}
 
@@ -66,9 +68,14 @@ namespace gg
 		GL(glDeleteProgram(m_ProgramID));
 	}
 
-	void Shader::bind(void)
+	void Shader::bind(void) const
 	{
 		GL(glUseProgram(m_ProgramID));
+	}
+
+	void Shader::unbind(void) const
+	{
+		GL(glUseProgram(0));
 	}
 
 	void Shader::addAllUniforms(void)
@@ -93,7 +100,7 @@ namespace gg
 			else
 			{
 				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
-				m_Uniforms.push_back(UniformData(_name, glEnumToDataType(_type), _uniformLoc));
+				m_Uniforms.insert({ std::string(_name), UniformData(glEnumToDataType(_type), _uniformLoc) });
 			}
 		}
 	}
@@ -258,14 +265,7 @@ namespace gg
 
 	const Shader::UniformData* Shader::getUniform(const std::string & key)
 	{
-		VFOR(it, m_Uniforms)
-		{
-			if (it->key.compare(key) == 0)
-			{
-				return &(*it);
-			}
-		}
-		return nullptr;
+		return m_Uniforms.find(key) != m_Uniforms.end() ? &m_Uniforms[key] : nullptr;
 	}
 
 	Shader::ShaderData Shader::parseShader(const char* file)
