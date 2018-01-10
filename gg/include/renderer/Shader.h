@@ -59,11 +59,12 @@ namespace gg
 
 		void bind(void);
 	
-		void setUniformi(const std::string& key, GLuint val);
-		void setUniformf(const std::string& key, GLfloat val);
+		void setUniformi(const std::string& key, uint val);
+		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, Math::Vec3f val);
-		void setUniform(const std::string& key, Math::Mat4f val, GLboolean transpose);
-		void setUniform(const std::string& key, GLfloat* val, GLboolean transpose);
+		void setUniform(const std::string& key, float x, float y, float z);
+		void setUniform(const std::string& key, Math::Mat4f val, bool transpose);
+		void setUniform(const std::string& key, float* val, bool transpose);
 
 	private:
 		Shader(void) = delete;
@@ -91,7 +92,7 @@ namespace gg
 
 		GLuint m_ProgramID;
 		uint m_ShaderID;
-		std::string m_FileName;
+		std::string m_FilePath;
 
 		std::vector<UniformData> m_Uniforms;
 

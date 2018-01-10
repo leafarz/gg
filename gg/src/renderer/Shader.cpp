@@ -12,12 +12,12 @@ namespace gg
 {
 	std::unordered_map<uint, GLuint> Shader::s_ShaderHash;
 
-	Shader::Shader(const std::string& file)
-		: m_FileName(file)
+	Shader::Shader(const std::string& filepath)
+		: m_FilePath(filepath)
 	{
-		_SYS("Processing file: \"" << file << "\"");
+		_SYS("Processing file: \"" << m_FilePath << "\"");
 		// check first if file is already cached
-		uint _hash = Crc32::getHash(file.c_str(), file.size());
+		uint _hash = Crc32::getHash(m_FilePath.c_str(), m_FilePath.size());
 		bool _isCached = s_ShaderHash.find(_hash) != s_ShaderHash.end();
 
 		if (_isCached)
@@ -26,15 +26,15 @@ namespace gg
 			return;
 		}
 
-		ShaderData _data = parseShader(file.c_str());
+		ShaderData _data = parseShader(m_FilePath.c_str());
 		if (_data.vsString.empty())
 		{
-			WARN("No vertex shader found in\n:[" << file << "]!");
+			WARN("No vertex shader found in\n:[" << m_FilePath << "]!");
 			return;
 		}
 		if (_data.fsString.empty())
 		{
-			WARN("No fragment shader found in\n:[" << file << "]!");
+			WARN("No fragment shader found in\n:[" << m_FilePath << "]!");
 			return;
 		}
 
@@ -98,7 +98,7 @@ namespace gg
 		}
 	}
 
-	GLvoid Shader::setUniformi(const std::string& key, GLuint val)
+	GLvoid Shader::setUniformi(const std::string& key, uint val)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -114,7 +114,7 @@ namespace gg
 		glUniform1i(_uniformData->loc, val);
 	}
 
-	GLvoid Shader::setUniformf(const std::string& key, GLfloat val)
+	GLvoid Shader::setUniformf(const std::string& key, float val)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -146,7 +146,23 @@ namespace gg
 		glUniform3f(_uniformData->loc, val.x, val.y, val.z);
 	}
 
-	GLvoid Shader::setUniform(const std::string& key, Math::Mat4f val, GLboolean transpose)
+	void Shader::setUniform(const std::string & key, float x, float y, float z)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [vec3][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::VEC3)
+		{
+			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniform3f(_uniformData->loc, x, y, z);
+	}
+
+	GLvoid Shader::setUniform(const std::string& key, Math::Mat4f val, bool transpose)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -162,7 +178,7 @@ namespace gg
 		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val.getMatrix());
 	}
 
-	GLvoid Shader::setUniform(const std::string& key, GLfloat* val, GLboolean transpose)
+	GLvoid Shader::setUniform(const std::string& key, float* val, bool transpose)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)

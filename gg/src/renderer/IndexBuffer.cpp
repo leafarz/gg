@@ -26,6 +26,7 @@ namespace gg
 		GL(glGenBuffers(1, &m_ID));
 		GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID));
 		GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint), data, GL_STATIC_DRAW));
+		m_Count = count;
 		m_IsInitialized = true;
 	}
 	void IndexBuffer::bind(void) const
