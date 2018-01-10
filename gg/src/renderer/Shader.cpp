@@ -56,7 +56,7 @@ namespace gg
 
 		addAllUniforms();
 
-		s_ShaderHash.insert({ _hash, m_ProgramID });
+		s_ShaderHash[_hash] = m_ProgramID;
 		m_ShaderID = _hash;
 	}
 
@@ -100,7 +100,7 @@ namespace gg
 			else
 			{
 				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
-				m_Uniforms.insert({ std::string(_name), UniformData(glEnumToDataType(_type), _uniformLoc) });
+				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
 			}
 		}
 	}
