@@ -22,7 +22,6 @@ namespace gg
 
 		void			resizeWindow(GLint width, GLint height) const;
 
-		void			clear(GLuint bits) const;
 		void			swapBuffers(void) const;
 		void			pollEvents(void) const;
 

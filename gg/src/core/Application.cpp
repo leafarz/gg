@@ -58,9 +58,6 @@ namespace gg
 
 			if (_willUpdate)
 			{
-				// clear window
-				m_Window->clear(GL_COLOR_BUFFER_BIT);
-
 				// update input
 				Input::update();
 				m_Window->pollEvents();

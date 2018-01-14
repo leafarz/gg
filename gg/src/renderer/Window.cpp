@@ -71,11 +71,6 @@ namespace gg
 		glfwSetWindowSize(m_Window, width, height);
 	}
 
-	void Window::clear(GLuint bits) const
-	{
-		glClear(bits);
-	}
-
 	void Window::swapBuffers(void) const
 	{
 		/* Swap front and back buffers */
