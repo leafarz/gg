@@ -222,6 +222,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClInclude>
     <ClInclude Include="include\renderer\IndexBuffer.h" />
+    <ClInclude Include="include\renderer\Renderer.h" />
     <ClInclude Include="include\renderer\Shader.h">
       <SubType>
       </SubType>
@@ -277,6 +278,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\renderer\IndexBuffer.cpp" />
+    <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\renderer\Shader.cpp">
       <SubType>
       </SubType>

@@ -1,6 +1,7 @@
 #include "GL/glew.h"
 
 #include "TestScene.h"
+
 #include "core/Input.h"
 #include "core/Time.h"
 
@@ -11,7 +12,7 @@
 #include "renderer/VertexBufferLayout.h"
 #include "renderer/IndexBuffer.h"
 #include "renderer/Shader.h"
-#include "debug/Log.h"
+
 #include "platform/opengl/GLCommon.h"
 
 namespace gg
@@ -73,10 +74,15 @@ namespace gg
 	void TestScene::onUpdate(void)
 	{
 		//LOG("onUpdate");
+	}
+
+	void TestScene::onRender(void)
+	{
+		Scene::onRender();
+
 		if (Input::getKey(KEY::A))
 		{
-			//LOG(Time::getCurrentTime() << ":onUpdate");
-
+			// watch for order
 			va.bind();
 			ib.bind();
 			s->bind();

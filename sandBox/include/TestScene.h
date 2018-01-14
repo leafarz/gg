@@ -10,6 +10,8 @@ namespace gg
 	class TestScene : public Scene
 	{
 	public:
+		using Scene::onRender;
+
 		TestScene(void);
 		~TestScene(void);
 
@@ -17,6 +19,7 @@ namespace gg
 		void onUnload(void) override;
 		void onFixedUpdate(void) override;
 		void onUpdate(void) override;
+		void onRender(void);
 	}; // class TestScene
 } // namespace gg
 

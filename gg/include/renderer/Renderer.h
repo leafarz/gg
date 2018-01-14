@@ -2,6 +2,8 @@
 #define		GG_Renderer_H
 #pragma once
 
+#include "platform/opengl/GLCommon.h"
+
 namespace gg
 {
 	class Renderer
@@ -9,6 +11,8 @@ namespace gg
 	public:
 		Renderer(void);
 		~Renderer(void);
+
+		void onRender(void) const;
 	}; // class Renderer
 } // namespace gg
 

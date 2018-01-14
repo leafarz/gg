@@ -5,11 +5,15 @@
 namespace gg
 {
 	class Camera;
+	class Renderer;
 	class Scene
 	{
 	public:
 		Scene(void);
 		~Scene(void);
+
+		void	setActiveCamera(Camera* camera);
+		Camera* getActiveCamera(void) const;
 
 		virtual void onInit(void);
 		virtual void onUnload(void);
@@ -17,11 +21,9 @@ namespace gg
 		virtual void onUpdate(void);
 		virtual void onRender(void);
 
-		void	setActiveCamera(Camera* camera);
-		Camera* getActiveCamera(void) const;
-
 	private:
 		Camera* m_ActiveCamera;
+		Renderer* m_Renderer;
 	}; // class Scene
 } // namespace gg
 

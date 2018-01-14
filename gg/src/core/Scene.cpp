@@ -1,5 +1,7 @@
 #include "core/Scene.h"
 
+#include "renderer/Renderer.h"
+
 namespace gg
 {
 	Scene::Scene(void)
@@ -8,6 +10,15 @@ namespace gg
 
 	Scene::~Scene(void)
 	{
+	}
+
+	void Scene::setActiveCamera(Camera* camera)
+	{
+		m_ActiveCamera = camera;
+	}
+	Camera* Scene::getActiveCamera(void) const
+	{
+		return m_ActiveCamera;
 	}
 
 	void Scene::onInit(void)
@@ -24,13 +35,12 @@ namespace gg
 	}
 	void Scene::onRender(void)
 	{
-	}
-	void Scene::setActiveCamera(Camera* camera)
-	{
-		m_ActiveCamera = camera;
-	}
-	Camera* Scene::getActiveCamera(void) const
-	{
-		return m_ActiveCamera;
+		// update camera
+
+		// process light
+		// process game objects
+		// render queues?
+
+		m_Renderer->onRender();
 	}
 } // namespace gg
