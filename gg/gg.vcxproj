@@ -183,6 +183,18 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\component\Component.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\component\ComponentType.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\component\Transform.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\core\Application.h">
       <SubType>
       </SubType>
@@ -192,6 +204,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClInclude>
     <ClInclude Include="include\debug\Log.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="include\entity\GameObject.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -249,6 +265,14 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\component\Component.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\component\Transform.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\core\Application.cpp">
       <SubType>
       </SubType>
@@ -263,6 +287,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\debug\Log.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\entity\GameObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>

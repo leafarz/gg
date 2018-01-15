@@ -1,5 +1,5 @@
-#ifndef		GG_Renderer_H
-#define		GG_Renderer_H
+#ifndef		GG_RENDERER_H
+#define		GG_RENDERER_H
 #pragma once
 
 #include "platform/opengl/GLCommon.h"
