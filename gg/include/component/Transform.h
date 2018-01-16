@@ -3,7 +3,7 @@
 #pragma once
 
 #include "component/Component.h"
-
+#include "math/Mat4f.h"
 namespace gg
 {
 	class Transform : public Component
@@ -16,6 +16,7 @@ namespace gg
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
 	private:
+		Math::Mat4f m_TransformationMatrix;
 		// TODO: add transform matrix
 		// TODO: add loc, rot and scale (or just matrix?)
 

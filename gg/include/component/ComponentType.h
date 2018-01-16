@@ -5,10 +5,11 @@
 #include "core/Types.h"
 namespace gg
 {
-	enum class ComponentType : uint
+	enum class ComponentType : int
 	{
-		None,
-		Transform
+		None		= -1,
+		Transform,
+		MAX
 	};
 } // namespace gg
 

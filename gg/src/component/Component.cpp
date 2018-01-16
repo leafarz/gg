@@ -1,5 +1,5 @@
 #include "component/Component.h"
-
+#include "entity/GameObject.h"
 namespace gg
 {
 	Component::Component(void)
@@ -8,8 +8,10 @@ namespace gg
 
 	Component::~Component(void)
 	{
+		delete m_GameObject;
 	}
-	GameObject * Component::getGameObject(void) const
+
+	GameObject* Component::getGameObject(void) const
 	{
 		return m_GameObject;
 	}
