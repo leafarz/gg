@@ -1,12 +1,15 @@
 #ifndef		GG_VEC2F_H
 #define		GG_VEC2F_H
 #pragma once
+
 #include <iomanip>
 
 namespace gg
 {
 	namespace Math
 	{
+		struct Vec3f;
+		struct Vec4f;
 		struct Vec2f
 		{
 		public:
@@ -24,12 +27,12 @@ namespace gg
 			/* Vector with 1 values. */
 			static const Vec2f one;
 
-			/* Creates vector with x,y as 0. */
-			Vec2f(void);
-			/* Creates vector with defined x value and y as 0. */
-			Vec2f(float c);
-			/* Creates vector with defined x,y values. */
-			Vec2f(float x, float y);
+			/* Creates vector with default x,y values as 0 unless defined. */
+			Vec2f(float x = 0, float y = 0);
+			/* Creates vector from x,y values of Vec3f. */
+			Vec2f(const Vec3f& A);
+			/* Creates vector from x,y values of Vec4f. */
+			Vec2f(const Vec4f& A);
 
 			friend Vec2f operator+(const Vec2f& A, const Vec2f& B);
 			Vec2f operator-(void) const;
@@ -47,9 +50,6 @@ namespace gg
 			friend bool operator!=(const Vec2f& A, const Vec2f& B);
 
 			friend std::ostream& operator<<(std::ostream& out, const Vec2f& A);
-
-			/* Sets x,y values to c and returns the result vector. */
-			Vec2f& set(float c);
 
 			/* Sets defined x,y values and returns the result vector. */
 			Vec2f& set(float x, float y);

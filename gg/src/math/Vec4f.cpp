@@ -2,21 +2,23 @@
 
 #include <math.h>
 #include "math/MathUtil.h"
+#include "math/Vec2f.h"
+#include "math/Vec3f.h"
 
 namespace gg
 {
 	namespace Math
 	{
-		Vec4f::Vec4f(void)
-			: x(0), y(0), z(0), w(0)
-		{ }
-
-		Vec4f::Vec4f(float c)
-			: x(c), y(c), z(c), w(c)
-		{ }
-
 		Vec4f::Vec4f(float x, float y, float z, float w)
 			: x(x), y(y), z(z), w(w)
+		{ }
+
+		Vec4f::Vec4f(Vec2f& A, float z, float w)
+			: x(A.x), y(A.y), z(z), w(w)
+		{ }
+
+		Vec4f::Vec4f(Vec3f & A, float w)
+			: x(A.x), y(A.y), z(A.z), w(w)
 		{ }
 
 		Vec4f operator+(const Vec4f& A, const Vec4f& B)
@@ -110,15 +112,6 @@ namespace gg
 				out << std::fixed << std::setprecision(2) <<
 				"(" << A.x << ", " << A.y << ", " << A.z <<
 				", " << A.w << ")";
-		}
-
-		Vec4f& Vec4f::set(float c)
-		{
-			this->x = c;
-			this->y = c;
-			this->z = c;
-			this->w = c;
-			return *this;
 		}
 
 		Vec4f& Vec4f::set(float x, float y, float z, float w)

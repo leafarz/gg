@@ -1,8 +1,11 @@
 #include "math/Vec3f.h"
 
 #include <math.h>
-#include "math/Quaternion.h"
+
 #include "math/MathUtil.h"
+#include "math/Vec2f.h"
+#include "math/Vec4f.h"
+#include "math/Quaternion.h"
 
 namespace gg
 {
@@ -14,23 +17,19 @@ namespace gg
 		const Vec3f Vec3f::left		= Vec3f(-1,  0,  0);
 		const Vec3f Vec3f::forward	= Vec3f( 0,  0,  1);
 		const Vec3f Vec3f::back		= Vec3f( 0,  0, -1);
-		const Vec3f Vec3f::zero		= Vec3f(0);
-		const Vec3f Vec3f::one		= Vec3f(1);
+		const Vec3f Vec3f::zero		= Vec3f( 0,  0,  0);
+		const Vec3f Vec3f::one		= Vec3f( 1,  1,  1);
 
-		Vec3f::Vec3f(void)
-			: x(0), y(0), z(0)
+		Vec3f::Vec3f(float x, float y, float z)
+			: x(x), y(y), z(z)
 		{ }
 
 		Vec3f::Vec3f(const Vec2f& A, float z)
 			: x(A.x), y(A.y), z(z)
 		{ }
 
-		Vec3f::Vec3f(float c)
-			: x(c), y(c), z(c)
-		{ }
-
-		Vec3f::Vec3f(float x, float y, float z)
-			: x(x), y(y), z(z)
+		Vec3f::Vec3f(const Vec4f & A)
+			: x(A.x), y(A.y), z(A.z)
 		{ }
 
 		Vec3f::Vec3f(const Quaternion& Q)
@@ -125,14 +124,6 @@ namespace gg
 				"(" << A.x << ", " << A.y << ", " << A.z << ")";
 		}
 
-		Vec3f& Vec3f::set(float c)
-		{
-			this->x = c;
-			this->y = c;
-			this->z = c;
-			return *this;
-		}
-
 		Vec3f& Vec3f::set(float x, float y, float z)
 		{
 			this->x = x;
@@ -142,6 +133,14 @@ namespace gg
 		}
 
 		Vec3f& Vec3f::set(const Vec3f& A)
+		{
+			this->x = A.x;
+			this->y = A.y;
+			this->z = A.z;
+			return *this;
+		}
+
+		Vec3f& Vec3f::set(const Vec4f& A)
 		{
 			this->x = A.x;
 			this->y = A.y;

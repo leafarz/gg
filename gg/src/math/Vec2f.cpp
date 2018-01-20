@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "math/MathUtil.h"
+#include "math/Vec3f.h"
+#include "math/Vec4f.h"
 
 namespace gg
 {
@@ -11,19 +13,19 @@ namespace gg
 	{
 		const Vec2f Vec2f::up		= Vec2f(0, 1);
 		const Vec2f Vec2f::right	= Vec2f(1, 0);
-		const Vec2f Vec2f::zero		= Vec2f(0);
-		const Vec2f Vec2f::one		= Vec2f(1);
-
-		Vec2f::Vec2f(void)
-			: x(0), y(0)
-		{ }
-
-		Vec2f::Vec2f(float c)
-			: x(c), y(c)
-		{ }
+		const Vec2f Vec2f::zero		= Vec2f(0, 0);
+		const Vec2f Vec2f::one		= Vec2f(1, 1);
 
 		Vec2f::Vec2f(float x, float y)
 			: x(x), y(y)
+		{ }
+
+		Vec2f::Vec2f(const Vec3f & A)
+			: x(A.x), y(A.y)
+		{ }
+
+		Vec2f::Vec2f(const Vec4f & A)
+			: x(A.x), y(A.y)
 		{ }
 
 		Vec2f operator+(const Vec2f& A, const Vec2f& B)
@@ -103,13 +105,6 @@ namespace gg
 			return
 				out << std::fixed << std::setprecision(2) <<
 				"(" << A.x << ", " << A.y << ")";
-		}
-
-		Vec2f& Vec2f::set(float c)
-		{
-			this->x = c;
-			this->y = c;
-			return *this;
 		}
 
 		Vec2f& Vec2f::set(float x, float y)

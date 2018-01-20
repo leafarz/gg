@@ -1,12 +1,15 @@
 #ifndef		GG_VEC4F_H
 #define		GG_VEC4F_H
 #pragma once
+
 #include <iomanip>
 
 namespace gg
 {
 	namespace Math
 	{
+		struct Vec2f;
+		struct Vec3f;
 		struct Vec4f
 		{
 		public:
@@ -19,12 +22,12 @@ namespace gg
 			/* The w of the vector. */
 			float w;
 
-			/* Creates vector with x,y,z,w as 0. */
-			Vec4f(void);
-			/* Creates vector with defined x,y,z,w. */
-			Vec4f(float c);
-			/* Creates vector with defined x,y,z,w values. */
-			Vec4f(float x, float y, float z, float w);
+			/* Creates vector with default x,y,z,w values as 0 unless defined. */
+			Vec4f(float x = 0, float y = 0, float z = 0, float w = 0);
+			/* Creates vector from x,y values of Vec2f and z,w value 0 as default unless defined.*/
+			Vec4f(Vec2f& A, float z = 0, float w = 0);
+			/* Creates vector from x,y,z values of Vec3f and w value 0 as default unless defined.*/
+			Vec4f(Vec3f& A, float w = 0);
 
 			friend Vec4f operator+(const Vec4f& A, const Vec4f& B);
 			Vec4f operator-(void) const;
@@ -43,8 +46,6 @@ namespace gg
 
 			friend std::ostream& operator<<(std::ostream& out, const Vec4f& A);
 
-			/* Sets x,y,z,w values to c and returns the result vector. */
-			Vec4f& set(float c);
 			/* Sets defined x,y,z,w values and returns the result vector. */
 			Vec4f& set(float x, float y, float z, float w);
 			/* Sets defined x,y,z,w values and returns the result vector. */

@@ -3,12 +3,13 @@
 #pragma once
 
 #include <iomanip>
-#include "Vec2f.h"
 
 namespace gg
 {
 	namespace Math
 	{
+		struct Vec2f;
+		struct Vec4f;
 		struct Quaternion;
 		struct Vec3f
 		{
@@ -37,14 +38,12 @@ namespace gg
 			/* Vector with 1 values. */
 			static const Vec3f one;
 
-			/* Creates vector with x,y,z as 0. */
-			Vec3f(void);
-			/* Creates Vec3f from Vec2f.*/
+			/* Creates vector with default x,y,z values as 0 unless defined. */
+			Vec3f(float x = 0, float y = 0, float z = 0);
+			/* Creates vector from x,y values of Vec2f and z value 0 as default unless defined.*/
 			Vec3f(const Vec2f& A, float z = 0);
-			/* Creates vector with defined x,y,z. */
-			Vec3f(float c);
-			/* Creates vector with defined x,y,z values. */
-			Vec3f(float x, float y, float z);
+			/* Creates vector from x,y,z values of Vec4f. */
+			Vec3f(const Vec4f& A);
 			/* Creates vector from quaternion. */
 			Vec3f(const Quaternion& Q);
 
@@ -65,12 +64,12 @@ namespace gg
 
 			friend std::ostream& operator<<(std::ostream& out, const Vec3f& A);
 
-			/* Sets x,y,z values to c and returns the result vector. */
-			Vec3f& set(float c);
 			/* Sets defined x,y,z values and returns the result vector. */
 			Vec3f& set(float x, float y, float z);
 			/* Sets defined x,y,z values and returns the result vector. */
 			Vec3f& set(const Vec3f& A);
+			/* Sets defined x,y,z values and returns the result vector. */
+			Vec3f& set(const Vec4f& A);
 
 			/* Sets x value only and returns the result vector. */
 			Vec3f& setX(float x);
