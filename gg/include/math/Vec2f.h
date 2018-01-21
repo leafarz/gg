@@ -4,13 +4,12 @@
 
 #include <iomanip>
 
-#include "math/Vec3f.h"
-#include "math/Vec4f.h"
-
 namespace gg
 {
 	namespace Math
 	{
+		struct Vec3f;
+		struct Vec4f;
 		struct Vec2f
 		{
 		public:

@@ -7,6 +7,7 @@ namespace gg
 {
 	namespace Math
 	{
+		struct Vec2f;
 		struct Vec3f;
 		struct Mat4f;
 		struct Quaternion

@@ -4,6 +4,10 @@
 
 #include "math/MathUtil.h"
 
+#include "math/Quaternion.h"
+#include "math/Vec2f.h"
+#include "math/Vec4f.h"
+
 namespace gg
 {
 	namespace Math
@@ -25,7 +29,7 @@ namespace gg
 			: x(A.x), y(A.y), z(z)
 		{ }
 
-		Vec3f::Vec3f(const Vec4f & A)
+		Vec3f::Vec3f(const Vec4f& A)
 			: x(A.x), y(A.y), z(A.z)
 		{ }
 

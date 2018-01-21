@@ -3,6 +3,8 @@
 #include <math.h>
 #include "math/MathUtil.h"
 
+#include "math/Vec2f.h"
+#include "math/Vec3f.h"
 namespace gg
 {
 	namespace Math

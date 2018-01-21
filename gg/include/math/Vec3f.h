@@ -4,14 +4,13 @@
 
 #include <iomanip>
 
-#include "Quaternion.h"
-#include "Vec2f.h"
-#include "Vec4f.h"
-
 namespace gg
 {
 	namespace Math
 	{
+		struct Quaternion;
+		struct Vec2f;
+		struct Vec4f;
 		struct Vec3f
 		{
 		public:
