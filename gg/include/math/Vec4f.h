@@ -4,12 +4,13 @@
 
 #include <iomanip>
 
+#include "Vec2f.h"
+#include "Vec3f.h"
+
 namespace gg
 {
 	namespace Math
 	{
-		struct Vec2f;
-		struct Vec3f;
 		struct Vec4f
 		{
 		public:
@@ -22,7 +23,7 @@ namespace gg
 			/* The w of the vector. */
 			float w;
 
-			/* Creates vector with default x,y,z,w values as 0 unless defined. */
+			/* Creates vector with default x,y,z,w=0 unless defined. */
 			Vec4f(float x = 0, float y = 0, float z = 0, float w = 0);
 			/* Creates vector from x,y values of Vec2f and z,w value 0 as default unless defined.*/
 			Vec4f(Vec2f& A, float z = 0, float w = 0);
@@ -53,6 +54,86 @@ namespace gg
 			friend bool operator!=(const Vec4f& A, const Vec4f& B);
 
 			friend std::ostream& operator<<(std::ostream& out, const Vec4f& A);
+
+			/* Gets the x,y values in Vec2f form. */
+			Vec2f xy(void) const;
+			/* Gets the x,z values in Vec2f form. */
+			Vec2f xz(void) const;
+			/* Gets the x,w values in Vec2f form. */
+			Vec2f xw(void) const;
+
+			/* Gets the y,x values in Vec2f form. */
+			Vec2f yx(void) const;
+			/* Gets the y,z values in Vec2f form. */
+			Vec2f yz(void) const;
+			/* Gets the y,w values in Vec2f form. */
+			Vec2f yw(void) const;
+
+			/* Gets the z,x values in Vec2f form. */
+			Vec2f zx(void) const;
+			/* Gets the z,y values in Vec2f form. */
+			Vec2f zy(void) const;
+			/* Gets the z,w values in Vec2f form. */
+			Vec2f zw(void) const;
+
+			/* Gets the w,x values in Vec2f form. */
+			Vec2f wx(void) const;
+			/* Gets the w,y values in Vec2f form. */
+			Vec2f wy(void) const;
+			/* Gets the w,z values in Vec2f form. */
+			Vec2f wz(void) const;
+
+			/* Gets the x,y,z values in Vec3f form. */
+			Vec3f xyz(void) const;
+			/* Gets the x,z,y values in Vec3f form. */
+			Vec3f xzy(void) const;
+			/* Gets the x,y,w values in Vec3f form. */
+			Vec3f xyw(void) const;
+			/* Gets the x,w,y values in Vec3f form. */
+			Vec3f xwy(void) const;
+			/* Gets the x,z,w values in Vec3f form. */
+			Vec3f xzw(void) const;
+			/* Gets the x,w,z values in Vec3f form. */
+			Vec3f xwz(void) const;
+
+			/* Gets the y,x,z values in Vec3f form. */
+			Vec3f yxz(void) const;
+			/* Gets the y,z,x values in Vec3f form. */
+			Vec3f yzx(void) const;
+			/* Gets the y,x,w values in Vec3f form. */
+			Vec3f yxw(void) const;
+			/* Gets the y,w,x values in Vec3f form. */
+			Vec3f ywx(void) const;
+			/* Gets the y,z,w values in Vec3f form. */
+			Vec3f yzw(void) const;
+			/* Gets the y,w,z values in Vec3f form. */
+			Vec3f ywz(void) const;
+
+			/* Gets the z,x,y values in Vec3f form. */
+			Vec3f zxy(void) const;
+			/* Gets the z,y,x values in Vec3f form. */
+			Vec3f zyx(void) const;
+			/* Gets the z,x,w values in Vec3f form. */
+			Vec3f zxw(void) const;
+			/* Gets the z,w,x values in Vec3f form. */
+			Vec3f zwx(void) const;
+			/* Gets the z,y,w values in Vec3f form. */
+			Vec3f zyw(void) const;
+			/* Gets the z,w,y values in Vec3f form. */
+			Vec3f zwy(void) const;
+
+			/* Gets the w,x,y values in Vec3f form. */
+			Vec3f wxy(void) const;
+			/* Gets the w,y,x values in Vec3f form. */
+			Vec3f wyx(void) const;
+			/* Gets the w,x,z values in Vec3f form. */
+			Vec3f wxz(void) const;
+			/* Gets the w,z,x values in Vec3f form. */
+			Vec3f wzx(void) const;
+			/* Gets the w,y,z values in Vec3f form. */
+			Vec3f wyz(void) const;
+			/* Gets the w,z,y values in Vec3f form. */
+			Vec3f wzy(void) const;
 
 			/* Sets defined x,y,z,w values and returns the result vector. */
 			Vec4f& set(float x, float y, float z, float w);

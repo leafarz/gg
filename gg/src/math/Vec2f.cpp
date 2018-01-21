@@ -4,8 +4,6 @@
 #include <iostream>
 
 #include "math/MathUtil.h"
-#include "math/Vec3f.h"
-#include "math/Vec4f.h"
 
 namespace gg
 {

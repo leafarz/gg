@@ -3,6 +3,7 @@
 #include <math.h>
 #include "math/MathUtil.h"
 #include "math/Mat4f.h"
+#include "math/Vec2f.h"
 #include "math/Vec3f.h"
 
 namespace gg
@@ -115,6 +116,50 @@ namespace gg
 		Vec3f Quaternion::getDown(void)		const { return Vec3f::down.rotate(*this); }
 		Vec3f Quaternion::getRight(void)	const { return Vec3f::right.rotate(*this); }
 		Vec3f Quaternion::getLeft(void)		const { return Vec3f::left.rotate(*this); }
+
+		Vec2f Quaternion::xy(void) const { return Vec2f(x, y); }
+		Vec2f Quaternion::xz(void) const { return Vec2f(x, z); }
+		Vec2f Quaternion::xw(void) const { return Vec2f(x, w); }
+
+		Vec2f Quaternion::yx(void) const { return Vec2f(y, x); }
+		Vec2f Quaternion::yz(void) const { return Vec2f(y, z); }
+		Vec2f Quaternion::yw(void) const { return Vec2f(y, w); }
+
+		Vec2f Quaternion::zx(void) const { return Vec2f(z, x); }
+		Vec2f Quaternion::zy(void) const { return Vec2f(z, y); }
+		Vec2f Quaternion::zw(void) const { return Vec2f(z, w); }
+
+		Vec2f Quaternion::wx(void) const { return Vec2f(w, x); }
+		Vec2f Quaternion::wy(void) const { return Vec2f(w, y); }
+		Vec2f Quaternion::wz(void) const { return Vec2f(w, z); }
+
+		Vec3f Quaternion::xyz(void) const { return Vec3f(x, y, z); }
+		Vec3f Quaternion::xzy(void) const { return Vec3f(x, z, y); }
+		Vec3f Quaternion::xyw(void) const { return Vec3f(x, y, w); }
+		Vec3f Quaternion::xwy(void) const { return Vec3f(x, w, y); }
+		Vec3f Quaternion::xzw(void) const { return Vec3f(x, z, w); }
+		Vec3f Quaternion::xwz(void) const { return Vec3f(x, w, z); }
+
+		Vec3f Quaternion::yxz(void) const { return Vec3f(y, x, z); }
+		Vec3f Quaternion::yzx(void) const { return Vec3f(y, z, x); }
+		Vec3f Quaternion::yxw(void) const { return Vec3f(y, x, w); }
+		Vec3f Quaternion::ywx(void) const { return Vec3f(y, w, x); }
+		Vec3f Quaternion::yzw(void) const { return Vec3f(y, z, w); }
+		Vec3f Quaternion::ywz(void) const { return Vec3f(y, w, z); }
+
+		Vec3f Quaternion::zxy(void) const { return Vec3f(z, x, y); }
+		Vec3f Quaternion::zyx(void) const { return Vec3f(z, y, x); }
+		Vec3f Quaternion::zxw(void) const { return Vec3f(z, x, w); }
+		Vec3f Quaternion::zwx(void) const { return Vec3f(z, w, x); }
+		Vec3f Quaternion::zyw(void) const { return Vec3f(z, y, w); }
+		Vec3f Quaternion::zwy(void) const { return Vec3f(z, w, y); }
+
+		Vec3f Quaternion::wxy(void) const { return Vec3f(w, x, y); }
+		Vec3f Quaternion::wyx(void) const { return Vec3f(w, y, x); }
+		Vec3f Quaternion::wxz(void) const { return Vec3f(w, x, z); }
+		Vec3f Quaternion::wzx(void) const { return Vec3f(w, z, x); }
+		Vec3f Quaternion::wyz(void) const { return Vec3f(w, y, z); }
+		Vec3f Quaternion::wzy(void) const { return Vec3f(w, z, y); }
 
 		Quaternion& Quaternion::set(float c)
 		{

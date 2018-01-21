@@ -4,13 +4,14 @@
 
 #include <iomanip>
 
+#include "Quaternion.h"
+#include "Vec2f.h"
+#include "Vec4f.h"
+
 namespace gg
 {
 	namespace Math
 	{
-		struct Vec2f;
-		struct Vec4f;
-		struct Quaternion;
 		struct Vec3f
 		{
 		public:
@@ -38,7 +39,7 @@ namespace gg
 			/* Vector with 1 values. */
 			static const Vec3f one;
 
-			/* Creates vector with default x,y,z values as 0 unless defined. */
+			/* Creates vector with default x,y,z=0 unless defined. */
 			Vec3f(float x = 0, float y = 0, float z = 0);
 			/* Creates vector from x,y values of Vec2f and z value 0 as default unless defined.*/
 			Vec3f(const Vec2f& A, float z = 0);
@@ -72,6 +73,21 @@ namespace gg
 
 			friend std::ostream& operator<<(std::ostream& out, const Vec3f& A);
 
+			/* Gets the x,y values in Vec2f form. */
+			Vec2f xy(void) const;
+			/* Gets the x,z values in Vec2f form. */
+			Vec2f xz(void) const;
+
+			/* Gets the y,x values in Vec2f form. */
+			Vec2f yx(void) const;
+			/* Gets the y,z values in Vec2f form. */
+			Vec2f yz(void) const;
+
+			/* Gets the z,x values in Vec2f form. */
+			Vec2f zx(void) const;
+			/* Gets the z,y values in Vec2f form. */
+			Vec2f zy(void) const;
+
 			/* Sets defined x,y,z values and returns the result vector. */
 			Vec3f& set(float x, float y, float z);
 			/* Sets defined x,y,z values and returns the result vector. */
@@ -91,21 +107,6 @@ namespace gg
 
 			/* Returns the component with the lowest value. */
 			float min(void) const;
-
-			/* Gets the x,y values in Vec2f form. */
-			Vec2f xy(void) const;
-			/* Gets the x,z values in Vec2f form. */
-			Vec2f xz(void) const;
-
-			/* Gets the y,x values in Vec2f form. */
-			Vec2f yx(void) const;
-			/* Gets the y,z values in Vec2f form. */
-			Vec2f yz(void) const;
-
-			/* Gets the z,x values in Vec2f form. */
-			Vec2f zx(void) const;
-			/* Gets the z,y values in Vec2f form. */
-			Vec2f zy(void) const;
 
 			/* Returns the length of the vector.
 			 * (Same as getMagnitude function)

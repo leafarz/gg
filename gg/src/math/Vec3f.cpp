@@ -3,9 +3,6 @@
 #include <math.h>
 
 #include "math/MathUtil.h"
-#include "math/Vec2f.h"
-#include "math/Vec4f.h"
-#include "math/Quaternion.h"
 
 namespace gg
 {
@@ -140,6 +137,15 @@ namespace gg
 				"(" << A.x << ", " << A.y << ", " << A.z << ")";
 		}
 
+		Vec2f Vec3f::xy(void) const { return Vec2f(this->x, this->y); }
+		Vec2f Vec3f::xz(void) const { return Vec2f(this->x, this->z); }
+
+		Vec2f Vec3f::yx(void) const { return Vec2f(this->y, this->x); }
+		Vec2f Vec3f::yz(void) const { return Vec2f(this->y, this->z); }
+
+		Vec2f Vec3f::zx(void) const { return Vec2f(this->z, this->x); }
+		Vec2f Vec3f::zy(void) const { return Vec2f(this->z, this->y); }
+
 		Vec3f& Vec3f::set(float x, float y, float z)
 		{
 			this->x = x;
@@ -177,15 +183,6 @@ namespace gg
 		{
 			return fminf(this->x, fminf(this->y, this->z));
 		}
-
-		Vec2f Vec3f::xy(void) const { return Vec2f(this->x, this->y); }
-		Vec2f Vec3f::xz(void) const { return Vec2f(this->x, this->z); }
-
-		Vec2f Vec3f::yx(void) const { return Vec2f(this->y, this->x); }
-		Vec2f Vec3f::yz(void) const { return Vec2f(this->y, this->z); }
-
-		Vec2f Vec3f::zx(void) const { return Vec2f(this->z, this->x); }
-		Vec2f Vec3f::zy(void) const { return Vec2f(this->z, this->y); }
 
 		float Vec3f::length(void) const
 		{

@@ -2,8 +2,6 @@
 
 #include <math.h>
 #include "math/MathUtil.h"
-#include "math/Vec2f.h"
-#include "math/Vec3f.h"
 
 namespace gg
 {
@@ -131,6 +129,50 @@ namespace gg
 				"(" << A.x << ", " << A.y << ", " << A.z <<
 				", " << A.w << ")";
 		}
+
+		Vec2f Vec4f::xy(void) const { return Vec2f(x, y); }
+		Vec2f Vec4f::xz(void) const { return Vec2f(x, z); }
+		Vec2f Vec4f::xw(void) const { return Vec2f(x, w); }
+
+		Vec2f Vec4f::yx(void) const { return Vec2f(y, x); }
+		Vec2f Vec4f::yz(void) const { return Vec2f(y, z); }
+		Vec2f Vec4f::yw(void) const { return Vec2f(y, w); }
+
+		Vec2f Vec4f::zx(void) const { return Vec2f(z, x); }
+		Vec2f Vec4f::zy(void) const { return Vec2f(z, y); }
+		Vec2f Vec4f::zw(void) const { return Vec2f(z, w); }
+
+		Vec2f Vec4f::wx(void) const { return Vec2f(w, x); }
+		Vec2f Vec4f::wy(void) const { return Vec2f(w, y); }
+		Vec2f Vec4f::wz(void) const { return Vec2f(w, z); }
+
+		Vec3f Vec4f::xyz(void) const { return Vec3f(x, y, z); }
+		Vec3f Vec4f::xzy(void) const { return Vec3f(x, z, y); }
+		Vec3f Vec4f::xyw(void) const { return Vec3f(x, y, w); }
+		Vec3f Vec4f::xwy(void) const { return Vec3f(x, w, y); }
+		Vec3f Vec4f::xzw(void) const { return Vec3f(x, z, w); }
+		Vec3f Vec4f::xwz(void) const { return Vec3f(x, w, z); }
+
+		Vec3f Vec4f::yxz(void) const { return Vec3f(y, x, z); }
+		Vec3f Vec4f::yzx(void) const { return Vec3f(y, z, x); }
+		Vec3f Vec4f::yxw(void) const { return Vec3f(y, x, w); }
+		Vec3f Vec4f::ywx(void) const { return Vec3f(y, w, x); }
+		Vec3f Vec4f::yzw(void) const { return Vec3f(y, z, w); }
+		Vec3f Vec4f::ywz(void) const { return Vec3f(y, w, z); }
+
+		Vec3f Vec4f::zxy(void) const { return Vec3f(z, x, y); }
+		Vec3f Vec4f::zyx(void) const { return Vec3f(z, y, x); }
+		Vec3f Vec4f::zxw(void) const { return Vec3f(z, x, w); }
+		Vec3f Vec4f::zwx(void) const { return Vec3f(z, w, x); }
+		Vec3f Vec4f::zyw(void) const { return Vec3f(z, y, w); }
+		Vec3f Vec4f::zwy(void) const { return Vec3f(z, w, y); }
+
+		Vec3f Vec4f::wxy(void) const { return Vec3f(w, x, y); }
+		Vec3f Vec4f::wyx(void) const { return Vec3f(w, y, x); }
+		Vec3f Vec4f::wxz(void) const { return Vec3f(w, x, z); }
+		Vec3f Vec4f::wzx(void) const { return Vec3f(w, z, x); }
+		Vec3f Vec4f::wyz(void) const { return Vec3f(w, y, z); }
+		Vec3f Vec4f::wzy(void) const { return Vec3f(w, z, y); }
 
 		Vec4f& Vec4f::set(float x, float y, float z, float w)
 		{

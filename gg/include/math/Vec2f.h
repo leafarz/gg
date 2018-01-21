@@ -4,12 +4,13 @@
 
 #include <iomanip>
 
+#include "math/Vec3f.h"
+#include "math/Vec4f.h"
+
 namespace gg
 {
 	namespace Math
 	{
-		struct Vec3f;
-		struct Vec4f;
 		struct Vec2f
 		{
 		public:
@@ -27,7 +28,7 @@ namespace gg
 			/* Vector with 1 values. */
 			static const Vec2f one;
 
-			/* Creates vector with default x,y values as 0 unless defined. */
+			/* Creates vector with default x,y=0 unless defined. */
 			Vec2f(float x = 0, float y = 0);
 			/* Creates vector from x,y values of Vec3f. */
 			Vec2f(const Vec3f& A);
