@@ -5,15 +5,10 @@
 
 namespace gg
 {
-	GameObject::GameObject(void)
-		: m_Name("GameObject")
-	{
-	}
-
 	GameObject::GameObject(const std::string& name)
-		: m_Name(name)
-	{
-	}
+		: m_Name(name),
+		m_Transform(new Transform())
+	{}
 
 	GameObject::~GameObject(void)
 	{
@@ -30,9 +25,19 @@ namespace gg
 		}
 	}
 
-	const std::string & GameObject::getName(void) const
+	const std::string& GameObject::getName(void) const
 	{
 		return m_Name;
+	}
+
+	void gg::GameObject::setParent(GameObject* parent)
+	{
+		m_Parent = parent;
+	}
+
+	GameObject* gg::GameObject::getParent(void) const
+	{
+		return m_Parent;
 	}
 
 	void GameObject::addChild(GameObject * gameObject)
@@ -56,5 +61,9 @@ namespace gg
 	{
 		component->m_GameObject = this;
 		m_Components.insert({ component->getType(), component });
+	}
+	Transform * gg::GameObject::getTransform(void) const
+	{
+		return m_Transform;
 	}
 } // namespace gg

@@ -183,6 +183,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\component\Camera.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\component\Component.h">
       <SubType>
       </SubType>
@@ -265,6 +269,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\component\Camera.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\component\Component.cpp">
       <SubType>
       </SubType>

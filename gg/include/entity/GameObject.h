@@ -12,11 +12,13 @@ namespace gg
 	class GameObject
 	{
 	public:
-		GameObject(void);
-		GameObject(const std::string& name);
+		GameObject(const std::string& name = "GameObject");
 		~GameObject(void);
 
 		const std::string& getName(void) const;
+
+		void setParent(GameObject* parent);
+		GameObject* getParent(void) const;
 
 		void addChild(GameObject* gameObject);
 		GameObject* getChild(const std::string& name) const;
@@ -27,9 +29,12 @@ namespace gg
 		// TODO: add get components
 		// use unordered_multimap::equal_range?
 
+		Transform* getTransform(void) const;
+
 	private:
 		std::string m_Name;
 		Transform* m_Transform;
+		GameObject* m_Parent;
 		std::vector<GameObject*> m_Children;
 		std::unordered_multimap<ComponentType, Component*> m_Components;
 		

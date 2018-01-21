@@ -4,6 +4,7 @@
 
 #include <string>
 #include "component/ComponentType.h"
+
 namespace gg
 {
 	class GameObject;
@@ -17,7 +18,10 @@ namespace gg
 		GameObject* getGameObject(void) const;
 
 		virtual ComponentType getType(void) const { return ComponentType::None; }
-	private:
+
+	protected:
+		// This value is null in constructor.
+		// It will only be set after GameObject::addComponent() function is called.
 		GameObject* m_GameObject = nullptr;
 	}; // class Component
 } // namespace gg

@@ -9,6 +9,7 @@ namespace gg
 	{
 		None		= -1,
 		Transform,
+		Camera,
 		MAX
 	};
 } // namespace gg
