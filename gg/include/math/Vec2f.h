@@ -41,10 +41,18 @@ namespace gg
 			friend Vec2f operator*(float c, const Vec2f& A);
 			friend Vec2f operator/(const Vec2f& A, float c);
 
+			/* Adds Vec2f to this vector. */
 			Vec2f& operator+=(const Vec2f& A);
+			/* Adds c to x,y values of this vector. */
 			Vec2f& operator+=(float c);
+			/* Subtracts Vec2f to this vector. */
 			Vec2f& operator-=(const Vec2f& A);
+			/* Subtracts c to x,y values of this vector. */
 			Vec2f& operator-=(float c);
+			/* Multiplies c to x,y values of this vector. */
+			Vec2f& operator*=(float c);
+			/* Divides c to x,y values of this vector. */
+			Vec2f& operator/=(float c);
 
 			friend bool operator==(const Vec2f& A, const Vec2f& B);
 			friend bool operator!=(const Vec2f& A, const Vec2f& B);

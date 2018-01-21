@@ -101,6 +101,22 @@ namespace gg
 			return *this;
 		}
 
+		Vec3f& Vec3f::operator*=(float c)
+		{
+			this->x *= c;
+			this->y *= c;
+			this->z *= c;
+			return *this;
+		}
+
+		Vec3f& Vec3f::operator/=(float c)
+		{
+			this->x /= c;
+			this->y /= c;
+			this->z /= c;
+			return *this;
+		}
+
 		bool operator==(const Vec3f& A, const Vec3f& B)
 		{
 			return

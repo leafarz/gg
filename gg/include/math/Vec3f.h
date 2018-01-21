@@ -54,10 +54,18 @@ namespace gg
 			friend Vec3f operator*(float c, const Vec3f& A);
 			friend Vec3f operator/(const Vec3f& A, float c);
 
+			/* Adds Vec3f to this vector. */
 			Vec3f& operator+=(const Vec3f& A);
+			/* Adds c to x,y,z values of this vector. */
 			Vec3f& operator+=(float c);
+			/* Subtracts Vec3f to this vector. */
 			Vec3f& operator-=(const Vec3f& A);
+			/* Subtracts c to x,y,z values of this vector. */
 			Vec3f& operator-=(float c);
+			/* Multiplies c to x,y,z values of this vector. */
+			Vec3f& operator*=(float c);
+			/* Divides c to x,y,z values of this vector. */
+			Vec3f& operator/=(float c);
 
 			friend bool operator==(const Vec3f& A, const Vec3f& B);
 			friend bool operator!=(const Vec3f& A, const Vec3f& B);

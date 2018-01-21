@@ -36,10 +36,18 @@ namespace gg
 			friend Vec4f operator*(float c, const Vec4f& A);
 			friend Vec4f operator/(const Vec4f& A, float c);
 
+			/* Adds Vec4f to this vector. */
 			Vec4f& operator+=(const Vec4f& A);
+			/* Adds c to x,y,z,w values of this vector. */
 			Vec4f& operator+=(float c);
+			/* Subtracts Vec4f to this vector. */
 			Vec4f& operator-=(const Vec4f& A);
+			/* Subtracts c to x,y,z,w values of this vector. */
 			Vec4f& operator-=(float c);
+			/* Multiplies c to x,y,z,w values of this vector. */
+			Vec4f& operator*=(float c);
+			/* Divides c to x,y,z,w values of this vector. */
+			Vec4f& operator/=(float c);
 
 			friend bool operator==(const Vec4f& A, const Vec4f& B);
 			friend bool operator!=(const Vec4f& A, const Vec4f& B);

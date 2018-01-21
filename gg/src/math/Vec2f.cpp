@@ -86,6 +86,20 @@ namespace gg
 			return *this;
 		}
 
+		Vec2f& Vec2f::operator*=(float c)
+		{
+			this->x *= c;
+			this->y *= c;
+			return *this;
+		}
+
+		Vec2f& Vec2f::operator/=(float c)
+		{
+			this->x /= c;
+			this->y /= c;
+			return *this;
+		}
+
 		bool operator==(const Vec2f& A, const Vec2f& B)
 		{
 			return

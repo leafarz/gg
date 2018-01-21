@@ -88,6 +88,24 @@ namespace gg
 			return *this;
 		}
 
+		Vec4f& Vec4f::operator*=(float c)
+		{
+			this->x *= c;
+			this->y *= c;
+			this->z *= c;
+			this->w *= c;
+			return *this;
+		}
+
+		Vec4f& Vec4f::operator/=(float c)
+		{
+			this->x /= c;
+			this->y /= c;
+			this->z /= c;
+			this->w /= c;
+			return *this;
+		}
+
 		bool operator==(const Vec4f& A, const Vec4f& B)
 		{
 			return
