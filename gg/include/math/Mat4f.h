@@ -76,6 +76,7 @@ namespace gg
 			friend Mat4f operator*(const Mat4f& A, float c);
 			friend Mat4f operator*(float c, const Mat4f& A);
 			friend Mat4f operator*(const Mat4f& A, const Mat4f& B);
+			friend Vec4f operator*(const Mat4f& A, const Vec4f& B);
 			friend Mat4f operator/(const Mat4f& A, float c);
 
 			Mat4f& operator+=(const Mat4f& A);
@@ -107,11 +108,15 @@ namespace gg
 
 			Mat4f& setDiagonal(float c);
 
-			Mat4f& transpose();
-			static Mat4f transpose(const Mat4f& M);
+			/* Gets the transpose of the current matrix. */
+			Mat4f getTranspose(void);
+			/* Does transpose operation to the current matrix. */
+			Mat4f& transpose(void);
+			/* Static function for getting transpose of the matrix M. */
+			static Mat4f getTranspose(const Mat4f& M);
 
 			Vec3f getTransform(Vec3f A);
-		};// struct matrix4f
+		};// struct Mat4f
 	}// namespace Math
 }// namespace gg
 #endif

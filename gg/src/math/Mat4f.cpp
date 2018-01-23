@@ -338,6 +338,16 @@ namespace gg
 			);
 		}
 
+		Vec4f operator*(const Mat4f& A, const Vec4f& B)
+		{
+			return Vec4f(
+				A.elements[0] * B.x + A.elements[1] * B.y + A.elements[2] * B.z + A.elements[3] * B.w,
+				A.elements[4] * B.x + A.elements[5] * B.y + A.elements[6] * B.z + A.elements[7] * B.w,
+				A.elements[8] * B.x + A.elements[9] * B.y + A.elements[10] * B.z + A.elements[11] * B.w,
+				A.elements[12] * B.x + A.elements[13] * B.y + A.elements[14] * B.z + A.elements[15] * B.w
+			);
+		}
+
 		Mat4f operator/(const Mat4f& A, float c)
 		{
 			const float _invC = 1 / c;
@@ -462,7 +472,7 @@ namespace gg
 
 		float Mat4f::get(int m, int n) const
 		{
-			return this->elements[m * 3 + n];
+			return this->elements[m * 4 + n];
 		}
 
 		Mat4f& Mat4f::set(int idx, float c)
@@ -473,7 +483,7 @@ namespace gg
 
 		Mat4f& Mat4f::set(int m, int n, float c)
 		{
-			this->elements[m * 3 + n] = c;
+			this->elements[m * 4 + n] = c;
 			return *this;
 		}
 
@@ -486,7 +496,24 @@ namespace gg
 			return *this;
 		}
 
-		Mat4f& Mat4f::transpose()
+		Mat4f Mat4f::getTranspose(void)
+		{
+			Mat4f _m = Mat4f(*this);
+			for (int i = -1; ++i < 3; )
+			{
+				for (int j = i; ++j < 4; )
+				{
+					short _index1 = i * 4 + j;
+					short _index2 = j * 4 + i;
+					float _dummy = _m.elements[_index1];
+					_m.set(_index1, _m.elements[_index2]);
+					_m.set(_index2, _dummy);
+				}
+			}
+			return _m;
+		}
+
+		Mat4f& Mat4f::transpose(void)
 		{
 			for (int i = -1; ++i < 3; )
 			{
@@ -502,7 +529,7 @@ namespace gg
 			return *this;
 		}
 
-		Mat4f Mat4f::transpose(const Mat4f& M)
+		Mat4f Mat4f::getTranspose(const Mat4f& M)
 		{
 			Mat4f _m = Mat4f(M);
 			for (int i = -1; ++i < 3; )
@@ -516,7 +543,7 @@ namespace gg
 					_m.set(_index2, _dummy);
 				}
 			}
-			return M;
+			return _m;
 		}
 
 		Vec3f Mat4f::getTransform(Vec3f A)
