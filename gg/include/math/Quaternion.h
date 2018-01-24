@@ -3,12 +3,15 @@
 #pragma once
 #include <iomanip>
 
+// TODO: check if we need to make another lookRotation
+// function to avoid circular dependency
+#include "Vec3f.h"
+
 namespace gg
 {
 	namespace Math
 	{
 		struct Vec2f;
-		struct Vec3f;
 		struct Mat4f;
 		struct Quaternion
 		{
@@ -192,6 +195,9 @@ namespace gg
 			float dot(const Quaternion& A) const;
 			/* Computes the dot product of 2 quaternions. */
 			static float dot(const Quaternion& A, const Quaternion& B);
+
+			/* Gets the quaternion from forward and up vectors. */
+			static Quaternion lookRotation(const Vec3f& forward, const Vec3f& up = Vec3f::up);
 
 		};// struct Quaternion
 	}// namespace Math
