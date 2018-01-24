@@ -356,5 +356,12 @@ namespace gg
 			Quaternion _w = rot * (*this) * rot.conjugate();
 			return Vec3f(_w.x, _w.y, _w.z);
 		}
+
+		void Vec3f::orthoNormalize(Vec3f& normal, Vec3f& tangent)
+		{
+			normal.normalize();
+			Vec3f _perp = normal.cross(tangent);
+			tangent = _perp.cross(normal).normal();
+		}
 	}// namespace Math
 }// namespace gg

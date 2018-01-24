@@ -162,6 +162,12 @@ namespace gg
 
 			/* Gets the rotated vector of current vector from quaternion. */
 			Vec3f rotate(const Quaternion& rot) const;
+
+			/* Sets tangent to be orthogonal to normal.
+			 * normal and tangent do not need to be normalized as it
+			 * will be normalized in this function.
+			 */
+			static void orthoNormalize(Vec3f& normal, Vec3f& tangent);
 		};// struct vec3f
 
 	}// namespace Math
