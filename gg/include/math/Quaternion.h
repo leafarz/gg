@@ -3,8 +3,9 @@
 #pragma once
 #include <iomanip>
 
-// TODO: check if we need to make another lookRotation
-// function to avoid circular dependency
+// TODO: check if we need to remove default value for
+// up param in lookRotation function to avoid circular
+// dependency and remove include
 #include "Vec3f.h"
 
 namespace gg
@@ -24,12 +25,12 @@ namespace gg
 			/* The w of the quaternion. */
 			float w;
 
-			/* Creates quaternion with x,y,z,w as 0. */
-			Quaternion(void);
-			/* Creates quaternion with defined x,y,z, values. */
-			Quaternion(float x, float y, float z, float w);
+			/* Creates quaternion with default x,y,z=0 unless defined. */
+			Quaternion(float x = 0, float y = 0, float z = 0, float w = 0);
 			/* Creates quaternion from rotation parameters. */
 			Quaternion(const Vec3f& axis, float deg);
+			/* Create quaternion from forward and up vectors. */
+			Quaternion(const Vec3f& forward, const Vec3f& up);
 
 			friend Quaternion operator+(const Quaternion& A, const Quaternion& B);
 			friend Quaternion operator-(const Quaternion& A, const Quaternion& B);
