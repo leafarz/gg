@@ -10,10 +10,10 @@ namespace gg
 	{
 		static const double PI = 3.14159265358979323846;
 
-		static const float RAD_TO_DEG		= static_cast<float>(180.0f / PI);
-		static const float DEG_TO_RAD		= static_cast<float>(PI / 180.0f);
-		static const float RAD_TO_DEG_HALF	= static_cast<float>(90.0f / PI);
-		static const float DEG_TO_RAD_HALF	= static_cast<float>(PI / 360.0f);
+		static const double RAD_TO_DEG		= static_cast<double>(180.0 / PI);
+		static const double DEG_TO_RAD		= static_cast<double>(PI / 180.0);
+		static const double RAD_TO_DEG_HALF	= static_cast<double>(90.0 / PI);
+		static const double DEG_TO_RAD_HALF	= static_cast<double>(PI / 360.0);
 
 		/* Compares floats within FLT_EPSILON value*/
 		bool floatCmp(float a, float b, float threshold = FLT_EPSILON);

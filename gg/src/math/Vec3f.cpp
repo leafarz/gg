@@ -307,27 +307,14 @@ namespace gg
 
 		Vec3f Vec3f::rotater(const Vec3f& A, const Vec3f& axis, float rad)
 		{
-			float _halfRad = rad * 0.5f;
-			float _sinHalfAngle = sinf(_halfRad);
-			float _cosHalfAngle = cosf(_halfRad);
-
-			Quaternion _rot(
-				axis.x * _sinHalfAngle,
-				axis.y * _sinHalfAngle,
-				axis.z * _sinHalfAngle,
-				_cosHalfAngle
-			);
-
-			Quaternion _w(_rot * A * _rot.conjugate());
-
-			return Vec3f(_w.x, _w.y, _w.z);
+			return A.rotater(axis, rad);
 		}
 
 		Vec3f Vec3f::rotated(const Vec3f& axis, float deg) const
 		{
-			float _sinAngle = sinf(-deg * DEG_TO_RAD);
-			float _cosAngle = cosf(-deg * DEG_TO_RAD);
-
+			float _sinAngle = static_cast<float>(sin(-deg * DEG_TO_RAD));
+			float _cosAngle = static_cast<float>(cos(-deg * DEG_TO_RAD));
+			
 			return this->cross(axis * _sinAngle) +				// rot on local x
 				(*this) * _cosAngle +							// rot on local z
 				axis * (this->dot(axis * (1 - _cosAngle)));		// rot on local y;
@@ -336,19 +323,7 @@ namespace gg
 
 		Vec3f Vec3f::rotated(const Vec3f& A, const Vec3f& axis, float deg)
 		{
-			float _sinHalfAngle = sinf(deg * DEG_TO_RAD_HALF);
-			float _cosHalfAngle = cosf(deg * DEG_TO_RAD_HALF);
-
-			Quaternion _rot(
-				axis.x * _sinHalfAngle,
-				axis.y * _sinHalfAngle,
-				axis.z * _sinHalfAngle,
-				_cosHalfAngle
-			);
-
-			Quaternion _w(_rot * A * _rot.conjugate());
-
-			return Vec3f(_w.x, _w.y, _w.z);
+			return A.rotated(axis, deg);
 		}
 
 		Vec3f Vec3f::rotate(const Quaternion& rot) const
