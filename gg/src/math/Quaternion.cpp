@@ -115,12 +115,12 @@ namespace gg
 				", " << A.w << ")";
 		}
 
-		Vec3f Quaternion::getForward(void)	const { return Vec3f::forward.rotate(*this); }
-		Vec3f Quaternion::getBack(void)		const { return Vec3f::back.rotate(*this); }
-		Vec3f Quaternion::getUp(void)		const { return Vec3f::up.rotate(*this); }
-		Vec3f Quaternion::getDown(void)		const { return Vec3f::down.rotate(*this); }
-		Vec3f Quaternion::getRight(void)	const { return Vec3f::right.rotate(*this); }
-		Vec3f Quaternion::getLeft(void)		const { return Vec3f::left.rotate(*this); }
+		Vec3f Quaternion::getForward(void)	const { return (*this * Vec3f::forward); }
+		Vec3f Quaternion::getBack(void)		const { return (*this * Vec3f::back); }
+		Vec3f Quaternion::getUp(void)		const { return (*this * Vec3f::up); }
+		Vec3f Quaternion::getDown(void)		const { return (*this * Vec3f::down); }
+		Vec3f Quaternion::getRight(void)	const { return (*this * Vec3f::right); }
+		Vec3f Quaternion::getLeft(void)		const { return (*this * Vec3f::left); }
 
 		Vec2f Quaternion::xy(void) const { return Vec2f(x, y); }
 		Vec2f Quaternion::xz(void) const { return Vec2f(x, z); }
