@@ -30,14 +30,14 @@ namespace gg
 			/* Creates quaternion from rotation parameters. */
 			Quaternion(const Vec3f& axis, float deg);
 			/* Create quaternion from forward and up vectors. */
-			Quaternion(const Vec3f& forward, const Vec3f& up);
+			explicit Quaternion(const Vec3f& forward, const Vec3f& up = Vec3f::up);
 
 			friend Quaternion operator+(const Quaternion& A, const Quaternion& B);
 			friend Quaternion operator-(const Quaternion& A, const Quaternion& B);
 			Quaternion operator-(void);
 			friend Quaternion operator*(const Quaternion& A, const Quaternion& B);
 			friend Quaternion operator*(const Quaternion& A, float c);
-			friend Quaternion operator*(const Quaternion& A, const Vec3f& B);
+			friend Vec3f operator*(const Quaternion& A, const Vec3f& B);
 			friend Quaternion operator*(float c, const Quaternion& A);
 			friend Quaternion operator/(const Quaternion& A, float c);
 

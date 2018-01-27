@@ -69,14 +69,18 @@ namespace gg
 			return Quaternion(A.x * c, A.y * c, A.z * c, A.w * c);
 		}
 
-		Quaternion operator*(const Quaternion& A, const Vec3f& B)
+		Vec3f operator*(const Quaternion& A, const Vec3f& B)
 		{
-			return Quaternion(
-				 A.w * B.x + A.y * B.z - A.z * B.y,
-				 A.w * B.y + A.z * B.x - A.x * B.z,
-				 A.w * B.z + A.x * B.y - A.y * B.x,
-				-A.x * B.x - A.y * B.y - A.z * B.z
-			);
+			// nVidia SDK implementation
+
+			Vec3f uv, uuv;
+			Vec3f qvec(A.x, A.y, A.z);
+			uv = qvec.cross(B);
+			uuv = qvec.cross(uv);
+			uv *= (2.0f * A.w);
+			uuv *= 2.0f;
+
+			return B + uv + uuv;
 		}
 
 		Quaternion operator/(const Quaternion& A, float c)

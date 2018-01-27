@@ -353,8 +353,16 @@ namespace gg
 
 		Vec3f Vec3f::rotate(const Quaternion& rot) const
 		{
-			Quaternion _w = rot * (*this) * rot.conjugate();
-			return Vec3f(_w.x, _w.y, _w.z);
+			// nVidia SDK implementation
+
+			Vec3f uv, uuv;
+			Vec3f qvec(this->x, this->y, this->z);
+			uv = qvec.cross(*this);
+			uuv = qvec.cross(uv);
+			uv *= (2.0f * rot.w);
+			uuv *= 2.0f;
+
+			return *this + uv + uuv;
 		}
 
 		void Vec3f::orthoNormalize(Vec3f& normal, Vec3f& tangent)
