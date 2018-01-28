@@ -1,15 +1,20 @@
 #include "core/Scene.h"
 
+#include "core/gg.h"
+#include "component/Camera.h"
+#include "entity/GameObject.h"
 #include "renderer/Renderer.h"
 
 namespace gg
 {
 	Scene::Scene(void)
 	{
+		m_Renderer = new Renderer();
 	}
 
 	Scene::~Scene(void)
 	{
+		delete m_Renderer;
 	}
 
 	void Scene::setActiveCamera(Camera* camera)
@@ -19,6 +24,11 @@ namespace gg
 	Camera* Scene::getActiveCamera(void) const
 	{
 		return m_ActiveCamera;
+	}
+
+	void Scene::add(GameObject * gameObject)
+	{
+		m_GameObjects.push_back(gameObject);
 	}
 
 	void Scene::onInit(void)
@@ -35,12 +45,16 @@ namespace gg
 	}
 	void Scene::onRender(void)
 	{
-		// update camera
-
+		m_ActiveCamera->update();
+		m_Renderer->begin();
 		// process light
-		// process game objects
-		// render queues?
 
-		m_Renderer->onRender();
+		// process game objects
+		VFOR(it, m_GameObjects)
+		{
+			m_Renderer->draw(*it);
+		}
+
+		// render queues?
 	}
 } // namespace gg

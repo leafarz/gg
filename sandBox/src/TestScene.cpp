@@ -58,11 +58,6 @@ namespace gg
 		
 		s = new Shader("src/basic.shader");
 		s->bind();
-
-		va.unbind();
-		s->unbind();
-		vb.unbind();
-		ib.unbind();
 	}
 	void TestScene::onUnload(void)
 	{
@@ -83,11 +78,10 @@ namespace gg
 		if (Input::getKey(KEY::A))
 		{
 			// watch for order
+			s->bind();
 			va.bind();
 			ib.bind();
-			s->bind();
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-			glBindVertexArray(0);
+			glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
 } // namespace gg

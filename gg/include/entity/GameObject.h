@@ -24,7 +24,9 @@ namespace gg
 		GameObject* getChild(const std::string& name) const;
 		// TODO: add get children
 
+		// TODO: change to template
 		void addComponent(Component* component);
+
 		// TODO: add get component
 		// TODO: add get components
 		// use unordered_multimap::equal_range?

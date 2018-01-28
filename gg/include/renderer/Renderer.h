@@ -6,13 +6,15 @@
 
 namespace gg
 {
+	class GameObject;
 	class Renderer
 	{
 	public:
 		Renderer(void);
 		~Renderer(void);
 
-		void onRender(void) const;
+		void begin(void) const;
+		void draw(GameObject* gameObject);
 	}; // class Renderer
 } // namespace gg
 

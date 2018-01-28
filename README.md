@@ -50,6 +50,9 @@ A simple OpenGL game engine.
 ## TODO ##
 * renderer
  * base renderer
+  * mesh
+  * material
+  * transform
  * shader
    * automated uniforms
    * system uniforms
@@ -60,9 +63,8 @@ A simple OpenGL game engine.
    * point light
    * spotlight
 * components
- * camera
- * mesh
-   * primitive objects
+ * camera 
+* primitive objects
 * categorized draw *
  * per vertex array id
  * per shader
