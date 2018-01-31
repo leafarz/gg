@@ -7,7 +7,7 @@ namespace gg
 {
 	VertexBuffer::VertexBuffer(void)
 	{ }
-	VertexBuffer::VertexBuffer(const void * data, uint size)
+	VertexBuffer::VertexBuffer(const void* data, uint size)
 	{
 		GL(glGenBuffers(1, &m_ID));
 		GL(glBindBuffer(GL_ARRAY_BUFFER, m_ID));
@@ -18,7 +18,7 @@ namespace gg
 	{
 		GL(glDeleteBuffers(1, &m_ID));
 	}
-	void VertexBuffer::initData(const void * data, uint size)
+	void VertexBuffer::initData(const void* data, uint size)
 	{
 		if (m_IsInitialized) { return; }
 		GL(glGenBuffers(1, &m_ID));
