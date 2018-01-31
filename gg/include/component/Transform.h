@@ -26,6 +26,7 @@ namespace gg
 		inline const Math::Vec3f& getPos(void) const { return m_Position; };
 
 	private:
+		// TODO: add dirty flag for update checking
 		// TODO: check if all of these are necessary
 		Math::Vec3f m_Position;
 		Math::Vec3f m_Euler;

@@ -199,6 +199,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\component\MeshRenderer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\component\Transform.h">
       <SubType>
       </SubType>
@@ -291,6 +295,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\component\Mesh.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\component\MeshRenderer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
