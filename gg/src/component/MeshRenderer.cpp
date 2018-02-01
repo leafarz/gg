@@ -18,6 +18,12 @@ namespace gg
 		// TODO: add destroy on material if no one is referencing it
 	}
 
+	void MeshRenderer::setMesh(Mesh* mesh) { m_Mesh = mesh; }
+	Mesh* MeshRenderer::getMesh() const { return m_Mesh; }
+
+	void MeshRenderer::setMaterial(Material* material) { m_Material = material; }
+	Material* MeshRenderer::getMaterial() const { return m_Material; }
+
 	void MeshRenderer::draw(void) const
 	{
 		m_Mesh->draw();

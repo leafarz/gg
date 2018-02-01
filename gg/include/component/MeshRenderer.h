@@ -18,6 +18,12 @@ namespace gg
 		static ComponentType getStaticType(void) { return ComponentType::MeshRenderer; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
+		void setMesh(Mesh* mesh);
+		Mesh* getMesh() const;
+
+		void setMaterial(Material* material);
+		Material* getMaterial() const;
+
 		void draw(void) const;
 	private:
 		Mesh* m_Mesh;

@@ -12,6 +12,9 @@ namespace gg
 		Camera(void);
 		~Camera(void);
 
+		static ComponentType getStaticType(void) { return ComponentType::Camera; }
+		virtual ComponentType getType(void) const override { return getStaticType(); }
+
 		void update(void);
 
 	}; // class Camera

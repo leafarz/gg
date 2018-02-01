@@ -45,6 +45,11 @@ namespace gg
 		m_Children.push_back(gameObject);
 	}
 
+	void GameObject::addComponent(Component * component)
+	{
+		m_Components.insert({ component->getType(), component });
+	}
+
 	GameObject* GameObject::getChild(const std::string& name) const
 	{
 		VFOR(it, m_Children)
@@ -57,11 +62,6 @@ namespace gg
 		return nullptr;
 	}
 
-	void GameObject::addComponent(Component* component)
-	{
-		component->m_GameObject = this;
-		m_Components.insert({ component->getType(), component });
-	}
 	Transform * gg::GameObject::getTransform(void) const
 	{
 		return m_Transform;

@@ -7,14 +7,19 @@
 
 #include "core/gg.h"
 
-#include "renderer/VertexArray.h"
-#include "renderer/VertexBuffer.h"
-#include "renderer/VertexBufferLayout.h"
-#include "renderer/IndexBuffer.h"
 #include "renderer/Shader.h"
 
 #include "platform/opengl/GLCommon.h"
 
+#include "entity/GameObject.h"
+#include "component/Transform.h"
+#include "math/MathUtil.h"
+#include "math/Quaternion.h"
+
+#include "component/Components.h"
+#include "component/Component.h"
+#include <iostream>
+#include <array>
 namespace gg
 {
 	TestScene::TestScene(void)
@@ -25,39 +30,37 @@ namespace gg
 	{
 	}
 
-	// TODO: sample code. delete after.
-	VertexArray va;
-	IndexBuffer ib;
-	VertexBuffer vb;
 	Shader *s;
+	GameObject* go;
 	void TestScene::onInit(void)
 	{
-		//TODO: test on x,y only
-		float _pos[] = {
-			// pos			// color
-			 0.5f,  0.5f,	1.0, 0.0, 0.0,
-			 0.5f, -0.5f,	0.0, 1.0, 0.0,
-			-0.5f, -0.5f,	0.0, 0.0, 1.0,
-			-0.5f,  0.5f,	1.0, 1.0, 1.0
+		std::vector<Vertex> _verts = 
+		{
+			// pos								// uv					// normal						// color
+			{ Math::Vec3f( 0.5f,  0.5f, 0.0),	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 0.0, 0.0) },
+			{ Math::Vec3f( 0.5f, -0.5f, 0.0),	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 1.0, 0.0) },
+			{ Math::Vec3f(-0.5f, -0.5f, 0.0),	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 0.0, 1.0) },
+			{ Math::Vec3f(-0.5f,  0.5f, 0.0),	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) }
 		};
-		uint _indices[6] =
+
+		std::vector<uint> _indices =
 		{
 			0, 1, 3,
 			1, 2, 3
 		};
 
-		vb.initData(_pos, sizeof(_pos));
-		ib.initData(_indices, sizeof(_indices) / sizeof(uint));
+		Mesh* _mesh = new Mesh();
+		_mesh->setVertices(_verts, _indices);
 
-		VertexBufferLayout _layout = VertexBufferLayout();
-		_layout.Push<float>(2);
-		_layout.Push<float>(3);
-
-		va.init();
-		va.addBuffer(vb, _layout);
+		go = new GameObject("GameObject");
+		MeshRenderer* _mr = go->addComponent<MeshRenderer>();
+		_mr->setMesh(_mesh);
+		add(go);
 		
 		s = new Shader("src/basic.shader");
 		s->bind();
+
+
 	}
 	void TestScene::onUnload(void)
 	{
@@ -74,14 +77,5 @@ namespace gg
 	void TestScene::onRender(void)
 	{
 		Scene::onRender();
-
-		if (Input::getKey(KEY::A))
-		{
-			// watch for order
-			s->bind();
-			va.bind();
-			ib.bind();
-			glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
-		}
 	}
 } // namespace gg

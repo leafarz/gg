@@ -14,6 +14,9 @@ namespace gg
 
 	void Renderer::draw(GameObject* gameObject)
 	{
+		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
+		_mr->draw();
+
 		// TODO: get mesh, material and transform
 		// va.bind();
 		// ib.bind();

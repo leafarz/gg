@@ -9,7 +9,7 @@ namespace gg
 	Mesh::~Mesh(void)
 	{ }
 
-	void Mesh::setVertices(std::vector<Vertex> vertices, std::vector<uint> indices)
+	void Mesh::setVertices(const std::vector<Vertex>& vertices, const std::vector<uint>& indices)
 	{
 		m_Vertices = vertices;
 		m_Indices = indices;
