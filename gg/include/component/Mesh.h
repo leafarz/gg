@@ -8,14 +8,20 @@
 #include "renderer/VertexBuffer.h"
 #include "renderer/VertexBufferLayout.h"
 #include "renderer/IndexBuffer.h"
+
+#include "component/Component.h"
 namespace gg
 {
-	class Mesh
+	class Mesh : public Component
 	{
 	public:
 		Mesh(void);
 		~Mesh(void);
-		void setVertices(std::vector<Vertex> vertices, std::vector<uint> indices);
+
+		static ComponentType getStaticType(void) { return ComponentType::Mesh; }
+		virtual ComponentType getType(void) const override { return getStaticType(); }
+
+		void setVertices(const std::vector<Vertex>& vertices, const std::vector<uint>& indices);
 
 		void draw(void) const;
 
