@@ -21,13 +21,13 @@ namespace gg
 		VertexBuffer(const void *data, uint size);
 		~VertexBuffer(void);
 
-		/* Initializes the buffer id and buffer data.
+		/* Sets the buffer id and buffer data.
 		 * Binds the current buffer.
 		 * Will do nothing if called repeatedly.
 		 * [data]	- the data of the buffer
 		 * [size]	- the size of data in bytes
 		 */
-		void initData(const void *data, uint size);
+		void setData(const void *data, uint size);
 
 		/* Binds the current vertex buffer. */
 		void bind(void) const;

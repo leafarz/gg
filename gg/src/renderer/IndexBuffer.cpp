@@ -20,9 +20,12 @@ namespace gg
 	{
 		GL(glDeleteBuffers(1, &m_ID));
 	}
-	void IndexBuffer::initData(const uint * data, uint count)
+	void IndexBuffer::setData(const uint* data, uint count)
 	{
-		if (m_IsInitialized) { return; }
+		if (m_IsInitialized)
+		{
+			GL(glDeleteBuffers(1, &m_ID));
+		}
 		GL(glGenBuffers(1, &m_ID));
 		GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID));
 		GL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint), data, GL_STATIC_DRAW));

@@ -16,7 +16,12 @@ namespace gg
 
 	void VertexArray::init(void)
 	{
+		if (m_IsInitialized)
+		{
+			GL(glDeleteVertexArrays(1, &m_ID));
+		}
 		GL(glGenVertexArrays(1, &m_ID));
+		m_IsInitialized = true;
 	}
 
 	void VertexArray::addBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)

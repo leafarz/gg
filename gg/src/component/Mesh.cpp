@@ -14,8 +14,8 @@ namespace gg
 		m_Vertices = vertices;
 		m_Indices = indices;
 
-		vb.initData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
-		ib.initData(&m_Indices.front(), m_Indices.size());
+		vb.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
+		ib.setData(&m_Indices.front(), m_Indices.size());
 
 		VertexBufferLayout _layout = VertexBufferLayout();
 		_layout.Push<float>(3);	// position
@@ -26,6 +26,7 @@ namespace gg
 		va.init();
 		va.addBuffer(vb, _layout);
 	}
+
 	void Mesh::draw(void) const
 	{
 		// TODO: update shader default layout

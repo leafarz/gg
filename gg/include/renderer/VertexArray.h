@@ -34,6 +34,7 @@ namespace gg
 
 	private:
 		GLuint m_ID;
+		bool m_IsInitialized = false;
 	}; // class VertexArray
 } // namespace gg
 

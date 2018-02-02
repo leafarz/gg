@@ -23,12 +23,12 @@ namespace gg
 
 		inline uint getCount(void) const { return m_Count; }
 
-		/* Initializes the buffer id and buffer data.
+		/* Sets the buffer id and buffer data.
 		 * Binds the current buffer.
 		 * [data]	- the data of the buffer
 		 * [count]	- number of elements in the data array
 		 */
-		void initData(const uint *data, uint count);
+		void setData(const uint *data, uint count);
 
 		/* Binds the current index buffer. */
 		void bind(void) const;

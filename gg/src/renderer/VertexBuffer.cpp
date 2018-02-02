@@ -18,12 +18,17 @@ namespace gg
 	{
 		GL(glDeleteBuffers(1, &m_ID));
 	}
-	void VertexBuffer::initData(const void* data, uint size)
+	void VertexBuffer::setData(const void* data, uint size)
 	{
-		if (m_IsInitialized) { return; }
+		if (m_IsInitialized)
+		{
+			GL(glDeleteBuffers(1, &m_ID));
+		}
+
 		GL(glGenBuffers(1, &m_ID));
 		GL(glBindBuffer(GL_ARRAY_BUFFER, m_ID));
 		GL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+
 		m_IsInitialized = true;
 	}
 	void VertexBuffer::bind(void) const
