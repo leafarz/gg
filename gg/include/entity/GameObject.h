@@ -61,11 +61,65 @@ namespace gg
 			return (_component == m_Components.end()) ? nullptr : (Transform*)_component->second;
 		}
 
-		// TODO: add get components
-		// use unordered_multimap::equal_range?
 		template<class T> std::vector<T*> getComponents()
 		{
+			static_assert(false);
 			return nullptr;
+		}
+		template<> std::vector<Camera*> getComponents<Camera>()
+		{
+			std::vector<Camera*> _components;
+			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+
+			for (auto it = _range.first; it != _range.second; ++it)
+			{
+				_components.push_back((Camera*)it->second);
+			}
+			return _components;
+		}
+		template<> std::vector<Material*> getComponents<Material>()
+		{
+			std::vector<Material*> _components;
+			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+
+			for (auto it = _range.first; it != _range.second; ++it)
+			{
+				_components.push_back((Material*)it->second);
+			}
+			return _components;
+		}
+		template<> std::vector<Mesh*> getComponents<Mesh>()
+		{
+			std::vector<Mesh*> _components;
+			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+
+			for (auto it = _range.first; it != _range.second; ++it)
+			{
+				_components.push_back((Mesh*)it->second);
+			}
+			return _components;
+		}
+		template<> std::vector<MeshRenderer*> getComponents<MeshRenderer>()
+		{
+			std::vector<MeshRenderer*> _components;
+			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+
+			for (auto it = _range.first; it != _range.second; ++it)
+			{
+				_components.push_back((MeshRenderer*)it->second);
+			}
+			return _components;
+		}
+		template<> std::vector<Transform*> getComponents<Transform>()
+		{
+			std::vector<Transform*> _components;
+			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+
+			for (auto it = _range.first; it != _range.second; ++it)
+			{
+				_components.push_back((Transform*)it->second);
+			}
+			return _components;
 		}
 
 		Transform* getTransform(void) const;
