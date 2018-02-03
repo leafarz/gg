@@ -70,6 +70,13 @@ namespace gg
 		void setUniform(const std::string& key, Math::Mat4f val, bool transpose);
 		void setUniform(const std::string& key, float* val, bool transpose);
 
+		void setUniformi(int loc, uint val);
+		void setUniformf(int loc, float val);
+		void setUniform(int loc, Math::Vec3f val);
+		void setUniform(int loc, float x, float y, float z);
+		void setUniform(int loc, Math::Mat4f val, bool transpose);
+		void setUniform(int loc, float* val, bool transpose);
+
 	private:
 		Shader(void) = delete;
 

@@ -211,6 +211,13 @@ namespace gg
 		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val);
 	}
 
+	void Shader::setUniformi(int loc, uint val)							{ glUniform1i(loc, val); }
+	void Shader::setUniformf(int loc, float val)						{ glUniform1f(loc, val); }
+	void Shader::setUniform(int loc, Math::Vec3f val)					{ glUniform3f(loc, val.x, val.y, val.z); }
+	void Shader::setUniform(int loc, float x, float y, float z)			{ glUniform3f(loc, x, y, z); }
+	void Shader::setUniform(int loc, Math::Mat4f val, bool transpose)	{ glUniformMatrix4fv(loc, 1, transpose, val.getMatrix()); }
+	void Shader::setUniform(int loc, float * val, bool transpose)		{ glUniformMatrix4fv(loc, 1, transpose, val); }
+
 	Shader::DataType Shader::glEnumToDataType(GLenum type)
 	{
 		switch (type)
