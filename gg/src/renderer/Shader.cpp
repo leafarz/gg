@@ -105,6 +105,16 @@ namespace gg
 		}
 	}
 
+	std::vector<std::string> Shader::getUniforms(void) const
+	{
+		std::vector<std::string> _keys;
+		_keys.reserve(m_Uniforms.size());
+
+		for (auto kv : m_Uniforms) { _keys.push_back(kv.first); }
+
+		return _keys;
+	}
+
 	GLvoid Shader::setUniformi(const std::string& key, uint val)
 	{
 		const UniformData* _uniformData = getUniform(key);
@@ -249,11 +259,21 @@ namespace gg
 		return "unknown";
 	}
 
-	void Shader::logShaderInfo(GLuint shader)
+	std::string Shader::shaderEnumToString(GLenum type)
+	{
+		switch (type)
+		{
+		case GL_VERTEX_SHADER:			return "VertexShader";
+		case GL_FRAGMENT_SHADER:		return "FragmentShader";
+		}
+		return "unknown";
+	}
+
+	void Shader::logShaderInfo(GLuint shader, GLenum type)
 	{
 		char _infoLog[512];
 		GL(glGetShaderInfoLog(shader, 512, NULL, _infoLog));
-		ERROR("[Error] Shader compilation failed!\n" << _infoLog);
+		ERROR("[" << shaderEnumToString(type) << " Error]" << " compilation failed!\n" << _infoLog);
 	}
 
 	GLvoid Shader::logProgramInfo(GLuint program)
@@ -348,7 +368,7 @@ namespace gg
 		GL(glGetShaderiv(_shader, GL_COMPILE_STATUS, &_success));
 		if (!_success)
 		{
-			logShaderInfo(_shader);
+			logShaderInfo(_shader, type);
 			return false;
 		}
 

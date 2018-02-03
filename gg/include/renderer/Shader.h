@@ -60,7 +60,9 @@ namespace gg
 
 		void bind(void) const;
 		void unbind(void) const;
-	
+
+		std::vector<std::string> getUniforms(void) const;
+
 		void setUniformi(const std::string& key, uint val);
 		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, Math::Vec3f val);
@@ -75,8 +77,9 @@ namespace gg
 		static DataType glEnumToDataType(GLenum type);
 		static GLenum dataTypeToGLEnum(DataType dataType);
 		static std::string dataTypeToString(DataType dataType);
+		static std::string shaderEnumToString(GLenum type);
 
-		static void logShaderInfo(GLuint shader);
+		static void logShaderInfo(GLuint shader, GLenum type);
 		static void logProgramInfo(GLuint program);
 
 		const UniformData* getUniform(const std::string& key);
