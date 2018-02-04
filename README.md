@@ -50,7 +50,6 @@ A simple OpenGL game engine.
 ## TODO ##
 * renderer
  * base renderer
-  * mesh renderer
   * mesh
   * material
   * transform
@@ -73,3 +72,6 @@ A simple OpenGL game engine.
 * guids
 * audio
 * physics
+
+## DONE ##
+* mesh renderer

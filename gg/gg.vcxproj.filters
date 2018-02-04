@@ -235,7 +235,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shader\common.glh" />
-    <None Include="res\shader\core.glh" />
+    <None Include="res\shader\types.glh" />
   </ItemGroup>
 </Project>

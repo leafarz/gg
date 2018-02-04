@@ -1,7 +1,7 @@
 #shader vertex
 #version 330 core
 
-#include "common.glh"
+#include "types.glh"
 
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec2 uv;
@@ -21,6 +21,7 @@ void main()
     gl_Position = mvp * vec4(position.x, position.y, position.z, 1.0);
 	vcolor = color;
 }
+
 
 #shader fragment
 #version 330 core

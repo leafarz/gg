@@ -17,12 +17,8 @@ namespace gg
 	{
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
 
-		Material* _mat = _mr->getMaterial();
-		Transform* _t = gameObject->getTransform();
-
 		// add system uniforms
 
-		_mat->bind();
 		_mr->draw();
 
 		// TODO: get mesh, material and transform

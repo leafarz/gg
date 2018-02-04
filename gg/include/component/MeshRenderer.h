@@ -10,6 +10,9 @@ namespace gg
 	class Material;
 	class MeshRenderer : public Component
 	{
+	private:
+		friend class Renderer;
+
 	public:
 		MeshRenderer(void);
 		MeshRenderer(Mesh* mesh, Material* material);
@@ -24,7 +27,9 @@ namespace gg
 		void setMaterial(Material* material);
 		Material* getMaterial() const;
 
-		void draw(void) const;
+	private:
+		void draw(void);
+
 	private:
 		Mesh* m_Mesh;
 		Material* m_Material;

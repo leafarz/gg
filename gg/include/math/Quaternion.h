@@ -8,6 +8,7 @@
 // dependency and remove include
 #include "Vec3f.h"
 
+// TODO: x rotation is counter cw
 namespace gg
 {
 	namespace Math
@@ -26,11 +27,14 @@ namespace gg
 			float w;
 
 			/* Creates quaternion with default x,y,z=0 unless defined. */
-			Quaternion(float x = 0, float y = 0, float z = 0, float w = 0);
+			Quaternion(float x = 0, float y = 0, float z = 0, float w = 1);
 			/* Creates quaternion from rotation parameters. */
 			Quaternion(const Vec3f& axis, float deg);
 			/* Create quaternion from forward and up vectors. */
-			explicit Quaternion(const Vec3f& forward, const Vec3f& up = Vec3f::up);
+			Quaternion(const Vec3f& forward, const Vec3f& up);
+			/* Create quaternion from euler angles in degrees. */
+			Quaternion(const Vec3f& eulerd);
+
 
 			friend Quaternion operator+(const Quaternion& A, const Quaternion& B);
 			friend Quaternion operator-(const Quaternion& A, const Quaternion& B);
@@ -199,6 +203,8 @@ namespace gg
 
 			/* Gets the quaternion from forward and up vectors. */
 			static Quaternion lookRotation(const Vec3f& forward, const Vec3f& up = Vec3f::up);
+
+			static Quaternion fromEulerd(const Vec3f& eulerd);
 
 		};// struct Quaternion
 	}// namespace Math

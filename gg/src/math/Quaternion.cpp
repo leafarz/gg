@@ -30,6 +30,11 @@ namespace gg
 			*this = lookRotation(forward, up);
 		}
 
+		Quaternion::Quaternion(const Vec3f& eulerd)
+		{
+			*this = fromEulerd(eulerd);
+		}
+
 		Quaternion Quaternion::operator-(void)
 		{
 			this->x = -this->x;
@@ -331,6 +336,23 @@ namespace gg
 				(_r.y - _u.x) * w4_recip,
 				_w
 			);
+		}
+		Quaternion Quaternion::fromEulerd(const Vec3f & euler)
+		{
+			Quaternion _q;
+
+			float cy = cosf(euler.z * DEG_TO_RAD_HALF);	// yaw
+			float sy = sinf(euler.z * DEG_TO_RAD_HALF);	// yaw
+			float cr = cosf(euler.x * DEG_TO_RAD_HALF);	// roll
+			float sr = sinf(euler.x * DEG_TO_RAD_HALF);	// roll
+			float cp = cosf(euler.y * DEG_TO_RAD_HALF);	// pitch
+			float sp = sinf(euler.y * DEG_TO_RAD_HALF);	// pitch
+
+			_q.w = cy * cr * cp + sy * sr * sp;
+			_q.x = cy * sr * cp - sy * cr * sp;
+			_q.y = cy * cr * sp + sy * sr * cp;
+			_q.z = sy * cr * cp - cy * sr * sp;
+			return _q;
 		}
 	}// namespace Math
 }// namespace gg

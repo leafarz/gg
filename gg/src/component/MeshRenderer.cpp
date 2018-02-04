@@ -24,8 +24,9 @@ namespace gg
 	void MeshRenderer::setMaterial(Material* material) { m_Material = material; }
 	Material* MeshRenderer::getMaterial() const { return m_Material; }
 
-	void MeshRenderer::draw(void) const
+	void MeshRenderer::draw(void)
 	{
+		m_Material->bind();
 		m_Mesh->draw();
 	}
 } // namespace gg

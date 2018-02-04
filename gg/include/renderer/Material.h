@@ -14,7 +14,7 @@ namespace gg
 	class Material
 	{
 	private:
-		friend class Renderer;
+		friend class MeshRenderer;
 
 	private:
 		template<typename T>
