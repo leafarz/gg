@@ -24,7 +24,10 @@ namespace gg
 
 		void addChild(GameObject* gameObject);
 		GameObject* getChild(const std::string& name) const;
-		// TODO: add get children
+		GameObject* getChild(uint index) const;
+		const std::vector<GameObject*>& getChildren(void) const;
+
+		uint getChildCount(void) const;
 
 		void addComponent(Component* component);
 		template<class T> T* addComponent()
@@ -39,11 +42,6 @@ namespace gg
 		{
 			auto _component = m_Components.find(Camera::getStaticType());
 			return (_component == m_Components.end()) ? nullptr : (Camera*)_component->second;
-		}
-		template<> Material* getComponent<Material>()
-		{
-			auto _component = m_Components.find(Material::getStaticType());
-			return (_component == m_Components.end()) ? nullptr : (Material*)_component->second;
 		}
 		template<> Mesh* getComponent<Mesh>()
 		{
@@ -69,7 +67,7 @@ namespace gg
 		template<> std::vector<Camera*> getComponents<Camera>()
 		{
 			std::vector<Camera*> _components;
-			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+			auto _range = m_Components.equal_range(ComponentType::Camera);
 
 			for (auto it = _range.first; it != _range.second; ++it)
 			{
@@ -77,21 +75,10 @@ namespace gg
 			}
 			return _components;
 		}
-		template<> std::vector<Material*> getComponents<Material>()
-		{
-			std::vector<Material*> _components;
-			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
-
-			for (auto it = _range.first; it != _range.second; ++it)
-			{
-				_components.push_back((Material*)it->second);
-			}
-			return _components;
-		}
 		template<> std::vector<Mesh*> getComponents<Mesh>()
 		{
 			std::vector<Mesh*> _components;
-			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+			auto _range = m_Components.equal_range(ComponentType::Mesh);
 
 			for (auto it = _range.first; it != _range.second; ++it)
 			{
@@ -113,7 +100,7 @@ namespace gg
 		template<> std::vector<Transform*> getComponents<Transform>()
 		{
 			std::vector<Transform*> _components;
-			auto _range = m_Components.equal_range(ComponentType::MeshRenderer);
+			auto _range = m_Components.equal_range(ComponentType::Transform);
 
 			for (auto it = _range.first; it != _range.second; ++it)
 			{
@@ -130,6 +117,8 @@ namespace gg
 		GameObject* m_Parent;
 		std::vector<GameObject*> m_Children;
 		std::unordered_multimap<ComponentType, Component*> m_Components;
+
+		uint m_ChildCount = 0;
 		
 	}; // class GameObject
 } // namespace gg
