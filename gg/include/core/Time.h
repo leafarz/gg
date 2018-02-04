@@ -9,7 +9,9 @@ namespace gg
 	class Application;
 	class Time
 	{
+	private:
 		friend class Application;
+
 	public:
 		Time(void) = delete;
 		~Time(void) = delete;

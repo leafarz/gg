@@ -1,6 +1,7 @@
 #include "renderer/Renderer.h"
 
 #include "entity/GameObject.h"
+#include "renderer/Material.h"
 
 namespace gg
 {
@@ -15,6 +16,13 @@ namespace gg
 	void Renderer::draw(GameObject* gameObject)
 	{
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
+
+		Material* _mat = _mr->getMaterial();
+		Transform* _t = gameObject->getTransform();
+
+		// add system uniforms
+
+		_mat->bind();
 		_mr->draw();
 
 		// TODO: get mesh, material and transform

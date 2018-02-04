@@ -22,6 +22,7 @@ namespace gg
 
 		if (_isCached)
 		{
+			_SYS("Fetching cached shader: \"" << m_FilePath << "\"");
 			m_ProgramID = s_ShaderHash[_hash];
 			return;
 		}
@@ -78,33 +79,6 @@ namespace gg
 		GL(glUseProgram(0));
 	}
 
-	void Shader::addAllUniforms(void)
-	{
-		int _size = 0;
-		int _len = -1;
-		int _num = -1;
-		GLenum _type = GL_ZERO;
-		char _name[256];
-
-		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size));
-		FORU(i, 0, (uint)_size)
-		{
-			GL(glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
-			GL(GLint _uniformLoc = glGetUniformLocation(m_ProgramID, _name));
-
-			DataType _dataType = glEnumToDataType(_type);
-			if (_dataType == DataType::UNKNOWN)
-			{
-				ERROR("The uniform [" << _name << "] is of an unknown type! (" << _type << ")");
-			}
-			else
-			{
-				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
-				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
-			}
-		}
-	}
-
 	std::vector<std::string> Shader::getUniforms(void) const
 	{
 		std::vector<std::string> _keys;
@@ -115,108 +89,10 @@ namespace gg
 		return _keys;
 	}
 
-	GLvoid Shader::setUniformi(const std::string& key, uint val)
+	bool Shader::hasUniform(const std::string& key) const
 	{
-		const UniformData* _uniformData = getUniform(key);
-		if (_uniformData == nullptr)
-		{
-			WARN("No uniform [int][" << key << "] found");
-			return;
-		}
-		else if (_uniformData->dataType != DataType::INT)
-		{
-			WARN("Uniform mismatch!\nTrying to set int value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
-			return;
-		}
-		glUniform1i(_uniformData->loc, val);
+		return m_Uniforms.find(key) != m_Uniforms.end();
 	}
-
-	GLvoid Shader::setUniformf(const std::string& key, float val)
-	{
-		const UniformData* _uniformData = getUniform(key);
-		if (_uniformData == nullptr)
-		{
-			WARN("No uniform [float][" << key << "] found");
-			return;
-		}
-		else if (_uniformData->dataType != DataType::FLOAT)
-		{
-			WARN("Uniform mismatch!\nTrying to set float value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
-			return;
-		}
-		glUniform1f(_uniformData->loc, val);
-	}
-
-	GLvoid Shader::setUniform(const std::string& key, Math::Vec3f val)
-	{
-		const UniformData* _uniformData = getUniform(key);
-		if (_uniformData == nullptr)
-		{
-			WARN("No uniform [vec3][" << key << "] found");
-			return;
-		}
-		else if (_uniformData->dataType != DataType::VEC3)
-		{
-			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
-			return;
-		}
-		glUniform3f(_uniformData->loc, val.x, val.y, val.z);
-	}
-
-	void Shader::setUniform(const std::string & key, float x, float y, float z)
-	{
-		const UniformData* _uniformData = getUniform(key);
-		if (_uniformData == nullptr)
-		{
-			WARN("No uniform [vec3][" << key << "] found");
-			return;
-		}
-		else if (_uniformData->dataType != DataType::VEC3)
-		{
-			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
-			return;
-		}
-		glUniform3f(_uniformData->loc, x, y, z);
-	}
-
-	GLvoid Shader::setUniform(const std::string& key, Math::Mat4f val, bool transpose)
-	{
-		const UniformData* _uniformData = getUniform(key);
-		if (_uniformData == nullptr)
-		{
-			WARN("No uniform [mat4][" << key << "] found");
-			return;
-		}
-		else if (_uniformData->dataType != DataType::MAT4)
-		{
-			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
-			return;
-		}
-		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val.getMatrix());
-	}
-
-	GLvoid Shader::setUniform(const std::string& key, float* val, bool transpose)
-	{
-		const UniformData* _uniformData = getUniform(key);
-		if (_uniformData == nullptr)
-		{
-			WARN("No uniform [mat4][" << key << "] found");
-			return;
-		}
-		else if (_uniformData->dataType != DataType::MAT4)
-		{
-			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
-			return;
-		}
-		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val);
-	}
-
-	void Shader::setUniformi(int loc, uint val)							{ glUniform1i(loc, val); }
-	void Shader::setUniformf(int loc, float val)						{ glUniform1f(loc, val); }
-	void Shader::setUniform(int loc, Math::Vec3f val)					{ glUniform3f(loc, val.x, val.y, val.z); }
-	void Shader::setUniform(int loc, float x, float y, float z)			{ glUniform3f(loc, x, y, z); }
-	void Shader::setUniform(int loc, Math::Mat4f val, bool transpose)	{ glUniformMatrix4fv(loc, 1, transpose, val.getMatrix()); }
-	void Shader::setUniform(int loc, float * val, bool transpose)		{ glUniformMatrix4fv(loc, 1, transpose, val); }
 
 	Shader::DataType Shader::glEnumToDataType(GLenum type)
 	{
@@ -399,4 +275,134 @@ namespace gg
 
 		return true;
 	}
+
+	void Shader::addAllUniforms(void)
+	{
+		int _size = 0;
+		int _len = -1;
+		int _num = -1;
+		GLenum _type = GL_ZERO;
+		char _name[256];
+
+		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size));
+		FORU(i, 0, (uint)_size)
+		{
+			GL(glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
+			GL(GLint _uniformLoc = glGetUniformLocation(m_ProgramID, _name));
+
+			DataType _dataType = glEnumToDataType(_type);
+			if (_dataType == DataType::UNKNOWN)
+			{
+				ERROR("The uniform [" << _name << "] is of an unknown type! (" << _type << ")");
+			}
+			else
+			{
+				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
+				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
+			}
+		}
+	}
+
+	GLvoid Shader::setUniformi(const std::string& key, int val)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [int][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::INT)
+		{
+			WARN("Uniform mismatch!\nTrying to set int value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniform1i(_uniformData->loc, val);
+	}
+
+	GLvoid Shader::setUniformf(const std::string& key, float val)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [float][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::FLOAT)
+		{
+			WARN("Uniform mismatch!\nTrying to set float value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniform1f(_uniformData->loc, val);
+	}
+
+	GLvoid Shader::setUniform(const std::string& key, Math::Vec3f val)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [vec3][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::VEC3)
+		{
+			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniform3f(_uniformData->loc, val.x, val.y, val.z);
+	}
+
+	void Shader::setUniform(const std::string & key, float x, float y, float z)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [vec3][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::VEC3)
+		{
+			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniform3f(_uniformData->loc, x, y, z);
+	}
+
+	GLvoid Shader::setUniform(const std::string& key, Math::Mat4f val, bool transpose)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [mat4][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::MAT4)
+		{
+			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val.getMatrix());
+	}
+
+	GLvoid Shader::setUniform(const std::string& key, float* val, bool transpose)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [mat4][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::MAT4)
+		{
+			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val);
+	}
+
+	void Shader::setUniformi(int loc, int val) { glUniform1i(loc, val); }
+	void Shader::setUniformf(int loc, float val) { glUniform1f(loc, val); }
+	void Shader::setUniform(int loc, Math::Vec3f val) { glUniform3f(loc, val.x, val.y, val.z); }
+	void Shader::setUniform(int loc, float x, float y, float z) { glUniform3f(loc, x, y, z); }
+	void Shader::setUniform(int loc, Math::Mat4f val, bool transpose) { glUniformMatrix4fv(loc, 1, transpose, val.getMatrix()); }
+	void Shader::setUniform(int loc, float * val, bool transpose) { glUniformMatrix4fv(loc, 1, transpose, val); }
 } // namespace gg

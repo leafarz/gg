@@ -10,7 +10,9 @@ namespace gg
 	class GameObject;
 	class Component
 	{
+	private:
 		friend class GameObject;
+
 	public:
 		Component(void);
 		~Component(void);

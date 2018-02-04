@@ -9,7 +9,6 @@ namespace gg
 	{
 		None = -1,
 		Camera,
-		Material,
 		Mesh,
 		MeshRenderer,
 		Transform,

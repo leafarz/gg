@@ -15,6 +15,8 @@ namespace gg
 	class Shader
 	{
 	private:
+		friend class Material;
+
 		enum class ShaderType : int8
 		{
 			NONE		= -1,
@@ -62,20 +64,7 @@ namespace gg
 		void unbind(void) const;
 
 		std::vector<std::string> getUniforms(void) const;
-
-		void setUniformi(const std::string& key, uint val);
-		void setUniformf(const std::string& key, float val);
-		void setUniform(const std::string& key, Math::Vec3f val);
-		void setUniform(const std::string& key, float x, float y, float z);
-		void setUniform(const std::string& key, Math::Mat4f val, bool transpose);
-		void setUniform(const std::string& key, float* val, bool transpose);
-
-		void setUniformi(int loc, uint val);
-		void setUniformf(int loc, float val);
-		void setUniform(int loc, Math::Vec3f val);
-		void setUniform(int loc, float x, float y, float z);
-		void setUniform(int loc, Math::Mat4f val, bool transpose);
-		void setUniform(int loc, float* val, bool transpose);
+		bool hasUniform(const std::string& key) const;
 
 	private:
 		Shader(void) = delete;
@@ -98,11 +87,27 @@ namespace gg
 
 		void addAllUniforms(void);
 
+		void setUniformi(const std::string& key, int val);
+		void setUniformf(const std::string& key, float val);
+		void setUniform(const std::string& key, Math::Vec3f val);
+		void setUniform(const std::string& key, float x, float y, float z);
+		void setUniform(const std::string& key, Math::Mat4f val, bool transpose);
+		void setUniform(const std::string& key, float* val, bool transpose);
+
+		void setUniformi(int loc, int val);
+		void setUniformf(int loc, float val);
+		void setUniform(int loc, Math::Vec3f val);
+		void setUniform(int loc, float x, float y, float z);
+		void setUniform(int loc, Math::Mat4f val, bool transpose);
+		void setUniform(int loc, float* val, bool transpose);
 
 	private:
+		/* Key value pairs of hash to program ids created throughout the app. */
 		static std::unordered_map<uint, GLuint> s_ShaderHash;
 
+		/* Program id created by OpenGL command.*/
 		GLuint m_ProgramID;
+		/* Hash of the filepath. */
 		uint m_ShaderID;
 		std::string m_FilePath;
 

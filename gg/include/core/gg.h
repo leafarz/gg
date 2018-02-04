@@ -22,4 +22,9 @@
  */
 #define VFOR(it,vec)	for(auto it = vec.begin() ; it != vec.end(); ++it)
 
+ /* iterate std::unordered_map
+ * [kv] is the key value pair per iteration
+ */
+#define UFOR(kv,umap)	for(auto kv : umap)
+
 #endif

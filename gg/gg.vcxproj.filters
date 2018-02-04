@@ -132,7 +132,7 @@
     <ClInclude Include="include\component\Components.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\component\Material.h">
+    <ClInclude Include="include\renderer\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -230,7 +230,7 @@
     <ClCompile Include="src\component\MeshRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\component\Material.cpp">
+    <ClCompile Include="src\renderer\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

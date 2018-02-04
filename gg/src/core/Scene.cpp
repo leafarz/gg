@@ -50,9 +50,11 @@ namespace gg
 		// process light
 
 		// process game objects
+		// TODO: add children iteration
 		VFOR(it, m_GameObjects)
 		{
-			m_Renderer->draw(*it);
+			GameObject* _go = *it;
+			m_Renderer->draw(_go);
 		}
 
 		// render queues?

@@ -195,10 +195,6 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\component\Material.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="include\component\Mesh.h">
       <SubType>
       </SubType>
@@ -259,6 +255,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClInclude>
     <ClInclude Include="include\renderer\IndexBuffer.h" />
+    <ClInclude Include="include\renderer\Material.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\renderer\Renderer.h" />
     <ClInclude Include="include\renderer\Shader.h">
       <SubType>
@@ -299,10 +299,6 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\component\Component.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="src\component\Material.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -356,6 +352,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\renderer\IndexBuffer.cpp" />
+    <ClCompile Include="src\renderer\Material.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\renderer\Shader.cpp">
       <SubType>
