@@ -15,7 +15,7 @@ namespace gg
 		static const double RAD_TO_DEG_HALF	= static_cast<double>(90.0 / PI);
 		static const double DEG_TO_RAD_HALF	= static_cast<double>(PI / 360.0);
 
-		/* Compares floats within FLT_EPSILON value*/
+		/* Compares floats within FLT_EPSILON value */
 		bool floatCmp(float a, float b, float threshold = FLT_EPSILON);
 
 		/* Compares doubles within DBL_EPSILON value*/

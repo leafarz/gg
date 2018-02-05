@@ -95,9 +95,9 @@ namespace gg
 
 		Mat4f Mat4f::rotationMatrixd(const Vec3f& eulerAngles)
 		{
-			const float _x = eulerAngles.x * DEG_TO_RAD;
-			const float _y = eulerAngles.y * DEG_TO_RAD;
-			const float _z = eulerAngles.z * DEG_TO_RAD;
+			const float _x = eulerAngles.x * static_cast<float>(DEG_TO_RAD);
+			const float _y = eulerAngles.y * static_cast<float>(DEG_TO_RAD);
+			const float _z = eulerAngles.z * static_cast<float>(DEG_TO_RAD);
 
 			Mat4f _rx = Mat4f(
 				1,	0,			0,			0,
@@ -125,9 +125,9 @@ namespace gg
 
 		Mat4f Mat4f::rotationMatrix(float x, float y, float z)
 		{
-			x *= DEG_TO_RAD;
-			y *= DEG_TO_RAD;
-			z *= DEG_TO_RAD;
+			x *= static_cast<float>(DEG_TO_RAD);
+			y *= static_cast<float>(DEG_TO_RAD);
+			z *= static_cast<float>(DEG_TO_RAD);
 
 			Mat4f _rx = Mat4f(
 				1,	0,			0,			0,
@@ -204,7 +204,7 @@ namespace gg
 
 		Mat4f Mat4f::perspectiveMatrix(float fovDeg, float aspectRatio, float zNear, float zFar)
 		{
-			float _tanHalfFOV = tan(fovDeg * DEG_TO_RAD_HALF);
+			float _tanHalfFOV = tan(fovDeg * static_cast<float>(DEG_TO_RAD_HALF));
 			float _zRange = zNear - zFar;
 
 			return Mat4f(

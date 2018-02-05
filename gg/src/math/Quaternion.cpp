@@ -16,8 +16,8 @@ namespace gg
 
 		Quaternion::Quaternion(const Vec3f& axis, float deg)
 		{
-			float _sinHalfAngle = sinf(deg * DEG_TO_RAD_HALF);
-			float _cosHalfAngle = cosf(deg * DEG_TO_RAD_HALF);
+			float _sinHalfAngle = sinf(deg * static_cast<float>(DEG_TO_RAD_HALF));
+			float _cosHalfAngle = cosf(deg * static_cast<float>(DEG_TO_RAD_HALF));
 
 			this->x = axis.x * _sinHalfAngle;
 			this->y = axis.y * _sinHalfAngle;
@@ -200,8 +200,8 @@ namespace gg
 
 		Quaternion& Quaternion::set(Vec3f axis, float deg)
 		{
-			float _sinHalfAngle = sinf(deg * DEG_TO_RAD_HALF);
-			float _cosHalfAngle = cosf(deg * DEG_TO_RAD_HALF);
+			float _sinHalfAngle = sinf(deg * static_cast<float>(DEG_TO_RAD_HALF));
+			float _cosHalfAngle = cosf(deg * static_cast<float>(DEG_TO_RAD_HALF));
 
 			this->x = axis.x * _sinHalfAngle;
 			this->y = axis.y * _sinHalfAngle;
@@ -294,7 +294,7 @@ namespace gg
 				asinf(2 * (this->w * this->x - this->z * this->y)),
 				atan2f(2 * (this->w * this->y + this->x * this->z), 1 - 2 * (powf(this->y, 2) + powf(this->x, 2))),
 				atan2f(2 * (this->w * this->z + this->y * this->x), 1 - 2 * (powf(this->x, 2) + powf(this->z, 2)))
-			) * RAD_TO_DEG;
+			) * static_cast<float>(RAD_TO_DEG);
 		}
 
 		Mat4f Quaternion::toRotationMatrix(void) const
@@ -337,16 +337,16 @@ namespace gg
 				_w
 			);
 		}
-		Quaternion Quaternion::fromEulerd(const Vec3f & euler)
+		Quaternion Quaternion::fromEulerd(const Vec3f & eulerd)
 		{
 			Quaternion _q;
 
-			float cy = cosf(euler.z * DEG_TO_RAD_HALF);	// yaw
-			float sy = sinf(euler.z * DEG_TO_RAD_HALF);	// yaw
-			float cr = cosf(euler.x * DEG_TO_RAD_HALF);	// roll
-			float sr = sinf(euler.x * DEG_TO_RAD_HALF);	// roll
-			float cp = cosf(euler.y * DEG_TO_RAD_HALF);	// pitch
-			float sp = sinf(euler.y * DEG_TO_RAD_HALF);	// pitch
+			float cy = cosf(eulerd.z * static_cast<float>(DEG_TO_RAD_HALF));	// yaw
+			float sy = sinf(eulerd.z * static_cast<float>(DEG_TO_RAD_HALF));	// yaw
+			float cr = cosf(eulerd.x * static_cast<float>(DEG_TO_RAD_HALF));	// roll
+			float sr = sinf(eulerd.x * static_cast<float>(DEG_TO_RAD_HALF));	// roll
+			float cp = cosf(eulerd.y * static_cast<float>(DEG_TO_RAD_HALF));	// pitch
+			float sp = sinf(eulerd.y * static_cast<float>(DEG_TO_RAD_HALF));	// pitch
 
 			_q.w = cy * cr * cp + sy * sr * sp;
 			_q.x = cy * sr * cp - sy * cr * sp;

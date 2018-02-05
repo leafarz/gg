@@ -227,7 +227,7 @@ namespace gg
 
 		Vec2f Vec2f::rotated(float degrees) const
 		{
-			float _rad = degrees * DEG_TO_RAD;
+			float _rad = degrees * static_cast<float>(DEG_TO_RAD);
 			float _cos = cosf(_rad);
 			float _sin = sinf(_rad);
 
@@ -239,7 +239,7 @@ namespace gg
 
 		Vec2f Vec2f::rotated(const Vec2f& A, float degrees)
 		{
-			float _rad = degrees * RAD_TO_DEG;
+			float _rad = degrees * static_cast<float>(RAD_TO_DEG);
 			float _cos = cosf(_rad);
 			float _sin = sinf(_rad);
 			
