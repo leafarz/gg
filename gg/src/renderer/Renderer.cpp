@@ -13,7 +13,7 @@ namespace gg
 	{
 	}
 
-	void Renderer::draw(GameObject* gameObject)
+	void Renderer::draw(GameObject* gameObject, const Math::Mat4f& pvMatrix)
 	{
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
 

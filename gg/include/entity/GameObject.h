@@ -33,6 +33,7 @@ namespace gg
 		template<class T> T* addComponent()
 		{
 			T* _component = new T();
+			((Component*)_component)->m_GameObject = this;
 			m_Components.insert({ ((Component*)_component)->getType(), _component });
 			return _component;
 		}

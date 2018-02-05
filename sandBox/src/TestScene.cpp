@@ -80,10 +80,21 @@ namespace gg
 		MeshRenderer* _mr = go->addComponent<MeshRenderer>();
 		_mr->setMesh(_mesh);
 		Material* _mat1 = new Material(new Shader("src/basic.shader"));
-		_mat1->setUniform("mvp", p*v*m);
 
 		_mr->setMaterial(_mat1);
 
+		GameObject* _camera = new GameObject("Camera");
+		Camera* _cam = _camera->addComponent<Camera>();
+		_cam->setPerspectiveCamera(103, 16.0f / 9.0f, 0.1f, 1000);
+		//add(_camera);
+		setActiveCamera(_cam);
+		Math::Mat4f _pvMatrix = _cam->getViewProjectionMatrix();
+		
+		_mat1->setUniform("mvp", p * v * m);
+		// TODO: check view matrix if correct
+		LOG("V======================");
+		LOG(v);
+		LOG(_cam->getViewMatrix());
 		add(go);
 
 		Mesh* _mesh2 = new Mesh();
@@ -93,7 +104,7 @@ namespace gg
 		_mr2->setMesh(_mesh2);
 		Material* _mat2 = new Material(new Shader("src/basic.shader"));
 		go->addChild(go2);
-		
+
 		//s = new Shader("src/basic.shader");
 		//s->bind();
 

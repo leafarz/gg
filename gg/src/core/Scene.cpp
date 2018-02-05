@@ -48,13 +48,13 @@ namespace gg
 		m_ActiveCamera->update();
 		m_Renderer->begin();
 		// process light
-
+		Math::Mat4f _pvMatrix = m_ActiveCamera->getViewProjectionMatrix();
 		// process game objects
 		// TODO: add children iteration
 		VFOR(it, m_GameObjects)
 		{
 			GameObject* _go = *it;
-			m_Renderer->draw(_go);
+			m_Renderer->draw(_go, _pvMatrix);
 		}
 
 		// render queues?

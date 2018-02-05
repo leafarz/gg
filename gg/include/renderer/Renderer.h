@@ -3,6 +3,7 @@
 #pragma once
 
 #include "platform/opengl/GLCommon.h"
+#include "math/Mat4f.h"
 
 namespace gg
 {
@@ -14,7 +15,7 @@ namespace gg
 		~Renderer(void);
 
 		void begin(void) const;
-		void draw(GameObject* gameObject);
+		void draw(GameObject* gameObject, const Math::Mat4f& pvMatrix);
 	}; // class Renderer
 } // namespace gg
 

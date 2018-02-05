@@ -52,7 +52,7 @@ namespace gg
 		Math::Vec3f& setScale(float x, float y, float z);
 		Math::Vec3f& setScale(Math::Vec3f euler);
 
-		const Math::Mat4f& getTransformationMatrix(void) const;
+		const Math::Mat4f& getTransformationMatrix(void);
 
 	private:
 		void setDirty(DirtyBits bit);
@@ -60,7 +60,7 @@ namespace gg
 		bool isDirty(DirtyBits bit) const;
 
 	private:
-		DirtyBits m_DirtyBits = static_cast<DirtyBits>(0);
+		DirtyBits m_DirtyBits = static_cast<DirtyBits>(DirtyBits::Position | DirtyBits::Euler | DirtyBits::Rotation | DirtyBits::Scale);
 
 		// TODO: add dirty flag for update checking
 		// TODO: check if all of these are necessary
@@ -68,7 +68,9 @@ namespace gg
 		Math::Vec3f m_Euler;
 		Math::Quaternion m_Rotation;
 		Math::Vec3f m_Scale;
+
 		Math::Mat4f m_TransformationMatrix;
+		Math::Mat4f m_RotMatrix;
 	}; // class Transform
 } // namespace gg
 

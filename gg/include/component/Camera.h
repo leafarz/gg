@@ -11,6 +11,7 @@ namespace gg
 	class Camera : public Component
 	{
 	public:
+		Camera(void);
 		Camera(float fovDeg, float aspectRatio, float zNear, float zFar);
 		~Camera(void);
 
@@ -20,7 +21,8 @@ namespace gg
 		void setPerspectiveCamera(float fovDeg, float aspectRatio, float zNear, float zFar);
 
 		const Math::Mat4f& getProjectionMatrix(void) const;
-		const Math::Mat4f& getViewProjectionMatrix(void);
+		const Math::Mat4f getViewMatrix(void);
+		const Math::Mat4f getViewProjectionMatrix(void);
 
 		void update(void);
 
