@@ -453,10 +453,10 @@ namespace gg
 		{
 			return
 				out << std::fixed << std::setprecision(2) <<
-				"\n| " << A.elements[0]  << " " << A.elements[1]  << " " << A.elements[2]  << " " << A.elements[3]  << " |" <<
-				"\n| " << A.elements[4]  << " " << A.elements[5]  << " " << A.elements[6]  << " " << A.elements[7]  << " |" <<
-				"\n| " << A.elements[8]  << " " << A.elements[9]  << " " << A.elements[10] << " " << A.elements[11] << " |" <<
-				"\n| " << A.elements[12] << " " << A.elements[13] << " " << A.elements[14] << " " << A.elements[15] << " |" <<
+				"\n| " << A.elements[0]  << ' ' << A.elements[1]  << ' ' << A.elements[2]  << ' ' << A.elements[3]  << " |" <<
+				"\n| " << A.elements[4]  << ' ' << A.elements[5]  << ' ' << A.elements[6]  << ' ' << A.elements[7]  << " |" <<
+				"\n| " << A.elements[8]  << ' ' << A.elements[9]  << ' ' << A.elements[10] << ' ' << A.elements[11] << " |" <<
+				"\n| " << A.elements[12] << ' ' << A.elements[13] << ' ' << A.elements[14] << ' ' << A.elements[15] << " |" <<
 				std::endl;
 		}
 

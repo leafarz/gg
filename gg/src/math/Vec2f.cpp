@@ -119,7 +119,7 @@ namespace gg
 		{
 			return
 				out << std::fixed << std::setprecision(2) <<
-				"(" << A.x << ", " << A.y << ")";
+				'(' << A.x << ", " << A.y << ')';
 		}
 
 		Vec2f& Vec2f::set(float x, float y)

@@ -128,8 +128,8 @@ namespace gg
 		{
 			return
 				out << std::fixed << std::setprecision(2) <<
-				"(" << A.x << ", " << A.y << ", " << A.z <<
-				", " << A.w << ")";
+				'(' << A.x << ", " << A.y << ", " << A.z <<
+				", " << A.w << ')';
 		}
 
 		Vec2f Vec4f::xy(void) const { return Vec2f(x, y); }

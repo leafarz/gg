@@ -138,7 +138,7 @@ namespace gg
 		{
 			return
 				out << std::fixed << std::setprecision(2) <<
-				"(" << A.x << ", " << A.y << ", " << A.z << ")";
+				'(' << A.x << ", " << A.y << ", " << A.z << ')';
 		}
 
 		Vec2f Vec3f::xy(void) const { return Vec2f(this->x, this->y); }
