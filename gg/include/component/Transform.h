@@ -54,6 +54,8 @@ namespace gg
 
 		const Math::Mat4f& getTransformationMatrix(void);
 
+		bool isDirty(void) const;
+
 	private:
 		void setDirty(DirtyBits bit);
 		void clearDirty(DirtyBits bit);

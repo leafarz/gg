@@ -156,7 +156,12 @@ namespace gg
 		return m_TransformationMatrix;
 	}
 
+	bool Transform::isDirty(void) const
+	{
+		return isDirty(static_cast<DirtyBits>(DirtyBits::Position | DirtyBits::Euler | DirtyBits::Rotation | DirtyBits::Scale));
+	}
+
 	void Transform::setDirty(DirtyBits bit)			{ m_DirtyBits = static_cast<DirtyBits>(m_DirtyBits | bit); }
 	void Transform::clearDirty(DirtyBits bit)		{ m_DirtyBits = static_cast<DirtyBits>(m_DirtyBits & ~bit); }
-	bool Transform::isDirty(DirtyBits bit) const	{ return m_DirtyBits&bit == bit; }
+	bool Transform::isDirty(DirtyBits bit) const	{ return (m_DirtyBits&bit) != 0; }
 } // namespace gg

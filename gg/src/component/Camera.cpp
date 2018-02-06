@@ -25,9 +25,8 @@ namespace gg
 
 	const Math::Mat4f Camera::getViewMatrix(void)
 	{
-		const Math::Quaternion& _q = m_GameObject->getTransform()->getRotation();
 		const Math::Vec3f& _pos = m_GameObject->getTransform()->getPos();
-
+		const Math::Quaternion& _q = m_GameObject->getTransform()->getRotation().conjugate();
 		Math::Mat4f _rotMatrix = Math::Mat4f::rotationMatrix(_q);
 
 		float _m00 = _rotMatrix[0] + _pos.x * _rotMatrix[12];
