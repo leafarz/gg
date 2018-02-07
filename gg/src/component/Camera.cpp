@@ -29,24 +29,24 @@ namespace gg
 		const Math::Quaternion& _q = m_GameObject->getTransform()->getRotation().conjugate();
 		Math::Mat4f _rotMatrix = Math::Mat4f::rotationMatrix(_q);
 
-		float _m00 = _rotMatrix[0] + _pos.x * _rotMatrix[12];
-		float _m10 = _rotMatrix[4] + _pos.y * _rotMatrix[12];
-		float _m20 = _rotMatrix[8] + _pos.z * _rotMatrix[12];
+		float _m00 = _rotMatrix[0]	- _pos.x * _rotMatrix[12];
+		float _m10 = _rotMatrix[4]	- _pos.y * _rotMatrix[12];
+		float _m20 = _rotMatrix[8]	- _pos.z * _rotMatrix[12];
 		float _m30 = _rotMatrix[12];
 
-		float _m01 = _rotMatrix[1] + _pos.x * _rotMatrix[13];
-		float _m11 = _rotMatrix[5] + _pos.y * _rotMatrix[13];
-		float _m21 = _rotMatrix[9] + _pos.z * _rotMatrix[13];
+		float _m01 = _rotMatrix[1]	- _pos.x * _rotMatrix[13];
+		float _m11 = _rotMatrix[5]	- _pos.y * _rotMatrix[13];
+		float _m21 = _rotMatrix[9]	- _pos.z * _rotMatrix[13];
 		float _m31 = _rotMatrix[13];
 
-		float _m02 = _rotMatrix[2] + _pos.x * _rotMatrix[14];
-		float _m12 = _rotMatrix[6] + _pos.y * _rotMatrix[14];
-		float _m22 = _rotMatrix[10] + _pos.z * _rotMatrix[14];
+		float _m02 = _rotMatrix[2]	- _pos.x * _rotMatrix[14];
+		float _m12 = _rotMatrix[6]	- _pos.y * _rotMatrix[14];
+		float _m22 = _rotMatrix[10] - _pos.z * _rotMatrix[14];
 		float _m32 = _rotMatrix[14];
 
-		float _m03 = _rotMatrix[3] + _pos.x * _rotMatrix[15];
-		float _m13 = _rotMatrix[7] + _pos.y * _rotMatrix[15];
-		float _m23 = _rotMatrix[11] + _pos.z * _rotMatrix[15];
+		float _m03 = _rotMatrix[3]	- _pos.x * _rotMatrix[15];
+		float _m13 = _rotMatrix[7]	- _pos.y * _rotMatrix[15];
+		float _m23 = _rotMatrix[11] - _pos.z * _rotMatrix[15];
 		float _m33 = _rotMatrix[15];
 
 		return Math::Mat4f(

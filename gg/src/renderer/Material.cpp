@@ -42,7 +42,7 @@ namespace gg
 		while (!m_Mat4fs.empty())
 		{
 			Data<Math::Mat4f>& _top = m_Mat4fs.top();
-			m_Shader->setUniform(_top.key, _top.val, false);
+			m_Shader->setUniform(_top.key, _top.val, true);
 			m_Mat4fs.pop();
 		}
 	}

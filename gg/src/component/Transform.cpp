@@ -120,31 +120,31 @@ namespace gg
 		
 		// clear bits
 		m_DirtyBits = static_cast<DirtyBits>(0);
-
+		
 		if (_rotBit) { m_RotMatrix = Math::Mat4f::rotationMatrix(m_Rotation); }
 
-		float _m00 = m_Scale.x * (m_RotMatrix[0] + m_Position.x * m_RotMatrix[12]);
-		float _m10 = m_Scale.x * (m_RotMatrix[4] + m_Position.y * m_RotMatrix[12]);
-		float _m20 = m_Scale.x * (m_RotMatrix[8] + m_Position.z * m_RotMatrix[12]);
-		float _m30 = m_Scale.x * m_RotMatrix[12];
-
-		float _m01 = m_Scale.y * (m_RotMatrix[1] + m_Position.x * m_RotMatrix[13]);
-		float _m11 = m_Scale.y * (m_RotMatrix[5] + m_Position.y * m_RotMatrix[13]);
-		float _m21 = m_Scale.y * (m_RotMatrix[9] + m_Position.z * m_RotMatrix[13]);
-		float _m31 = m_Scale.y * m_RotMatrix[13];
-
-		float _m02 = m_Scale.z * (m_RotMatrix[2] + m_Position.x * m_RotMatrix[14]);
-		float _m12 = m_Scale.z * (m_RotMatrix[6] + m_Position.y * m_RotMatrix[14]);
-		float _m22 = m_Scale.z * (m_RotMatrix[10] + m_Position.z * m_RotMatrix[14]);
-		float _m32 = m_Scale.z * m_RotMatrix[14];
-
-		float _m03 = m_RotMatrix[3] + m_Position.x * m_RotMatrix[15];
-		float _m13 = m_RotMatrix[7] + m_Position.y * m_RotMatrix[15];
-		float _m23 = m_RotMatrix[11] + m_Position.z * m_RotMatrix[15];
-		float _m33 = m_RotMatrix[15];
-		
 		if (_posBit | _rotBit | _scaleBit)
 		{
+			float _m00 = m_Scale.x * (m_RotMatrix[0] + m_Position.x * m_RotMatrix[12]);
+			float _m10 = m_Scale.x * (m_RotMatrix[4] + m_Position.y * m_RotMatrix[12]);
+			float _m20 = m_Scale.x * (m_RotMatrix[8] + m_Position.z * m_RotMatrix[12]);
+			float _m30 = m_Scale.x * m_RotMatrix[12];
+
+			float _m01 = m_Scale.y * (m_RotMatrix[1] + m_Position.x * m_RotMatrix[13]);
+			float _m11 = m_Scale.y * (m_RotMatrix[5] + m_Position.y * m_RotMatrix[13]);
+			float _m21 = m_Scale.y * (m_RotMatrix[9] + m_Position.z * m_RotMatrix[13]);
+			float _m31 = m_Scale.y * m_RotMatrix[13];
+
+			float _m02 = m_Scale.z * (m_RotMatrix[2] + m_Position.x * m_RotMatrix[14]);
+			float _m12 = m_Scale.z * (m_RotMatrix[6] + m_Position.y * m_RotMatrix[14]);
+			float _m22 = m_Scale.z * (m_RotMatrix[10] + m_Position.z * m_RotMatrix[14]);
+			float _m32 = m_Scale.z * m_RotMatrix[14];
+
+			float _m03 = m_RotMatrix[3] + m_Position.x * m_RotMatrix[15];
+			float _m13 = m_RotMatrix[7] + m_Position.y * m_RotMatrix[15];
+			float _m23 = m_RotMatrix[11] + m_Position.z * m_RotMatrix[15];
+			float _m33 = m_RotMatrix[15];
+
 			m_TransformationMatrix = Math::Mat4f(
 				_m00, _m01, _m02, _m03,
 				_m10, _m11, _m12, _m13,
@@ -152,7 +152,6 @@ namespace gg
 				_m30, _m31, _m32, _m33
 			);
 		}
-
 		return m_TransformationMatrix;
 	}
 

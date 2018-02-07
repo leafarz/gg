@@ -18,7 +18,8 @@ namespace gg
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
 
 		// add system uniforms
-
+		Transform* _t = gameObject->getTransform();
+		_mr->getMaterial()->setUniform("mvp", pvMatrix * _t->getTransformationMatrix());
 		_mr->draw();
 
 		// TODO: get mesh, material and transform
