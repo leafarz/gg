@@ -29,37 +29,23 @@ namespace gg
 		const Math::Quaternion& _q = m_GameObject->getTransform()->getRotation().conjugate();
 		Math::Mat4f _rotMatrix = Math::Mat4f::rotationMatrix(_q);
 
-		float _m00 = _rotMatrix[0]	- _pos.x * _rotMatrix[12];
-		float _m10 = _rotMatrix[4]	- _pos.y * _rotMatrix[12];
-		float _m20 = _rotMatrix[8]	- _pos.z * _rotMatrix[12];
-		float _m30 = _rotMatrix[12];
+		// we use negative position for camera view matrix
+		float _m03 = _rotMatrix[3]	- _pos.x*_rotMatrix[0]	- _pos.y*_rotMatrix[1]	- _pos.z*_rotMatrix[2];
+		float _m13 = _rotMatrix[7]	- _pos.x*_rotMatrix[4]	- _pos.y*_rotMatrix[5]	- _pos.z*_rotMatrix[6];
+		float _m23 = _rotMatrix[11] - _pos.x*_rotMatrix[8]	- _pos.y*_rotMatrix[9]	- _pos.z*_rotMatrix[10];
+		float _m33 = _rotMatrix[15] - _pos.x*_rotMatrix[12] - _pos.y*_rotMatrix[13] - _pos.z*_rotMatrix[14];
 
-		float _m01 = _rotMatrix[1]	- _pos.x * _rotMatrix[13];
-		float _m11 = _rotMatrix[5]	- _pos.y * _rotMatrix[13];
-		float _m21 = _rotMatrix[9]	- _pos.z * _rotMatrix[13];
-		float _m31 = _rotMatrix[13];
-
-		float _m02 = _rotMatrix[2]	- _pos.x * _rotMatrix[14];
-		float _m12 = _rotMatrix[6]	- _pos.y * _rotMatrix[14];
-		float _m22 = _rotMatrix[10] - _pos.z * _rotMatrix[14];
-		float _m32 = _rotMatrix[14];
-
-		float _m03 = _rotMatrix[3]	- _pos.x * _rotMatrix[15];
-		float _m13 = _rotMatrix[7]	- _pos.y * _rotMatrix[15];
-		float _m23 = _rotMatrix[11] - _pos.z * _rotMatrix[15];
-		float _m33 = _rotMatrix[15];
-
+		// rotation * translation
 		return Math::Mat4f(
-			_m00, _m01, _m02, _m03,
-			_m10, _m11, _m12, _m13,
-			_m20, _m21, _m22, _m23,
-			_m30, _m31, _m32, _m33
+			_rotMatrix[0],	_rotMatrix[1],	_rotMatrix[2],	_m03,
+			_rotMatrix[4],	_rotMatrix[5],	_rotMatrix[6],	_m13,
+			_rotMatrix[8],	_rotMatrix[9],	_rotMatrix[10], _m23,
+			_rotMatrix[12], _rotMatrix[13], _rotMatrix[14], _m33
 		);
 	}
 
 	const Math::Mat4f Camera::getViewProjectionMatrix(void)
 	{
-		Transform* _t = m_GameObject->getTransform();
 		return m_ProjectionMatrix * getViewMatrix();
 	}
 

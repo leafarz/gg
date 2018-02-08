@@ -125,6 +125,7 @@ namespace gg
 
 		if (_posBit | _rotBit | _scaleBit)
 		{
+			// translation * rotation
 			float _m00 = m_Scale.x * (m_RotMatrix[0] + m_Position.x * m_RotMatrix[12]);
 			float _m10 = m_Scale.x * (m_RotMatrix[4] + m_Position.y * m_RotMatrix[12]);
 			float _m20 = m_Scale.x * (m_RotMatrix[8] + m_Position.z * m_RotMatrix[12]);
