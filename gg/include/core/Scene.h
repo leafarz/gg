@@ -16,6 +16,7 @@ namespace gg
 		~Scene(void);
 
 		void	setActiveCamera(Camera* camera);
+		void	setActiveCamera(GameObject* gameObject);
 		Camera* getActiveCamera(void) const;
 
 		void	add(GameObject* gameObject);

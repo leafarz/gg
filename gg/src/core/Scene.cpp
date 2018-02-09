@@ -21,6 +21,10 @@ namespace gg
 	{
 		m_ActiveCamera = camera;
 	}
+	void Scene::setActiveCamera(GameObject* gameObject)
+	{
+		m_ActiveCamera = gameObject->getComponent<Camera>();
+	}
 	Camera* Scene::getActiveCamera(void) const
 	{
 		return m_ActiveCamera;
