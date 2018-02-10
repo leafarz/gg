@@ -9,10 +9,10 @@ namespace gg
 {
 	class Input
 	{
-	public:
-		/* Initializes array values and initializes keyboard and mouse callbacks. */
-		static GLvoid init(GLvoid);
+	private:
+		friend class Application;
 
+	public:
 #pragma region KEYBOARD
 		/* Enable or disable keyboard input. */
 		static GLvoid toggleKeyboardInput(GLboolean isEnabled);
@@ -46,15 +46,33 @@ namespace gg
 		/* Returns the current position of the mouse cursor. */
 		static Math::Vec2f getMousePosition(GLvoid);
 
+		/* Returns the delta of the mouse wheel. */
+		static Math::Vec2f getMouseWheelDelta(GLvoid);
+
 		/* Resets all mouse button variables values to GL_FALSE. */
 		static GLvoid clearMouseBtnInput(GLvoid);
 #pragma endregion MOUSE
 
 		static GLvoid setCursorMode(CURSOR_MODE mode);
 
+	private:
+		/* Initializes array values and initializes keyboard and mouse callbacks. */
+		static GLvoid init(GLvoid);
+
+		/* Callback for setting keyboard variables. */
+		static GLvoid keyCallback(GLFWwindow* window, GLint key, GLint scancode, GLint action, GLint mods);
+
+		/* Callback for setting mouse variables. */
+		static GLvoid mouseButtonCallback(GLFWwindow* window, GLint button, GLint action, GLint mods);
+
+		/* Callback for setting mouse pos variable. */
+		static GLvoid mousePosCallback(GLFWwindow* window, GLdouble x, GLdouble y);
+
+		/* Callback for mouse scroll wheel. */
+		static GLvoid mouseScrollCallback(GLFWwindow* window, GLdouble xOffset, GLdouble yOffset);
+
 		/* Clears keyboard and mouse data. Must be called before poll events */
 		static GLvoid update(GLvoid);
-
 
 	private:
 		/* Flag array if keyboard button is held down. */
@@ -111,6 +129,9 @@ namespace gg
 		/* Position of mouse in vec2f form.*/
 		static Math::Vec2f s_MousePos;
 
+		/* Value of mouse scroll wheel delta value */
+		static Math::Vec2f s_MouseWheelDelta;
+
 		/* Counter for how many mouse buttons are pressed
 		* before going to Update function.
 		*/
@@ -123,15 +144,6 @@ namespace gg
 
 		/* Flag for mouse input if enabled */
 		static GLboolean s_IsMouseInputEnabled;
-
-		/* Callback for setting keyboard variables. */
-		static GLvoid keyCallback(GLFWwindow* window, GLint key, GLint scancode, GLint action, GLint mods);
-
-		/* Callback for setting mouse variables. */
-		static GLvoid mouseButtonCallback(GLFWwindow* window, GLint button, GLint action, GLint mods);
-
-		/* Callback for setting mouse pos variable. */
-		static GLvoid mousePosCallback(GLFWwindow* window, GLdouble x, GLdouble y);
 	};// class Input
 }// namespace gg
 #endif

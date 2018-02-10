@@ -18,8 +18,11 @@ namespace gg
 		/* Compares floats within FLT_EPSILON value */
 		bool floatCmp(float a, float b, float threshold = FLT_EPSILON);
 
-		/* Compares doubles within DBL_EPSILON value*/
+		/* Compares doubles within DBL_EPSILON value */
 		bool doubleCmp(double a, double b, float threshold = DBL_EPSILON);
+
+		/* Clamps value within [min, max] */
+		float clamp(float val, float min, float max);
 
 		/* Lerp function. Returns the value ranging from
 		 * [from] to [to] at percent [p].

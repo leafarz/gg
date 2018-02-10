@@ -15,6 +15,11 @@ namespace gg
 			return abs(a - b) < threshold;
 		}
 
+		float clamp(float val, float min, float max)
+		{
+			return (val > min) ? (val < max) ? val : max : min;
+		}
+
 		float lerp(float from, float to, float p)
 		{
 			return from + (to - from) * p;

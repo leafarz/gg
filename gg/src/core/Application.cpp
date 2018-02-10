@@ -31,6 +31,8 @@ namespace gg
 
 	void Application::run(void)
 	{
+		if (m_IsRunning) { return; }
+
 		m_IsRunning = GL_TRUE;
 		GLdouble _prevTime = Time::getCurrentTime();
 

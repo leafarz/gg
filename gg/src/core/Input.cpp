@@ -26,6 +26,7 @@ namespace gg
 	GLboolean	Input::s_IsMouseInputEnabled = GL_FALSE;
 
 	Math::Vec2f Input::s_MousePos;
+	Math::Vec2f Input::s_MouseWheelDelta;
 	
 	GLvoid Input::init(GLvoid)
 	{
@@ -111,11 +112,13 @@ namespace gg
 		{
 			glfwSetCursorPosCallback(_window, mousePosCallback);
 			glfwSetMouseButtonCallback(_window, mouseButtonCallback);
+			glfwSetScrollCallback(_window, mouseScrollCallback);
 		}
 		else
 		{
 			glfwSetMouseButtonCallback(_window, nullptr);
 			glfwSetCursorPosCallback(_window, nullptr);
+			glfwSetScrollCallback(_window, nullptr);
 		}
 	}
 
@@ -139,6 +142,11 @@ namespace gg
 		return s_MousePos;
 	}
 
+	Math::Vec2f Input::getMouseWheelDelta(GLvoid)
+	{
+		return s_MouseWheelDelta;
+	}
+
 	GLvoid Input::clearMouseBtnInput(GLvoid)
 	{
 		FORU(i, 0, s_MouseBtnDownCount)
@@ -151,6 +159,7 @@ namespace gg
 		}
 		s_MouseBtnDownCount = 0;
 		s_MouseBtnUpCount = 0;
+		s_MouseWheelDelta.set(0, 0);
 	}
 
 	GLvoid Input::setCursorMode(CURSOR_MODE mode)
@@ -211,6 +220,10 @@ namespace gg
 
 	GLvoid Input::mousePosCallback(GLFWwindow* window, GLdouble x, GLdouble y)
 	{
-		s_MousePos = Math::Vec2f((float)x, (float)y);
+		s_MousePos.set(static_cast<float>(x), static_cast<float>(y));
+	}
+	GLvoid Input::mouseScrollCallback(GLFWwindow* window, GLdouble xOffset, GLdouble yOffset)
+	{
+		s_MouseWheelDelta.set(static_cast<float>(xOffset), static_cast<float>(yOffset));
 	}
 }// namespace gg

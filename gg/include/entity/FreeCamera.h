@@ -25,7 +25,8 @@ namespace gg
 		Math::Vec2f m_PrevMousePos;
 
 		float m_MoveSpeed = 0.1f;
-		float m_Sensitivity = 0.01f;
+		float m_Sensitivity = 0.05f;
+		Math::Vec2f m_SensitivityBounds = Math::Vec2f(0.001f, 0.1f);
 	}; // class FreeCamera
 } // namespace gg
 

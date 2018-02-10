@@ -16,10 +16,7 @@ namespace gg
 		~TestScene(void);
 
 		void onInit(void) override;
-		void onUnload(void) override;
-		void onFixedUpdate(void) override;
-		void onUpdate(void) override;
-		void onRender(void);
+
 	}; // class TestScene
 } // namespace gg
 

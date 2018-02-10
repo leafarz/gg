@@ -87,7 +87,7 @@ namespace gg
 			4, 0, 3,
 
 			// b
-			7,2,1,
+			6,2,1,
 			1,5,6,
 
 			// l
@@ -145,27 +145,5 @@ namespace gg
 		//Material* _mat2 = new Material(new Shader("src/basic.shader"));
 		//go->addChild(go2);
 		Scene::onInit();
-	}
-	void TestScene::onUnload(void)
-	{
-	}
-	void TestScene::onFixedUpdate(void)
-	{
-		Scene::onFixedUpdate();
-		//LOG("onFixedUpdate");
-	}
-	void TestScene::onUpdate(void)
-	{
-		Scene::onUpdate();
-		//LOG("onUpdate");
-	}
-
-	void TestScene::onRender(void)
-	{
-		Scene::onRender();
-		//v[11] = 1;
-		
-		//s->setUniform("mvp", p*v*m, false);
-		//go->getComponent<MeshRenderer>()->getMaterial()->getShader()->setUniform("mvp", p*v*m, false);
 	}
 } // namespace gg
