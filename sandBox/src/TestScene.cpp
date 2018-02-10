@@ -12,6 +12,7 @@
 
 #include "platform/opengl/GLCommon.h"
 
+#include "entity/FreeCamera.h"
 #include "entity/GameObject.h"
 #include "component/Transform.h"
 #include "math/MathUtil.h"
@@ -128,13 +129,13 @@ namespace gg
 		Material* _mat1 = new Material(new Shader("src/basic.shader"));
 		_mr->setMaterial(_mat1);
 
-		_camera = new GameObject("Camera");
-		add(_camera);
+		//_camera = new GameObject("Camera");
+		//add(_camera);
 
-		Camera* _cam = _camera->addComponent<Camera>();
-		_cam->setPerspectiveCamera(45, 16.0f / 9.0f, 0.1f, 1000);
-		_camera->getTransform()->setPosZ(-50);
-		setActiveCamera(_cam);
+		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
+		_freeCam->getTransform()->setPosZ(-10);
+		add(_freeCam);
+		setActiveCamera(_freeCam);
 
 		//Mesh* _mesh2 = new Mesh();
 		//_mesh2->setVertices(_verts2, _indices);
@@ -143,62 +144,28 @@ namespace gg
 		//_mr2->setMesh(_mesh2);
 		//Material* _mat2 = new Material(new Shader("src/basic.shader"));
 		//go->addChild(go2);
+		Scene::onInit();
 	}
 	void TestScene::onUnload(void)
 	{
 	}
 	void TestScene::onFixedUpdate(void)
 	{
+		Scene::onFixedUpdate();
 		//LOG("onFixedUpdate");
 	}
 	void TestScene::onUpdate(void)
 	{
+		Scene::onUpdate();
 		//LOG("onUpdate");
 	}
 
-	Math::Vec2f mousePos;
 	void TestScene::onRender(void)
 	{
-		Transform* _t = _camera->getTransform();
-		const Math::Vec3f& _pos = _t->getPos();
-		const Math::Vec3f& _euler = _t->getEuler();
-		float _speed = 1;
-		if (Input::getKey(KEY::A))
-		{
-
-			//_t->setEulerY(_euler.y + Time::getDeltaTime() * 10);
-			_t->setPosX(_pos.x - Time::getDeltaTime()*_speed);
-		}
-		if (Input::getKey(KEY::D))
-		{
-			_t->setPosX(_pos.x + Time::getDeltaTime()*_speed);
-		}
-		if (Input::getKey(KEY::W))
-		{
-			_t->setPosZ(_pos.z + Time::getDeltaTime()*_speed);
-		}
-		if (Input::getKey(KEY::S))
-		{
-			_t->setPosZ(_pos.z - Time::getDeltaTime()*_speed);
-		}
-		if (Input::getKey(KEY::Q))
-		{
-			_t->setPosY(_pos.y - Time::getDeltaTime()*_speed);
-		}
-		if (Input::getKey(KEY::E))
-		{
-			_t->setPosY(_pos.y + Time::getDeltaTime()*_speed);
-		}
-
-		Math::Vec2f _delta = Input::getMousePosition() - mousePos;
-
-		_t->setEulerY(_euler.y + _delta.x);
-
-		mousePos = Input::getMousePosition();
+		Scene::onRender();
 		//v[11] = 1;
 		
 		//s->setUniform("mvp", p*v*m, false);
 		//go->getComponent<MeshRenderer>()->getMaterial()->getShader()->setUniform("mvp", p*v*m, false);
-		Scene::onRender();
 	}
 } // namespace gg

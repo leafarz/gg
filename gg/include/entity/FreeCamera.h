@@ -3,9 +3,11 @@
 #pragma once
 
 #include "entity/GameObject.h"
+#include "math/Vec2f.h"
 
 namespace gg
 {
+	class Camera;
 	class FreeCamera : public GameObject
 	{
 	public:
@@ -15,8 +17,15 @@ namespace gg
 
 		Camera* getCamera(void);
 
+		void onInit(void) override;
+		void onUpdate(void) override;
+
 	private:
 		Camera* m_Camera;
+		Math::Vec2f m_PrevMousePos;
+
+		float m_MoveSpeed = 0.1f;
+		float m_Sensitivity = 0.01f;
 	}; // class FreeCamera
 } // namespace gg
 

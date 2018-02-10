@@ -84,8 +84,14 @@ namespace gg
 		component->m_GameObject = this;
 	}
 
-	Transform * gg::GameObject::getTransform(void) const
+	Transform* const gg::GameObject::getTransform(void) const
 	{
 		return m_Transform;
 	}
+	void gg::GameObject::onInit(void)
+	{ }
+	void gg::GameObject::onFixedUpdate(void)
+	{ }
+	void gg::GameObject::onUpdate(void)
+	{ }
 } // namespace gg

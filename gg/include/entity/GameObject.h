@@ -110,11 +110,17 @@ namespace gg
 			return _components;
 		}
 
-		Transform* getTransform(void) const;
+		Transform* const getTransform(void) const;
+
+		virtual void onInit(void);
+		virtual void onFixedUpdate(void);
+		virtual void onUpdate(void);
+
+	protected:
+		std::string m_Name;
+		Transform* const m_Transform;
 
 	private:
-		std::string m_Name;
-		Transform* m_Transform;
 		GameObject* m_Parent;
 		std::vector<GameObject*> m_Children;
 		std::unordered_multimap<ComponentType, Component*> m_Components;

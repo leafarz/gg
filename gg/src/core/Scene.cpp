@@ -37,15 +37,30 @@ namespace gg
 
 	void Scene::onInit(void)
 	{
+		VFOR(it, m_GameObjects)
+		{
+			GameObject* _go = *it;
+			_go->onInit();
+		}
 	}
 	void Scene::onUnload(void)
 	{
 	}
 	void Scene::onFixedUpdate(void)
 	{
+		VFOR(it, m_GameObjects)
+		{
+			GameObject* _go = *it;
+			_go->onFixedUpdate();
+		}
 	}
 	void Scene::onUpdate(void)
 	{
+		VFOR(it, m_GameObjects)
+		{
+			GameObject* _go = *it;
+			_go->onUpdate();
+		}
 	}
 	void Scene::onRender(void)
 	{
