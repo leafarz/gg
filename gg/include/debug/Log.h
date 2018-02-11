@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include "core/Types.h"
+#include "debug/Assert.h"
 
 #if _DEBUG
 	/* Logs str with function name, file name and line number. */

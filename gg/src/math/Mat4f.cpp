@@ -487,6 +487,20 @@ namespace gg
 			return *this;
 		}
 
+		Mat4f& Mat4f::set(
+			float c00, float c01, float c02, float c03,
+			float c10, float c11, float c12, float c13,
+			float c20, float c21, float c22, float c23,
+			float c30, float c31, float c32, float c33
+		)
+		{
+			this->elements[0]  = c00;	this->elements[1] =  c01;	this->elements[2]  = c02;	this->elements[3]  = c03;
+			this->elements[4]  = c10;	this->elements[5] =  c11;	this->elements[6]  = c12;	this->elements[7]  = c13;
+			this->elements[8]  = c20;	this->elements[9] =  c21;	this->elements[10] = c22;	this->elements[11] = c23;
+			this->elements[12] = c30;	this->elements[13] = c31;	this->elements[14] = c32;	this->elements[15] = c33;
+			return *this;
+		}
+
 		Mat4f& Mat4f::setDiagonal(float c)
 		{
 			this->elements[0] = c;

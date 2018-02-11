@@ -21,13 +21,14 @@ namespace gg
 		void setPerspectiveCamera(float fovDeg, float aspectRatio, float zNear, float zFar);
 
 		const Math::Mat4f& getProjectionMatrix(void) const;
-		const Math::Mat4f getViewMatrix(void);
+		const Math::Mat4f& getViewMatrix(void);
 		const Math::Mat4f getViewProjectionMatrix(void);
 
 		void update(void);
 
 	private:
 		Math::Mat4f m_ProjectionMatrix;
+		Math::Mat4f m_ViewMatrix;
 
 	}; // class Camera
 } // namespace gg

@@ -63,13 +63,16 @@ namespace gg
 		m_ActiveCamera->update();
 		m_Renderer->begin();
 		// process light
-		Math::Mat4f _pvMatrix = m_ActiveCamera->getViewProjectionMatrix();
 		// process game objects
 		// TODO: add children iteration
+		const Math::Mat4f& _v = m_ActiveCamera->getViewMatrix();
+		const Math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
+		const Math::Mat4f _pv = _p * _v;
+
 		VFOR(it, m_GameObjects)
 		{
 			GameObject* _go = *it;
-			m_Renderer->draw(_go, _pvMatrix);
+			m_Renderer->draw(_go, _v, _p, _pv);
 		}
 
 		// render queues?

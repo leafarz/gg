@@ -152,6 +152,28 @@ namespace gg
 		return "unknown";
 	}
 
+	Shader::SystemUniform Shader::systemUniformStringToEnum(const char* systemUniform)
+	{
+		if		(strcmp(systemUniform, "sys_M") == 0)		{ return SystemUniform::MODEL; }
+		else if (strcmp(systemUniform, "sys_V") == 0)		{ return SystemUniform::VIEW; }
+		else if (strcmp(systemUniform, "sys_P") == 0)		{ return SystemUniform::PROJECTION; }
+		else if (strcmp(systemUniform, "sys_MVP") == 0)		{ return SystemUniform::MVP; }
+		return SystemUniform::UNKNOWN;
+	}
+
+	std::string Shader::systemUniformEnumToString(SystemUniform type)
+	{
+		switch (type)
+		{
+		case SystemUniform::MODEL:			return "sys_M";
+		case SystemUniform::VIEW:			return "sys_V";
+		case SystemUniform::PROJECTION:		return "sys_P";
+		case SystemUniform::MVP:			return "sys_MVP";
+		}
+
+		return "";
+	}
+
 	void Shader::logShaderInfo(GLuint shader, GLenum type)
 	{
 		char _infoLog[512];
@@ -278,14 +300,14 @@ namespace gg
 
 	void Shader::addAllUniforms(void)
 	{
-		int _size = 0;
+		int _count = 0;
 		int _len = -1;
 		int _num = -1;
 		GLenum _type = GL_ZERO;
 		char _name[256];
 
-		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_size));
-		FORU(i, 0, (uint)_size)
+		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_count));
+		FORU(i, 0, (uint)_count)
 		{
 			GL(glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
 			GL(GLint _uniformLoc = glGetUniformLocation(m_ProgramID, _name));
@@ -298,6 +320,12 @@ namespace gg
 			else
 			{
 				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
+				if (_len > 4)
+				{
+					SystemUniform _systemUniform = systemUniformStringToEnum(_name);
+					if (_systemUniform != SystemUniform::UNKNOWN) { m_SystemUniforms.push_back(_systemUniform); }
+					else { _SYS("System uniform [" << _name << "] is unknown."); }
+				}
 				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
 			}
 		}

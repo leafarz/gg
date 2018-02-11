@@ -8,7 +8,7 @@ namespace gg
 
 	float Color::gray(void) const
 	{
-		return 0.299 * r + 0.587 * g + 0.114 * b;
+		return 0.299f * r + 0.587f * g + 0.114f * b;
 	}
 
 	Color Color::grayColor(void) const

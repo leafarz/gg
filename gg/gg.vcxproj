@@ -215,6 +215,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\debug\Assert.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\debug\Log.h">
       <SubType>
       </SubType>

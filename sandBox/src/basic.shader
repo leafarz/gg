@@ -8,17 +8,13 @@ layout(location = 1) in vec2 uv;
 layout(location = 2) in vec3 normal;
 layout(location = 3) in vec3 color;
 
-uniform mat4 sys_model;
-uniform mat4 sys_view;
-uniform mat4 sys_projection;
-
 out vec3 vcolor;
 
-uniform mat4 mvp;
+uniform mat4 sys_MVP;
 
 void main()
 {
-    gl_Position = mvp * vec4(position.x, position.y, position.z, 1.0);
+    gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0);
 	vcolor = color;
 }
 

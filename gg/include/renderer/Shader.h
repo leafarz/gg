@@ -16,6 +16,7 @@ namespace gg
 	{
 	private:
 		friend class Material;
+		friend class Renderer;
 
 		enum class ShaderType : int8
 		{
@@ -35,6 +36,14 @@ namespace gg
 			MAT4		= 6,
 			SAMPLER2D	= 7,
 			UNKNOWN		= 8
+		};
+		enum class SystemUniform : ubyte
+		{
+			MODEL,
+			VIEW,
+			PROJECTION,
+			MVP,
+			UNKNOWN
 		};
 
 		struct ShaderData
@@ -74,11 +83,14 @@ namespace gg
 		static GLenum dataTypeToGLEnum(DataType dataType);
 		static std::string dataTypeToString(DataType dataType);
 		static std::string shaderEnumToString(GLenum type);
+		static SystemUniform systemUniformStringToEnum(const char* systemUniform);
+		static std::string systemUniformEnumToString(SystemUniform type);
 
 		static void logShaderInfo(GLuint shader, GLenum type);
 		static void logProgramInfo(GLuint program);
 
 		const UniformData* getUniform(const std::string& key);
+		inline const std::vector<SystemUniform>& getSystemUniforms(void) const { return m_SystemUniforms; };
 
 		ShaderData parseShader(const char* file);
 		bool attachShader(const char* fileText, GLuint type);
@@ -112,6 +124,7 @@ namespace gg
 		std::string m_FilePath;
 
 		std::unordered_map<std::string, UniformData> m_Uniforms;
+		std::vector<SystemUniform> m_SystemUniforms;
 
 
 	}; // class Shader

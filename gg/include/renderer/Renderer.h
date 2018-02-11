@@ -15,7 +15,7 @@ namespace gg
 		~Renderer(void);
 
 		void begin(void) const;
-		void draw(GameObject* gameObject, const Math::Mat4f& pvMatrix);
+		void draw(GameObject* gameObject, const Math::Mat4f& viewMatrix, const Math::Mat4f& projectionMatrix, const Math::Mat4f& pvMatrix);
 	}; // class Renderer
 } // namespace gg
 

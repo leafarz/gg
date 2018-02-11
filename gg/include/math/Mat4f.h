@@ -105,6 +105,13 @@ namespace gg
 			 * and returns the result matrix.
 			 */
 			Mat4f& set(int m, int n, float c);
+			/* Sets the value of a each individual element of the matrix */
+			Mat4f& set(
+				float c00, float c01, float c02, float c03,
+				float c10, float c11, float c12, float c13,
+				float c20, float c21, float c22, float c23,
+				float c30, float c31, float c32, float c33
+			);
 
 			Mat4f& setDiagonal(float c);
 

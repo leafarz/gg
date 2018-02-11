@@ -2,6 +2,7 @@
 
 #include "entity/GameObject.h"
 #include "renderer/Material.h"
+#include "renderer/Shader.h"
 
 #include "core/gg.h"
 namespace gg
@@ -18,27 +19,55 @@ namespace gg
 	{
 	}
 
-	void Renderer::draw(GameObject* gameObject, const Math::Mat4f& pvMatrix)
+	void Renderer::begin(void) const
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glEnable(GL_BLEND);
+		// process render commands
+	}
+
+	void Renderer::draw(GameObject* gameObject, const Math::Mat4f& viewMatrix, const Math::Mat4f& projectionMatrix, const Math::Mat4f& pvMatrix)
 	{
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
 		if (!_mr) { return; }
 
-		// add system uniforms
-		Transform* _t = gameObject->getTransform();
-		_mr->getMaterial()->setUniform("mvp", pvMatrix * _t->getTransformationMatrix());
+		Material* _mat = _mr->getMaterial();
+		const std::vector<Shader::SystemUniform>& _sysUniforms = _mat->getShader()->getSystemUniforms();
+
+		VFOR(it, _sysUniforms)
+		{
+			switch (*it)
+			{
+			case Shader::SystemUniform::MODEL:
+			{
+				Transform* _t = gameObject->getTransform();
+				_mat->setUniform(Shader::systemUniformEnumToString(*it), _t->getTransformationMatrix());
+				break;
+			}
+			case Shader::SystemUniform::VIEW:
+			{
+				_mat->setUniform(Shader::systemUniformEnumToString(*it), viewMatrix);
+				break;
+			}
+			case Shader::SystemUniform::PROJECTION:
+			{
+				_mat->setUniform(Shader::systemUniformEnumToString(*it), projectionMatrix);
+				break;
+			}
+			case Shader::SystemUniform::MVP:
+			{
+				Transform* _t = gameObject->getTransform();
+				_mat->setUniform(Shader::systemUniformEnumToString(*it), pvMatrix * _t->getTransformationMatrix());
+				break;
+			}
+			}
+		}
 		_mr->draw();
 
 		// TODO: get mesh, material and transform
 		// va.bind();
 		// ib.bind();
 		// glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
-	}
-
-	void Renderer::begin(void) const
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_BLEND);
-		// process render commands
 	}
 
 } // namespace gg
