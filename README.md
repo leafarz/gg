@@ -12,7 +12,7 @@ A simple OpenGL game engine.
 #### 2. TheCherno ####
 * [[Sparky Engine github](https://github.com/TheCherno/Sparky)]
 * [[Sparky Engine series](https://www.youtube.com/watch?v=vWU8EltWTfM&list=PLlrATfBNZ98fqE45g3jZA_hLGUrD4bo6_)]
-* [[c++ series]](https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
+* [[c++ series](https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)]
 * [[new openGL series](https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2)]
 
 #### 3. Joey de Vries ####
@@ -50,28 +50,51 @@ A simple OpenGL game engine.
 ## TODO ##
 * renderer
  * base renderer
-  * mesh
-  * material
-  * transform
+   * mesh
+   * transform
+   * texture
  * shader
-   * automated uniforms
-   * system uniforms
    * post process
    * textures
+   * hdr
+   * pbr
  * light
    * directional light
    * point light
    * spotlight
-* components
- * camera 
-* primitive objects
-* categorized draw *
- * per vertex array id
- * per shader
-* memory allocator
-* guids
-* audio
+ * categorized draw *
+   * per vertex array id
+   * per shader / material
+* core
+ * scene graph
+   * bsp
+   * octrees (3d)
+   * quad trees (2d)
+ * primitive objects
+* debug
+ * text ui
+ * debug draws
 * physics
+ * collisions
+ * numerical integrations
+   * euler
+   * verlet
+* audio
+* resource management
+ * async loading
+ * memory allocator
+* production
+ * asset zipping
+* etc
+ * guids
 
 ## DONE ##
-* mesh renderer
+* renderer
+ * base renderer
+   * mesh renderer
+   * material
+ * shader
+   * automated uniforms
+   * system uniforms
+* components
+ * camera
