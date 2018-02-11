@@ -30,18 +30,14 @@ namespace gg
 		return m_ActiveCamera;
 	}
 
-	void Scene::add(GameObject * gameObject)
+	void Scene::add(GameObject* gameObject)
 	{
 		m_GameObjects.push_back(gameObject);
+		gameObject->onInit();
 	}
 
 	void Scene::onInit(void)
 	{
-		VFOR(it, m_GameObjects)
-		{
-			GameObject* _go = *it;
-			_go->onInit();
-		}
 	}
 	void Scene::onUnload(void)
 	{

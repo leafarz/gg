@@ -33,9 +33,7 @@ namespace gg
 	{
 	}
 
-	Shader *s;
 	GameObject *go, *go2;
-	GameObject* _camera;
 	void TestScene::onInit(void)
 	{
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
@@ -99,20 +97,6 @@ namespace gg
 			4,5,1
 		};
 
-		Math::Mat4f m = Math::Mat4f(
-			1, 0, 0, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 0,
-			0, 0, 0, 1
-		);
-		Math::Mat4f v = Math::Mat4f(
-			1, 0, 0, 0,
-			0, 1, 0, 0,
-			0, 0, 1, 1,
-			0, 0, 0, 1
-		);
-		Math::Mat4f p = Math::Mat4f::perspectiveMatrix(103, 16.0f / 9.0f, 0.1f, 1000);
-
 		// gameobject
 		go = new GameObject("GameObject");
 		add(go);
@@ -128,9 +112,6 @@ namespace gg
 		// material
 		Material* _mat1 = new Material(new Shader("src/basic.shader"));
 		_mr->setMaterial(_mat1);
-
-		//_camera = new GameObject("Camera");
-		//add(_camera);
 
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
 		_freeCam->getTransform()->setPosZ(-10);

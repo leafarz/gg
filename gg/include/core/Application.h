@@ -41,6 +41,7 @@ namespace gg
 		GLboolean		m_IsRunning;
 
 		Scene*			m_ActiveScene;
+		bool			m_SceneIsInitialized = false;
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
 	}; // class Application

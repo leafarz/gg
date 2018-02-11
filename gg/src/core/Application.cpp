@@ -68,6 +68,12 @@ namespace gg
 				GLdouble _rem = std::fmod(_timer, m_TimeStep);
 				Time::s_Delta = _timer - _rem;
 				_timer = _rem;
+
+				if (!m_SceneIsInitialized)
+				{
+					m_ActiveScene->onInit();
+					m_SceneIsInitialized = true;
+				}
 			}
 
 			// physics update
@@ -122,7 +128,7 @@ namespace gg
 
 		unloadScene();
 		m_ActiveScene = scene;
-		m_ActiveScene->onInit();
+		m_SceneIsInitialized = false;
 	}
 
 	void Application::unloadScene(void)
@@ -141,7 +147,7 @@ namespace gg
 		}
 		unloadScene();
 		m_ActiveScene = m_Scenes[sceneName];
-		m_ActiveScene->onInit();
+		m_SceneIsInitialized = false;
 		return true;
 	}
 
