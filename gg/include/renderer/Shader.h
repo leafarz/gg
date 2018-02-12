@@ -66,11 +66,8 @@ namespace gg
 		};
 
 	public:
-		Shader(const std::string& file);
+		Shader(const std::string& filepath);
 		~Shader(void);
-
-		void bind(void) const;
-		void unbind(void) const;
 
 		std::vector<std::string> getUniforms(void) const;
 		bool hasUniform(const std::string& key) const;
@@ -91,6 +88,9 @@ namespace gg
 
 		const UniformData* getUniform(const std::string& key);
 		inline const std::vector<SystemUniform>& getSystemUniforms(void) const { return m_SystemUniforms; };
+
+		void bind(void) const;
+		void unbind(void) const;
 
 		ShaderData parseShader(const char* file);
 		bool attachShader(const char* fileText, GLuint type);
@@ -118,9 +118,10 @@ namespace gg
 		static std::unordered_map<uint, GLuint> s_ShaderHash;
 
 		/* Program id created by OpenGL command.*/
-		GLuint m_ProgramID;
+		GLuint m_ID;
+
 		/* Hash of the filepath. */
-		uint m_ShaderID;
+		uint m_ShaderHash;
 		std::string m_FilePath;
 
 		std::unordered_map<std::string, UniformData> m_Uniforms;

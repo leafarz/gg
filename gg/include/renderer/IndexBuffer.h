@@ -35,7 +35,7 @@ namespace gg
 		/* Unbinds the current index buffer. */
 		void unbind(void) const;
 	private:
-		uint m_ID;
+		GLuint m_ID;
 		uint m_Count;
 		bool m_IsInitialized = false;
 	}; // class VertexBuffer

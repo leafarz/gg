@@ -23,7 +23,7 @@ namespace gg
 		if (_isCached)
 		{
 			_SYS("Fetching cached shader: \"" << m_FilePath << "\"");
-			m_ProgramID = s_ShaderHash[_hash];
+			m_ID = s_ShaderHash[_hash];
 			return;
 		}
 
@@ -42,8 +42,8 @@ namespace gg
 		const char* _vsChar = _data.vsString.c_str();
 		const char* _fsChar = _data.fsString.c_str();
 
-		GL(m_ProgramID = glCreateProgram());
-		if (m_ProgramID == 0)
+		GL(m_ID = glCreateProgram());
+		if (m_ID == 0)
 		{
 			ERROR("Shader program creation failed. Could not find valid memory location in constructor");
 			return;
@@ -57,26 +57,16 @@ namespace gg
 
 		addAllUniforms();
 
-		s_ShaderHash[_hash] = m_ProgramID;
-		m_ShaderID = _hash;
+		s_ShaderHash[_hash] = m_ID;
+		m_ShaderHash = _hash;
 	}
 
 	Shader::~Shader(void)
 	{
-		GL(glDetachShader(m_ProgramID, GL_VERTEX_SHADER));
-		GL(glDetachShader(m_ProgramID, GL_FRAGMENT_SHADER));
+		GL(glDetachShader(m_ID, GL_VERTEX_SHADER));
+		GL(glDetachShader(m_ID, GL_FRAGMENT_SHADER));
 
-		GL(glDeleteProgram(m_ProgramID));
-	}
-
-	void Shader::bind(void) const
-	{
-		GL(glUseProgram(m_ProgramID));
-	}
-
-	void Shader::unbind(void) const
-	{
-		GL(glUseProgram(0));
+		GL(glDeleteProgram(m_ID));
 	}
 
 	std::vector<std::string> Shader::getUniforms(void) const
@@ -193,6 +183,9 @@ namespace gg
 		return m_Uniforms.find(key) != m_Uniforms.end() ? &m_Uniforms[key] : nullptr;
 	}
 
+	void Shader::bind(void) const { GL(glUseProgram(m_ID)); }
+	void Shader::unbind(void) const { GL(glUseProgram(0)); }
+
 	Shader::ShaderData Shader::parseShader(const char* file)
 	{
 		// only used within this function for organization
@@ -277,21 +270,21 @@ namespace gg
 			return false;
 		}
 
-		GL(glAttachShader(m_ProgramID, _shader));
+		GL(glAttachShader(m_ID, _shader));
 		GL(glDeleteShader(_shader));
 		return true;
 	}
 
 	bool Shader::compileProgram(void)
 	{
-		GL(glLinkProgram(m_ProgramID));
-		GL(glValidateProgram(m_ProgramID));
+		GL(glLinkProgram(m_ID));
+		GL(glValidateProgram(m_ID));
 
 		GLint _status = -1;
-		GL(glGetProgramiv(m_ProgramID, GL_VALIDATE_STATUS, &_status));
+		GL(glGetProgramiv(m_ID, GL_VALIDATE_STATUS, &_status));
 		if (_status == GL_FALSE)
 		{
-			logProgramInfo(m_ProgramID);
+			logProgramInfo(m_ID);
 			return false;
 		}
 
@@ -306,11 +299,11 @@ namespace gg
 		GLenum _type = GL_ZERO;
 		char _name[256];
 
-		GL(glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &_count));
+		GL(glGetProgramiv(m_ID, GL_ACTIVE_UNIFORMS, &_count));
 		FORU(i, 0, (uint)_count)
 		{
-			GL(glGetActiveUniform(m_ProgramID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
-			GL(GLint _uniformLoc = glGetUniformLocation(m_ProgramID, _name));
+			GL(glGetActiveUniform(m_ID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
+			GL(GLint _uniformLoc = glGetUniformLocation(m_ID, _name));
 
 			DataType _dataType = glEnumToDataType(_type);
 			if (_dataType == DataType::UNKNOWN)
