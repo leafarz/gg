@@ -1,4 +1,4 @@
-#include "renderer/VertexBuffer.h"
+#include "graphics/VertexBuffer.h"
 
 #include "GL/glew.h"
 #include "platform/opengl/GLCommon.h"

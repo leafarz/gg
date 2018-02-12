@@ -4,7 +4,7 @@
 
 #include "math/Vec2f.h"
 #include "math/Vec3f.h"
-#include "renderer/Color.h"
+#include "graphics/Color.h"
 
 namespace gg
 {

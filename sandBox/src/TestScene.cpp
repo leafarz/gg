@@ -7,8 +7,8 @@
 
 #include "core/gg.h"
 
-#include "renderer/Shader.h"
-#include "renderer/Material.h"
+#include "graphics/Shader.h"
+#include "graphics/Material.h"
 
 #include "platform/opengl/GLCommon.h"
 

@@ -1,7 +1,7 @@
-#include "renderer/Material.h"
+#include "graphics/Material.h"
 
 #include "core/gg.h"
-#include "renderer/Shader.h"
+#include "graphics/Shader.h"
 namespace gg
 {
 	Material::Material(void)

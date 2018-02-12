@@ -8,8 +8,8 @@
 #include <vector>
 #include <unordered_map>
 
-#include "renderer/Window.h"
-#include "renderer/Renderer.h"
+#include "graphics/Window.h"
+#include "graphics/Renderer.h"
 
 namespace gg
 {

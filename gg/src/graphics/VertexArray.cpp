@@ -1,4 +1,4 @@
-#include "renderer/VertexArray.h"
+#include "graphics/VertexArray.h"
 
 #include "platform/opengl/GLCommon.h"
 #include "core/gg.h"

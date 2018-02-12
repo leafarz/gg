@@ -258,32 +258,32 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\renderer\Color.h">
+    <ClInclude Include="include\graphics\Color.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\renderer\IndexBuffer.h" />
-    <ClInclude Include="include\renderer\Material.h">
+    <ClInclude Include="include\graphics\IndexBuffer.h" />
+    <ClInclude Include="include\graphics\Material.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\renderer\Renderer.h" />
-    <ClInclude Include="include\renderer\Shader.h">
+    <ClInclude Include="include\graphics\Renderer.h" />
+    <ClInclude Include="include\graphics\Shader.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\renderer\Texture.h">
+    <ClInclude Include="include\graphics\Texture.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\renderer\Vertex.h">
+    <ClInclude Include="include\graphics\Vertex.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\renderer\VertexArray.h" />
-    <ClInclude Include="include\renderer\VertexBuffer.h" />
-    <ClInclude Include="include\renderer\VertexBufferLayout.h" />
-    <ClInclude Include="include\renderer\Window.h" />
+    <ClInclude Include="include\graphics\VertexArray.h" />
+    <ClInclude Include="include\graphics\VertexBuffer.h" />
+    <ClInclude Include="include\graphics\VertexBufferLayout.h" />
+    <ClInclude Include="include\graphics\Window.h" />
     <ClInclude Include="include\core\gg.h">
       <SubType>
       </SubType>
@@ -363,32 +363,32 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\renderer\Color.cpp">
+    <ClCompile Include="src\graphics\Color.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\renderer\IndexBuffer.cpp" />
-    <ClCompile Include="src\renderer\Material.cpp">
+    <ClCompile Include="src\graphics\IndexBuffer.cpp" />
+    <ClCompile Include="src\graphics\Material.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\renderer\Renderer.cpp" />
-    <ClCompile Include="src\renderer\Shader.cpp">
+    <ClCompile Include="src\graphics\Renderer.cpp" />
+    <ClCompile Include="src\graphics\Shader.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\renderer\Texture.cpp">
+    <ClCompile Include="src\graphics\Texture.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\renderer\Vertex.cpp">
+    <ClCompile Include="src\graphics\Vertex.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\renderer\VertexArray.cpp" />
-    <ClCompile Include="src\renderer\VertexBuffer.cpp" />
-    <ClCompile Include="src\renderer\VertexBufferLayout.cpp" />
-    <ClCompile Include="src\renderer\Window.cpp" />
+    <ClCompile Include="src\graphics\VertexArray.cpp" />
+    <ClCompile Include="src\graphics\VertexBuffer.cpp" />
+    <ClCompile Include="src\graphics\VertexBufferLayout.cpp" />
+    <ClCompile Include="src\graphics\Window.cpp" />
     <ClCompile Include="src\security\cryptography\crc32.cpp">
       <SubType>
       </SubType>

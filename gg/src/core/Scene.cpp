@@ -3,7 +3,7 @@
 #include "core/gg.h"
 #include "component/Camera.h"
 #include "entity/GameObject.h"
-#include "renderer/Renderer.h"
+#include "graphics/Renderer.h"
 
 namespace gg
 {

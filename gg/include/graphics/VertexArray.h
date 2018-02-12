@@ -2,8 +2,8 @@
 #define		GG_VERTEXARRAY_H
 #pragma once
 
-#include "renderer/VertexBuffer.h"
-#include "renderer/VertexBufferLayout.h"
+#include "graphics/VertexBuffer.h"
+#include "graphics/VertexBufferLayout.h"
 
 namespace gg
 {

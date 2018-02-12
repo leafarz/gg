@@ -1,4 +1,4 @@
-#include "renderer/Vertex.h"
+#include "graphics/Vertex.h"
 
 namespace gg
 {

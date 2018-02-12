@@ -1,4 +1,4 @@
-#include "renderer/Texture.h"
+#include "graphics/Texture.h"
 
 #include "GL/glew.h"
 #include "platform/opengl/GLCommon.h"

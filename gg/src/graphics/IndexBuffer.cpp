@@ -1,6 +1,5 @@
-#include "renderer/IndexBuffer.h"
+#include "graphics/IndexBuffer.h"
 
-#include "GL/glew.h"
 #include "platform/opengl/GLCommon.h"
 
 namespace gg

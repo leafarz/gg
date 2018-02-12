@@ -1,9 +1,9 @@
-#include "renderer/Renderer.h"
+#include "graphics/Renderer.h"
 
 #include "platform/opengl/GLCommon.h"
 #include "entity/GameObject.h"
-#include "renderer/Material.h"
-#include "renderer/Shader.h"
+#include "graphics/Material.h"
+#include "graphics/Shader.h"
 
 #include "core/gg.h"
 namespace gg

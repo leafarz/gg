@@ -39,9 +39,6 @@
     <ClInclude Include="include\math\Mat4f.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\renderer\Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\core\gg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,9 +55,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\core\Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\security\cryptography\crc32.h">
@@ -84,21 +78,6 @@
     <ClInclude Include="include\Paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\renderer\VertexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\VertexBufferLayout.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\VertexArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\IndexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\component\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -120,19 +99,10 @@
     <ClInclude Include="include\component\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\renderer\Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\component\MeshRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\component\Components.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\renderer\Material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\entity\FreeCamera.h">
@@ -141,7 +111,37 @@
     <ClInclude Include="include\debug\Assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\renderer\Texture.h">
+    <ClInclude Include="include\graphics\Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\IndexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\VertexArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\VertexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\VertexBufferLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -170,9 +170,6 @@
     <ClCompile Include="src\math\Mat4f.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -185,9 +182,6 @@
     <ClCompile Include="src\core\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\security\cryptography\crc32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -195,21 +189,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\opengl\GLError.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\VertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\VertexBufferLayout.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\VertexArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\IndexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\component\Transform.cpp">
@@ -230,22 +209,43 @@
     <ClCompile Include="src\component\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\Vertex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\component\MeshRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\renderer\Material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\entity\FreeCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\Texture.cpp">
+    <ClCompile Include="src\graphics\Color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\IndexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Vertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexBufferLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

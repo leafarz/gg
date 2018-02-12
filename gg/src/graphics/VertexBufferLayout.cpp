@@ -1,4 +1,4 @@
-#include"renderer/VertexBufferLayout.h"
+#include "graphics/VertexBufferLayout.h"
 
 namespace gg
 {

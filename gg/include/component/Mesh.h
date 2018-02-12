@@ -3,11 +3,11 @@
 #pragma once
 
 #include <vector>
-#include "renderer/Vertex.h"
-#include "renderer/VertexArray.h"
-#include "renderer/VertexBuffer.h"
-#include "renderer/VertexBufferLayout.h"
-#include "renderer/IndexBuffer.h"
+#include "graphics/Vertex.h"
+#include "graphics/VertexArray.h"
+#include "graphics/VertexBuffer.h"
+#include "graphics/VertexBufferLayout.h"
+#include "graphics/IndexBuffer.h"
 
 #include "component/Component.h"
 namespace gg

@@ -1,4 +1,4 @@
-#include "renderer/Color.h"
+#include "graphics/Color.h"
 
 namespace gg
 {

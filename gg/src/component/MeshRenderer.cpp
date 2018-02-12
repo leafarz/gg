@@ -1,7 +1,7 @@
 #include "component/MeshRenderer.h"
 
 #include "component/Mesh.h"
-#include "renderer/Material.h"
+#include "graphics/Material.h"
 
 namespace gg
 {

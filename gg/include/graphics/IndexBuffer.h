@@ -2,6 +2,7 @@
 #define		GG_INDEXBUFFER_H
 #pragma once
 
+#include "GL/glew.h"
 #include "core/Types.h"
 namespace gg
 {
