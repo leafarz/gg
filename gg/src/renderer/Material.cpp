@@ -62,7 +62,7 @@ namespace gg
 		if (!m_Shader->hasUniform(key)) { return; }
 		m_Floats.push(Data<float>(key, val));
 	}
-	void Material::setUniform(const std::string& key, Math::Vec3f val)
+	void Material::setUniform(const std::string& key, const Math::Vec3f& val)
 	{
 		if (!m_Shader->hasUniform(key)) { return; }
 		m_Vec3fs.push(Data<Math::Vec3f>(key, val));
@@ -72,7 +72,7 @@ namespace gg
 		if (!m_Shader->hasUniform(key)) { return; }
 		m_Vec3fs.push(Data<Math::Vec3f>(key, Math::Vec3f(x, y, z)));
 	}
-	void Material::setUniform(const std::string& key, Math::Mat4f val)
+	void Material::setUniform(const std::string& key, const Math::Mat4f& val)
 	{
 		if (!m_Shader->hasUniform(key)) { return; }
 		m_Mat4fs.push(Data<Math::Mat4f>(key, val));

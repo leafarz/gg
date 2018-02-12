@@ -1,5 +1,6 @@
 #include "renderer/Renderer.h"
 
+#include "platform/opengl/GLCommon.h"
 #include "entity/GameObject.h"
 #include "renderer/Material.h"
 #include "renderer/Shader.h"
@@ -9,10 +10,10 @@ namespace gg
 {
 	Renderer::Renderer(void)
 	{
-		glFrontFace(GL_CW);
-		glCullFace(GL_BACK);
-		glEnable(GL_CULL_FACE);
-		glEnable(GL_DEPTH_TEST);
+		GL(glFrontFace(GL_CW));
+		GL(glCullFace(GL_BACK));
+		GL(glEnable(GL_CULL_FACE));
+		GL(glEnable(GL_DEPTH_TEST));
 	}
 
 	Renderer::~Renderer(void)
@@ -21,8 +22,8 @@ namespace gg
 
 	void Renderer::begin(void) const
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glEnable(GL_BLEND);
+		GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+		GL(glEnable(GL_BLEND));
 		// process render commands
 	}
 

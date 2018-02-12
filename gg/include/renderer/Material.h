@@ -37,9 +37,9 @@ namespace gg
 
 		void setUniformi(const std::string& key, int val);
 		void setUniformf(const std::string& key, float val);
-		void setUniform(const std::string& key, Math::Vec3f val);
+		void setUniform(const std::string& key, const Math::Vec3f& val);
 		void setUniform(const std::string& key, float x, float y, float z);
-		void setUniform(const std::string& key, Math::Mat4f val);
+		void setUniform(const std::string& key, const Math::Mat4f& val);
 
 	private:
 		void bind(void) const;

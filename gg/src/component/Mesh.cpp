@@ -1,5 +1,5 @@
 #include "component/Mesh.h"
-
+#include "platform/opengl/GLCommon.h"
 namespace gg
 {
 	Mesh::Mesh(void)
@@ -14,8 +14,8 @@ namespace gg
 		m_Vertices = vertices;
 		m_Indices = indices;
 
-		vb.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
-		ib.setData(&m_Indices.front(), m_Indices.size());
+		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
+		m_IB.setData(&m_Indices.front(), m_Indices.size());
 
 		VertexBufferLayout _layout = VertexBufferLayout();
 		_layout.Push<float>(3);	// position
@@ -23,14 +23,14 @@ namespace gg
 		_layout.Push<float>(3);	// normal
 		_layout.Push<float>(4);	// color
 
-		va.init();
-		va.addBuffer(vb, _layout);
+		m_VA.init();
+		m_VA.addBuffer(m_VB, _layout);
 	}
 
 	void Mesh::draw(void) const
 	{
-		va.bind();
-		ib.bind();
-		glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
+		m_VA.bind();
+		m_IB.bind();
+		GL(glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 } // namespace gg

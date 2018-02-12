@@ -14,6 +14,8 @@ namespace gg
 {
 	class Mesh : public Component
 	{
+	private:
+		friend class MeshRenderer;
 	public:
 		Mesh(void);
 		~Mesh(void);
@@ -23,15 +25,15 @@ namespace gg
 
 		void setVertices(const std::vector<Vertex>& vertices, const std::vector<uint>& indices);
 
+	private:
 		void draw(void) const;
 
 	private:
 		std::vector<Vertex> m_Vertices;
 		std::vector<uint> m_Indices;
-		VertexBufferLayout layout;
-		VertexArray va;
-		VertexBuffer vb;
-		IndexBuffer ib;
+		VertexArray m_VA;
+		VertexBuffer m_VB;
+		IndexBuffer m_IB;
 
 	}; // class Mesh
 } // namespace gg

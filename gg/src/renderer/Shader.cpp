@@ -12,18 +12,18 @@ namespace gg
 {
 	std::unordered_map<uint, GLuint> Shader::s_ShaderHash;
 
-	Shader::Shader(const std::string& filepath)
-		: m_FilePath(filepath)
+	Shader::Shader(const std::string& filePath)
+		: m_FilePath(filePath)
 	{
 		_SYS("Processing file: \"" << m_FilePath << "\"");
 		// check first if file is already cached
-		uint _hash = Crc32::getHash(m_FilePath.c_str(), m_FilePath.size());
-		bool _isCached = s_ShaderHash.find(_hash) != s_ShaderHash.end();
+		m_ShaderHash = Crc32::getHash(m_FilePath.c_str(), m_FilePath.size());
+		bool _isCached = s_ShaderHash.find(m_ShaderHash) != s_ShaderHash.end();
 
 		if (_isCached)
 		{
 			_SYS("Fetching cached shader: \"" << m_FilePath << "\"");
-			m_ID = s_ShaderHash[_hash];
+			m_ID = s_ShaderHash[m_ShaderHash];
 			return;
 		}
 
@@ -57,8 +57,7 @@ namespace gg
 
 		addAllUniforms();
 
-		s_ShaderHash[_hash] = m_ID;
-		m_ShaderHash = _hash;
+		s_ShaderHash[m_ShaderHash] = m_ID;
 	}
 
 	Shader::~Shader(void)
@@ -337,7 +336,7 @@ namespace gg
 			WARN("Uniform mismatch!\nTrying to set int value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
-		glUniform1i(_uniformData->loc, val);
+		GL(glUniform1i(_uniformData->loc, val));
 	}
 
 	GLvoid Shader::setUniformf(const std::string& key, float val)
@@ -353,10 +352,10 @@ namespace gg
 			WARN("Uniform mismatch!\nTrying to set float value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
-		glUniform1f(_uniformData->loc, val);
+		GL(glUniform1f(_uniformData->loc, val));
 	}
 
-	GLvoid Shader::setUniform(const std::string& key, Math::Vec3f val)
+	GLvoid Shader::setUniform(const std::string& key, const Math::Vec3f& val)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -369,10 +368,10 @@ namespace gg
 			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
-		glUniform3f(_uniformData->loc, val.x, val.y, val.z);
+		GL(glUniform3f(_uniformData->loc, val.x, val.y, val.z));
 	}
 
-	void Shader::setUniform(const std::string & key, float x, float y, float z)
+	void Shader::setUniform(const std::string& key, float x, float y, float z)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -385,10 +384,10 @@ namespace gg
 			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
-		glUniform3f(_uniformData->loc, x, y, z);
+		GL(glUniform3f(_uniformData->loc, x, y, z));
 	}
 
-	GLvoid Shader::setUniform(const std::string& key, Math::Mat4f val, bool transpose)
+	GLvoid Shader::setUniform(const std::string& key, const Math::Mat4f& val, bool transpose)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -401,7 +400,8 @@ namespace gg
 			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
-		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val.getMatrix());
+
+		GL(glUniformMatrix4fv(_uniformData->loc, 1, transpose, val.getMatrix()));
 	}
 
 	GLvoid Shader::setUniform(const std::string& key, float* val, bool transpose)
@@ -417,13 +417,13 @@ namespace gg
 			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
-		glUniformMatrix4fv(_uniformData->loc, 1, transpose, val);
+		GL(glUniformMatrix4fv(_uniformData->loc, 1, transpose, val));
 	}
 
-	void Shader::setUniformi(int loc, int val) { glUniform1i(loc, val); }
-	void Shader::setUniformf(int loc, float val) { glUniform1f(loc, val); }
-	void Shader::setUniform(int loc, Math::Vec3f val) { glUniform3f(loc, val.x, val.y, val.z); }
-	void Shader::setUniform(int loc, float x, float y, float z) { glUniform3f(loc, x, y, z); }
-	void Shader::setUniform(int loc, Math::Mat4f val, bool transpose) { glUniformMatrix4fv(loc, 1, transpose, val.getMatrix()); }
-	void Shader::setUniform(int loc, float * val, bool transpose) { glUniformMatrix4fv(loc, 1, transpose, val); }
+	void Shader::setUniformi(int loc, int val) { GL(glUniform1i(loc, val)); }
+	void Shader::setUniformf(int loc, float val) { GL(glUniform1f(loc, val)); }
+	void Shader::setUniform(int loc, const Math::Vec3f& val) { GL(glUniform3f(loc, val.x, val.y, val.z)); }
+	void Shader::setUniform(int loc, float x, float y, float z) { GL(glUniform3f(loc, x, y, z)); }
+	void Shader::setUniform(int loc, const Math::Mat4f& val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val.getMatrix())); }
+	void Shader::setUniform(int loc, float * val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val)); }
 } // namespace gg

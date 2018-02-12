@@ -2,6 +2,7 @@
 #define		GG_VERTEXBUFFER_H
 #pragma once
 
+#include "GL/glew.h"
 #include "core/Types.h"
 namespace gg
 {
@@ -34,6 +35,7 @@ namespace gg
 
 		/* Uninds the current vertex buffer. */
 		void unbind(void) const;
+
 	private:
 		GLuint m_ID;
 		bool m_IsInitialized = false;
