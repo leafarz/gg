@@ -63,11 +63,6 @@ namespace gg
 			}
 		}
 		_mr->draw();
-
-		// TODO: get mesh, material and transform
-		// va.bind();
-		// ib.bind();
-		// glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
 	}
 
 } // namespace gg

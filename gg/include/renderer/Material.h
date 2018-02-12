@@ -42,8 +42,10 @@ namespace gg
 		void setUniform(const std::string& key, Math::Mat4f val);
 
 	private:
-		void bind(void);
+		void bind(void) const;
 		void unbind(void) const;
+
+		void updateUniforms(void);
 
 	private:
 		Shader* m_Shader;

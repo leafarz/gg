@@ -26,6 +26,7 @@ namespace gg
 
 	void MeshRenderer::draw(void)
 	{
+		m_Material->updateUniforms();
 		m_Material->bind();
 		m_Mesh->draw();
 	}

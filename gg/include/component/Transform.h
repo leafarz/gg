@@ -64,7 +64,6 @@ namespace gg
 	private:
 		DirtyBits m_DirtyBits = static_cast<DirtyBits>(DirtyBits::Position | DirtyBits::Euler | DirtyBits::Rotation | DirtyBits::Scale);
 
-		// TODO: add dirty flag for update checking
 		// TODO: check if all of these are necessary
 		Math::Vec3f m_Position;
 		Math::Vec3f m_Euler;

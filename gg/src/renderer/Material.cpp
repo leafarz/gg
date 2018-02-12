@@ -15,12 +15,11 @@ namespace gg
 	Material::~Material(void)
 	{ }
 
-	void Material::bind(void)
+	void Material::bind(void) const { m_Shader->bind(); }
+	void Material::unbind(void) const { m_Shader->unbind(); }
+
+	void Material::updateUniforms(void)
 	{
-		m_Shader->bind();
-		
-		// TODO: add texture bind
-		
 		while (!m_Ints.empty())
 		{
 			Data<int>& _top = m_Ints.top();
@@ -46,8 +45,6 @@ namespace gg
 			m_Mat4fs.pop();
 		}
 	}
-
-	void Material::unbind(void) const { m_Shader->unbind(); }
 
 	Shader* Material::getShader(void) const { return m_Shader; }
 	void Material::setShader(Shader * shader)

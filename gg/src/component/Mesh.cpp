@@ -29,7 +29,6 @@ namespace gg
 
 	void Mesh::draw(void) const
 	{
-		// TODO: update shader default layout
 		va.bind();
 		ib.bind();
 		glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr);
