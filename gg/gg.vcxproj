@@ -272,6 +272,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\renderer\Texture.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\renderer\Vertex.h">
       <SubType>
       </SubType>
@@ -370,6 +374,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </ClCompile>
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\renderer\Shader.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\renderer\Texture.cpp">
       <SubType>
       </SubType>
     </ClCompile>
