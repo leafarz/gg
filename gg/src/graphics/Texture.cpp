@@ -9,6 +9,8 @@
 
 namespace gg
 {
+	std::unordered_map<uint, GLuint> Texture::s_TextureHash;
+
 	Texture::Texture(const std::string& filePath)
 		: m_FilePath(filePath)
 	{
@@ -23,15 +25,17 @@ namespace gg
 		}
 
 		GL(glGenTextures(1, &m_ID));
+
+		GL(glBindTexture(GL_TEXTURE_2D, m_ID));
 			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER));
 			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
 
-			unsigned char* image = SOIL_load_image(filePath.c_str(), &m_Width, &m_Height, 0, SOIL_LOAD_RGB);
-			GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, image));
+			unsigned char* _image = SOIL_load_image(filePath.c_str(), &m_Width, &m_Height, 0, SOIL_LOAD_RGB);
+			GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, _image));
 			GL(glGenerateMipmap(GL_TEXTURE_2D));
-			SOIL_free_image_data(image);
+			SOIL_free_image_data(_image);
 		GL(glBindTexture(GL_TEXTURE_2D, 0));
 		
 		s_TextureHash[m_TextureHash] = m_ID;
@@ -39,6 +43,7 @@ namespace gg
 
 	Texture::~Texture(void)
 	{
+		// TODO: add unreferencing
 	}
 
 	void Texture::bind(int samplerSlot) const

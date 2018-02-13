@@ -52,10 +52,8 @@ A simple OpenGL game engine.
  * base renderer
    * mesh
    * transform
-   * texture
  * shader
    * post process
-   * textures
    * hdr
    * pbr
  * light
@@ -93,6 +91,7 @@ A simple OpenGL game engine.
  * base renderer
    * mesh renderer
    * material
+   * texture
  * shader
    * automated uniforms
    * system uniforms

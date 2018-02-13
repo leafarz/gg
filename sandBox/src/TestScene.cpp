@@ -9,7 +9,7 @@
 
 #include "graphics/Shader.h"
 #include "graphics/Material.h"
-
+#include "graphics/Texture.h"
 #include "platform/opengl/GLCommon.h"
 
 #include "entity/FreeCamera.h"
@@ -55,10 +55,10 @@ namespace gg
 			{ _ulf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) },
 
 			// pos	// uv					// normal						// color
-			{ _urb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 0.0, 0.0) },
-			{ _lrb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 1.0, 0.0) },
-			{ _llb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 0.0, 1.0) },
-			{ _ulb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) }
+			{ _urb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 0.0, 0.0) },
+			{ _lrb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 1.0, 0.0) },
+			{ _llb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 0.0, 1.0) },
+			{ _ulb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) }
 		};
 
 		std::vector<Vertex> _verts2 = 
@@ -110,9 +110,14 @@ namespace gg
 		_mr->setMesh(_mesh);
 
 		// material
-		Material* _mat1 = new Material(new Shader("src/basic.shader"));
-		_mr->setMaterial(_mat1);
+		Shader* _shader = new Shader("src/basic.shader");
+		Material* _mat1 = new Material(_shader);
 
+		Texture *_tex = new Texture("src/Pikamannn.jpg");
+
+		_mr->setMaterial(_mat1);
+		_mat1->setTexture("test", _tex);
+		
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
 		_freeCam->getTransform()->setPosZ(-10);
 		add(_freeCam);

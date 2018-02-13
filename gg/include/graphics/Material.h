@@ -11,6 +11,7 @@
 namespace gg
 {
 	class Shader;
+	class Texture;
 	class Material
 	{
 	private:
@@ -35,7 +36,9 @@ namespace gg
 		Shader* getShader(void) const;
 		void setShader(Shader* shader);
 
-		void setUniformi(const std::string& key, int val);
+		// currently no setUniformi and is replaced by setTexture
+
+		void setTexture(const std::string& key, Texture* texture);
 		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, const Math::Vec3f& val);
 		void setUniform(const std::string& key, float x, float y, float z);
@@ -50,7 +53,7 @@ namespace gg
 	private:
 		Shader* m_Shader;
 
-		std::stack<Data<int>> m_Ints;
+		std::stack<Data<Texture*>> m_Textures;
 		std::stack<Data<float>> m_Floats;
 		std::stack<Data<Math::Vec3f>> m_Vec3fs;
 		std::stack<Data<Math::Mat4f>> m_Mat4fs;

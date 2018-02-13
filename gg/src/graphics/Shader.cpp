@@ -328,12 +328,12 @@ namespace gg
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
 		{
-			WARN("No uniform [int][" << key << "] found");
+			WARN("No uniform [sampler2D][" << key << "] found");
 			return;
 		}
-		else if (_uniformData->dataType != DataType::INT)
+		else if (_uniformData->dataType != DataType::SAMPLER2D)
 		{
-			WARN("Uniform mismatch!\nTrying to set int value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set sampler2D value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform1i(_uniformData->loc, val));

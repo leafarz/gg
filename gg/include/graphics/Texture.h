@@ -11,6 +11,9 @@ namespace gg
 {
 	class Texture
 	{
+	private:
+		friend class Material;
+
 	public:
 		Texture(const std::string& filePath);
 		~Texture(void);

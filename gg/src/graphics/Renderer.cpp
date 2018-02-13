@@ -14,6 +14,7 @@ namespace gg
 		GL(glCullFace(GL_BACK));
 		GL(glEnable(GL_CULL_FACE));
 		GL(glEnable(GL_DEPTH_TEST));
+		GL(glEnable(GL_TEXTURE_2D));
 	}
 
 	Renderer::~Renderer(void)
