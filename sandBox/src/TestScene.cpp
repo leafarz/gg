@@ -49,16 +49,37 @@ namespace gg
 		std::vector<Vertex> _verts =
 		{
 			// pos	// uv					// normal						// color
-			{ _urf,	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 0.0, 0.0) },
-			{ _lrf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 1.0, 0.0) },
-			{ _llf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 0.0, 1.0) },
-			{ _ulf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) },
+			{ _urf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Color(1.0, 0.0, 0.0) }, // 00
+			{ _urf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Color(1.0, 0.0, 0.0) }, // 01
+			{ _urf,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Color(1.0, 0.0, 0.0) }, // 02
 
-			// pos	// uv					// normal						// color
-			{ _urb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 0.0, 0.0) },
-			{ _lrb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 1.0, 0.0) },
-			{ _llb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 0.0, 1.0) },
-			{ _ulb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) }
+			{ _lrf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Color(0.0, 1.0, 0.0) }, // 03
+			{ _lrf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Color(0.0, 1.0, 0.0) }, // 04
+			{ _lrf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Color(0.0, 1.0, 0.0) }, // 05
+
+			{ _llf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Color(0.0, 0.0, 1.0) }, // 06
+			{ _llf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Color(0.0, 0.0, 1.0) }, // 07
+			{ _llf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Color(0.0, 0.0, 1.0) }, // 08
+
+			{ _ulf,	Math::Vec2f(1.0, 1.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Color(1.0, 1.0, 1.0) }, // 09
+			{ _ulf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Color(1.0, 1.0, 1.0) }, // 10
+			{ _ulf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Color(1.0, 1.0, 1.0) }, // 11
+
+			{ _urb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Color(1.0, 0.0, 0.0) }, // 12
+			{ _urb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Color(1.0, 0.0, 0.0) }, // 13
+			{ _urb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Color(1.0, 0.0, 0.0) }, // 14
+
+			{ _lrb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Color(0.0, 1.0, 0.0) }, // 15
+			{ _lrb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Color(0.0, 1.0, 0.0) }, // 16
+			{ _lrb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Color(0.0, 1.0, 0.0) }, // 17
+
+			{ _llb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Color(0.0, 0.0, 1.0) }, // 18
+			{ _llb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Color(0.0, 0.0, 1.0) }, // 19
+			{ _llb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Color(0.0, 0.0, 1.0) }, // 20
+
+			{ _ulb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Color(1.0, 1.0, 1.0) }, // 21
+			{ _ulb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Color(1.0, 1.0, 1.0) }, // 22
+			{ _ulb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Color(1.0, 1.0, 1.0) }, // 23
 		};
 
 		std::vector<Vertex> _verts2 = 
@@ -72,29 +93,29 @@ namespace gg
 
 		std::vector<uint> _indices =
 		{
-			// f
-			2,3,0,
-			0,1,2,
+			// front
+			2,5,8,
+			8,11,2,
 
-			// b
-			5,4,7,
-			7,6,5,
+			// back
+			23,20,17,
+			17,14,23,
 
-			// t
-			3, 7, 4,
-			4, 0, 3,
+			// top
+			13,1,10,
+			10,22,13,
 
-			// b
-			6,2,1,
-			1,5,6,
+			// bottom
+			4,16,19,
+			19,7,4,
 
-			// l
-			6,7,3,
-			3,2,6,
+			// left
+			9,6,18,
+			18,21,9,
 
-			// r
-			1,0,4,
-			4,5,1
+			// right
+			12,15,3,
+			3,0,12
 		};
 
 
