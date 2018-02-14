@@ -47,7 +47,6 @@ namespace gg
 			);
 		}
 
-		// rotation * translation
 		return m_ViewMatrix;
 	}
 

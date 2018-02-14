@@ -52,10 +52,13 @@ A simple OpenGL game engine.
  * base renderer
    * mesh
    * transform
+   * async model loading
  * shader
    * post process
    * hdr
    * pbr
+   * skybox
+   * cubemaps
  * light
    * directional light
    * point light
@@ -90,6 +93,7 @@ A simple OpenGL game engine.
 * renderer
  * base renderer
    * mesh renderer
+   * model load
    * material
    * texture
  * shader

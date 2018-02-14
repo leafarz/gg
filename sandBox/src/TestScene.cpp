@@ -33,7 +33,7 @@ namespace gg
 	{
 	}
 
-	GameObject *go, *go2;
+	GameObject *goCube, *goChair, *go2;
 	void TestScene::onInit(void)
 	{
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
@@ -97,27 +97,49 @@ namespace gg
 			4,5,1
 		};
 
-		// gameobject
-		go = new GameObject("GameObject");
-		add(go);
 
-		// mesh
-		Mesh* _mesh = new Mesh();
-		_mesh->setVertices(_verts, _indices);
-
-		// meshrenderer
-		MeshRenderer* _mr = go->addComponent<MeshRenderer>();
-		_mr->setMesh(_mesh);
+		// ************* SHARED *************
+		// shader
+		Shader* _shader = new Shader("src/basic.shader");
 
 		// material
-		Shader* _shader = new Shader("src/basic.shader");
-		Material* _mat1 = new Material(_shader);
+		Material* _mat = new Material(_shader);
 
+		// texture
 		Texture *_tex = new Texture("src/Pikamannn.jpg");
+		_mat->setTexture("test", _tex);
 
-		_mr->setMaterial(_mat1);
-		_mat1->setTexture("test", _tex);
-		
+		// ************* CUBE *************
+		// gameobject
+		goCube = new GameObject("GameObject");
+		add(goCube);
+
+		// mesh
+		Mesh* _cubeMesh = new Mesh();
+		_cubeMesh->setVertices(_verts, _indices);
+
+		// meshrenderer
+		MeshRenderer* _mrCube = goCube->addComponent<MeshRenderer>();
+		_mrCube->setMesh(_cubeMesh);
+		_mrCube->setMaterial(_mat);
+
+		// ************* CHAIR *************
+		// gameobject
+		goChair = new GameObject("Chair");
+		add(goChair);
+		goChair->getTransform()->setPos(2, 0, 0);
+		goChair->getTransform()->setScale(0.01f, 0.01f, 0.01f);
+		goChair->getTransform()->setEuler(-90, 90, 0);
+
+		// mesh
+		Mesh* _chairMesh = new Mesh("src/SM_Chair.FBX");
+
+		// meshrenderer
+		MeshRenderer* _mrChair = goChair->addComponent<MeshRenderer>();
+		_mrChair->setMesh(_chairMesh);
+		_mrChair->setMaterial(_mat);
+
+		// ************* CAMERA *************
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
 		_freeCam->getTransform()->setPosZ(-10);
 		add(_freeCam);

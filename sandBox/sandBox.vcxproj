@@ -97,6 +97,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ggd.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimpd.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -110,6 +113,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ggd.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32sd.lib;assimpd.lib;soil2sd.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimpd.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -127,6 +133,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)deps\gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gg.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimp.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -144,6 +153,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)deps\gg\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\assimp-4.0.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glew-2.1.0\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\glfw-3.2.1\lib\$(PlatformTarget)\$(Configuration);$(SolutionDir)deps\soil2-1.11\lib\$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>gg.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimp.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

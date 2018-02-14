@@ -16,7 +16,6 @@ namespace gg
 		~TestScene(void);
 
 		void onInit(void) override;
-
 	}; // class TestScene
 } // namespace gg
 

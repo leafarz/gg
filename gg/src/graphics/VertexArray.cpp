@@ -24,6 +24,12 @@ namespace gg
 		m_IsInitialized = true;
 	}
 
+	void VertexArray::init(GLuint id)
+	{
+		m_ID = id;
+		m_IsInitialized = true;
+	}
+
 	void VertexArray::addBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout)
 	{
 		bind();

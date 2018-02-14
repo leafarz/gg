@@ -31,6 +31,11 @@ namespace gg
 
 		m_IsInitialized = true;
 	}
+	void VertexBuffer::setData(GLuint id)
+	{
+		m_ID = id;
+		m_IsInitialized = true;
+	}
 	void VertexBuffer::bind(void) const
 	{
 		GL(glBindBuffer(GL_ARRAY_BUFFER, m_ID));

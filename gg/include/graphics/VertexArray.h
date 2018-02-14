@@ -18,6 +18,9 @@ namespace gg
 
 		/* Generates VertexArray id. */
 		void init(void);
+		void init(GLuint id);
+
+		GLuint getID(void) const { return m_ID; }
 
 		/* Adds the vertex buffer with its layout to the vertex array.
 		 * Binds the current vertex array.

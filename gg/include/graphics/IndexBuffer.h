@@ -22,7 +22,8 @@ namespace gg
 		IndexBuffer(const uint *data, uint count);
 		~IndexBuffer(void);
 
-		inline uint getCount(void) const { return m_Count; }
+		uint getCount(void) const { return m_Count; }
+		GLuint getID(void) const { return m_ID; }
 
 		/* Sets the buffer id and buffer data.
 		 * Binds the current buffer.
@@ -30,11 +31,13 @@ namespace gg
 		 * [count]	- number of elements in the data array
 		 */
 		void setData(const uint *data, uint count);
+		void setData(GLuint id, uint count);
 
 		/* Binds the current index buffer. */
 		void bind(void) const;
 		/* Unbinds the current index buffer. */
 		void unbind(void) const;
+
 	private:
 		GLuint m_ID;
 		uint m_Count;

@@ -31,6 +31,12 @@ namespace gg
 		m_Count = count;
 		m_IsInitialized = true;
 	}
+	void IndexBuffer::setData(GLuint id, uint count)
+	{
+		m_ID = id;
+		m_Count = count;
+		m_IsInitialized = true;
+	}
 	void IndexBuffer::bind(void) const
 	{
 		GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID));
