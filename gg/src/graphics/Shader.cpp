@@ -147,6 +147,7 @@ namespace gg
 		else if (strcmp(systemUniform, "sys_V") == 0)		{ return SystemUniform::VIEW; }
 		else if (strcmp(systemUniform, "sys_P") == 0)		{ return SystemUniform::PROJECTION; }
 		else if (strcmp(systemUniform, "sys_MVP") == 0)		{ return SystemUniform::MVP; }
+		else if (strcmp(systemUniform, "sys_Time") == 0)	{ return SystemUniform::TIME; }
 		return SystemUniform::UNKNOWN;
 	}
 
@@ -158,6 +159,7 @@ namespace gg
 		case SystemUniform::VIEW:			return "sys_V";
 		case SystemUniform::PROJECTION:		return "sys_P";
 		case SystemUniform::MVP:			return "sys_MVP";
+		case SystemUniform::TIME:			return "sys_Time";
 		}
 
 		return "";

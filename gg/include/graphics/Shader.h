@@ -43,6 +43,7 @@ namespace gg
 			VIEW,
 			PROJECTION,
 			MVP,
+			TIME,
 			UNKNOWN
 		};
 

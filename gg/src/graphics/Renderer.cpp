@@ -4,6 +4,7 @@
 #include "entity/GameObject.h"
 #include "graphics/Material.h"
 #include "graphics/Shader.h"
+#include "core/Time.h"
 
 #include "core/gg.h"
 namespace gg
@@ -60,6 +61,11 @@ namespace gg
 			{
 				Transform* _t = gameObject->getTransform();
 				_mat->setUniform(Shader::systemUniformEnumToString(*it), pvMatrix * _t->getTransformationMatrix());
+				break;
+			}
+			case Shader::SystemUniform::TIME:
+			{
+				_mat->setUniformf(Shader::systemUniformEnumToString(*it), Time::getCurrentTime());
 				break;
 			}
 			}
