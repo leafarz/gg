@@ -34,12 +34,24 @@ namespace gg
 		Math::Vec3f& setPos(float x, float y, float z);
 		Math::Vec3f& setPos(Math::Vec3f pos);
 
+		Math::Vec3f& addPosX(float x);
+		Math::Vec3f& addPosY(float y);
+		Math::Vec3f& addPosZ(float z);
+		Math::Vec3f& addPos(float x, float y, float z);
+		Math::Vec3f& addPos(Math::Vec3f pos);
+
 		const Math::Vec3f& getEuler(void) const;
 		Math::Vec3f& setEulerX(float x);
 		Math::Vec3f& setEulerY(float y);
 		Math::Vec3f& setEulerZ(float z);
 		Math::Vec3f& setEuler(float x, float y, float z);
 		Math::Vec3f& setEuler(Math::Vec3f euler);
+
+		Math::Vec3f& addEulerX(float x);
+		Math::Vec3f& addEulerY(float y);
+		Math::Vec3f& addEulerZ(float z);
+		Math::Vec3f& addEuler(float x, float y, float z);
+		Math::Vec3f& addEuler(Math::Vec3f euler);
 
 		const Math::Quaternion& getRotation(void) const;
 		Math::Quaternion& setRotation(float x, float y, float z, float w);
@@ -51,7 +63,13 @@ namespace gg
 		Math::Vec3f& setScaleY(float y);
 		Math::Vec3f& setScaleZ(float z);
 		Math::Vec3f& setScale(float x, float y, float z);
-		Math::Vec3f& setScale(Math::Vec3f euler);
+		Math::Vec3f& setScale(Math::Vec3f scale);
+
+		Math::Vec3f& addScaleX(float x);
+		Math::Vec3f& addScaleY(float y);
+		Math::Vec3f& addScaleZ(float z);
+		Math::Vec3f& addScale(float x, float y, float z);
+		Math::Vec3f& addScale(Math::Vec3f scale);
 
 		const Math::Mat4f& getTransformationMatrix(void);
 
