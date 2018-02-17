@@ -11,7 +11,8 @@ namespace gg
 	{
 	}
 
-	GameObject *goCube, *goChair, *go2;
+	GameObject *goCube, *goTeapot, *goNano, *go2;
+	bool rotateTeapot = false;
 	void TestScene::onInit(void)
 	{
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
@@ -96,51 +97,52 @@ namespace gg
 			3,0,12
 		};
 
-
-		// ************* SHARED *************
-		// shader
-		Shader* _shader = new Shader("src/basic.shader");
-
-		// material
-		Material* _mat = new Material(_shader);
-
-		// texture
-		Texture *_tex = new Texture("src/Pikamannn.jpg");
-		_mat->setTexture("test", _tex);
-
 		// ************* CUBE *************
 		// gameobject
 		goCube = new GameObject("GameObject");
-		add(goCube);
+		// dont add
+		//add(goCube);
+		goCube->getTransform()->setPos(-2, 0, 0);
 
 		// mesh
 		Mesh* _cubeMesh = new Mesh();
-		_cubeMesh->setVertices(_verts, _indices);
+		_cubeMesh->setVertices(_verts, _indices, true);
+
+		// shader, texture, material
+		Shader* _basicShader = new Shader("src/basic.shader");
+		Texture *_tex = new Texture("src/Pikamannn.jpg");
+		Material* _cubeMat = new Material(_basicShader);
+		_cubeMat->setTexture("test", _tex);
 
 		// meshrenderer
 		MeshRenderer* _mrCube = goCube->addComponent<MeshRenderer>();
 		_mrCube->setMesh(_cubeMesh);
-		_mrCube->setMaterial(_mat);
+		_mrCube->setMaterial(_cubeMat);
 
-		// ************* CHAIR *************
+
+		// ************* TEAPOT *************
 		// gameobject
-		goChair = new GameObject("Chair");
-		add(goChair);
-		goChair->getTransform()->setPos(2, 0, 0);
-		goChair->getTransform()->setScale(0.01f, 0.01f, 0.01f);
-		goChair->getTransform()->setEuler(-90, 90, 0);
+		goTeapot = new GameObject("Teapot");
+		add(goTeapot);
+		goTeapot->getTransform()->setPos(0, -1, 0);
+		goTeapot->getTransform()->setScale(0.5f, 0.5f, 0.5f);
 
 		// mesh
-		Mesh* _chairMesh = new Mesh("src/SM_Chair.FBX");
+		Mesh* _teapotMesh = new Mesh("src/teapot.obj", true);
+
+		// shader, texture, material
+		Shader* _teapotShader = new Shader("src/teapot.shader");
+		Material* _teapotMat = new Material(_teapotShader);
 
 		// meshrenderer
-		MeshRenderer* _mrChair = goChair->addComponent<MeshRenderer>();
-		_mrChair->setMesh(_chairMesh);
-		_mrChair->setMaterial(_mat);
+		MeshRenderer* _mrTeapot = goTeapot->addComponent<MeshRenderer>();
+		_mrTeapot->setMesh(_teapotMesh);
+		_mrTeapot->setMaterial(_teapotMat);
 
+		
 		// ************* CAMERA *************
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
-		_freeCam->getTransform()->setPosZ(-10);
+		_freeCam->getTransform()->setPosZ(-5);
 		add(_freeCam);
 		setActiveCamera(_freeCam);
 
@@ -151,6 +153,23 @@ namespace gg
 		//_mr2->setMesh(_mesh2);
 		//Material* _mat2 = new Material(new Shader("src/basic.shader"));
 		//go->addChild(go2);
+		
 		Scene::onInit();
+	}
+	void TestScene::onUpdate(void)
+	{
+		if (Input::getKeyDown(KEY::G))
+		{
+			rotateTeapot = !rotateTeapot;
+		}
+		if (Input::getKeyDown(KEY::R))
+		{
+			goTeapot->getTransform()->setEuler(0, 0, 0);
+		}
+		if (rotateTeapot)
+		{
+			goTeapot->getTransform()->addEulerY(Time::getDeltaTime() * 30);
+		}
+		Scene::onUpdate();
 	}
 } // namespace gg

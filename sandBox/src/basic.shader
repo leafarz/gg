@@ -12,15 +12,18 @@ out vec3 vcolor;
 out DATA
 {
 	vec2 uv;
+	vec3 normal;
 	vec3 color;
 } vs_out;
 
 
 uniform mat4 sys_MVP;
+uniform mat4 sys_M;
 
 void main()
 {
     gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0);
+	vs_out.normal = (sys_M * vec4(normal,0)).xyz;
 	vs_out.color = color;
 	vs_out.uv = vec2(uv.x, 1-uv.y);
 }
@@ -32,6 +35,7 @@ void main()
 in DATA
 {
 	vec2 uv;
+	vec3 normal;
 	vec3 color;
 } fs_in;
 
@@ -52,9 +56,8 @@ uniform TestStruct2 ts2;
 uniform vec3 v3Test= vec3(0,0,0);
 
 uniform sampler2D test;
-uniform sampler2D test2;
 
-
+vec3 lightDir = vec3(0,0,1);
 void main()
 {
 	// float val = floatTest + v3Test.x * v3Test.y * v3Test.z + ts2.color.x + ts2.color.y + ts2.color.z + ts2.ts1.intensity;
@@ -64,9 +67,7 @@ void main()
 	
 	// fcolor = vec4(fs_in.color,1);
 
-	if(fs_in.uv.x < 0.5)
-		fcolor = texture(test, fs_in.uv);
-	else
-		fcolor = texture(test2, fs_in.uv);
+	float _diff = max(dot(fs_in.normal, -lightDir), 0.1);
+	fcolor = texture(test, fs_in.uv) * _diff;
 
 }
