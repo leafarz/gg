@@ -12,7 +12,7 @@ namespace gg
 	Mesh::Mesh(void)
 	{ }
 
-	Mesh::Mesh(const std::string& filePath)
+	Mesh::Mesh(const std::string& filePath, bool calculateNormals)
 		: m_FilePath(filePath)
 	{
 		_SYS("Processing file: \"" << m_FilePath << "\"");
@@ -44,15 +44,20 @@ namespace gg
 
 		processNode(_scene->mRootNode, _scene, _vertices, _indices);
 
-		setVertices(_vertices, _indices);
+		setVertices(_vertices, _indices, calculateNormals);
 		s_MeshDataHash[m_MeshDataHash] = MeshData(m_VA.getID(), m_VB.getID(), m_IB.getID(), m_IB.getCount());
 	}
 
 	Mesh::~Mesh(void)
 	{ }
 
-	void Mesh::setVertices(const std::vector<Vertex>& vertices, const std::vector<uint>& indices)
+	void Mesh::setVertices(std::vector<Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals)
 	{
+		if (calculateNormals)
+		{
+			Mesh::calculateNormals(vertices, indices);
+		}
+
 		m_Vertices = vertices;
 		m_Indices = indices;
 
@@ -76,6 +81,30 @@ namespace gg
 		GL(glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
+	void Mesh::calculateNormals(std::vector<Vertex>& vertices, std::vector<uint>& indices)
+	{
+		for (uint i = 0; i < indices.size(); i += 3)
+		{
+			int _i0 = indices[i];
+			int _i1 = indices[i + 1];
+			int _i2 = indices[i + 2];
+
+			Math::Vec3f _v1 = vertices[_i1].position - vertices[_i0].position;
+			Math::Vec3f _v2 = vertices[_i2].position - vertices[_i0].position;
+
+			Math::Vec3f _normal = _v1.cross(_v2).normal();
+
+			vertices[_i0].normal = _normal;
+			vertices[_i1].normal = _normal;
+			vertices[_i2].normal = _normal;
+		}
+
+		FORU(i, 0, vertices.size())
+		{
+			vertices[i].normal.normalize();
+		}
+	}
+
 	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, node->mNumMeshes)
@@ -96,8 +125,8 @@ namespace gg
 			verts.push_back(
 				Vertex(
 					Math::Vec3f(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z),
-					Math::Vec2f(mesh->mTextureCoords[0]->x, mesh->mTextureCoords[0]->y),
-					Math::Vec3f(mesh->mNormals->x, mesh->mNormals->y, mesh->mNormals->z)
+					(mesh->mTextureCoords[0] == nullptr)? Math::Vec2f() : Math::Vec2f(mesh->mTextureCoords[0]->x, mesh->mTextureCoords[0]->y),
+					(mesh->mNormals == nullptr)			? Math::Vec3f() : Math::Vec3f(mesh->mNormals->x, mesh->mNormals->y, mesh->mNormals->z)
 				)
 			);
 		}

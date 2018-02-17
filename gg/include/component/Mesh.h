@@ -42,18 +42,18 @@ namespace gg
 		};
 	public:
 		Mesh(void);
-		Mesh(const std::string& filePath);
+		Mesh(const std::string& filePath, bool calculateNormals = false);
 		~Mesh(void);
 
 		static ComponentType getStaticType(void) { return ComponentType::Mesh; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
-		void setVertices(const std::vector<Vertex>& vertices, const std::vector<uint>& indices);
+		void setVertices(std::vector<Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals = false);
 
 	private:
 		void draw(void) const;
 
-		// TODO: add calculate normals
+		void calculateNormals(std::vector<Vertex>& vertices, std::vector<uint>& indices);
 
 		void processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
 		void processMesh(aiMesh* mesh, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
