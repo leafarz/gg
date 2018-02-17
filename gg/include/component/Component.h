@@ -2,7 +2,6 @@
 #define		GG_COMPONENT_H
 #pragma once
 
-#include <string>
 #include "component/ComponentType.h"
 
 namespace gg

@@ -1,4 +1,6 @@
 #include "component/Mesh.h"
+
+#include "util/Iterators.h"
 #include "platform/opengl/GLCommon.h"
 
 #include "security/cryptography/crc32.h"

@@ -1,7 +1,7 @@
 #include "component/Camera.h"
 
 #include "entity/GameObject.h"
-#include "core/gg.h"
+
 namespace gg
 {
 	Camera::Camera(void)

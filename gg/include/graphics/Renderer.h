@@ -3,6 +3,7 @@
 #pragma once
 
 #include "platform/opengl/GLCommon.h"
+
 #include "math/Mat4f.h"
 
 namespace gg

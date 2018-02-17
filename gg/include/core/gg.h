@@ -3,28 +3,30 @@
 #pragma once
 
 #include <vector>
+#include <unordered_map>
 
-#include "debug/Log.h"
+#include "component/Components.h"
+
+#include "core/Input.h"
+#include "core/Time.h"
 #include "core/Types.h"
 
-/* for loop from [a] to [b-1]
- * [var] is the int index per iteration
- */
-#define FOR(var,a,b)	for(int var = a-1; ++var < b; )
+#include "debug/Log.h"
 
-/* for loop from [a] to [b-1]
- * [var] is the uint index per iteration
- */
-#define FORU(var,a,b)	for(uint var = a; var < b; var++)
+#include "entity/FreeCamera.h"
+#include "entity/GameObject.h"
 
-/* iterate std::vector
- * [it] is the iterator variable per iteration
- */
-#define VFOR(it,vec)	for(auto it = vec.begin() ; it != vec.end(); ++it)
+#include "graphics/Color.h"
+#include "graphics/Material.h"
+#include "graphics/Shader.h"
+#include "graphics/Texture.h"
 
- /* iterate std::unordered_map
- * [kv] is the key value pair per iteration
- */
-#define UFOR(kv,umap)	for(auto kv : umap)
+#include "math/MathUtil.h"
+#include "math/Mat3f.h"
+#include "math/Mat4f.h"
+#include "math/Quaternion.h"
+#include "math/Vec2f.h"
+#include "math/Vec3f.h"
+#include "math/Vec4f.h"
 
 #endif

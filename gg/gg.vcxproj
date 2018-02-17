@@ -296,6 +296,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\util\Iterators.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\util\Resource.h">
       <SubType>
       </SubType>

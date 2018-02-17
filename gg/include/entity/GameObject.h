@@ -5,7 +5,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include "component/Component.h"
 #include "component/Components.h"
 
 namespace gg

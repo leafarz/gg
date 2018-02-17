@@ -3,10 +3,13 @@
 #include <fstream>
 #include <sstream>
 
-#include "core/gg.h"
 #include "Paths.h"
-#include "security/cryptography/crc32.h"
+
 #include "platform/opengl/GLCommon.h"
+
+#include "debug/Log.h"
+#include "security/cryptography/crc32.h"
+#include "util/Iterators.h"
 
 namespace gg
 {

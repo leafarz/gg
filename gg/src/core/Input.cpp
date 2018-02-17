@@ -1,5 +1,6 @@
 #include "core/Input.h"
-#include "core/gg.h"
+
+#include "util/Iterators.h"
 
 namespace gg
 {

@@ -1,28 +1,6 @@
-#include "GL/glew.h"
-
 #include "TestScene.h"
-
-#include "core/Input.h"
-#include "core/Time.h"
-
 #include "core/gg.h"
 
-#include "graphics/Shader.h"
-#include "graphics/Material.h"
-#include "graphics/Texture.h"
-#include "platform/opengl/GLCommon.h"
-
-#include "entity/FreeCamera.h"
-#include "entity/GameObject.h"
-#include "component/Transform.h"
-#include "math/MathUtil.h"
-#include "math/Quaternion.h"
-
-#include "component/Components.h"
-#include "component/Component.h"
-#include <iostream>
-#include <array>
-#include <stack>
 namespace gg
 {
 	TestScene::TestScene(void)

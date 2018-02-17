@@ -3,7 +3,6 @@
 #pragma once
 
 #include "core/Scene.h"
-#include "core/gg.h"
 
 namespace gg
 {

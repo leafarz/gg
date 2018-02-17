@@ -1,7 +1,8 @@
 #include "entity/GameObject.h"
-#include "core/gg.h"
-#include "component/ComponentType.h"
+
 #include "component/Transform.h"
+
+#include "util/Iterators.h"
 
 namespace gg
 {

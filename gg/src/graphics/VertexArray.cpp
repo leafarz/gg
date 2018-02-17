@@ -1,7 +1,7 @@
 #include "graphics/VertexArray.h"
 
 #include "platform/opengl/GLCommon.h"
-#include "core/gg.h"
+#include "util/Iterators.h"
 
 namespace gg
 {

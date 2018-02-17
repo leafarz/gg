@@ -1,6 +1,6 @@
 #include "graphics/Material.h"
 
-#include "core/gg.h"
+#include "debug/Log.h"
 #include "graphics/Shader.h"
 #include "graphics/Texture.h"
 namespace gg

@@ -4,8 +4,9 @@
 
 #include "component/Component.h"
 
-#include "math/Mat4f.h"
 #include "core/Types.h"
+#include "math/Mat4f.h"
+
 namespace gg
 {
 	class Camera : public Component

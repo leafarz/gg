@@ -1,12 +1,16 @@
 #include "graphics/Renderer.h"
 
 #include "platform/opengl/GLCommon.h"
-#include "entity/GameObject.h"
-#include "graphics/Material.h"
-#include "graphics/Shader.h"
+
 #include "core/Time.h"
 
-#include "core/gg.h"
+#include "entity/GameObject.h"
+
+#include "graphics/Material.h"
+#include "graphics/Shader.h"
+
+#include "util/Iterators.h"
+
 namespace gg
 {
 	Renderer::Renderer(void)

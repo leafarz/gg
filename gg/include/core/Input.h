@@ -1,8 +1,11 @@
 #ifndef		GG_INPUT_H
 #define		GG_INPUT_H
 #pragma once
+
 #include "GLFW/glfw3.h"
+
 #include "core/InputDefines.h"
+
 #include "math/Vec2f.h"
 
 namespace gg

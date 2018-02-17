@@ -4,9 +4,10 @@
 
 #include "core/Types.h"
 #include "component/Component.h"
-#include "math/Vec3f.h"
-#include "math/Quaternion.h"
+
 #include "math/Mat4f.h"
+#include "math/Quaternion.h"
+#include "math/Vec3f.h"
 namespace gg
 {
 	class Transform : public Component

@@ -2,8 +2,9 @@
 #define		GG_WINDOW_H
 #pragma once
 
-#include "GLFW/glfw3.h"
 #include <string>
+
+#include "GLFW/glfw3.h"
 
 namespace gg
 {

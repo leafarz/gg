@@ -2,9 +2,10 @@
 #define		GG_VERTEX_H
 #pragma once
 
+#include "graphics/Color.h"
+
 #include "math/Vec2f.h"
 #include "math/Vec3f.h"
-#include "graphics/Color.h"
 
 namespace gg
 {

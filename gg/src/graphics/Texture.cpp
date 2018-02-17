@@ -1,9 +1,8 @@
 #include "graphics/Texture.h"
 
-#include "GL/glew.h"
 #include "platform/opengl/GLCommon.h"
 
-#include "core/gg.h"
+#include "debug/Log.h"
 #include "security/cryptography/crc32.h"
 #include "SOIL2.h"
 

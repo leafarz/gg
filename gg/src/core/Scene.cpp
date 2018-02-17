@@ -1,9 +1,9 @@
 #include "core/Scene.h"
 
-#include "core/gg.h"
 #include "component/Camera.h"
 #include "entity/GameObject.h"
 #include "graphics/Renderer.h"
+#include "util/Iterators.h"
 
 namespace gg
 {

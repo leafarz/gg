@@ -4,8 +4,9 @@
 
 #include <string>
 #include <unordered_map>
-#include "core/Types.h"
+
 #include "GL/glew.h"
+#include "core/Types.h"
 
 namespace gg
 {

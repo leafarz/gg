@@ -3,7 +3,7 @@
 #pragma once
 
 #include <vector>
-#include "core/gg.h"
+#include "debug/Log.h"
 #include "core/Types.h"
 #include "platform/opengl/GLCommon.h"
 

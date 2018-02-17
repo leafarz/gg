@@ -1,10 +1,14 @@
 #include "core/Application.h"
-#include "core/gg.h"
-#include "core/Scene.h"
+
 #include "core/Input.h"
+#include "core/Scene.h"
 #include "core/Time.h"
 
+#include "debug/Log.h"
+
+#include "util/Iterators.h"
 #include "util/Resource.h"
+
 namespace gg
 {
 	Application::Application(const char* windowName, GLint width = 1280, GLint height = 720) :

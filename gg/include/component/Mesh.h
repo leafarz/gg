@@ -4,13 +4,14 @@
 
 #include <vector>
 #include <unordered_map>
+
+#include "component/Component.h"
+
+#include "graphics/IndexBuffer.h"
 #include "graphics/Vertex.h"
 #include "graphics/VertexArray.h"
 #include "graphics/VertexBuffer.h"
 #include "graphics/VertexBufferLayout.h"
-#include "graphics/IndexBuffer.h"
-
-#include "component/Component.h"
 
 /* assimp include files. These three are usually needed. */
 #include "assimp/Importer.hpp"

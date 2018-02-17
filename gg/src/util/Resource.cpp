@@ -1,6 +1,6 @@
 #include "util/Resource.h"
 
-#include "core/gg.h"
+#include "debug/Log.h"
 namespace gg
 {
 	std::string Resource::read_file(const char *file)
