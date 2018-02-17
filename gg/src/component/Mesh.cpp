@@ -40,7 +40,7 @@ namespace gg
 			ERROR("Error loading model from [" << filePath << ']');
 		}
 
-		processModel(_scene->mRootNode, _scene, _vertices, _indices);
+		processNode(_scene->mRootNode, _scene, _vertices, _indices);
 
 		setVertices(_vertices, _indices);
 		s_MeshDataHash[m_MeshDataHash] = MeshData(m_VA.getID(), m_VB.getID(), m_IB.getID(), m_IB.getCount());
@@ -73,15 +73,13 @@ namespace gg
 		m_IB.bind();
 		GL(glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
-	void Mesh::processModel(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
+
+	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
 	{
-		// Process each mesh located at the current node
 		FORU(i, 0, node->mNumMeshes)
 		{
-			// The scene contains all the data
-			aiMesh* _mesh = scene->mMeshes[node->mMeshes[i]];
-
-			processMesh(_mesh, scene, verts, indices);
+			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+			processMesh(mesh, scene, verts, indices);
 		}
 
 		FORU(i, 0, node->mNumChildren)
@@ -110,19 +108,6 @@ namespace gg
 			{
 				indices.push_back(_face.mIndices[j]);
 			}
-		}
-	}
-	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
-	{
-		FORU(i, 0, node->mNumMeshes)
-		{
-			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			processMesh(mesh, scene, verts, indices);
-		}
-
-		FORU(i, 0, node->mNumChildren)
-		{
-			processNode(node->mChildren[i], scene, verts, indices);
 		}
 	}
 } // namespace gg

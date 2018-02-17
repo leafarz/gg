@@ -54,9 +54,8 @@ namespace gg
 
 		// TODO: add calculate normals
 
-		void processModel(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
-		void processMesh(aiMesh* mesh, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
 		void processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
+		void processMesh(aiMesh* mesh, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
 
 	private:
 		/* Key value pairs of hash to ids created throughout the app. */
