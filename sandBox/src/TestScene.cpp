@@ -13,6 +13,7 @@ namespace gg
 
 	GameObject *goCube, *goTeapot, *goNano, *go2;
 	bool rotateTeapot = false;
+	Shader* teapotShader;
 	void TestScene::onInit(void)
 	{
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
@@ -131,8 +132,8 @@ namespace gg
 		Mesh* _teapotMesh = new Mesh("src/teapot.obj", true);
 
 		// shader, texture, material
-		Shader* _teapotShader = new Shader("src/teapot.shader");
-		Material* _teapotMat = new Material(_teapotShader);
+		teapotShader = new Shader("src/teapot.shader");
+		Material* _teapotMat = new Material(teapotShader);
 
 		// meshrenderer
 		MeshRenderer* _mrTeapot = goTeapot->addComponent<MeshRenderer>();
@@ -164,11 +165,12 @@ namespace gg
 		}
 		if (Input::getKeyDown(KEY::R))
 		{
-			goTeapot->getTransform()->setEuler(0, 0, 0);
+			//goTeapot->getTransform()->setEuler(0, 0, 0);
+			teapotShader->reload();
 		}
 		if (rotateTeapot)
 		{
-			goTeapot->getTransform()->addEulerY(Time::getDeltaTime() * 30);
+			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
 		Scene::onUpdate();
 	}

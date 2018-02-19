@@ -69,7 +69,7 @@ namespace gg
 			}
 			case Shader::SystemUniform::TIME:
 			{
-				_mat->setUniformf(Shader::systemUniformEnumToString(*it), Time::getCurrentTime());
+				_mat->setUniformf(Shader::systemUniformEnumToString(*it), static_cast<float>(Time::getCurrentTime()));
 				break;
 			}
 			}

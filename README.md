@@ -54,6 +54,7 @@ A simple OpenGL game engine.
    * transform
    * async model loading
  * shader
+   * reload
    * post process
    * hdr
    * pbr

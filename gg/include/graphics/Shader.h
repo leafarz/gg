@@ -67,12 +67,14 @@ namespace gg
 		};
 
 	public:
-		Shader(const std::string& filepath);
+		Shader(const std::string& filePath);
 		~Shader(void);
 
 		std::vector<std::string> getUniforms(void) const;
 		bool hasUniform(const std::string& key) const;
 
+		// TODO: temporarily public
+		void reload(void);
 	private:
 		Shader(void) = delete;
 
@@ -92,6 +94,12 @@ namespace gg
 
 		void bind(void) const;
 		void unbind(void) const;
+
+		void loadShader(const std::string& filePath);
+
+		void updateID(void);
+
+	private:
 
 		ShaderData parseShader(const char* file);
 		bool attachShader(const char* fileText, GLuint type);
@@ -123,6 +131,7 @@ namespace gg
 
 		/* Hash of the filepath. */
 		uint m_ShaderHash;
+		std::unordered_map<GLuint, uint> m_ShaderIDs;
 		std::string m_FilePath;
 
 		std::unordered_map<std::string, UniformData> m_Uniforms;

@@ -30,34 +30,7 @@ namespace gg
 			return;
 		}
 
-		ShaderData _data = parseShader(m_FilePath.c_str());
-		if (_data.vsString.empty())
-		{
-			WARN("No vertex shader found in\n:[" << m_FilePath << "]!");
-			return;
-		}
-		if (_data.fsString.empty())
-		{
-			WARN("No fragment shader found in\n:[" << m_FilePath << "]!");
-			return;
-		}
-
-		const char* _vsChar = _data.vsString.c_str();
-		const char* _fsChar = _data.fsString.c_str();
-
-		GL(m_ID = glCreateProgram());
-		if (m_ID == 0)
-		{
-			ERROR("Shader program creation failed. Could not find valid memory location in constructor");
-			return;
-		}
-		_SYS("Creating vertex shader");
-		if (!attachShader(_vsChar, GL_VERTEX_SHADER))	{ return; }
-		_SYS("Creating fragment shader");
-		if (!attachShader(_fsChar, GL_FRAGMENT_SHADER)) { return; }
-		_SYS("Compiling program");
-		if (!compileProgram())							{ return; }
-
+		loadShader(filePath);
 		addAllUniforms();
 
 		s_ShaderHash[m_ShaderHash] = m_ID;
@@ -187,8 +160,57 @@ namespace gg
 		return m_Uniforms.find(key) != m_Uniforms.end() ? &m_Uniforms[key] : nullptr;
 	}
 
-	void Shader::bind(void) const { GL(glUseProgram(m_ID)); }
+	void Shader::bind(void) const { GL(glUseProgram(s_ShaderHash[m_ShaderHash])); }
 	void Shader::unbind(void) const { GL(glUseProgram(0)); }
+
+	void Shader::loadShader(const std::string& filePath)
+	{
+		ShaderData _data = parseShader(m_FilePath.c_str());
+		if (_data.vsString.empty())
+		{
+			WARN("No vertex shader found in\n:[" << m_FilePath << "]!");
+			return;
+		}
+		if (_data.fsString.empty())
+		{
+			WARN("No fragment shader found in\n:[" << m_FilePath << "]!");
+			return;
+		}
+
+		const char* _vsChar = _data.vsString.c_str();
+		const char* _fsChar = _data.fsString.c_str();
+
+		GL(m_ID = glCreateProgram());
+		if (m_ID == 0)
+		{
+			ERROR("Shader program creation failed. Could not find valid memory location in constructor");
+			return;
+		}
+		_SYS("Creating vertex shader");
+		if (!attachShader(_vsChar, GL_VERTEX_SHADER)) { return; }
+		_SYS("Creating fragment shader");
+		if (!attachShader(_fsChar, GL_FRAGMENT_SHADER)) { return; }
+		_SYS("Compiling program");
+		if (!compileProgram()) { return; }
+	}
+
+	void Shader::reload(void)
+	{
+		_SYS("Reloading shader: \"" << m_FilePath << "\"");
+		m_Uniforms.clear();
+		m_SystemUniforms.clear();
+
+		GL(glDeleteProgram(m_ID));
+		loadShader(m_FilePath);
+		addAllUniforms();
+
+		s_ShaderHash[m_ShaderHash] = m_ID;
+	}
+
+	void Shader::updateID(void)
+	{
+		m_ID = s_ShaderHash[m_ShaderHash];
+	}
 
 	Shader::ShaderData Shader::parseShader(const char* file)
 	{
@@ -255,6 +277,10 @@ namespace gg
 
 	bool Shader::attachShader(const char * fileText, GLuint type)
 	{
+		if (m_ShaderIDs.find(type) != m_ShaderIDs.end())
+		{
+			ERROR("Shader creation failed. Program already has " << shaderEnumToString(type));
+		}
 		GL(GLuint _shader = glCreateShader(type));
 
 		if (_shader == 0)
@@ -276,6 +302,8 @@ namespace gg
 
 		GL(glAttachShader(m_ID, _shader));
 		GL(glDeleteShader(_shader));
+
+		m_ShaderIDs[type] = _shader;
 		return true;
 	}
 
