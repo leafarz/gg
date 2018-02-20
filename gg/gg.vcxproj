@@ -403,7 +403,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shader\types.glh" />
+    <None Include="res\shader\common.glh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

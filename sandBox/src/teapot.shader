@@ -1,7 +1,7 @@
 #shader vertex
 #version 330 core
 
-#include "types.glh"
+#include "common.glh"
 
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec2 uv;
@@ -23,7 +23,7 @@ uniform float sys_Time;
 
 void main()
 {
-    gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0) + vec4(normal * sin(sys_Time)*0.5,1);
+    gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0) + vec4(normal * saturate(100),1);
 	vs_out.normal = normalize((sys_M * vec4(normal,0)).xyz);
 	vs_out.color = color;
 	vs_out.uv = vec2(uv.x, 1-uv.y);

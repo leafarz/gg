@@ -253,6 +253,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shader\types.glh" />
+    <None Include="res\shader\common.glh" />
   </ItemGroup>
 </Project>
