@@ -20,6 +20,7 @@ namespace gg
 		GL(glEnable(GL_CULL_FACE));
 		GL(glEnable(GL_DEPTH_TEST));
 		GL(glEnable(GL_TEXTURE_2D));
+		GL(glClearColor(0.1, 0.1, 0.3, 0.0));
 	}
 
 	Renderer::~Renderer(void)

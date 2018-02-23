@@ -9,6 +9,10 @@ namespace gg
 	Transform::~Transform(void)
 	{}
 
+	Math::Vec3f Transform::getForward(void) const	{ return m_Rotation.getForward(); }
+	Math::Vec3f Transform::getRight(void) const		{ return m_Rotation.getRight(); }
+	Math::Vec3f Transform::getUp(void) const		{ return m_Rotation.getUp(); }
+
 	// Position
 	const Math::Vec3f& Transform::getPos(void) const
 	{

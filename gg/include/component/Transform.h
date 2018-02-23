@@ -27,6 +27,10 @@ namespace gg
 		static ComponentType getStaticType(void) { return ComponentType::Transform; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
+		Math::Vec3f getForward(void) const;
+		Math::Vec3f getRight(void) const;
+		Math::Vec3f getUp(void) const;
+
 		const Math::Vec3f& getPos(void) const;
 		Math::Vec3f& setPosX(float x);
 		Math::Vec3f& setPosY(float y);

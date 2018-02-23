@@ -14,6 +14,7 @@ namespace gg
 	GameObject *goCube, *goTeapot, *goNano, *go2;
 	bool rotateTeapot = false;
 	Shader* teapotShader;
+	Material* _cubeMat;
 	void TestScene::onInit(void)
 	{
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
@@ -62,13 +63,17 @@ namespace gg
 			{ _ulb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Color(1.0, 1.0, 1.0) }, // 23
 		};
 
-		std::vector<Vertex> _verts2 = 
+		std::vector<Vertex> _quadVerts = 
 		{
-			// pos								// uv					// normal						// color
-			{ Math::Vec3f( 0.5f+1,  0.5f, 0.0),	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 0.0, 0.0) },
-			{ Math::Vec3f( 0.5f+1, -0.5f, 0.0),	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 1.0, 0.0) },
-			{ Math::Vec3f(-0.5f+1, -0.5f, 0.0),	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(0.0, 0.0, 1.0) },
-			{ Math::Vec3f(-0.5f+1,  0.5f, 0.0),	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 0.0, -1.0),	Color(1.0, 1.0, 1.0) }
+			{ Math::Vec3f(-0.5, 0.0, -0.5f),	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 1.0, 0.0),		Color(1.0, 1.0, 1.0) },
+			{ Math::Vec3f( 0.5, 0.0, -0.5f),	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 1.0, 0.0),		Color(1.0, 1.0, 1.0) },
+			{ Math::Vec3f(-0.5, 0.0,  0.5f),	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 1.0, 0.0),		Color(1.0, 1.0, 1.0) },
+			{ Math::Vec3f( 0.5, 0.0,  0.5f),	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 1.0, 0.0),		Color(1.0, 1.0, 1.0) }
+		};
+		std::vector<uint> _quadIndices = 
+		{
+			0, 2, 3,
+			3, 1, 0
 		};
 
 		std::vector<uint> _indices =
@@ -102,17 +107,17 @@ namespace gg
 		// gameobject
 		goCube = new GameObject("GameObject");
 		// dont add
-		//add(goCube);
+		add(goCube);
 		goCube->getTransform()->setPos(-2, 0, 0);
 
 		// mesh
 		Mesh* _cubeMesh = new Mesh();
-		_cubeMesh->setVertices(_verts, _indices, true);
+		_cubeMesh->setVertices(_quadVerts, _quadIndices, false);
 
 		// shader, texture, material
-		Shader* _basicShader = new Shader("src/basic.shader");
+		Shader *_basicShader = new Shader("src/basic.shader");
 		Texture *_tex = new Texture("src/Pikamannn.jpg");
-		Material* _cubeMat = new Material(_basicShader);
+		_cubeMat = new Material(_basicShader);
 		_cubeMat->setTexture("test", _tex);
 
 		// meshrenderer
@@ -124,7 +129,7 @@ namespace gg
 		// ************* TEAPOT *************
 		// gameobject
 		goTeapot = new GameObject("Teapot");
-		add(goTeapot);
+		//add(goTeapot);
 		goTeapot->getTransform()->setPos(0, -1, 0);
 		goTeapot->getTransform()->setScale(0.5f, 0.5f, 0.5f);
 
@@ -172,6 +177,7 @@ namespace gg
 		{
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
+		_cubeMat->setUniform("lightDir", getActiveCamera()->getGameObject()->getTransform()->getForward());
 		Scene::onUpdate();
 	}
 } // namespace gg
