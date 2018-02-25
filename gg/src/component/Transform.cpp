@@ -14,26 +14,26 @@ namespace gg
 	Math::Vec3f Transform::getUp(void) const		{ return m_Rotation.getUp(); }
 
 	// Position
-	const Math::Vec3f& Transform::getPos(void) const
+	const Math::Vec3f& Transform::getPosition(void) const
 	{
 		return m_Position;
 	}
-	Math::Vec3f& Transform::setPosX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(x); }
-	Math::Vec3f& Transform::setPosY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(y); }
-	Math::Vec3f& Transform::setPosZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(z); }
-	Math::Vec3f& Transform::setPos(float x, float y, float z) { setDirty(DirtyBits::Position); return m_Position.set(x, y, z); }
-	Math::Vec3f& Transform::setPos(Math::Vec3f pos) { setDirty(DirtyBits::Position); return m_Position.set(pos); }
+	Math::Vec3f& Transform::setPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(x); }
+	Math::Vec3f& Transform::setPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(y); }
+	Math::Vec3f& Transform::setPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(z); }
+	Math::Vec3f& Transform::setPosition(float x, float y, float z) { setDirty(DirtyBits::Position); return m_Position.set(x, y, z); }
+	Math::Vec3f& Transform::setPosition(Math::Vec3f pos) { setDirty(DirtyBits::Position); return m_Position.set(pos); }
 
-	Math::Vec3f& Transform::addPosX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(m_Position.x + x); }
-	Math::Vec3f& Transform::addPosY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(m_Position.y + y); }
-	Math::Vec3f& Transform::addPosZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(m_Position.z + z); }
-	Math::Vec3f& Transform::addPos(float x, float y, float z)
+	Math::Vec3f& Transform::addPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(m_Position.x + x); }
+	Math::Vec3f& Transform::addPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(m_Position.y + y); }
+	Math::Vec3f& Transform::addPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(m_Position.z + z); }
+	Math::Vec3f& Transform::addPosition(float x, float y, float z)
 	{
 		setDirty(DirtyBits::Position);
 		return m_Position.set( m_Position.x + x, m_Position.y + y, m_Position.z + z );
 	}
 
-	Math::Vec3f& Transform::addPos(Math::Vec3f pos)
+	Math::Vec3f& Transform::addPosition(Math::Vec3f pos)
 	{
 		setDirty(DirtyBits::Position);
 		return m_Position.set(m_Position + pos);

@@ -29,7 +29,7 @@ namespace gg
 
 		//if (_t->isDirty())
 		{
-			const Math::Vec3f& _pos = _t->getPos();
+			const Math::Vec3f& _pos = _t->getPosition();
 			const Math::Quaternion& _q = _t->getRotation().conjugate();
 			Math::Mat4f _rotMatrix = Math::Mat4f::rotationMatrix(_q);
 

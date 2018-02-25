@@ -108,7 +108,7 @@ namespace gg
 		goCube = new GameObject("GameObject");
 		// dont add
 		add(goCube);
-		goCube->getTransform()->setPos(-2, 0, 0);
+		goCube->getTransform()->setPosition(-2, 0, 0);
 
 		// mesh
 		Mesh* _cubeMesh = new Mesh();
@@ -130,7 +130,7 @@ namespace gg
 		// gameobject
 		goTeapot = new GameObject("Teapot");
 		//add(goTeapot);
-		goTeapot->getTransform()->setPos(0, -1, 0);
+		goTeapot->getTransform()->setPosition(0, -1, 0);
 		goTeapot->getTransform()->setScale(0.5f, 0.5f, 0.5f);
 
 		// mesh
@@ -148,7 +148,7 @@ namespace gg
 		
 		// ************* CAMERA *************
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
-		_freeCam->getTransform()->setPosZ(-5);
+		_freeCam->getTransform()->setPositionZ(-5);
 		add(_freeCam);
 		setActiveCamera(_freeCam);
 

@@ -31,18 +31,18 @@ namespace gg
 		Math::Vec3f getRight(void) const;
 		Math::Vec3f getUp(void) const;
 
-		const Math::Vec3f& getPos(void) const;
-		Math::Vec3f& setPosX(float x);
-		Math::Vec3f& setPosY(float y);
-		Math::Vec3f& setPosZ(float z);
-		Math::Vec3f& setPos(float x, float y, float z);
-		Math::Vec3f& setPos(Math::Vec3f pos);
+		const Math::Vec3f& getPosition(void) const;
+		Math::Vec3f& setPositionX(float x);
+		Math::Vec3f& setPositionY(float y);
+		Math::Vec3f& setPositionZ(float z);
+		Math::Vec3f& setPosition(float x, float y, float z);
+		Math::Vec3f& setPosition(Math::Vec3f pos);
 
-		Math::Vec3f& addPosX(float x);
-		Math::Vec3f& addPosY(float y);
-		Math::Vec3f& addPosZ(float z);
-		Math::Vec3f& addPos(float x, float y, float z);
-		Math::Vec3f& addPos(Math::Vec3f pos);
+		Math::Vec3f& addPositionX(float x);
+		Math::Vec3f& addPositionY(float y);
+		Math::Vec3f& addPositionZ(float z);
+		Math::Vec3f& addPosition(float x, float y, float z);
+		Math::Vec3f& addPosition(Math::Vec3f pos);
 
 		const Math::Vec3f& getEuler(void) const;
 		Math::Vec3f& setEulerX(float x);

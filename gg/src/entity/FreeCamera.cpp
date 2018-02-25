@@ -41,33 +41,33 @@ namespace gg
 
 	void FreeCamera::onUpdate(void)
 	{
-		const Math::Vec3f& _pos = m_Transform->getPos();
+		const Math::Vec3f& _pos = m_Transform->getPosition();
 		const Math::Quaternion& _rot = m_Transform->getRotation();
 		const Math::Vec3f& _euler = m_Transform->getEuler();
 
 		if (Input::getKey(KEY::W))
 		{
-			m_Transform->setPos(_pos + _rot.getForward() * m_MoveSpeed);
+			m_Transform->setPosition(_pos + _rot.getForward() * m_MoveSpeed);
 		}
 		if (Input::getKey(KEY::S))
 		{
-			m_Transform->setPos(_pos - _rot.getForward() * m_MoveSpeed);
+			m_Transform->setPosition(_pos - _rot.getForward() * m_MoveSpeed);
 		}
 		if (Input::getKey(KEY::D))
 		{
-			m_Transform->setPos(_pos + _rot.getRight() * m_MoveSpeed);
+			m_Transform->setPosition(_pos + _rot.getRight() * m_MoveSpeed);
 		}
 		if (Input::getKey(KEY::A))
 		{
-			m_Transform->setPos(_pos - _rot.getRight() * m_MoveSpeed);
+			m_Transform->setPosition(_pos - _rot.getRight() * m_MoveSpeed);
 		}
 		if (Input::getKey(KEY::E))
 		{
-			m_Transform->setPos(_pos + _rot.getUp() * m_MoveSpeed);
+			m_Transform->setPosition(_pos + _rot.getUp() * m_MoveSpeed);
 		}
 		if (Input::getKey(KEY::Q))
 		{
-			m_Transform->setPos(_pos - _rot.getUp() * m_MoveSpeed);
+			m_Transform->setPosition(_pos - _rot.getUp() * m_MoveSpeed);
 		}
 
 		Math::Vec2f _delta = Input::getMousePosition() - m_PrevMousePos;
