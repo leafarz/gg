@@ -1,6 +1,7 @@
 #include "core/Scene.h"
 
 #include "component/Camera.h"
+#include "component/Light.h"
 #include "entity/GameObject.h"
 #include "graphics/Renderer.h"
 #include "util/Iterators.h"
@@ -33,6 +34,10 @@ namespace gg
 	void Scene::add(GameObject* gameObject)
 	{
 		m_GameObjects.push_back(gameObject);
+
+		std::vector<Light*> _light = gameObject->getComponents<Light>();
+		VFOR(it, _light) { m_Lights.push_back(*it); }
+
 		gameObject->onInit();
 	}
 

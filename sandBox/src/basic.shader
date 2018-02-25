@@ -41,19 +41,20 @@ in DATA
 
 out vec4 fcolor;
 
-struct TestStruct1
+struct Light
 {
+	vec4 position;
+	vec3 direction;
+	vec4 color;
 	float intensity;
-	vec3 pos;
+	
+	float constantAttenuation;
+	float linearAttenuation;
+	float exponentAttenuation;
+
+	float radius;
+	float angle;	// spotCutoff
 };
-struct TestStruct2
-{
-	TestStruct1 ts1;
-	vec3 color;
-};
-uniform float floatTest = 1;
-uniform TestStruct2 ts2;
-uniform vec3 v3Test= vec3(0,0,0);
 
 uniform sampler2D test;
 
@@ -64,13 +65,6 @@ vec3 lightColor = vec3(1,0,0);
 
 void main()
 {
-	// float val = floatTest + v3Test.x * v3Test.y * v3Test.z + ts2.color.x + ts2.color.y + ts2.color.z + ts2.ts1.intensity;
-	//fcolor = vec4(1.0f, 0.5f, 0.2f, val);
-	// fcolor = vec4(vcolor.x, vcolor.y, vcolor.z, 1);
-	//fcolor = vec4(1.0f, GetX(tl), 0.2f, GetX(tl));
-	
-	// fcolor = vec4(fs_in.color,1);
-
 	float _diff = max(dot(fs_in.normal, -lightDir), 0);
 	fcolor = texture(test, fs_in.uv) * _diff * intensity + vec4(sys_AmbientColor,1);
 }

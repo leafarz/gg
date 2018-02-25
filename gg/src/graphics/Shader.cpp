@@ -139,7 +139,6 @@ namespace gg
 		case SystemUniform::TIME:			return "sys_Time";
 		case SystemUniform::AMBIENT:		return "sys_AmbientColor";
 		}
-
 		return "";
 	}
 

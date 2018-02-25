@@ -11,8 +11,9 @@
 namespace gg
 {
 	class Camera;
-	class Renderer;
 	class GameObject;
+	class Light;
+	class Renderer;
 	class Scene
 	{
 	public:
@@ -40,6 +41,7 @@ namespace gg
 		Renderer* m_Renderer;
 
 		std::vector<GameObject*> m_GameObjects;
+		std::vector<Light*> m_Lights;
 	}; // class Scene
 } // namespace gg
 

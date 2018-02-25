@@ -5,6 +5,7 @@
 #include "component/Component.h"
 #include "core/Types.h"
 
+#include "graphics/Color.h"
 #include "math/Vec4f.h"
 namespace gg
 {
@@ -21,6 +22,9 @@ namespace gg
 	public:
 		Light(LightType lightType);
 		~Light(void);
+
+		static ComponentType getStaticType(void) { return ComponentType::Light; }
+		virtual ComponentType getType(void) const override { return getStaticType(); }
 
 		LightType getLightType(void) const { return m_LightType; }
 
