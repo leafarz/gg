@@ -350,7 +350,6 @@ namespace gg
 				{
 					SystemUniform _systemUniform = systemUniformStringToEnum(_name);
 					if (_systemUniform != SystemUniform::UNKNOWN) { m_SystemUniforms.push_back(_systemUniform); }
-					else { _SYS("System uniform [" << _name << "] is unknown."); }
 				}
 				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
 			}
@@ -419,6 +418,38 @@ namespace gg
 			return;
 		}
 		GL(glUniform3f(_uniformData->loc, x, y, z));
+	}
+
+	void Shader::setUniform(const std::string & key, const Math::Vec4f & val)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [vec4][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::VEC4)
+		{
+			WARN("Uniform mismatch!\nTrying to set vec4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		GL(glUniform4f(_uniformData->loc, val.x, val.y, val.z, val.w));
+	}
+
+	void Shader::setUniform(const std::string & key, float x, float y, float z, float w)
+	{
+		const UniformData* _uniformData = getUniform(key);
+		if (_uniformData == nullptr)
+		{
+			WARN("No uniform [vec4][" << key << "] found");
+			return;
+		}
+		else if (_uniformData->dataType != DataType::VEC4)
+		{
+			WARN("Uniform mismatch!\nTrying to set vec4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			return;
+		}
+		GL(glUniform4f(_uniformData->loc, x, y, z, w));
 	}
 
 	GLvoid Shader::setUniform(const std::string& key, const Math::Mat4f& val, bool transpose)

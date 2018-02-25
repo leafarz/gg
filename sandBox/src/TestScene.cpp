@@ -179,7 +179,10 @@ namespace gg
 		{
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
-		_cubeMat->setUniform("lightDir", getActiveCamera()->getGameObject()->getTransform()->getForward());
+
+		_cubeMat->setUniform("lights[0].color", Math::Vec4f(1,0,0,1));
+		_cubeMat->setUniform("lights[0].direction", getActiveCamera()->getGameObject()->getTransform()->getForward());
+
 		Scene::onUpdate();
 	}
 } // namespace gg

@@ -114,6 +114,8 @@ namespace gg
 		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, const Math::Vec3f& val);
 		void setUniform(const std::string& key, float x, float y, float z);
+		void setUniform(const std::string& key, const Math::Vec4f& val);
+		void setUniform(const std::string& key, float x, float y, float z, float w);
 		void setUniform(const std::string& key, const Math::Mat4f& val, bool transpose);
 		void setUniform(const std::string& key, float* val, bool transpose);
 

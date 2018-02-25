@@ -32,6 +32,8 @@ void main()
 #shader fragment
 #version 330 core
 
+#include "common.glh"
+
 in DATA
 {
 	vec2 uv;
@@ -55,16 +57,32 @@ struct Light
 	float radius;
 	float angle;	// spotCutoff
 };
+uniform Light lights[MAX_LIGHTS];
 
 uniform sampler2D test;
-
-uniform vec3 lightDir = vec3(0,0,1);
 uniform vec3 sys_AmbientColor;
-float intensity = 0.5;
-vec3 lightColor = vec3(1,0,0);
 
 void main()
 {
-	float _diff = max(dot(fs_in.normal, -lightDir), 0);
-	fcolor = texture(test, fs_in.uv) * _diff * intensity + vec4(sys_AmbientColor,1);
+	vec3 _result;
+
+	for(int i=-1; ++i < MAX_LIGHTS; )
+	{
+		float _atten;
+		float _diff;
+		vec3 _lightDir;
+
+		// directional light
+		if(lights[i].position.w == 0)
+		{
+			_atten = 1;
+			_lightDir = lights[0].direction;
+		}
+		else
+		{
+		}
+
+		_result = _result + lights[i].color.xyz * max(dot(fs_in.normal, -_lightDir), 0);
+	}
+	fcolor = texture(test, fs_in.uv) * vec4(_result,1) + vec4(sys_AmbientColor,1);
 }
