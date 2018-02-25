@@ -17,6 +17,7 @@ namespace gg
 	Material* _cubeMat;
 	void TestScene::onInit(void)
 	{
+		LightSettings.ambientColor.set(0.1f, 0.1f, 0.1f);
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
 		Math::Vec3f _urf = Math::Vec3f( 0.5f,  0.5f, -0.5);
 		Math::Vec3f _llf = Math::Vec3f(-0.5f, -0.5f, -0.5);

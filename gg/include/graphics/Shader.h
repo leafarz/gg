@@ -44,6 +44,8 @@ namespace gg
 			PROJECTION,
 			MVP,
 			TIME,
+			AMBIENT,
+			LIGHT,
 			UNKNOWN
 		};
 

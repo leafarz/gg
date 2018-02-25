@@ -4,6 +4,10 @@
 
 #include <vector>
 
+#include "graphics/LightSettings.h"
+
+#include "math/Vec3f.h"
+
 namespace gg
 {
 	class Camera;
@@ -27,6 +31,9 @@ namespace gg
 		virtual void onFixedUpdate(void);
 		virtual void onUpdate(void);
 		virtual void onRender(void);
+
+	public:
+		LightSettings LightSettings;
 
 	private:
 		Camera* m_ActiveCamera;

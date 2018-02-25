@@ -72,7 +72,7 @@ namespace gg
 		VFOR(it, m_GameObjects)
 		{
 			GameObject* _go = *it;
-			m_Renderer->draw(_go, _v, _p, _pv);
+			m_Renderer->draw(_go, _v, _p, _pv, LightSettings);
 		}
 
 		// render queues?

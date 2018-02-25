@@ -58,6 +58,7 @@ uniform vec3 v3Test= vec3(0,0,0);
 uniform sampler2D test;
 
 uniform vec3 lightDir = vec3(0,0,1);
+uniform vec3 sys_AmbientColor;
 float intensity = 0.5;
 vec3 lightColor = vec3(1,0,0);
 
@@ -70,6 +71,6 @@ void main()
 	
 	// fcolor = vec4(fs_in.color,1);
 
-	float _diff = max(dot(fs_in.normal, -lightDir), 0.1);
-	fcolor = texture(test, fs_in.uv) * vec4(lightColor,1) * _diff * intensity;
+	float _diff = max(dot(fs_in.normal, -lightDir), 0);
+	fcolor = texture(test, fs_in.uv) * _diff * intensity + vec4(sys_AmbientColor,1);
 }

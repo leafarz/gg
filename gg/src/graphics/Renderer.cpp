@@ -34,12 +34,14 @@ namespace gg
 		// process render commands
 	}
 
-	void Renderer::draw(GameObject* gameObject, const Math::Mat4f& viewMatrix, const Math::Mat4f& projectionMatrix, const Math::Mat4f& pvMatrix)
+	void Renderer::draw(GameObject* gameObject, const Math::Mat4f& viewMatrix, const Math::Mat4f& projectionMatrix, const Math::Mat4f& pvMatrix, const LightSettings& lightSettings)
 	{
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
 		if (!_mr) { return; }
 
 		Material* _mat = _mr->getMaterial();
+		if (!_mat) { return; }
+
 		const std::vector<Shader::SystemUniform>& _sysUniforms = _mat->getShader()->getSystemUniforms();
 
 		VFOR(it, _sysUniforms)
@@ -71,6 +73,15 @@ namespace gg
 			case Shader::SystemUniform::TIME:
 			{
 				_mat->setUniformf(Shader::systemUniformEnumToString(*it), static_cast<float>(Time::getCurrentTime()));
+				break;
+			}
+			case Shader::SystemUniform::AMBIENT:
+			{
+				_mat->setUniform(Shader::systemUniformEnumToString(*it), lightSettings.ambientColor);
+				break;
+			}
+			case Shader::SystemUniform::LIGHT:
+			{
 				break;
 			}
 			}
