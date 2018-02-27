@@ -68,15 +68,25 @@ namespace gg
 		/* Enables the specific log level to be logged in console.
 		 * LogLevel is the type of log which can be filtered for logging.
 		 */
-		static void addLog(LogLevel logLevel);
+		static void addLogLevel(LogLevel logLevel);
+
 		/* Disables the specific log level to be logged in console.
 		 * LogLevel is the type of log which can be filtered for logging.
 		*/
-		static void removeLog(LogLevel logLevel);
+		static void removeLogLevel(LogLevel logLevel);
+
+		/* Sets the log level to the [logLevel] parameter.
+		 * LogLevel is the type of log which can be filtered for logging.
+		 */
+		static void setLogLevel(LogLevel logLevel);
+
+		/* Gets the current log level */
+		static LogLevel getCurrentLogLevel(void);
+
 		/* Logs the [str] to console with the LogLevel type.
 		 * LogLevel is the type of log which can be filtered for logging.
 		*/
-		static void log(std::string str, LogLevel logLevel = LogLevel::Info);
+		static void log(const std::string& str, LogLevel logLevel = LogLevel::Info);
 
 	private:
 		Log(void) = delete;
