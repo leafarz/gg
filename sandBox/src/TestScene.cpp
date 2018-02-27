@@ -13,7 +13,7 @@ namespace gg
 
 	GameObject *goCube, *goTeapot, *goNano, *go2;
 	bool rotateTeapot = false;
-	Shader* teapotShader;
+	Shader *teapotShader, *basicShader;
 	Material* _cubeMat;
 	void TestScene::onInit(void)
 	{
@@ -110,17 +110,18 @@ namespace gg
 		goCube = new GameObject("GameObject");
 		// dont add
 		add(goCube);
-		goCube->getTransform()->setPosition(-2, 0, 0);
+		//goCube->getTransform()->setPosition(-2, 0, 0);
+		goCube->getTransform()->setScale(10, 1, 10);
 
 		// mesh
 		Mesh* _cubeMesh = new Mesh();
 		_cubeMesh->setVertices(_quadVerts, _quadIndices, false);
 
 		// shader, texture, material
-		Shader *_basicShader = new Shader("src/basic.shader");
+		basicShader = new Shader("src/basic.shader");
 		Texture *_tex = new Texture("src/Pikamannn.jpg");
-		_cubeMat = new Material(_basicShader);
-		_cubeMat->setTexture("test", _tex);
+		_cubeMat = new Material(basicShader);
+		//_cubeMat->setTexture("test", _tex);
 
 		// meshrenderer
 		MeshRenderer* _mrCube = goCube->addComponent<MeshRenderer>();
@@ -150,7 +151,7 @@ namespace gg
 		
 		// ************* CAMERA *************
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
-		_freeCam->getTransform()->setPositionZ(-5);
+		_freeCam->getTransform()->setPosition(0,2,-8);
 		add(_freeCam);
 		setActiveCamera(_freeCam);
 
@@ -162,6 +163,8 @@ namespace gg
 		//Material* _mat2 = new Material(new Shader("src/basic.shader"));
 		//go->addChild(go2);
 		
+		// TODO: temporary. remove
+		Log::removeLogLevel(LogLevel::Warn);
 		Scene::onInit();
 	}
 	void TestScene::onUpdate(void)
@@ -173,15 +176,20 @@ namespace gg
 		if (Input::getKeyDown(KEY::R))
 		{
 			//goTeapot->getTransform()->setEuler(0, 0, 0);
-			teapotShader->reload();
+			//teapotShader->reload();
+			basicShader->reload();
 		}
 		if (rotateTeapot)
 		{
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
 
-		_cubeMat->setUniform("lights[0].color", Math::Vec4f(1,0,0,1));
 		_cubeMat->setUniform("lights[0].direction", getActiveCamera()->getGameObject()->getTransform()->getForward());
+		_cubeMat->setUniform("lights[0].color", Math::Vec4f(1,0,0,1));
+		_cubeMat->setUniform("lights[0].position", Math::Vec4f(sin(Time::getCurrentTime()) * 2, 2, 0, 1));
+		_cubeMat->setUniformf("lights[0].constantAttenuation", 0.2f);
+		_cubeMat->setUniformf("lights[0].linearAttenuation", 0.1f);
+		_cubeMat->setUniformf("lights[0].exponentAttenuation", 0.2f);
 
 		Scene::onUpdate();
 	}
