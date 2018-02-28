@@ -25,9 +25,9 @@ namespace gg
 			/* Creates vector with default x,y,z,w=0 unless defined. */
 			Vec4f(float x = 0, float y = 0, float z = 0, float w = 0);
 			/* Creates vector from x,y values of Vec2f and z,w value 0 as default unless defined.*/
-			Vec4f(Vec2f& A, float z = 0, float w = 0);
+			Vec4f(const Vec2f& A, float z = 0, float w = 0);
 			/* Creates vector from x,y,z values of Vec3f and w value 0 as default unless defined.*/
-			Vec4f(Vec3f& A, float w = 0);
+			Vec4f(const Vec3f& A, float w = 0);
 
 			friend Vec4f operator+(const Vec4f& A, const Vec4f& B);
 			Vec4f operator-(void) const;

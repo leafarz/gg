@@ -13,11 +13,11 @@ namespace gg
 			: x(x), y(y), z(z), w(w)
 		{ }
 
-		Vec4f::Vec4f(Vec2f& A, float z, float w)
+		Vec4f::Vec4f(const Vec2f& A, float z, float w)
 			: x(A.x), y(A.y), z(z), w(w)
 		{ }
 
-		Vec4f::Vec4f(Vec3f & A, float w)
+		Vec4f::Vec4f(const Vec3f & A, float w)
 			: x(A.x), y(A.y), z(A.z), w(w)
 		{ }
 
