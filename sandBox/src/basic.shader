@@ -67,6 +67,24 @@ uniform sampler2D test;
 uniform vec3 sys_AmbientColor;
 uniform float sys_Time;
 
+vec3 calculatePointLight(Light light, vec3 position)
+{
+	vec3 _posToLight = light.position.xyz - position;
+	float _posToLightDist = length(_posToLight);
+
+	float _atten = 1.0 / (
+		light.constantAttenuation +
+		light.linearAttenuation * _posToLightDist +
+		light.exponentAttenuation * _posToLightDist * _posToLightDist +
+		0.00001
+	);
+	return light.color.xyz * _atten;
+}
+
+vec3 calculateSpotLight(Light light, vec3 position)
+{
+	return light.color.xyz;
+}
 void main()
 {
 	vec3 _result;
@@ -86,19 +104,16 @@ void main()
 		// point or spotlight
 		else
 		{
-			vec3 _posToLight = lights[i].position.xyz - fs_in.position;
-			float _posToLightDist = length(_posToLight);
-
-			_atten = 1.0 / (
-				lights[i].constantAttenuation +
-				lights[i].linearAttenuation * _posToLightDist +
-				lights[i].exponentAttenuation * _posToLightDist * _posToLightDist +
-				0.00001
-			);
+			// spotlight
+			if (lights[i].angle < 90.0)
+			{
+				_result = _result + calculateSpotLight(lights[i], fs_in.position.xyz);
+			}
+			else
+			{
+				//_result = _result + calculatePointLight(lights[i], fs_in.position.xyz);
+			}
 		}
-
-		// _result = _result + lights[i].color.xyz * max(dot(fs_in.normal, -_lightDir), 0);
-		_result = _result + _atten * lights[i].color.xyz;
 	}
 	fcolor = vec4(_result,1) + vec4(sys_AmbientColor,1);
 }
