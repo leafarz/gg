@@ -184,12 +184,32 @@ namespace gg
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
 
+		// spotlight
+		_cubeMat->setUniform("lights[0].color", Math::Vec4f(0,1,0,1));
+		//_cubeMat->setUniform("lights[0].position", Math::Vec4f(0, 1, 0, 1));
+		_cubeMat->setUniform("lights[0].position", Math::Vec4f(getActiveCamera()->getGameObject()->getTransform()->getPosition(),1));
+		//_cubeMat->setUniform("lights[0].direction", Math::Vec4f(0,-1,0,1));
 		_cubeMat->setUniform("lights[0].direction", getActiveCamera()->getGameObject()->getTransform()->getForward());
-		_cubeMat->setUniform("lights[0].color", Math::Vec4f(1,0,0,1));
-		_cubeMat->setUniform("lights[0].position", Math::Vec4f(sin(Time::getCurrentTime()) * 2, 2, 0, 1));
-		_cubeMat->setUniformf("lights[0].constantAttenuation", 0.2f);
-		_cubeMat->setUniformf("lights[0].linearAttenuation", 0.1f);
-		_cubeMat->setUniformf("lights[0].exponentAttenuation", 0.2f);
+		_cubeMat->setUniformf("lights[0].angle", 10);
+
+		_cubeMat->setUniformf("lights[0].constantAttenuation", 0.002f);
+		_cubeMat->setUniformf("lights[0].linearAttenuation", 0.003f);
+		_cubeMat->setUniformf("lights[0].exponentAttenuation", 0.0001f);
+
+
+		// pointlight
+		_cubeMat->setUniform("lights[1].color", Math::Vec4f(1, 0, 0, 1));
+		_cubeMat->setUniform("lights[1].position", Math::Vec4f(sin(Time::getCurrentTime()) * 2, 2, 0, 1));
+		_cubeMat->setUniformf("lights[1].constantAttenuation", 0.2f);
+		_cubeMat->setUniformf("lights[1].linearAttenuation", 0.1f);
+		_cubeMat->setUniformf("lights[1].exponentAttenuation", 0.2f);
+		_cubeMat->setUniformf("lights[1].angle", 180.0f);
+
+
+		// directionallight
+		_cubeMat->setUniform("lights[2].color", Math::Vec4f(0, 0, 0.5f, 1));
+		_cubeMat->setUniform("lights[2].position", Math::Vec4f(0,0,0,0));
+		_cubeMat->setUniform("lights[2].direction", Math::Vec3f(-1,-1,0).normal());
 
 		Scene::onUpdate();
 	}

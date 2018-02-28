@@ -67,9 +67,19 @@ uniform sampler2D test;
 uniform vec3 sys_AmbientColor;
 uniform float sys_Time;
 
-vec3 calculatePointLight(Light light, vec3 position)
+float fresnel(vec3 direction, vec3 normal)
 {
-	vec3 _posToLight = light.position.xyz - position;
+	return max(dot(direction, -normal),0);
+}
+
+vec3 computeDirectionalLight(Light light, vec3 surfaceNormal)
+{
+	return light.color.xyz * fresnel(light.direction, surfaceNormal);
+}
+
+vec3 computePointLight(Light light, vec3 surfacePos)
+{
+	vec3 _posToLight = light.position.xyz - surfacePos;
 	float _posToLightDist = length(_posToLight);
 
 	float _atten = 1.0 / (
@@ -81,25 +91,40 @@ vec3 calculatePointLight(Light light, vec3 position)
 	return light.color.xyz * _atten;
 }
 
-vec3 calculateSpotLight(Light light, vec3 position)
+vec3 computeSpotLight(Light light, vec3 surfacePos)
 {
-	return light.color.xyz;
+	vec3 _posToLight = light.position.xyz - surfacePos;
+	vec3 _posToLightDir = normalize(_posToLight);
+	float _angle = cos(radians(light.angle));
+	float _dot = fresnel(light.direction, _posToLightDir);
+
+	// if within cone
+	if(_dot > _angle)	// equivalent to: acos(_dot) < radians(angle)
+	{
+		float _posToLightDist = length(_posToLight);
+		float _spotFactor = (_dot - _angle) / _angle;
+		float _atten = 1.0 / (
+			light.constantAttenuation +
+			light.linearAttenuation * _posToLightDist +
+			light.exponentAttenuation * _posToLightDist * _posToLightDist +
+			0.00001
+		);
+		return light.color.xyz * _spotFactor * _atten;
+	}
+	else
+	{
+		return vec3(0,0,0);
+	}
 }
 void main()
 {
 	vec3 _result;
-
-	float _atten;
 	for(int i=-1; ++i < MAX_LIGHTS; )
 	{
-		float _diff;
-		vec3 _lightDir;
-
 		// directional light
 		if(lights[i].position.w == 0)
 		{
-			_atten = 1;
-			_lightDir = lights[i].direction;
+			_result = _result + computeDirectionalLight(lights[i], fs_in.normal);
 		}
 		// point or spotlight
 		else
@@ -107,13 +132,13 @@ void main()
 			// spotlight
 			if (lights[i].angle < 90.0)
 			{
-				_result = _result + calculateSpotLight(lights[i], fs_in.position.xyz);
+				_result = _result + computeSpotLight(lights[i], fs_in.position.xyz);
 			}
 			else
 			{
-				//_result = _result + calculatePointLight(lights[i], fs_in.position.xyz);
+				_result = _result + computePointLight(lights[i], fs_in.position.xyz);
 			}
 		}
 	}
-	fcolor = vec4(_result,1) + vec4(sys_AmbientColor,1);
+	fcolor = max(vec4(_result,1), vec4(sys_AmbientColor,1));
 }
