@@ -125,6 +125,16 @@ namespace gg
 		else if (strcmp(systemUniform, "sys_MVP") == 0)				{ return SystemUniform::MVP; }
 		else if (strcmp(systemUniform, "sys_Time") == 0)			{ return SystemUniform::TIME; }
 		else if (strcmp(systemUniform, "sys_AmbientColor") == 0)	{ return SystemUniform::AMBIENT; }
+		else
+		{
+			// check for lights
+			std::string _str = std::string(systemUniform);
+			if (_str.find("sys_Lights") == 0)
+			{
+				// TODO: add parse lights
+			}
+		}
+		//else if (strcmp(systemUniform, "sys_Lights") == 0)			{ return SystemUniform::LIGHT; }
 		return SystemUniform::UNKNOWN;
 	}
 
@@ -138,6 +148,7 @@ namespace gg
 		case SystemUniform::MVP:			return "sys_MVP";
 		case SystemUniform::TIME:			return "sys_Time";
 		case SystemUniform::AMBIENT:		return "sys_AmbientColor";
+		case SystemUniform::LIGHT:			return "sys_Lights";
 		}
 		return "";
 	}
@@ -331,7 +342,7 @@ namespace gg
 		int _num = -1;
 		GLenum _type = GL_ZERO;
 		char _name[256];
-
+		bool _hasSystemLight = false;
 		GL(glGetProgramiv(m_ID, GL_ACTIVE_UNIFORMS, &_count));
 		FORU(i, 0, (uint)_count)
 		{
@@ -349,7 +360,15 @@ namespace gg
 				if (_len > 4)
 				{
 					SystemUniform _systemUniform = systemUniformStringToEnum(_name);
-					if (_systemUniform != SystemUniform::UNKNOWN) { m_SystemUniforms.push_back(_systemUniform); }
+					if (_systemUniform == SystemUniform::LIGHT && !_hasSystemLight)
+					{
+						_hasSystemLight = true;
+					}
+
+					if (_systemUniform != SystemUniform::UNKNOWN)
+					{
+						m_SystemUniforms.push_back(_systemUniform);
+					}
 				}
 				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
 			}

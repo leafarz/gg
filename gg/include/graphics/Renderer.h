@@ -2,6 +2,8 @@
 #define		GG_RENDERER_H
 #pragma once
 
+#include <vector>
+
 #include "graphics/LightSettings.h"
 
 #include "platform/opengl/GLCommon.h"
@@ -10,6 +12,7 @@
 
 namespace gg
 {
+	class Light;
 	class GameObject;
 	class Renderer
 	{
@@ -18,7 +21,14 @@ namespace gg
 		~Renderer(void);
 
 		void begin(void) const;
-		void draw(GameObject* gameObject, const Math::Mat4f& viewMatrix, const Math::Mat4f& projectionMatrix, const Math::Mat4f& pvMatrix, const LightSettings& lightSettings);
+		void draw(
+			GameObject* gameObject,
+			const Math::Mat4f& viewMatrix,
+			const Math::Mat4f& projectionMatrix,
+			const Math::Mat4f& pvMatrix,
+			const LightSettings& lightSettings,
+			const std::vector<Light*>& lights
+			);
 	}; // class Renderer
 } // namespace gg
 

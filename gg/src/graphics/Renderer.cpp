@@ -4,6 +4,8 @@
 
 #include "core/Time.h"
 
+#include "component/Light.h"
+
 #include "entity/GameObject.h"
 
 #include "graphics/Material.h"
@@ -34,7 +36,13 @@ namespace gg
 		// process render commands
 	}
 
-	void Renderer::draw(GameObject* gameObject, const Math::Mat4f& viewMatrix, const Math::Mat4f& projectionMatrix, const Math::Mat4f& pvMatrix, const LightSettings& lightSettings)
+	void Renderer::draw(
+		GameObject* gameObject,
+		const Math::Mat4f& viewMatrix,
+		const Math::Mat4f& projectionMatrix,
+		const Math::Mat4f& pvMatrix,
+		const LightSettings& lightSettings,
+		const std::vector<Light*>& lights)
 	{
 		MeshRenderer* _mr = gameObject->getComponent<MeshRenderer>();
 		if (!_mr) { return; }
@@ -82,6 +90,7 @@ namespace gg
 			}
 			case Shader::SystemUniform::LIGHT:
 			{
+
 				break;
 			}
 			}
