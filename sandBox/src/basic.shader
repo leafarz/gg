@@ -63,6 +63,7 @@ struct Light
 
 uniform Light lights[MAX_LIGHTS];
 
+uniform Light sys_Lights[MAX_LIGHTS];
 uniform sampler2D test;
 uniform vec3 sys_AmbientColor;
 uniform float sys_Time;
@@ -124,7 +125,7 @@ void main()
 		// directional light
 		if(lights[i].position.w == 0)
 		{
-			_result = _result + computeDirectionalLight(lights[i], fs_in.normal);
+			_result = _result + computeDirectionalLight(sys_Lights[i], fs_in.normal);
 		}
 		// point or spotlight
 		else
@@ -132,11 +133,11 @@ void main()
 			// spotlight
 			if (lights[i].angle < 90.0)
 			{
-				_result = _result + computeSpotLight(lights[i], fs_in.position.xyz);
+				_result = _result + computeSpotLight(sys_Lights[i], fs_in.position.xyz);
 			}
 			else
 			{
-				_result = _result + computePointLight(lights[i], fs_in.position.xyz);
+				_result = _result + computePointLight(sys_Lights[i], fs_in.position.xyz);
 			}
 		}
 	}

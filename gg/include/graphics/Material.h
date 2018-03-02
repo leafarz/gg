@@ -3,6 +3,7 @@
 #pragma once
 
 #include <stack>
+#include "graphics/Color.h"
 #include "math/Vec3f.h"
 #include "math/Mat4f.h"
 
@@ -40,6 +41,7 @@ namespace gg
 
 		void setTexture(const std::string& key, Texture* texture);
 		void setUniformf(const std::string& key, float val);
+		void setUniform(const std::string& key, const Color& val);
 		void setUniform(const std::string& key, const Math::Vec3f& val);
 		void setUniform(const std::string& key, float x, float y, float z);
 		void setUniform(const std::string& key, const Math::Vec4f& val);

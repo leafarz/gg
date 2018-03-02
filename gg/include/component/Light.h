@@ -20,6 +20,7 @@ namespace gg
 		};
 
 	public:
+		// TODO: add template lighttype
 		Light(LightType lightType);
 		~Light(void);
 
@@ -28,8 +29,21 @@ namespace gg
 
 		LightType getLightType(void) const { return m_LightType; }
 
+		const Color& getColor(void) const			{ return m_Color; }
+		void setColor(Color color);
+
+		const float getAngle(void) const				{ return m_Angle; }
+		void setAngle(float angle);
+		const Math::Vec3f& getAttenuation(void) const	{ return m_Attenuation; }
+		void setAttenuation(float constant, float linear, float exponential);
+		void setAttenuation(const Math::Vec3f& attenuation);
+
 	private:
 		LightType m_LightType;
+
+		Color m_Color;
+		float m_Angle;
+		Math::Vec3f m_Attenuation;
 	}; // class Light
 } // namespace gg
 

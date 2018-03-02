@@ -125,16 +125,7 @@ namespace gg
 		else if (strcmp(systemUniform, "sys_MVP") == 0)				{ return SystemUniform::MVP; }
 		else if (strcmp(systemUniform, "sys_Time") == 0)			{ return SystemUniform::TIME; }
 		else if (strcmp(systemUniform, "sys_AmbientColor") == 0)	{ return SystemUniform::AMBIENT; }
-		else
-		{
-			// check for lights
-			std::string _str = std::string(systemUniform);
-			if (_str.find("sys_Lights") == 0)
-			{
-				// TODO: add parse lights
-			}
-		}
-		//else if (strcmp(systemUniform, "sys_Lights") == 0)			{ return SystemUniform::LIGHT; }
+		else if (std::string(systemUniform).find("sys_Lights") == 0){ return SystemUniform::LIGHT; }
 		return SystemUniform::UNKNOWN;
 	}
 

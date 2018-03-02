@@ -19,6 +19,61 @@ namespace gg
 	{
 		LightSettings.ambientColor.set(0.1f, 0.1f, 0.1f);
 
+		//// spotlight
+		//_cubeMat->setUniform("lights[0].color", Math::Vec4f(0, 1, 0, 1));
+		//_cubeMat->setUniform("lights[0].position", Math::Vec4f(0, 1, 0, 1));
+		////_cubeMat->setUniform("lights[0].position", Math::Vec4f(getActiveCamera()->getGameObject()->getTransform()->getPosition(),1));
+		//_cubeMat->setUniform("lights[0].direction", Math::Vec3f(0, -1, -2).normal());
+		////_cubeMat->setUniform("lights[0].direction", getActiveCamera()->getGameObject()->getTransform()->getForward());
+		//_cubeMat->setUniformf("lights[0].angle", 20);
+
+		//_cubeMat->setUniformf("lights[0].constantAttenuation", 0.002f);
+		//_cubeMat->setUniformf("lights[0].linearAttenuation", 0.003f);
+		//_cubeMat->setUniformf("lights[0].exponentAttenuation", 0.0001f);
+
+
+		// pointlight
+		//_cubeMat->setUniform("lights[1].color", Math::Vec4f(1, 0, 0, 1));
+		//_cubeMat->setUniform("lights[1].position", Math::Vec4f(sin(Time::getCurrentTime()) * 2, 2, 0, 1));
+		//_cubeMat->setUniformf("lights[1].constantAttenuation", 0.2f);
+		//_cubeMat->setUniformf("lights[1].linearAttenuation", 0.1f);
+		//_cubeMat->setUniformf("lights[1].exponentAttenuation", 0.2f);
+		//_cubeMat->setUniformf("lights[1].angle", 180.0f);
+
+
+		//// directionallight
+		//_cubeMat->setUniform("lights[2].color", Math::Vec4f(0, 0, 0.5f, 1));
+		//_cubeMat->setUniform("lights[2].position", Math::Vec4f(0, 0, 0, 0));
+		//_cubeMat->setUniform("lights[2].direction", Math::Vec3f(-1, -1, 0).normal());
+
+		// directional light
+		Light *_dLight = new Light(Light::LightType::DirectionalLight);
+		GameObject *_goDLight = new GameObject();
+		_goDLight->addComponent(_dLight);
+		_dLight->setColor(Color(1, 1, 1, 1));
+		_dLight->getGameObject()->getTransform()->setPosition(0, 0, 0);
+		_dLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(-1, -1, 0).normal());
+		_dLight->setAngle(20);
+		//add(_goDLight);
+
+		Light *_pLight = new Light(Light::LightType::PointLight);
+		GameObject *_goPLight = new GameObject();
+		_goPLight->addComponent(_pLight);
+		_pLight->setColor(Color(1, 0, 0, 1));
+		_pLight->getGameObject()->getTransform()->setPosition(sin(Time::getCurrentTime()) * 2, 2, 0);
+		_pLight->setAttenuation(0.2f, 0.1f, 0.2f);
+		add(_goPLight);
+
+		Light *_sLight = new Light(Light::LightType::SpotLight);
+		GameObject *_goSLight = new GameObject();
+		_goSLight->addComponent(_sLight);
+		_sLight->setColor(Color(0, 1, 0, 1));
+		_sLight->getGameObject()->getTransform()->setPosition(0, 1, 0);
+		_sLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(0, -1, -2).normal());
+		_sLight->setAttenuation(0.002f, 0.003f, 0.001f);
+		_sLight->setAngle(20);
+
+
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
 		Math::Vec3f _urf = Math::Vec3f( 0.5f,  0.5f, -0.5);
 		Math::Vec3f _llf = Math::Vec3f(-0.5f, -0.5f, -0.5);
@@ -111,7 +166,7 @@ namespace gg
 		// dont add
 		add(goCube);
 		//goCube->getTransform()->setPosition(-2, 0, 0);
-		goCube->getTransform()->setScale(10, 1, 10);
+		goCube->getTransform()->setScale(50, 1, 50);
 
 		// mesh
 		Mesh* _cubeMesh = new Mesh();
@@ -184,32 +239,32 @@ namespace gg
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
 
-		// spotlight
-		_cubeMat->setUniform("lights[0].color", Math::Vec4f(0,1,0,1));
+		//// spotlight
+		//_cubeMat->setUniform("lights[0].color", Math::Vec4f(0,1,0,1));
 		//_cubeMat->setUniform("lights[0].position", Math::Vec4f(0, 1, 0, 1));
-		_cubeMat->setUniform("lights[0].position", Math::Vec4f(getActiveCamera()->getGameObject()->getTransform()->getPosition(),1));
-		//_cubeMat->setUniform("lights[0].direction", Math::Vec4f(0,-1,0,1));
-		_cubeMat->setUniform("lights[0].direction", getActiveCamera()->getGameObject()->getTransform()->getForward());
-		_cubeMat->setUniformf("lights[0].angle", 10);
+		////_cubeMat->setUniform("lights[0].position", Math::Vec4f(getActiveCamera()->getGameObject()->getTransform()->getPosition(),1));
+		//_cubeMat->setUniform("lights[0].direction", Math::Vec3f(0,-1,-2).normal());
+		////_cubeMat->setUniform("lights[0].direction", getActiveCamera()->getGameObject()->getTransform()->getForward());
+		//_cubeMat->setUniformf("lights[0].angle", 20);
 
-		_cubeMat->setUniformf("lights[0].constantAttenuation", 0.002f);
-		_cubeMat->setUniformf("lights[0].linearAttenuation", 0.003f);
-		_cubeMat->setUniformf("lights[0].exponentAttenuation", 0.0001f);
-
-
-		// pointlight
-		_cubeMat->setUniform("lights[1].color", Math::Vec4f(1, 0, 0, 1));
-		_cubeMat->setUniform("lights[1].position", Math::Vec4f(sin(Time::getCurrentTime()) * 2, 2, 0, 1));
-		_cubeMat->setUniformf("lights[1].constantAttenuation", 0.2f);
-		_cubeMat->setUniformf("lights[1].linearAttenuation", 0.1f);
-		_cubeMat->setUniformf("lights[1].exponentAttenuation", 0.2f);
-		_cubeMat->setUniformf("lights[1].angle", 180.0f);
+		//_cubeMat->setUniformf("lights[0].constantAttenuation", 0.002f);
+		//_cubeMat->setUniformf("lights[0].linearAttenuation", 0.003f);
+		//_cubeMat->setUniformf("lights[0].exponentAttenuation", 0.0001f);
 
 
-		// directionallight
-		_cubeMat->setUniform("lights[2].color", Math::Vec4f(0, 0, 0.5f, 1));
-		_cubeMat->setUniform("lights[2].position", Math::Vec4f(0,0,0,0));
-		_cubeMat->setUniform("lights[2].direction", Math::Vec3f(-1,-1,0).normal());
+		//// pointlight
+		//_cubeMat->setUniform("lights[1].color", Math::Vec4f(1, 0, 0, 1));
+		//_cubeMat->setUniform("lights[1].position", Math::Vec4f(sin(Time::getCurrentTime()) * 2, 2, 0, 1));
+		//_cubeMat->setUniformf("lights[1].constantAttenuation", 0.2f);
+		//_cubeMat->setUniformf("lights[1].linearAttenuation", 0.1f);
+		//_cubeMat->setUniformf("lights[1].exponentAttenuation", 0.2f);
+		//_cubeMat->setUniformf("lights[1].angle", 180.0f);
+
+
+		//// directionallight
+		//_cubeMat->setUniform("lights[2].color", Math::Vec4f(0, 0, 0.5f, 1));
+		//_cubeMat->setUniform("lights[2].position", Math::Vec4f(0,0,0,0));
+		//_cubeMat->setUniform("lights[2].direction", Math::Vec3f(-1,-1,0).normal());
 
 		Scene::onUpdate();
 	}
