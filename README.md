@@ -48,11 +48,18 @@ A simple OpenGL game engine.
 
 
 ## TODO ##
+* high prio
+ * dirty flags
+ * renderer
+   * shared shaders / materials
+   * light
+     * directional light
+     * point light
+     * spotlight
 * renderer
  * base renderer
    * mesh
    * transform
-   * async model loading
  * shader
    * reload
    * post process
@@ -60,10 +67,6 @@ A simple OpenGL game engine.
    * pbr
    * skybox
    * cubemaps
- * light
-   * directional light
-   * point light
-   * spotlight
  * categorized draw *
    * per vertex array id
    * per shader / material
