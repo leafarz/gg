@@ -57,11 +57,8 @@ struct Light
 	float linearAttenuation;
 	float exponentAttenuation;
 
-	float radius;
 	float angle;	// spotCutoff
 };
-
-uniform Light lights[MAX_LIGHTS];
 
 uniform Light sys_Lights[MAX_LIGHTS];
 uniform sampler2D test;
@@ -123,7 +120,7 @@ void main()
 	for(int i=-1; ++i < MAX_LIGHTS; )
 	{
 		// directional light
-		if(lights[i].position.w == 0)
+		if(sys_Lights[i].position.w == 0)
 		{
 			_result = _result + computeDirectionalLight(sys_Lights[i], fs_in.normal);
 		}
@@ -131,7 +128,7 @@ void main()
 		else
 		{
 			// spotlight
-			if (lights[i].angle < 90.0)
+			if (sys_Lights[i].angle < 90.0)
 			{
 				_result = _result + computeSpotLight(sys_Lights[i], fs_in.position.xyz);
 			}

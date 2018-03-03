@@ -48,30 +48,32 @@ namespace gg
 
 		// directional light
 		Light *_dLight = new Light(Light::LightType::DirectionalLight);
-		GameObject *_goDLight = new GameObject();
+		GameObject *_goDLight = new GameObject("DirectionalLight");
 		_goDLight->addComponent(_dLight);
 		_dLight->setColor(Color(1, 1, 1, 1));
 		_dLight->getGameObject()->getTransform()->setPosition(0, 0, 0);
 		_dLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(-1, -1, 0).normal());
-		_dLight->setAngle(20);
 		//add(_goDLight);
 
 		Light *_pLight = new Light(Light::LightType::PointLight);
-		GameObject *_goPLight = new GameObject();
+		GameObject *_goPLight = new GameObject("PointLight");
 		_goPLight->addComponent(_pLight);
-		_pLight->setColor(Color(1, 0, 0, 1));
-		_pLight->getGameObject()->getTransform()->setPosition(sin(Time::getCurrentTime()) * 2, 2, 0);
+		_pLight->setColor(Color(1, 1, 1, 1));
+		_pLight->getGameObject()->getTransform()->setPosition(0, 2, 0);
+		//_pLight->getGameObject()->getTransform()->setPosition(sin(Time::getCurrentTime()) * 2, 2, 0);
 		_pLight->setAttenuation(0.2f, 0.1f, 0.2f);
-		add(_goPLight);
+		//add(_goPLight);
 
 		Light *_sLight = new Light(Light::LightType::SpotLight);
-		GameObject *_goSLight = new GameObject();
+		GameObject *_goSLight = new GameObject("SpotLight");
 		_goSLight->addComponent(_sLight);
 		_sLight->setColor(Color(0, 1, 0, 1));
 		_sLight->getGameObject()->getTransform()->setPosition(0, 1, 0);
+		// TODO: fix look at nan return value. *sqrt has negative
 		_sLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(0, -1, -2).normal());
 		_sLight->setAttenuation(0.002f, 0.003f, 0.001f);
 		_sLight->setAngle(20);
+		add(_goSLight);
 
 
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);

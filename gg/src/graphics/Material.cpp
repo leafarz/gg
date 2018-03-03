@@ -89,7 +89,7 @@ namespace gg
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
 		m_Vec3fs.push(Data<Math::Vec3f>(key, Math::Vec3f(x, y, z)));
 	}
-	void Material::setUniform(const std::string& key, const Math::Vec4f & val)
+	void Material::setUniform(const std::string& key, const Math::Vec4f& val)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
 		m_Vec4fs.push(Data<Math::Vec4f>(key, val));

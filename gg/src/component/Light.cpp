@@ -4,11 +4,13 @@
 #include "entity/GameObject.h"
 namespace gg
 {
-	Light::Light(Light::LightType lightType)
-		: m_LightType(lightType)
-	{
-		if (lightType == LightType::PointLight) { m_Angle = 180; }
-	}
+	Light::Light(LightType lightType)
+		: m_LightType(lightType), m_Angle(lightType == LightType::PointLight ? 180 : 0)
+	{ }
+
+	Light::Light(LightType lightType, const Color& color, float angle, const Math::Vec3f & attenuation)
+		: m_LightType(lightType), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180 : angle), m_Attenuation(attenuation)
+	{ }
 
 	Light::~Light(void)
 	{

@@ -97,47 +97,44 @@ namespace gg
 					{
 					case Light::LightType::DirectionalLight:
 					{
-						const std::string& _prefix = Shader::systemUniformEnumToString(*it);
 						Transform* _t = (*it2)->getGameObject()->getTransform();
 						Math::Vec4f _pos(_t->getPosition(), 0);
 						Math::Vec3f _forward = _t->getForward();
 
 						// color, position, direction
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].color", (*it2)->getColor());
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].position", _pos);
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].direction", _forward);
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 +  (int)(SystemLightIndex::Color)], (*it2)->getColor());
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _forward);
 						break;
 					}
 					case Light::LightType::PointLight:
 					{
-						const std::string& _prefix = Shader::systemUniformEnumToString(*it);
-						Math::Vec4f _pos((*it2)->getGameObject()->getTransform()->getPosition(), 0);
+						Math::Vec4f _pos((*it2)->getGameObject()->getTransform()->getPosition(), 1);
 						const Math::Vec3f& _attenuation = (*it2)->getAttenuation();
 
 						// color, position, angle, attenuation
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].color", (*it2)->getColor());
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].position", _pos);
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].angle", (*it2)->getAngle());
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].constantAttenuation", _attenuation.x);
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].linearAttenuation", _attenuation.y);
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].exponentAttenuation", _attenuation.z);
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
 						break;
 					}
 					case Light::LightType::SpotLight:
 					{
-						const std::string& _prefix = Shader::systemUniformEnumToString(*it);
 						Transform* _t = (*it2)->getGameObject()->getTransform();
-						Math::Vec4f _pos(_t->getPosition(), 0);
+						Math::Vec4f _pos(_t->getPosition(), 1);
 						const Math::Vec3f& _attenuation = (*it2)->getAttenuation();
 
 						// color, position, direction, angle, attenuation
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].color", (*it2)->getColor());
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].position", _pos);
-						_mat->setUniform(_prefix + '[' + std::to_string(_index) + "].direction", _t->getForward());
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].angle", (*it2)->getAngle());
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].constantAttenuation", _attenuation.x);
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].linearAttenuation", _attenuation.y);
-						_mat->setUniformf(_prefix + '[' + std::to_string(_index) + "].exponentAttenuation", _attenuation.z);
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _t->getForward());
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
 						break;
 					}
 					}
