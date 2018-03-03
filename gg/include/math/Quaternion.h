@@ -26,12 +26,13 @@ namespace gg
 			/* The w of the quaternion. */
 			float w;
 
+			/* The identity quaternion. */
+			static const Quaternion identity;
+
 			/* Creates quaternion with default x,y,z=0 unless defined. */
 			Quaternion(float x = 0, float y = 0, float z = 0, float w = 1);
 			/* Creates quaternion from rotation parameters. */
 			Quaternion(const Vec3f& axis, float deg);
-			/* Create quaternion from forward and up vectors. */
-			Quaternion(const Vec3f& forward, const Vec3f& up);
 			/* Create quaternion from euler angles in degrees. */
 			Quaternion(const Vec3f& eulerd);
 
@@ -201,8 +202,8 @@ namespace gg
 			/* Computes the dot product of 2 quaternions. */
 			static float dot(const Quaternion& A, const Quaternion& B);
 
-			/* Gets the quaternion from forward and up vectors. */
-			static Quaternion lookRotation(const Vec3f& forward, const Vec3f& up = Vec3f::up);
+			/* Gets the quaternion from forward vector. */
+			static Quaternion lookRotation(const Vec3f& forward);
 
 			static Quaternion fromEulerd(const Vec3f& eulerd);
 

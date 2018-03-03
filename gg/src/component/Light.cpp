@@ -5,11 +5,11 @@
 namespace gg
 {
 	Light::Light(LightType lightType)
-		: m_LightType(lightType), m_Angle(lightType == LightType::PointLight ? 180 : 0)
+		: m_LightType(lightType), m_Angle(lightType == LightType::PointLight ? 180.0f : 0.0f)
 	{ }
 
 	Light::Light(LightType lightType, const Color& color, float angle, const Math::Vec3f & attenuation)
-		: m_LightType(lightType), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180 : angle), m_Attenuation(attenuation)
+		: m_LightType(lightType), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180.0f : angle), m_Attenuation(attenuation)
 	{ }
 
 	Light::~Light(void)

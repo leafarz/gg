@@ -22,7 +22,7 @@ namespace gg
 		GL(glEnable(GL_CULL_FACE));
 		GL(glEnable(GL_DEPTH_TEST));
 		GL(glEnable(GL_TEXTURE_2D));
-		GL(glClearColor(0.1, 0.1, 0.3, 0.0));
+		GL(glClearColor(0.1f, 0.1f, 0.3f, 0.0f));
 	}
 
 	Renderer::~Renderer(void)

@@ -5,7 +5,7 @@
 #if _DEBUG
 	#define ROOT_SHADER "../gg/res/shader/"
 #else
-	#define ROOT_SHADER "res/shader/"
+	#define ROOT_SHADER "../gg/res/shader/"
 #endif
 
 #endif

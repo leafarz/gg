@@ -159,7 +159,7 @@ namespace gg
 	Math::Quaternion& Transform::lookAt(const Math::Vec3f& forward, const Math::Vec3f& up)
 	{
 		setDirty(DirtyBits::Rotation);
-		m_Rotation = Math::Quaternion::lookRotation(forward, up);
+		m_Rotation = Math::Quaternion::lookRotation(forward);
 		m_Euler = m_Rotation.toEulerd();
 
 		return m_Rotation;

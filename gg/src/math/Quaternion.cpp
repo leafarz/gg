@@ -10,6 +10,8 @@ namespace gg
 {
 	namespace Math
 	{
+		const Quaternion Quaternion::identity = Quaternion(0,0,0,1);
+
 		Quaternion::Quaternion(float x, float y, float z, float w)
 			: x(x), y(y), z(z), w(w)
 		{ }
@@ -23,11 +25,6 @@ namespace gg
 			this->y = axis.y * _sinHalfAngle;
 			this->z = axis.z * _sinHalfAngle;
 			this->w = _cosHalfAngle;
-		}
-
-		Quaternion::Quaternion(const Vec3f& forward, const Vec3f& up)
-		{
-			*this = lookRotation(forward, up);
 		}
 
 		Quaternion::Quaternion(const Vec3f& eulerd)
@@ -320,23 +317,19 @@ namespace gg
 				A.x * B.w;
 		}
 
-		Quaternion Quaternion::lookRotation(const Vec3f& forward, const Vec3f& up)
+		Quaternion Quaternion::lookRotation(const Vec3f& forward)
 		{
-			Vec3f _f = forward;
-			Vec3f _u = up;
-			Vec3f::orthoNormalize(_f, _u);
-			Vec3f _r = _u.cross(_f);
+			float _dot = Vec3f::dot(Vec3f::forward, forward);
 
-			float _w = sqrtf(1.0f + _r.x + _u.y + _f.z) * 0.5f;
-			float w4_recip = 1.0f / (4.0f * _w);
+			if (abs(_dot - (-1.0f)) < FLT_EPSILON) { return Quaternion(Vec3f::up, static_cast<float>(Math::PI)); }
+			if (abs(_dot - ( 1.0f)) < FLT_EPSILON) { return identity; }
 
-			return Quaternion(
-				(_u.z - _f.y) * w4_recip,
-				(_f.x - _r.z) * w4_recip,
-				(_r.y - _u.x) * w4_recip,
-				_w
-			);
+			float _angle = (float)acos(_dot);
+			Vec3f _axis = Vec3f::cross(Vec3f::forward, forward).normal();
+
+			return Quaternion(_axis, _angle * static_cast<float>(RAD_TO_DEG));
 		}
+
 		Quaternion Quaternion::fromEulerd(const Vec3f & eulerd)
 		{
 			Quaternion _q;
