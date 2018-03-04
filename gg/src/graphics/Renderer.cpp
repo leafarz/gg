@@ -102,7 +102,11 @@ namespace gg
 						Math::Vec3f _forward = _t->getForward();
 
 						// color, position, direction
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 +  (int)(SystemLightIndex::Color)], (*it2)->getColor());
+						if((*it2)->isDirty(Light::DirtyBits::Color))
+						{
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+							(*it2)->clearDirty(Light::DirtyBits::Color);
+						}
 						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
 						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _forward);
 						break;
@@ -113,12 +117,26 @@ namespace gg
 						const Math::Vec3f& _attenuation = (*it2)->getAttenuation();
 
 						// color, position, angle, attenuation
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+						if ((*it2)->isDirty(Light::DirtyBits::Color))
+						{
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+							(*it2)->clearDirty(Light::DirtyBits::Color);
+						}
 						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
+
+						if ((*it2)->isDirty(Light::DirtyBits::Angle))
+						{
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
+							(*it2)->clearDirty(Light::DirtyBits::Angle);
+						}
+
+						if ((*it2)->isDirty(Light::DirtyBits::Attenuation))
+						{
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
+							(*it2)->clearDirty(Light::DirtyBits::Attenuation);
+						}
 						break;
 					}
 					case Light::LightType::SpotLight:
@@ -128,13 +146,29 @@ namespace gg
 						const Math::Vec3f& _attenuation = (*it2)->getAttenuation();
 
 						// color, position, direction, angle, attenuation
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+						if ((*it2)->isDirty(Light::DirtyBits::Color))
+						{
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
+							(*it2)->clearDirty(Light::DirtyBits::Color);
+						}
+
 						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+
 						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _t->getForward());
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
-						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
+
+						if ((*it2)->isDirty(Light::DirtyBits::Angle))
+						{
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
+							(*it2)->clearDirty(Light::DirtyBits::Angle);
+						}
+
+						if ((*it2)->isDirty(Light::DirtyBits::Attenuation))
+						{
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
+							(*it2)->clearDirty(Light::DirtyBits::Attenuation);
+						}
 						break;
 					}
 					}
@@ -143,7 +177,7 @@ namespace gg
 				break;
 			}
 			}
-		}
+		} // VFOR
 		_mr->draw();
 	}
 

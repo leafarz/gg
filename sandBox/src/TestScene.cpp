@@ -34,7 +34,7 @@ namespace gg
 		_pLight->setColor(Color(1, 1, 1, 1));
 		_pLight->getGameObject()->getTransform()->setPosition(0, 2, 0);
 		_pLight->setAttenuation(0.2f, 0.1f, 0.2f);
-		//add(_goPLight);
+		add(_goPLight);
 
 		Light *_sLight = new Light(Light::LightType::SpotLight);
 		GameObject* _goSLight = new GameObject("SpotLight");
@@ -44,7 +44,7 @@ namespace gg
 		_sLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(0, -1, -2).normal());
 		_sLight->setAttenuation(0.002f, 0.003f, 0.001f);
 		_sLight->setAngle(20);
-		//add(_goSLight);
+		add(_goSLight);
 
 
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);

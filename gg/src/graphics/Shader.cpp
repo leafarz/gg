@@ -351,12 +351,15 @@ namespace gg
 				if (_len > 4)
 				{
 					SystemUniform _systemUniform = systemUniformStringToEnum(_name);
-					if (_systemUniform == SystemUniform::LIGHT && !_hasSystemLight)
+					if (_systemUniform == SystemUniform::LIGHT)
 					{
-						_hasSystemLight = true;
+						if (!_hasSystemLight)
+						{
+							_hasSystemLight = true;
+							m_SystemUniforms.push_back(_systemUniform);
+						}
 					}
-
-					if (_systemUniform != SystemUniform::UNKNOWN)
+					else if (_systemUniform != SystemUniform::UNKNOWN)
 					{
 						m_SystemUniforms.push_back(_systemUniform);
 					}

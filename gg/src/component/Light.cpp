@@ -15,12 +15,29 @@ namespace gg
 	Light::~Light(void)
 	{
 	}
-	void Light::setColor(Color color) { m_Color = color; }
+	void Light::setColor(Color color)
+	{
+		setDirty(DirtyBits::Color);
+		m_Color = color;
+	}
 	void Light::setAngle(float angle)
 	{
 		if (m_LightType == LightType::PointLight) { return; }
+		setDirty(DirtyBits::Angle);
 		m_Angle = angle;
 	}
-	void Light::setAttenuation(float constant, float linear, float exponential) { m_Attenuation.set(constant, linear, exponential); }
-	void Light::setAttenuation(const Math::Vec3f& attenuation) { m_Attenuation = attenuation; }
+	void Light::setAttenuation(float constant, float linear, float exponential)
+	{
+		setDirty(DirtyBits::Attenuation);
+		m_Attenuation.set(constant, linear, exponential);
+	}
+	void Light::setAttenuation(const Math::Vec3f& attenuation)
+	{
+		setDirty(DirtyBits::Angle);
+		m_Attenuation = attenuation;
+	}
+
+	void Light::setDirty(DirtyBits bit)			{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits | (ubyte)bit); }
+	void Light::clearDirty(DirtyBits bit)		{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits & ~(ubyte)bit); }
+	bool Light::isDirty(DirtyBits bit) const	{ return ((ubyte)m_DirtyBits&(ubyte)bit) != 0;	}
 } // namespace gg

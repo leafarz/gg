@@ -13,6 +13,16 @@ namespace gg
 {
 	class Light : public Component
 	{
+	private:
+		friend class Renderer;
+
+	private:
+		enum class DirtyBits : ubyte
+		{
+			Color		= 1 << 0,
+			Angle		= 1 << 1,
+			Attenuation	= 1 << 2
+		};
 	public:
 		enum class LightType : ubyte
 		{
@@ -58,6 +68,17 @@ namespace gg
 		void setAttenuation(const Math::Vec3f& attenuation);
 
 	private:
+		void setDirty(DirtyBits bit);
+		void clearDirty(DirtyBits bit);
+		bool isDirty(DirtyBits bit) const;
+
+	private:
+		DirtyBits m_DirtyBits = static_cast<DirtyBits>(
+			(ubyte)DirtyBits::Color |
+			(ubyte)DirtyBits::Angle |
+			(ubyte)DirtyBits::Attenuation
+		);
+
 		LightType m_LightType;
 
 		Color m_Color;

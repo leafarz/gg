@@ -16,47 +16,6 @@ namespace gg
 	Material::~Material(void)
 	{ }
 
-	void Material::bind(void) const { m_Shader->bind(); }
-	void Material::unbind(void) const { m_Shader->unbind(); }
-
-	void Material::updateUniforms(void)
-	{
-		int _samplerSlot = 0;
-		while (!m_Textures.empty())
-		{
-			Data<Texture*>& _top = m_Textures.top();
-			Texture* _tex = _top.val;
-			_tex->bind(_samplerSlot);
-			m_Shader->setUniformi(_top.key, _samplerSlot);
-			m_Textures.pop();
-			_samplerSlot++;
-		}
-		while (!m_Floats.empty())
-		{
-			Data<float>& _top = m_Floats.top();
-			m_Shader->setUniformf(_top.key, _top.val);
-			m_Floats.pop();
-		}
-		while (!m_Vec3fs.empty())
-		{
-			Data<Math::Vec3f>& _top = m_Vec3fs.top();
-			m_Shader->setUniform(_top.key, _top.val);
-			m_Vec3fs.pop();
-		}
-		while (!m_Vec4fs.empty())
-		{
-			Data<Math::Vec4f>& _top = m_Vec4fs.top();
-			m_Shader->setUniform(_top.key, _top.val);
-			m_Vec4fs.pop();
-		}
-		while (!m_Mat4fs.empty())
-		{
-			Data<Math::Mat4f>& _top = m_Mat4fs.top();
-			m_Shader->setUniform(_top.key, _top.val, true);
-			m_Mat4fs.pop();
-		}
-	}
-
 	Shader* Material::getShader(void) const { return m_Shader; }
 	void Material::setShader(Shader * shader)
 	{
@@ -103,5 +62,46 @@ namespace gg
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
 		m_Mat4fs.push(Data<Math::Mat4f>(key, val));
+	}
+
+	void Material::bind(void) const { m_Shader->bind(); }
+	void Material::unbind(void) const { m_Shader->unbind(); }
+
+	void Material::updateUniforms(void)
+	{
+		int _samplerSlot = 0;
+		while (!m_Textures.empty())
+		{
+			Data<Texture*>& _top = m_Textures.top();
+			Texture* _tex = _top.val;
+			_tex->bind(_samplerSlot);
+			m_Shader->setUniformi(_top.key, _samplerSlot);
+			m_Textures.pop();
+			_samplerSlot++;
+		}
+		while (!m_Floats.empty())
+		{
+			Data<float>& _top = m_Floats.top();
+			m_Shader->setUniformf(_top.key, _top.val);
+			m_Floats.pop();
+		}
+		while (!m_Vec3fs.empty())
+		{
+			Data<Math::Vec3f>& _top = m_Vec3fs.top();
+			m_Shader->setUniform(_top.key, _top.val);
+			m_Vec3fs.pop();
+		}
+		while (!m_Vec4fs.empty())
+		{
+			Data<Math::Vec4f>& _top = m_Vec4fs.top();
+			m_Shader->setUniform(_top.key, _top.val);
+			m_Vec4fs.pop();
+		}
+		while (!m_Mat4fs.empty())
+		{
+			Data<Math::Mat4f>& _top = m_Mat4fs.top();
+			m_Shader->setUniform(_top.key, _top.val, true);
+			m_Mat4fs.pop();
+		}
 	}
 } // namespace gg
