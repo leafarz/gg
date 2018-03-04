@@ -240,10 +240,6 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClInclude>
     <ClInclude Include="include\math\Mat3f.h" />
-    <ClInclude Include="include\math\MathCommon.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="include\Paths.h" />
     <ClInclude Include="include\platform\opengl\GLCommon.h">
       <SubType>
@@ -374,10 +370,6 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <ClCompile Include="src\math\Complex.cpp" />
     <ClCompile Include="src\math\Mat3f.cpp" />
     <ClCompile Include="src\math\Mat4f.cpp" />
-    <ClCompile Include="src\math\MathCommon.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="src\math\Quaternion.cpp" />
     <ClCompile Include="src\math\Vec2f.cpp" />
     <ClCompile Include="src\math\Vec3f.cpp" />

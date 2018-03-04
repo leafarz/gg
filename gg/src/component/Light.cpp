@@ -33,11 +33,12 @@ namespace gg
 	}
 	void Light::setAttenuation(const Math::Vec3f& attenuation)
 	{
-		setDirty(DirtyBits::Angle);
+		setDirty(DirtyBits::Attenuation);
 		m_Attenuation = attenuation;
 	}
 
 	void Light::setDirty(DirtyBits bit)			{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits | (ubyte)bit); }
+	void Light::clearDirty(void)				{ m_DirtyBits = static_cast<DirtyBits>(0); }
 	void Light::clearDirty(DirtyBits bit)		{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits & ~(ubyte)bit); }
 	bool Light::isDirty(DirtyBits bit) const	{ return ((ubyte)m_DirtyBits&(ubyte)bit) != 0;	}
 } // namespace gg

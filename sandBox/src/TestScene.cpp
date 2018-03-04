@@ -11,10 +11,11 @@ namespace gg
 	{
 	}
 
-	GameObject *goCube, *goTeapot, *goNano, *go2;
+	GameObject *goCube, *goTeapot, *goNano, *go2, *_goSLight;
 	bool rotateTeapot = false;
 	Shader *teapotShader, *basicShader;
 	Material* _cubeMat;
+
 	void TestScene::onInit(void)
 	{
 		LightSettings.ambientColor.set(0.1f, 0.1f, 0.1f);
@@ -23,7 +24,7 @@ namespace gg
 		Light *_dLight = new Light(Light::LightType::DirectionalLight);
 		GameObject* _goDLight = new GameObject("DirectionalLight");
 		_goDLight->addComponent(_dLight);
-		_dLight->setColor(Color(1, 1, 1, 1));
+		_dLight->setColor(Color(0.5f, 0.5f, 0.5f, 1));
 		_dLight->getGameObject()->getTransform()->setPosition(0, 0, 0);
 		_dLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(-1, -1, 0).normal());
 		add(_goDLight);
@@ -33,11 +34,11 @@ namespace gg
 		_goPLight->addComponent(_pLight);
 		_pLight->setColor(Color(1, 1, 1, 1));
 		_pLight->getGameObject()->getTransform()->setPosition(0, 2, 0);
-		_pLight->setAttenuation(0.2f, 0.1f, 0.2f);
+		_pLight->setAttenuation(0.2f, 0.2f, 0.2f);
 		add(_goPLight);
 
 		Light *_sLight = new Light(Light::LightType::SpotLight);
-		GameObject* _goSLight = new GameObject("SpotLight");
+		_goSLight = new GameObject("SpotLight");
 		_goSLight->addComponent(_sLight);
 		_sLight->setColor(Color(0, 1, 0, 1));
 		_sLight->getGameObject()->getTransform()->setPosition(0, 1, 0);
@@ -135,7 +136,7 @@ namespace gg
 
 		// ************* CUBE *************
 		// gameobject
-		goCube = new GameObject("GameObject");
+		goCube = new GameObject("Cube");
 		// dont add
 		add(goCube);
 		//goCube->getTransform()->setPosition(-2, 0, 0);
@@ -203,14 +204,19 @@ namespace gg
 		}
 		if (Input::getKeyDown(KEY::R))
 		{
-			//goTeapot->getTransform()->setEuler(0, 0, 0);
-			//teapotShader->reload();
 			basicShader->reload();
 		}
 		if (rotateTeapot)
 		{
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
+
+		_goSLight->getTransform()->lookAt(Math::Vec3f(
+			sinf((float)Time::getCurrentTime()),
+			-0.1f,
+			cos((float)Time::getCurrentTime())
+		).normal());
+
 		Scene::onUpdate();
 	}
 } // namespace gg

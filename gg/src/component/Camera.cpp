@@ -27,7 +27,7 @@ namespace gg
 	{
 		const Transform* const _t = m_GameObject->getTransform();
 
-		//if (_t->isDirty())
+		if (_t->isDirty())
 		{
 			const Math::Vec3f& _pos = _t->getPosition();
 			const Math::Quaternion& _q = _t->getRotation().conjugate();

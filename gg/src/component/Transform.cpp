@@ -190,11 +190,8 @@ namespace gg
 	const Math::Mat4f& Transform::getTransformationMatrix(void)
 	{
 		bool _posBit = isDirty(DirtyBits::Position);
-		bool _rotBit = isDirty(static_cast<DirtyBits>(DirtyBits::Euler|DirtyBits::Rotation));
+		bool _rotBit = isDirty(static_cast<DirtyBits>((ubyte)DirtyBits::Euler| (ubyte)DirtyBits::Rotation));
 		bool _scaleBit = isDirty(DirtyBits::Scale);
-		
-		// clear bits
-		m_DirtyBits = static_cast<DirtyBits>(0);
 		
 		if (_rotBit) { m_RotMatrix = Math::Mat4f::rotationMatrix(m_Rotation); }
 
@@ -233,10 +230,11 @@ namespace gg
 
 	bool Transform::isDirty(void) const
 	{
-		return isDirty(static_cast<DirtyBits>(DirtyBits::Position | DirtyBits::Euler | DirtyBits::Rotation | DirtyBits::Scale));
+		return isDirty(static_cast<DirtyBits>((ubyte)DirtyBits::Position | (ubyte)DirtyBits::Euler | (ubyte)DirtyBits::Rotation | (ubyte)DirtyBits::Scale));
 	}
 
-	void Transform::setDirty(DirtyBits bit)			{ m_DirtyBits = static_cast<DirtyBits>(m_DirtyBits | bit); }
-	void Transform::clearDirty(DirtyBits bit)		{ m_DirtyBits = static_cast<DirtyBits>(m_DirtyBits & ~bit); }
-	bool Transform::isDirty(DirtyBits bit) const	{ return (m_DirtyBits&bit) != 0; }
+	void Transform::setDirty(DirtyBits bit)			{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits | (ubyte)bit); }
+	void Transform::clearDirty(void)				{ m_DirtyBits = static_cast<DirtyBits>(0); }
+	void Transform::clearDirty(DirtyBits bit)		{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits & ~(ubyte)bit); }
+	bool Transform::isDirty(DirtyBits bit) const	{ return ((ubyte)m_DirtyBits&(ubyte)bit) != 0; }
 } // namespace gg

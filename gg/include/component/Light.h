@@ -7,7 +7,7 @@
 
 #include "graphics/Color.h"
 
-#include "math/MathCommon.h"
+#include "math/MathUtil.h"
 #include "math/Vec4f.h"
 namespace gg
 {
@@ -69,6 +69,7 @@ namespace gg
 
 	private:
 		void setDirty(DirtyBits bit);
+		void clearDirty(void);
 		void clearDirty(DirtyBits bit);
 		bool isDirty(DirtyBits bit) const;
 

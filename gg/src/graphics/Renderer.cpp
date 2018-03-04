@@ -52,13 +52,13 @@ namespace gg
 
 		const std::vector<Shader::SystemUniform>& _sysUniforms = _mat->getShader()->getSystemUniforms();
 
+		Transform* _t = gameObject->getTransform();
 		VFOR(it, _sysUniforms)
 		{
 			switch (*it)
 			{
 			case Shader::SystemUniform::MODEL:
 			{
-				Transform* _t = gameObject->getTransform();
 				_mat->setUniform(Shader::systemUniformEnumToString(*it), _t->getTransformationMatrix());
 				break;
 			}
@@ -74,7 +74,6 @@ namespace gg
 			}
 			case Shader::SystemUniform::MVP:
 			{
-				Transform* _t = gameObject->getTransform();
 				_mat->setUniform(Shader::systemUniformEnumToString(*it), pvMatrix * _t->getTransformationMatrix());
 				break;
 			}
@@ -93,91 +92,104 @@ namespace gg
 				int _index = 0;
 				VFOR(it2, lights)
 				{
-					switch ((*it2)->getLightType())
+					Light* _light = *it2;
+					Transform* _tLight = _light->getGameObject()->getTransform();
+
+					switch (_light->getLightType())
 					{
 					case Light::LightType::DirectionalLight:
 					{
-						Transform* _t = (*it2)->getGameObject()->getTransform();
-						Math::Vec4f _pos(_t->getPosition(), 0);
-						Math::Vec3f _forward = _t->getForward();
-
 						// color, position, direction
-						if((*it2)->isDirty(Light::DirtyBits::Color))
+						if(_light->isDirty(Light::DirtyBits::Color))
 						{
-							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
-							(*it2)->clearDirty(Light::DirtyBits::Color);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], _light->getColor());
+							_light->clearDirty(Light::DirtyBits::Color);
 						}
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _forward);
+
+						if (_tLight->isDirty())
+						{
+							Math::Vec4f _pos(_tLight->getPosition(), 0);
+							Math::Vec3f _forward = _tLight->getForward();
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _forward);
+						}
 						break;
 					}
 					case Light::LightType::PointLight:
 					{
-						Math::Vec4f _pos((*it2)->getGameObject()->getTransform()->getPosition(), 1);
-						const Math::Vec3f& _attenuation = (*it2)->getAttenuation();
-
 						// color, position, angle, attenuation
-						if ((*it2)->isDirty(Light::DirtyBits::Color))
+						if (_light->isDirty(Light::DirtyBits::Color))
 						{
-							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
-							(*it2)->clearDirty(Light::DirtyBits::Color);
-						}
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
-
-						if ((*it2)->isDirty(Light::DirtyBits::Angle))
-						{
-							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
-							(*it2)->clearDirty(Light::DirtyBits::Angle);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], _light->getColor());
+							_light->clearDirty(Light::DirtyBits::Color);
 						}
 
-						if ((*it2)->isDirty(Light::DirtyBits::Attenuation))
+						if (_tLight->isDirty())
 						{
+							Math::Vec4f _pos(_tLight->getPosition(), 1);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+						}
+
+						if (_light->isDirty(Light::DirtyBits::Angle))
+						{
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], _light->getAngle());
+							_light->clearDirty(Light::DirtyBits::Angle);
+						}
+
+						if (_light->isDirty(Light::DirtyBits::Attenuation))
+						{
+							const Math::Vec3f& _attenuation = _light->getAttenuation();
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
-							(*it2)->clearDirty(Light::DirtyBits::Attenuation);
+							_light->clearDirty(Light::DirtyBits::Attenuation);
 						}
 						break;
 					}
 					case Light::LightType::SpotLight:
 					{
-						Transform* _t = (*it2)->getGameObject()->getTransform();
-						Math::Vec4f _pos(_t->getPosition(), 1);
-						const Math::Vec3f& _attenuation = (*it2)->getAttenuation();
-
 						// color, position, direction, angle, attenuation
-						if ((*it2)->isDirty(Light::DirtyBits::Color))
+						if (_light->isDirty(Light::DirtyBits::Color))
 						{
-							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], (*it2)->getColor());
-							(*it2)->clearDirty(Light::DirtyBits::Color);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Color)], _light->getColor());
+							_light->clearDirty(Light::DirtyBits::Color);
 						}
 
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
-
-						_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _t->getForward());
-
-						if ((*it2)->isDirty(Light::DirtyBits::Angle))
+						if (_tLight->isDirty())
 						{
-							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], (*it2)->getAngle());
-							(*it2)->clearDirty(Light::DirtyBits::Angle);
+							Math::Vec4f _pos(_tLight->getPosition(), 1);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
+							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _tLight->getForward());
 						}
 
-						if ((*it2)->isDirty(Light::DirtyBits::Attenuation))
+						if (_light->isDirty(Light::DirtyBits::Angle))
 						{
+							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Angle)], _light->getAngle());
+							_light->clearDirty(Light::DirtyBits::Angle);
+						}
+
+						if (_light->isDirty(Light::DirtyBits::Attenuation))
+						{
+							const Math::Vec3f& _attenuation = _light->getAttenuation();
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
-							(*it2)->clearDirty(Light::DirtyBits::Attenuation);
+							_light->clearDirty(Light::DirtyBits::Attenuation);
 						}
 						break;
 					}
 					}
 					_index++;
-				}
+				} // VFOR it2
 				break;
 			}
 			}
-		} // VFOR
+		} // VFOR it
+
+		// TODO: check if light might be cleared while objects are not yet finished
+		// eg. GameObjects[]
+		// dLight, box, pLight, box2
+		_t->clearDirty();
 		_mr->draw();
 	}
 

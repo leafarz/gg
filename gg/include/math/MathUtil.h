@@ -4,10 +4,7 @@
 #include <math.h>
 #include "math/Vec3f.h"
 
-namespace gg
-{
-	namespace Math
-	{
+namespace gg { namespace Math {
 		static const double PI = 3.14159265358979323846;
 
 		static const double RAD_TO_DEG		= static_cast<double>(180.0 / PI);
@@ -21,8 +18,11 @@ namespace gg
 		/* Compares doubles within DBL_EPSILON value */
 		bool doubleCmp(double a, double b, float threshold = DBL_EPSILON);
 
-		/* Clamps value within [min, max] */
-		float clamp(float val, float min, float max);
+		/* Keeps value within [min, max].
+		 * Default min is 0.
+		 * Default max is 0.
+		 */
+		float clamp(float val, float min = 0, float max = 1);
 
 		/* Lerp function. Returns the value ranging from
 		 * [from] to [to] at percent [p].
@@ -37,6 +37,5 @@ namespace gg
 		float lerp(double from, double to, double p);
 
 		Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t);
-	}// namespace Math
-}// namespace gg
+}/*namespace Math*/ }// namespace gg
 #endif

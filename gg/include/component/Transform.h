@@ -13,7 +13,10 @@ namespace gg
 	class Transform : public Component
 	{
 	private:
-		enum DirtyBits : ubyte
+		friend class Renderer;
+
+	private:
+		enum class DirtyBits : ubyte
 		{
 			Position	= 1 << 0,
 			Euler		= 1 << 1,
@@ -81,11 +84,17 @@ namespace gg
 
 	private:
 		void setDirty(DirtyBits bit);
+		void clearDirty(void);
 		void clearDirty(DirtyBits bit);
 		bool isDirty(DirtyBits bit) const;
 
 	private:
-		DirtyBits m_DirtyBits = static_cast<DirtyBits>(DirtyBits::Position | DirtyBits::Euler | DirtyBits::Rotation | DirtyBits::Scale);
+		DirtyBits m_DirtyBits = static_cast<DirtyBits>(
+			(ubyte)DirtyBits::Position |
+			(ubyte)DirtyBits::Euler |
+			(ubyte)DirtyBits::Rotation |
+			(ubyte)DirtyBits::Scale
+		);
 
 		// TODO: check if all of these are necessary
 		Math::Vec3f m_Position;

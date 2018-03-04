@@ -49,7 +49,6 @@ A simple OpenGL game engine.
 
 ## TODO ##
 * high prio
- * dirty flags
  * renderer
    * shared shaders / materials
    * light
@@ -94,6 +93,7 @@ A simple OpenGL game engine.
  * guids
 
 ## DONE ##
+* \*dirty flags
 * renderer
  * base renderer
    * mesh renderer
@@ -105,3 +105,5 @@ A simple OpenGL game engine.
    * system uniforms
 * components
  * camera
+
+\* Needs polish but will do for now.
