@@ -28,6 +28,8 @@ namespace gg
 			const Math::Mat4f& viewMatrix,
 			const Math::Mat4f& projectionMatrix,
 			const Math::Mat4f& pvMatrix,
+			const Math::Vec3f& cameraPosition,
+			const Math::Vec3f& cameraDirection,
 			const LightSettings& lightSettings,
 			const std::vector<Light*>& lights
 			);

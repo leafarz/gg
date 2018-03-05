@@ -11,3 +11,5 @@
 const int MAX_LIGHTS = 8;
 
 float saturate(float val) { return clamp(val,0,1); }
+
+vec3 reflect(vec3 incident, vec3 normal) { return incident - 2.0 * dot(normal,incident) * normal; }

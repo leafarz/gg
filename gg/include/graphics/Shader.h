@@ -45,6 +45,8 @@ namespace gg
 			MVP,
 			TIME,
 			AMBIENT,
+			CAMERA_POSITION,
+			CAMERA_DIRECTION,
 			LIGHT,
 			UNKNOWN
 		};

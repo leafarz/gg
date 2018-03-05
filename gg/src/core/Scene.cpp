@@ -74,10 +74,13 @@ namespace gg
 		const Math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
 		const Math::Mat4f _pv = _p * _v;
 
+		const Math::Vec3f& _cameraPosition = m_ActiveCamera->getGameObject()->getTransform()->getPosition();
+		const Math::Vec3f& _cameraDirection = m_ActiveCamera->getGameObject()->getTransform()->getForward();
+
 		VFOR(it, m_GameObjects)
 		{
 			GameObject* _go = *it;
-			m_Renderer->draw(_go, _v, _p, _pv, LightSettings, m_Lights);
+			m_Renderer->draw(_go, _v, _p, _pv, _cameraPosition, _cameraDirection, LightSettings, m_Lights);
 		}
 
 		// render queues?

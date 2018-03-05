@@ -125,6 +125,8 @@ namespace gg
 		else if (strcmp(systemUniform, "sys_MVP") == 0)				{ return SystemUniform::MVP; }
 		else if (strcmp(systemUniform, "sys_Time") == 0)			{ return SystemUniform::TIME; }
 		else if (strcmp(systemUniform, "sys_AmbientColor") == 0)	{ return SystemUniform::AMBIENT; }
+		else if (strcmp(systemUniform, "sys_CameraPosition") == 0)	{ return SystemUniform::CAMERA_POSITION; }
+		else if (strcmp(systemUniform, "sys_CameraDirection") == 0) { return SystemUniform::CAMERA_DIRECTION; }
 		else if (std::string(systemUniform).find("sys_Lights") == 0){ return SystemUniform::LIGHT; }
 		return SystemUniform::UNKNOWN;
 	}
@@ -133,13 +135,15 @@ namespace gg
 	{
 		switch (type)
 		{
-		case SystemUniform::MODEL:			return "sys_M";
-		case SystemUniform::VIEW:			return "sys_V";
-		case SystemUniform::PROJECTION:		return "sys_P";
-		case SystemUniform::MVP:			return "sys_MVP";
-		case SystemUniform::TIME:			return "sys_Time";
-		case SystemUniform::AMBIENT:		return "sys_AmbientColor";
-		case SystemUniform::LIGHT:			return "sys_Lights";
+		case SystemUniform::MODEL:				return "sys_M";
+		case SystemUniform::VIEW:				return "sys_V";
+		case SystemUniform::PROJECTION:			return "sys_P";
+		case SystemUniform::MVP:				return "sys_MVP";
+		case SystemUniform::TIME:				return "sys_Time";
+		case SystemUniform::AMBIENT:			return "sys_AmbientColor";
+		case SystemUniform::LIGHT:				return "sys_Lights";
+		case SystemUniform::CAMERA_POSITION:	return "sys_CameraPosition";
+		case SystemUniform::CAMERA_DIRECTION:	return "sys_CameraDirection";
 		}
 		return "";
 	}
