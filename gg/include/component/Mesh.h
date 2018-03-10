@@ -55,8 +55,10 @@ namespace gg
 
 		void calculateNormals(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices);
 
+		void getLengths(aiNode* node, const aiScene* scene, uint& vertsLength, uint& indicesLength);
+
 		void processNode(aiNode* node, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices);
-		void processMesh(aiMesh* mesh, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices);
+		void processMesh(aiMesh* mesh, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices);
 
 	private:
 		/* Key value pairs of hash to ids created throughout the app. */

@@ -33,13 +33,13 @@ namespace gg { namespace graphics {
 	{
 		bind();
 		vb.bind();
-		const auto& _elements = layout.GetElements();
+		const auto& _elements = layout.getElements();
 		uint _offset = 0;
 		FORU(i, 0, _elements.size())
 		{
 			const auto& _element = _elements[i];
 			GL(glEnableVertexAttribArray(i));
-			GL(glVertexAttribPointer(i, _element.count, _element.type, _element.normalized, layout.GetStride(), (const void*)_offset));
+			GL(glVertexAttribPointer(i, _element.count, _element.type, _element.normalized, layout.getStride(), (const void*)_offset));
 			_offset += _element.count * _element.getSize();
 		}
 	}

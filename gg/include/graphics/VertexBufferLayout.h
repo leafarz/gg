@@ -46,26 +46,26 @@ namespace gg { namespace graphics {
 		VertexBufferLayout(void);
 		~VertexBufferLayout(void);
 
-		template<typename T> void Push(uint count) { static_assert(false); }
-		template<> void Push<float>(uint count)
+		template<typename T> void push(uint count) { static_assert(false); }
+		template<> void push<float>(uint count)
 		{
 			m_Elements.push_back({ GL_FLOAT, count, GL_FALSE });
 			m_Stride += count * VertexBufferElement::getSizeOfType(GL_FLOAT);
 		}
-		template<> void Push<uint>(uint count)
+		template<> void push<uint>(uint count)
 		{
 			m_Elements.push_back({ GL_UNSIGNED_INT, count, GL_FALSE });
 			m_Stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_INT);
 		}
-		template<> void Push<unsigned char>(uint count)
+		template<> void push<unsigned char>(uint count)
 		{
 			m_Elements.push_back({ GL_UNSIGNED_BYTE, count, GL_TRUE });
 			m_Stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_BYTE);
 		}
 
 
-		inline const std::vector<VertexBufferElement>& GetElements() const { return m_Elements; }
-		inline uint GetStride() const { return m_Stride; }
+		inline const std::vector<VertexBufferElement>& getElements() const { return m_Elements; }
+		inline uint getStride() const { return m_Stride; }
 	private:
 		std::vector<VertexBufferElement> m_Elements;
 		uint m_Stride;

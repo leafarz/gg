@@ -32,15 +32,21 @@ namespace gg
 			return;
 		}
 
-		std::vector<graphics::Vertex> _vertices;
-		std::vector<uint> _indices;
-
 		Assimp::Importer _importer;
 		const aiScene* _scene = _importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_FlipUVs);
-		if (!_scene)
+		if (!_scene || _scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !_scene->mRootNode)
 		{
 			ERROR("Error loading model from [" << filePath << ']');
 		}
+
+		std::vector<graphics::Vertex> _vertices;
+		std::vector<uint> _indices;
+		uint _vertexLength = 0;
+		uint _indexLength = 0;
+
+		getLengths(_scene->mRootNode, _scene, _vertexLength, _indexLength);
+		_vertices.reserve(_vertexLength);
+		_indices.reserve(_indexLength);
 
 		processNode(_scene->mRootNode, _scene, _vertices, _indices);
 
@@ -65,10 +71,10 @@ namespace gg
 		m_IB.setData(&m_Indices.front(), m_Indices.size());
 
 		graphics::VertexBufferLayout _layout = graphics::VertexBufferLayout();
-		_layout.Push<float>(3);	// position
-		_layout.Push<float>(2);	// uv
-		_layout.Push<float>(3);	// normal
-		_layout.Push<float>(4);	// color
+		_layout.push<float>(3);	// position
+		_layout.push<float>(2);	// uv
+		_layout.push<float>(3);	// normal
+		_layout.push<float>(4);	// color
 
 		m_VA.init();
 		m_VA.addBuffer(m_VB, _layout);
@@ -105,12 +111,31 @@ namespace gg
 		}
 	}
 
+	void Mesh::getLengths(aiNode* node, const aiScene* scene, uint& vertsLength, uint& indicesLength)
+	{
+		FORU(i, 0, node->mNumMeshes)
+		{
+			aiMesh* _mesh = scene->mMeshes[node->mMeshes[i]];
+			vertsLength += _mesh->mNumVertices;
+
+			FORU(i, 0, _mesh->mNumFaces)
+			{
+				indicesLength += _mesh->mFaces[i].mNumIndices;
+			}
+		}
+
+		FORU(i, 0, node->mNumChildren)
+		{
+			getLengths(node->mChildren[i], scene, vertsLength, indicesLength);
+		}
+	}
+
 	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, node->mNumMeshes)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			processMesh(mesh, scene, verts, indices);
+			processMesh(mesh, verts, indices);
 		}
 
 		FORU(i, 0, node->mNumChildren)
@@ -118,7 +143,7 @@ namespace gg
 			processNode(node->mChildren[i], scene, verts, indices);
 		}
 	}
-	void Mesh::processMesh(aiMesh* mesh, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
+	void Mesh::processMesh(aiMesh* mesh, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, mesh->mNumVertices)
 		{
