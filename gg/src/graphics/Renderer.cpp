@@ -106,6 +106,12 @@ namespace gg { namespace graphics {
 					Light* _light = *it2;
 					Transform* _tLight = _light->getGameObject()->getTransform();
 
+					if (_light->isDirty(Light::DirtyBits::Intensity))
+					{
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Intensity)], _light->getIntensity());
+						_light->clearDirty(Light::DirtyBits::Intensity);
+					}
+
 					switch (_light->getLightType())
 					{
 					case Light::LightType::DirectionalLight:

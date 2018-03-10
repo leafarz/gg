@@ -5,11 +5,11 @@
 namespace gg
 {
 	Light::Light(LightType lightType)
-		: m_LightType(lightType), m_Angle(lightType == LightType::PointLight ? 180.0f : 0.0f)
+		: m_LightType(lightType), m_Intensity(1), m_Angle(lightType == LightType::PointLight ? 180.0f : 0.0f)
 	{ }
 
-	Light::Light(LightType lightType, const Math::Color& color, float angle, const Math::Vec3f & attenuation)
-		: m_LightType(lightType), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180.0f : angle), m_Attenuation(attenuation)
+	Light::Light(LightType lightType, float intensity, const Math::Color& color, float angle, const Math::Vec3f & attenuation)
+		: m_LightType(lightType), m_Intensity(intensity), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180.0f : angle), m_Attenuation(attenuation)
 	{ }
 
 	Light::~Light(void)
@@ -19,6 +19,11 @@ namespace gg
 	{
 		setDirty(DirtyBits::Color);
 		m_Color = color;
+	}
+	void Light::setIntensity(float intensity)
+	{
+		setDirty(DirtyBits::Intensity);
+		m_Intensity = intensity;
 	}
 	void Light::setAngle(float angle)
 	{

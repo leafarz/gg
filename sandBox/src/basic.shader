@@ -61,18 +61,29 @@ struct Light
 };
 
 uniform Light sys_Lights[MAX_LIGHTS];
-uniform sampler2D test;
 uniform vec3 sys_AmbientColor;
+
+uniform vec3 sys_CameraPosition;
+
 uniform float sys_Time;
 
 float fresnel(vec3 direction, vec3 normal)
 {
-	return max(dot(direction, -normal),0);
+	return max(dot(-direction, normal),0);
 }
 
-vec3 computeDirectionalLight(Light light, vec3 surfaceNormal)
+float computeSpecular(vec3 lightDirection, vec3 surfacePosition, vec3 surfaceNormal, float power)
 {
-	return light.color.xyz * fresnel(light.direction, surfaceNormal);
+	vec3 _pixelToCameraDir = normalize(surfacePosition - sys_CameraPosition);
+	vec3 _reflectedLightDir = reflect(lightDirection, surfaceNormal);
+	
+	return pow(fresnel(_pixelToCameraDir, _reflectedLightDir), power);
+}
+
+vec3 computeDirectionalLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
+{
+	float _spec = computeSpecular(light.direction, surfacePosition, surfaceNormal, 32);
+	return light.color.xyz * light.intensity  * (fresnel(light.direction, surfaceNormal) + _spec);
 }
 
 vec3 computePointLight(Light light, vec3 surfacePos)
@@ -86,7 +97,7 @@ vec3 computePointLight(Light light, vec3 surfacePos)
 		light.exponentAttenuation * _posToLightDist * _posToLightDist +
 		0.00001
 	);
-	return light.color.xyz * _atten;
+	return light.color.xyz * light.intensity * _atten;
 }
 
 vec3 computeSpotLight(Light light, vec3 surfacePos)
@@ -107,7 +118,7 @@ vec3 computeSpotLight(Light light, vec3 surfacePos)
 			light.exponentAttenuation * _posToLightDist * _posToLightDist +
 			0.00001
 		);
-		return light.color.xyz * _spotFactor * _atten;
+		return light.color.xyz * light.intensity * _atten * _spotFactor;
 	}
 	else
 	{
@@ -122,7 +133,7 @@ void main()
 		// directional light
 		if(sys_Lights[i].position.w == 0)
 		{
-			_result = _result + computeDirectionalLight(sys_Lights[i], fs_in.normal);
+			_result = _result + computeDirectionalLight(sys_Lights[i], fs_in.position, fs_in.normal);
 		}
 		// point or spotlight
 		else
@@ -130,11 +141,11 @@ void main()
 			// spotlight
 			if (sys_Lights[i].angle < 90.0)
 			{
-				_result = _result + computeSpotLight(sys_Lights[i], fs_in.position.xyz);
+				_result = _result + computeSpotLight(sys_Lights[i], fs_in.position);
 			}
 			else
 			{
-				_result = _result + computePointLight(sys_Lights[i], fs_in.position.xyz);
+				_result = _result + computePointLight(sys_Lights[i], fs_in.position);
 			}
 		}
 	}

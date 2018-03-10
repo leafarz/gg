@@ -19,9 +19,10 @@ namespace gg
 	private:
 		enum class DirtyBits : ubyte
 		{
-			Color		= 1 << 0,
-			Angle		= 1 << 1,
-			Attenuation	= 1 << 2
+			Intensity	= 1 << 0,
+			Color		= 1 << 1,
+			Angle		= 1 << 2,
+			Attenuation	= 1 << 3
 		};
 	public:
 		enum class LightType : ubyte
@@ -33,7 +34,7 @@ namespace gg
 	public:
 		// TODO: add template lighttype
 		Light(LightType lightType);
-		Light(LightType lightType, const Math::Color& color, float angle, const Math::Vec3f& attenuation);
+		Light(LightType lightType, float intensity, const Math::Color& color, float angle, const Math::Vec3f& attenuation);
 		~Light(void);
 
 		static ComponentType getStaticType(void) { return ComponentType::Light; }
@@ -61,8 +62,12 @@ namespace gg
 		const Math::Color& getColor(void) const { return m_Color; }
 		void setColor(Math::Color color);
 
+		const float getIntensity(void) const { return m_Intensity; }
+		void setIntensity(float intensity);
+
 		const float getAngle(void) const { return m_Angle; }
 		void setAngle(float angle);
+
 		const Math::Vec3f& getAttenuation(void) const { return m_Attenuation; }
 		void setAttenuation(float constant, float linear, float exponential);
 		void setAttenuation(const Math::Vec3f& attenuation);
@@ -75,6 +80,7 @@ namespace gg
 
 	private:
 		DirtyBits m_DirtyBits = static_cast<DirtyBits>(
+			(ubyte)DirtyBits::Intensity |
 			(ubyte)DirtyBits::Color |
 			(ubyte)DirtyBits::Angle |
 			(ubyte)DirtyBits::Attenuation
@@ -82,6 +88,7 @@ namespace gg
 
 		LightType m_LightType;
 
+		float m_Intensity;
 		Math::Color m_Color;
 		float m_Angle;
 		Math::Vec3f m_Attenuation;
