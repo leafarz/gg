@@ -4,8 +4,7 @@
 
 #include "math/Vec2f.h"
 #include "math/Vec3f.h"
-namespace gg
-{
+namespace gg { namespace Math {
 	struct Color
 	{
 		/* Red component */
@@ -105,6 +104,6 @@ namespace gg
 		/* Gets the a,b,g values in Vec3f form. */
 		Math::Vec3f abg(void) const;
 	}; // struct Color
-} // namespace gg
+}/*namespace Math*/ }// namespace gg
 
 #endif

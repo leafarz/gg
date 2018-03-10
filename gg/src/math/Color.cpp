@@ -1,7 +1,6 @@
-#include "graphics/Color.h"
+#include "math/Color.h"
 
-namespace gg
-{
+namespace gg { namespace Math {
 	Color::Color(float r, float g, float b, float a)
 		: r(r), g(g), b(b), a(a)
 	{ }
@@ -54,4 +53,4 @@ namespace gg
 	Math::Vec3f Color::abr(void) const { return Math::Vec3f(a, b, r); }
 	Math::Vec3f Color::agb(void) const { return Math::Vec3f(a, g, b); }
 	Math::Vec3f Color::abg(void) const { return Math::Vec3f(a, b, g); }
-} // namespace gg
+}/*namespace Math*/ }// namespace gg

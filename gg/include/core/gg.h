@@ -16,11 +16,11 @@
 #include "entity/FreeCamera.h"
 #include "entity/GameObject.h"
 
-#include "graphics/Color.h"
 #include "graphics/Material.h"
 #include "graphics/Shader.h"
 #include "graphics/Texture.h"
 
+#include "math/Color.h"
 #include "math/MathUtil.h"
 #include "math/Mat3f.h"
 #include "math/Mat4f.h"

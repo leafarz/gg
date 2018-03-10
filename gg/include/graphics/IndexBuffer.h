@@ -4,8 +4,7 @@
 
 #include "GL/glew.h"
 #include "core/Types.h"
-namespace gg
-{
+namespace gg { namespace graphics {
 	class IndexBuffer
 	{
 	public:
@@ -43,6 +42,6 @@ namespace gg
 		uint m_Count;
 		bool m_IsInitialized = false;
 	}; // class VertexBuffer
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

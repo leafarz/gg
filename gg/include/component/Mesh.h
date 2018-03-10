@@ -71,7 +71,7 @@ namespace gg
 		std::vector<uint> m_Indices;
 		graphics::VertexArray m_VA;
 		graphics::VertexBuffer m_VB;
-		IndexBuffer m_IB;
+		graphics::IndexBuffer m_IB;
 
 	}; // class Mesh
 } // namespace gg

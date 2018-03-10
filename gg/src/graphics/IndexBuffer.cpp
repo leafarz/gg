@@ -2,8 +2,7 @@
 
 #include "platform/opengl/GLCommon.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	IndexBuffer::IndexBuffer(void)
 		: m_Count(0)
 	{ }
@@ -45,4 +44,4 @@ namespace gg
 	{
 		GL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 	}
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

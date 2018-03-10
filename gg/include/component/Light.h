@@ -5,8 +5,7 @@
 #include "component/Component.h"
 #include "core/Types.h"
 
-#include "graphics/Color.h"
-
+#include "math/Color.h"
 #include "math/MathUtil.h"
 #include "math/Vec4f.h"
 namespace gg
@@ -34,7 +33,7 @@ namespace gg
 	public:
 		// TODO: add template lighttype
 		Light(LightType lightType);
-		Light(LightType lightType, const Color& color, float angle, const Math::Vec3f& attenuation);
+		Light(LightType lightType, const Math::Color& color, float angle, const Math::Vec3f& attenuation);
 		~Light(void);
 
 		static ComponentType getStaticType(void) { return ComponentType::Light; }
@@ -59,8 +58,8 @@ namespace gg
 
 		LightType getLightType(void) const { return m_LightType; }
 
-		const Color& getColor(void) const { return m_Color; }
-		void setColor(Color color);
+		const Math::Color& getColor(void) const { return m_Color; }
+		void setColor(Math::Color color);
 
 		const float getAngle(void) const { return m_Angle; }
 		void setAngle(float angle);
@@ -83,7 +82,7 @@ namespace gg
 
 		LightType m_LightType;
 
-		Color m_Color;
+		Math::Color m_Color;
 		float m_Angle;
 		Math::Vec3f m_Attenuation;
 	};

@@ -266,7 +266,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\graphics\Color.h">
+    <ClInclude Include="include\math\Color.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -379,7 +379,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\graphics\Color.cpp">
+    <ClCompile Include="src\math\Color.cpp">
       <SubType>
       </SubType>
     </ClCompile>
