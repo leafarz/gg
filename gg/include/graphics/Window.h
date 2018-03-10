@@ -6,8 +6,7 @@
 
 #include "GLFW/glfw3.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	class Window
 	{
 	public:
@@ -30,6 +29,6 @@ namespace gg
 		GLFWwindow* m_Window;
 		std::string m_windowTitle;
 	}; // class Window
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

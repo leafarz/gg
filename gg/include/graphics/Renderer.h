@@ -12,10 +12,12 @@
 
 #include "math/Mat4f.h"
 
-namespace gg
-{
-	class Light;
-	class GameObject;
+namespace gg {
+// forward declarations
+class Light;
+class GameObject;
+namespace graphics {
+	
 	class Renderer
 	{
 	public:
@@ -58,6 +60,7 @@ namespace gg
 			"sys_Lights[7].position", "sys_Lights[7].direction", "sys_Lights[7].color", "sys_Lights[7].intensity", "sys_Lights[7].constantAttenuation", "sys_Lights[7].linearAttenuation", "sys_Lights[7].exponentAttenuation", "sys_Lights[7].angle"
 		};
 	}; // class Renderer
-} // namespace gg
+
+}/*namespace graphics*/ } // namespace gg
 
 #endif

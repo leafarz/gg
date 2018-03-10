@@ -5,8 +5,7 @@
 #include "graphics/VertexBuffer.h"
 #include "graphics/VertexBufferLayout.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	class VertexArray
 	{
 	public:
@@ -39,6 +38,6 @@ namespace gg
 		GLuint m_ID;
 		bool m_IsInitialized = false;
 	}; // class VertexArray
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

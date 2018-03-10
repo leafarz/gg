@@ -11,8 +11,7 @@
 
 namespace gg
 {
-	class Shader;
-	class Texture;
+	namespace graphics { class Texture; class Shader; }
 	class Material
 	{
 	private:
@@ -31,15 +30,15 @@ namespace gg
 		
 	public:
 		Material(void);
-		Material(Shader* shader);
+		Material(graphics::Shader* shader);
 		~Material(void);
 
-		Shader* getShader(void) const;
-		void setShader(Shader* shader);
+		graphics::Shader* getShader(void) const;
+		void setShader(graphics::Shader* shader);
 
 		// currently no setUniformi and is replaced by setTexture
 
-		void setTexture(const std::string& key, Texture* texture);
+		void setTexture(const std::string& key, graphics::Texture* texture);
 		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, const Color& val);
 		void setUniform(const std::string& key, const Math::Vec3f& val);
@@ -55,9 +54,9 @@ namespace gg
 		void updateUniforms(void);
 
 	private:
-		Shader* m_Shader;
+		graphics::Shader* m_Shader;
 
-		std::stack<Data<Texture*>> m_Textures;
+		std::stack<Data<graphics::Texture*>> m_Textures;
 		std::stack<Data<float>> m_Floats;
 		std::stack<Data<Math::Vec3f>> m_Vec3fs;
 		std::stack<Data<Math::Vec4f>> m_Vec4fs;

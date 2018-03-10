@@ -6,8 +6,7 @@
 #include "security/cryptography/crc32.h"
 #include "SOIL2.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	std::unordered_map<uint, GLuint> Texture::s_TextureHash;
 
 	Texture::Texture(const std::string& filePath)
@@ -56,4 +55,4 @@ namespace gg
 	{
 		GL(glBindTexture(GL_TEXTURE_2D, 0));
 	}
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

@@ -13,7 +13,7 @@ namespace gg
 	class Camera;
 	class GameObject;
 	class Light;
-	class Renderer;
+	namespace graphics { class Renderer; }
 	class Scene
 	{
 	public:
@@ -34,11 +34,11 @@ namespace gg
 		virtual void onRender(void);
 
 	public:
-		LightSettings LightSettings;
+		graphics::LightSettings LightSettings;
 
 	private:
 		Camera* m_ActiveCamera;
-		Renderer* m_Renderer;
+		graphics::Renderer* m_Renderer;
 
 		std::vector<GameObject*> m_GameObjects;
 		std::vector<Light*> m_Lights;

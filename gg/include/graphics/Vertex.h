@@ -7,8 +7,7 @@
 #include "math/Vec2f.h"
 #include "math/Vec3f.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	struct Vertex
 	{
 		Vertex(void);
@@ -30,6 +29,6 @@ namespace gg
 		Color color;
 
 	};// struct Vertex
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

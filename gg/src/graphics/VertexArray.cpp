@@ -3,8 +3,7 @@
 #include "platform/opengl/GLCommon.h"
 #include "util/Iterators.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	VertexArray::VertexArray(void)
 	{
 	}
@@ -52,4 +51,4 @@ namespace gg
 	{
 		GL(glBindVertexArray(0));
 	}
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

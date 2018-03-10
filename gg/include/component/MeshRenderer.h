@@ -8,10 +8,11 @@ namespace gg
 {
 	class Mesh;
 	class Material;
+	namespace graphics { class Renderer; }
 	class MeshRenderer : public Component
 	{
 	private:
-		friend class Renderer;
+		friend class graphics::Renderer;
 
 	public:
 		MeshRenderer(void);

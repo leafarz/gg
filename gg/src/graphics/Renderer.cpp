@@ -13,8 +13,7 @@
 
 #include "util/Iterators.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	Renderer::Renderer(void)
 	{
 		GL(glFrontFace(GL_CW));
@@ -205,4 +204,4 @@ namespace gg
 		_mr->draw();
 	}
 
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

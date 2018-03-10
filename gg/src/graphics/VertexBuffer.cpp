@@ -2,8 +2,7 @@
 
 #include "platform/opengl/GLCommon.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	VertexBuffer::VertexBuffer(void)
 	{ }
 	VertexBuffer::VertexBuffer(const void* data, uint size)
@@ -43,4 +42,4 @@ namespace gg
 	{
 		GL(glBindBuffer(GL_ARRAY_BUFFER, 0));
 	}
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

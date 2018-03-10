@@ -34,13 +34,13 @@ namespace gg
 
 
 	private:
-		Window*			m_Window;
-		GLdouble		m_TimeStep;
-		GLdouble		m_FixedTimeStep;
-		GLboolean		m_IsRunning;
+		graphics::Window*	m_Window;
+		GLdouble			m_TimeStep;
+		GLdouble			m_FixedTimeStep;
+		GLboolean			m_IsRunning;
 
-		Scene*			m_ActiveScene;
-		bool			m_SceneIsInitialized = false;
+		Scene*				m_ActiveScene;
+		bool				m_SceneIsInitialized = false;
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
 	}; // class Application

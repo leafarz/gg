@@ -7,8 +7,7 @@
 #include "core/Types.h"
 #include "platform/opengl/GLCommon.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	class VertexBufferLayout
 	{
 	private:
@@ -71,6 +70,6 @@ namespace gg
 		std::vector<VertexBufferElement> m_Elements;
 		uint m_Stride;
 	}; // class VertexBufferLayout
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

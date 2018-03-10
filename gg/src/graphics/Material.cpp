@@ -8,7 +8,7 @@ namespace gg
 	Material::Material(void)
 	{ }
 
-	Material::Material(Shader* shader)
+	Material::Material(graphics::Shader* shader)
 		: m_Shader(shader)
 	{ }
 
@@ -16,16 +16,16 @@ namespace gg
 	Material::~Material(void)
 	{ }
 
-	Shader* Material::getShader(void) const { return m_Shader; }
-	void Material::setShader(Shader * shader)
+	graphics::Shader* Material::getShader(void) const { return m_Shader; }
+	void Material::setShader(graphics::Shader * shader)
 	{
 		m_Shader = shader;
 	}
 
-	void Material::setTexture(const std::string& key, Texture* texture)
+	void Material::setTexture(const std::string& key, graphics::Texture* texture)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Textures.push(Data<Texture*>(key, texture));
+		m_Textures.push(Data<graphics::Texture*>(key, texture));
 	}
 
 	void Material::setUniformf(const std::string& key, float val)
@@ -72,8 +72,8 @@ namespace gg
 		int _samplerSlot = 0;
 		while (!m_Textures.empty())
 		{
-			Data<Texture*>& _top = m_Textures.top();
-			Texture* _tex = _top.val;
+			Data<graphics::Texture*>& _top = m_Textures.top();
+			graphics::Texture* _tex = _top.val;
 			_tex->bind(_samplerSlot);
 			m_Shader->setUniformi(_top.key, _samplerSlot);
 			m_Textures.pop();

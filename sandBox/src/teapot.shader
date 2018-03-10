@@ -19,11 +19,10 @@ out DATA
 
 uniform mat4 sys_MVP;
 uniform mat4 sys_M;
-uniform float sys_Time;
 
 void main()
 {
-    gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0) + vec4(normal * saturate(100),1);
+    gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0);
 	vs_out.normal = normalize((sys_M * vec4(normal,0)).xyz);
 	vs_out.color = color;
 	vs_out.uv = vec2(uv.x, 1-uv.y);
@@ -42,10 +41,12 @@ in DATA
 
 out vec4 fcolor;
 
+uniform sampler2D test;
+
 vec3 lightDir = vec3(0,0,1);
 void main()
 {
 	float _diff = max(dot(fs_in.normal, -lightDir), 0.1);
-	fcolor = vec4(fs_in.normal * _diff,1);
-
+	fcolor = vec4(fs_in.normal,1);
+	//fcolor = texture(test, fs_in.uv);
 }

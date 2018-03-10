@@ -4,8 +4,7 @@
 
 #include "math/Vec3f.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	struct LightSettings
 	{
 	public:
@@ -18,6 +17,6 @@ namespace gg
 			: ambientColor(ambientColor)
 		{ }
 	}; // struct LightSettings
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

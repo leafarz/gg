@@ -10,7 +10,7 @@ namespace gg
 {
 	Scene::Scene(void)
 	{
-		m_Renderer = new Renderer();
+		m_Renderer = new graphics::Renderer();
 	}
 
 	Scene::~Scene(void)

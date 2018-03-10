@@ -1,7 +1,6 @@
 #include "graphics/Window.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	Window::Window(void) :
 		m_windowTitle("")
 	{
@@ -82,4 +81,4 @@ namespace gg
 		/* Poll for and process events */
 		glfwPollEvents();
 	}
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

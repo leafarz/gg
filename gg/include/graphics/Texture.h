@@ -8,8 +8,7 @@
 #include "GL/glew.h"
 #include "core/Types.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	class Texture
 	{
 	private:
@@ -36,6 +35,6 @@ namespace gg
 		int m_Width = 0;
 		int m_Height = 0;
 	}; // class Texture
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

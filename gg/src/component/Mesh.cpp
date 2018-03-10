@@ -32,7 +32,7 @@ namespace gg
 			return;
 		}
 
-		std::vector<Vertex> _vertices;
+		std::vector<graphics::Vertex> _vertices;
 		std::vector<uint> _indices;
 
 		Assimp::Importer _importer;
@@ -51,7 +51,7 @@ namespace gg
 	Mesh::~Mesh(void)
 	{ }
 
-	void Mesh::setVertices(std::vector<Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals)
+	void Mesh::setVertices(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals)
 	{
 		if (calculateNormals)
 		{
@@ -61,10 +61,10 @@ namespace gg
 		m_Vertices = vertices;
 		m_Indices = indices;
 
-		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
+		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(graphics::Vertex));
 		m_IB.setData(&m_Indices.front(), m_Indices.size());
 
-		VertexBufferLayout _layout = VertexBufferLayout();
+		graphics::VertexBufferLayout _layout = graphics::VertexBufferLayout();
 		_layout.Push<float>(3);	// position
 		_layout.Push<float>(2);	// uv
 		_layout.Push<float>(3);	// normal
@@ -81,7 +81,7 @@ namespace gg
 		GL(glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
-	void Mesh::calculateNormals(std::vector<Vertex>& vertices, std::vector<uint>& indices)
+	void Mesh::calculateNormals(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices)
 	{
 		for (uint i = 0; i < indices.size(); i += 3)
 		{
@@ -105,7 +105,7 @@ namespace gg
 		}
 	}
 
-	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
+	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, node->mNumMeshes)
 		{
@@ -118,12 +118,12 @@ namespace gg
 			processNode(node->mChildren[i], scene, verts, indices);
 		}
 	}
-	void Mesh::processMesh(aiMesh* mesh, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
+	void Mesh::processMesh(aiMesh* mesh, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, mesh->mNumVertices)
 		{
 			verts.push_back(
-				Vertex(
+				graphics::Vertex(
 					Math::Vec3f(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z),
 					(mesh->mTextureCoords[0] == nullptr)? Math::Vec2f() : Math::Vec2f(mesh->mTextureCoords[0]->x, mesh->mTextureCoords[0]->y),
 					(mesh->mNormals == nullptr)			? Math::Vec3f() : Math::Vec3f(mesh->mNormals->x, mesh->mNormals->y, mesh->mNormals->z)

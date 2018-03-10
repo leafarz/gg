@@ -1,7 +1,6 @@
 #include "graphics/Vertex.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	Vertex::Vertex(void)
 	{ }
 	Vertex::Vertex(const Math::Vec3f& position)
@@ -28,4 +27,5 @@ namespace gg
 	Vertex::Vertex(const Math::Vec3f & position, const Math::Vec2f & texCoord, const Math::Vec3f & normal, const Color & color)
 		: position(position), texCoord(texCoord), normal(normal), color(color)
 	{ }
+}/*namespace graphics*/
 } // namespace gg

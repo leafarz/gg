@@ -17,7 +17,7 @@ namespace gg
 		m_IsRunning(false),
 		m_ActiveScene(nullptr)
 	{
-		m_Window = new Window(windowName, width, height);
+		m_Window = new graphics::Window(windowName, width, height);
 
 		// glew init
 		glewExperimental = GL_TRUE;

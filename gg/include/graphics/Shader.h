@@ -10,8 +10,7 @@
 #include "math/Vec3f.h"
 #include "math/Mat4f.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	class Shader
 	{
 	private:
@@ -145,6 +144,6 @@ namespace gg
 
 
 	}; // class Shader
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

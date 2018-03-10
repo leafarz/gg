@@ -11,8 +11,7 @@
 #include "security/cryptography/crc32.h"
 #include "util/Iterators.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	std::unordered_map<uint, GLuint> Shader::s_ShaderHash;
 
 	Shader::Shader(const std::string& filePath)
@@ -508,4 +507,4 @@ namespace gg
 	void Shader::setUniform(int loc, float x, float y, float z) { GL(glUniform3f(loc, x, y, z)); }
 	void Shader::setUniform(int loc, const Math::Mat4f& val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val.getMatrix())); }
 	void Shader::setUniform(int loc, float * val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val)); }
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

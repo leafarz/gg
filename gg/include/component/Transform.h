@@ -10,10 +10,11 @@
 #include "math/Vec3f.h"
 namespace gg
 {
+	namespace graphics { class Renderer; }
 	class Transform : public Component
 	{
 	private:
-		friend class Renderer;
+		friend class graphics::Renderer;
 
 	private:
 		enum class DirtyBits : ubyte

@@ -13,7 +13,7 @@ namespace gg
 
 	GameObject *goCube, *goTeapot, *goNano, *go2, *_goSLight;
 	bool rotateTeapot = false;
-	Shader *teapotShader, *basicShader;
+	graphics::Shader *teapotShader, *basicShader;
 	Material* _cubeMat;
 
 	void TestScene::onInit(void)
@@ -58,7 +58,7 @@ namespace gg
 		Math::Vec3f _llb = Math::Vec3f(-0.5f, -0.5f, 0.5);
 		Math::Vec3f _lrb = Math::Vec3f( 0.5f, -0.5f, 0.5);
 
-		std::vector<Vertex> _verts =
+		std::vector<graphics::Vertex> _verts =
 		{
 			// pos	// uv					// normal						// color
 			{ _urf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Color(1.0, 0.0, 0.0) }, // 00
@@ -94,7 +94,7 @@ namespace gg
 			{ _ulb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Color(1.0, 1.0, 1.0) }, // 23
 		};
 
-		std::vector<Vertex> _quadVerts = 
+		std::vector<graphics::Vertex> _quadVerts =
 		{
 			{ Math::Vec3f(-0.5, 0.0, -0.5f),	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 1.0, 0.0),		Color(1.0, 1.0, 1.0) },
 			{ Math::Vec3f( 0.5, 0.0, -0.5f),	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 1.0, 0.0),		Color(1.0, 1.0, 1.0) },
@@ -147,8 +147,8 @@ namespace gg
 		_cubeMesh->setVertices(_quadVerts, _quadIndices, false);
 
 		// shader, texture, material
-		basicShader = new Shader("src/basic.shader");
-		Texture *_tex = new Texture("src/Pikamannn.jpg");
+		basicShader = new graphics::Shader("src/basic.shader");
+		graphics::Texture *_tex = new graphics::Texture("src/Pikamannn.jpg");
 		_cubeMat = new Material(basicShader);
 		//_cubeMat->setTexture("test", _tex);
 
@@ -169,7 +169,7 @@ namespace gg
 		Mesh* _teapotMesh = new Mesh("src/teapot.obj", true);
 
 		// shader, texture, material
-		teapotShader = new Shader("src/teapot.shader");
+		teapotShader = new graphics::Shader("src/teapot.shader");
 		Material* _teapotMat = new Material(teapotShader);
 
 		// meshrenderer
