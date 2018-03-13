@@ -239,6 +239,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\graphics\SubMesh.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\math\Mat3f.h" />
     <ClInclude Include="include\Paths.h" />
     <ClInclude Include="include\platform\opengl\GLCommon.h">
@@ -364,6 +368,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\entity\GameObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\graphics\SubMesh.cpp">
       <SubType>
       </SubType>
     </ClCompile>
