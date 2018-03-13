@@ -17,6 +17,7 @@
 #include "entity/GameObject.h"
 
 #include "graphics/Material.h"
+#include "graphics/Mesh.h"
 #include "graphics/Shader.h"
 #include "graphics/Texture.h"
 

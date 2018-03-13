@@ -9,9 +9,9 @@
 
 #include "core/Types.h"
 
-namespace gg
-{
-	namespace graphics { class Texture; class Shader; }
+namespace gg { namespace graphics {
+	class Texture;
+	class Shader;
 	class Material
 	{
 	private:
@@ -30,15 +30,15 @@ namespace gg
 		
 	public:
 		Material(void);
-		Material(graphics::Shader* shader);
+		Material(Shader* shader);
 		~Material(void);
 
-		graphics::Shader* getShader(void) const;
-		void setShader(graphics::Shader* shader);
+		Shader* getShader(void) const;
+		void setShader(Shader* shader);
 
 		// currently no setUniformi and is replaced by setTexture
 
-		void setTexture(const std::string& key, graphics::Texture* texture);
+		void setTexture(const std::string& key, Texture* texture);
 		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, const Math::Color& val);
 		void setUniform(const std::string& key, const Math::Vec3f& val);
@@ -54,15 +54,15 @@ namespace gg
 		void updateUniforms(void);
 
 	private:
-		graphics::Shader* m_Shader;
+		Shader* m_Shader;
 
-		std::stack<Data<graphics::Texture*>> m_Textures;
+		std::stack<Data<Texture*>> m_Textures;
 		std::stack<Data<float>> m_Floats;
 		std::stack<Data<Math::Vec3f>> m_Vec3fs;
 		std::stack<Data<Math::Vec4f>> m_Vec4fs;
 		std::stack<Data<Math::Mat4f>> m_Mat4fs;
 
 	}; // class Material
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

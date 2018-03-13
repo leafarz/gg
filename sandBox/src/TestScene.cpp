@@ -14,7 +14,7 @@ namespace gg
 	GameObject *goCube, *goTeapot, *goNano, *go2, *_goSLight;
 	bool rotateTeapot = false;
 	graphics::Shader *teapotShader, *basicShader;
-	Material* _cubeMat;
+	graphics::Material* _cubeMat;
 
 	void TestScene::onInit(void)
 	{
@@ -143,13 +143,13 @@ namespace gg
 		goCube->getTransform()->setScale(50, 1, 50);
 
 		// mesh
-		Mesh* _cubeMesh = new Mesh();
+		graphics::Mesh* _cubeMesh = new graphics::Mesh();
 		_cubeMesh->setVertices(_quadVerts, _quadIndices, false);
 
 		// shader, texture, material
 		basicShader = new graphics::Shader("src/basic.shader");
 		graphics::Texture *_tex = new graphics::Texture("src/Pikamannn.jpg");
-		_cubeMat = new Material(basicShader);
+		_cubeMat = new graphics::Material(basicShader);
 		//_cubeMat->setTexture("test", _tex);
 
 		// meshrenderer
@@ -166,11 +166,11 @@ namespace gg
 		goTeapot->getTransform()->setScale(0.5f, 0.5f, 0.5f);
 
 		// mesh
-		Mesh* _teapotMesh = new Mesh("src/teapot.obj", true);
+		graphics::Mesh* _teapotMesh = new graphics::Mesh("src/teapot.obj", true);
 
 		// shader, texture, material
 		teapotShader = new graphics::Shader("src/teapot.shader");
-		Material* _teapotMat = new Material(teapotShader);
+		graphics::Material* _teapotMat = new graphics::Material(teapotShader);
 
 		// meshrenderer
 		MeshRenderer* _mrTeapot = goTeapot->addComponent<MeshRenderer>();

@@ -6,9 +6,7 @@
 
 namespace gg
 {
-	class Mesh;
-	class Material;
-	namespace graphics { class Renderer; }
+	namespace graphics { class Renderer; class Mesh; class Material; }
 	class MeshRenderer : public Component
 	{
 	private:
@@ -16,24 +14,24 @@ namespace gg
 
 	public:
 		MeshRenderer(void);
-		MeshRenderer(Mesh* mesh, Material* material);
+		MeshRenderer(graphics::Mesh* mesh, graphics::Material* material);
 		~MeshRenderer(void);
 
 		static ComponentType getStaticType(void) { return ComponentType::MeshRenderer; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
-		void setMesh(Mesh* mesh);
-		Mesh* getMesh() const;
+		void setMesh(graphics::Mesh* mesh);
+		graphics::Mesh* getMesh() const;
 
-		void setMaterial(Material* material);
-		Material* getMaterial() const;
+		void setMaterial(graphics::Material* material);
+		graphics::Material* getMaterial() const;
 
 	private:
 		void draw(void);
 
 	private:
-		Mesh* m_Mesh;
-		Material* m_Material;
+		graphics::Mesh* m_Mesh;
+		graphics::Material* m_Material;
 	}; // class MeshRenderer
 } // namespace gg
 

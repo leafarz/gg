@@ -1,14 +1,14 @@
 #include "component/MeshRenderer.h"
 
-#include "component/Mesh.h"
 #include "graphics/Material.h"
+#include "graphics/Mesh.h"
 
 namespace gg
 {
 	MeshRenderer::MeshRenderer(void)
 	{ }
 
-	MeshRenderer::MeshRenderer(Mesh * mesh, Material * material)
+	MeshRenderer::MeshRenderer(graphics::Mesh* mesh, graphics::Material* material)
 		: m_Mesh(mesh), m_Material(material)
 	{ }
 
@@ -18,11 +18,11 @@ namespace gg
 		// TODO: add destroy on material if no one is referencing it
 	}
 
-	void MeshRenderer::setMesh(Mesh* mesh) { m_Mesh = mesh; }
-	Mesh* MeshRenderer::getMesh() const { return m_Mesh; }
+	void MeshRenderer::setMesh(graphics::Mesh* mesh) { m_Mesh = mesh; }
+	graphics::Mesh* MeshRenderer::getMesh() const { return m_Mesh; }
 
-	void MeshRenderer::setMaterial(Material* material) { m_Material = material; }
-	Material* MeshRenderer::getMaterial() const { return m_Material; }
+	void MeshRenderer::setMaterial(graphics::Material* material) { m_Material = material; }
+	graphics::Material* MeshRenderer::getMaterial() const { return m_Material; }
 
 	void MeshRenderer::draw(void)
 	{

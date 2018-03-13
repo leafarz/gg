@@ -1,12 +1,11 @@
-#include "component/Mesh.h"
+#include "graphics/Mesh.h"
 
 #include "util/Iterators.h"
 #include "platform/opengl/GLCommon.h"
 
 #include "security/cryptography/crc32.h"
 
-namespace gg
-{
+namespace gg { namespace graphics {
 	std::unordered_map<uint, Mesh::MeshData> Mesh::s_MeshDataHash;
 
 	Mesh::Mesh(void)
@@ -39,7 +38,7 @@ namespace gg
 			ERROR("Error loading model from [" << filePath << ']');
 		}
 
-		std::vector<graphics::Vertex> _vertices;
+		std::vector<Vertex> _vertices;
 		std::vector<uint> _indices;
 		uint _vertexLength = 0;
 		uint _indexLength = 0;
@@ -57,7 +56,7 @@ namespace gg
 	Mesh::~Mesh(void)
 	{ }
 
-	void Mesh::setVertices(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals)
+	void Mesh::setVertices(std::vector<Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals)
 	{
 		if (calculateNormals)
 		{
@@ -67,10 +66,10 @@ namespace gg
 		m_Vertices = vertices;
 		m_Indices = indices;
 
-		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(graphics::Vertex));
+		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
 		m_IB.setData(&m_Indices.front(), m_Indices.size());
 
-		graphics::VertexBufferLayout _layout = graphics::VertexBufferLayout();
+		VertexBufferLayout _layout = VertexBufferLayout();
 		_layout.push<float>(3);	// position
 		_layout.push<float>(2);	// uv
 		_layout.push<float>(3);	// normal
@@ -87,7 +86,7 @@ namespace gg
 		GL(glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
-	void Mesh::calculateNormals(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices)
+	void Mesh::calculateNormals(std::vector<Vertex>& vertices, std::vector<uint>& indices)
 	{
 		for (uint i = 0; i < indices.size(); i += 3)
 		{
@@ -130,7 +129,7 @@ namespace gg
 		}
 	}
 
-	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
+	void Mesh::processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, node->mNumMeshes)
 		{
@@ -143,12 +142,12 @@ namespace gg
 			processNode(node->mChildren[i], scene, verts, indices);
 		}
 	}
-	void Mesh::processMesh(aiMesh* mesh, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices)
+	void Mesh::processMesh(aiMesh* mesh, std::vector<Vertex>& verts, std::vector<GLuint>& indices)
 	{
 		FORU(i, 0, mesh->mNumVertices)
 		{
 			verts.push_back(
-				graphics::Vertex(
+				Vertex(
 					Math::Vec3f(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z),
 					(mesh->mTextureCoords[0] == nullptr)? Math::Vec2f() : Math::Vec2f(mesh->mTextureCoords[0]->x, mesh->mTextureCoords[0]->y),
 					(mesh->mNormals == nullptr)			? Math::Vec3f() : Math::Vec3f(mesh->mNormals->x, mesh->mNormals->y, mesh->mNormals->z)
@@ -166,4 +165,4 @@ namespace gg
 			}
 		}
 	}
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg

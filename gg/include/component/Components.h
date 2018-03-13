@@ -6,7 +6,6 @@
 #include "component/ComponentType.h"
 #include "component/Camera.h"
 #include "component/Light.h"
-#include "component/Mesh.h"
 #include "component/MeshRenderer.h"
 #include "component/Transform.h"
 #endif

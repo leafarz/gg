@@ -2,7 +2,7 @@
 #define		GG_GLCOMMON_H
 #pragma once
 
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include "platform/opengl/GLError.h"
 
 #ifdef _DEBUG

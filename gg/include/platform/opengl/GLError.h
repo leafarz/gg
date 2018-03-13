@@ -2,7 +2,7 @@
 #define		GG_GLERROR_H
 #pragma once
 
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include <string>
 #include "debug/Assert.h"
 

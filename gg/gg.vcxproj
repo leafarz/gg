@@ -199,7 +199,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="include\component\Mesh.h">
+    <ClInclude Include="include\graphics\Mesh.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -330,7 +330,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="src\component\Mesh.cpp">
+    <ClCompile Include="src\graphics\Mesh.cpp">
       <SubType>
       </SubType>
     </ClCompile>

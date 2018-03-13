@@ -2,6 +2,7 @@
 #define		GG_INPUT_H
 #pragma once
 
+#include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
 #include "core/InputDefines.h"

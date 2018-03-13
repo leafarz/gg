@@ -18,9 +18,8 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 
-namespace gg
-{
-	class Mesh : public Component
+namespace gg { namespace graphics {
+	class Mesh
 	{
 	private:
 		friend class MeshRenderer;
@@ -45,20 +44,17 @@ namespace gg
 		Mesh(const std::string& filePath, bool calculateNormals = false);
 		~Mesh(void);
 
-		static ComponentType getStaticType(void) { return ComponentType::Mesh; }
-		virtual ComponentType getType(void) const override { return getStaticType(); }
-
-		void setVertices(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals = false);
+		void setVertices(std::vector<Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals = false);
 
 	private:
 		void draw(void) const;
 
-		void calculateNormals(std::vector<graphics::Vertex>& vertices, std::vector<uint>& indices);
+		void calculateNormals(std::vector<Vertex>& vertices, std::vector<uint>& indices);
 
 		void getLengths(aiNode* node, const aiScene* scene, uint& vertsLength, uint& indicesLength);
 
-		void processNode(aiNode* node, const aiScene* scene, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices);
-		void processMesh(aiMesh* mesh, std::vector<graphics::Vertex>& verts, std::vector<GLuint>& indices);
+		void processNode(aiNode* node, const aiScene* scene, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
+		void processMesh(aiMesh* mesh, std::vector<Vertex>& verts, std::vector<GLuint>& indices);
 
 	private:
 		/* Key value pairs of hash to ids created throughout the app. */
@@ -69,13 +65,13 @@ namespace gg
 
 		// TODO: remove or update use for verts and indices
 
-		std::vector<graphics::Vertex> m_Vertices;
+		std::vector<Vertex> m_Vertices;
 		std::vector<uint> m_Indices;
-		graphics::VertexArray m_VA;
-		graphics::VertexBuffer m_VB;
-		graphics::IndexBuffer m_IB;
+		VertexArray m_VA;
+		VertexBuffer m_VB;
+		IndexBuffer m_IB;
 
 	}; // class Mesh
-} // namespace gg
+}/*namespace graphics*/ } // namespace gg
 
 #endif

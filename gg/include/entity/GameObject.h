@@ -48,11 +48,6 @@ namespace gg
 			auto _component = m_Components.find(Light::getStaticType());
 			return (_component == m_Components.end()) ? nullptr : (Light*)_component->second;
 		}
-		template<> Mesh* getComponent<Mesh>()
-		{
-			auto _component = m_Components.find(Mesh::getStaticType());
-			return (_component == m_Components.end()) ? nullptr : (Mesh*)_component->second;
-		}
 		template<> MeshRenderer* getComponent<MeshRenderer>()
 		{
 			auto _component = m_Components.find(MeshRenderer::getStaticType());
@@ -88,17 +83,6 @@ namespace gg
 			for (auto it = _range.first; it != _range.second; ++it)
 			{
 				_components.push_back((Light*)it->second);
-			}
-			return _components;
-		}
-		template<> std::vector<Mesh*> getComponents<Mesh>()
-		{
-			std::vector<Mesh*> _components;
-			auto _range = m_Components.equal_range(ComponentType::Mesh);
-
-			for (auto it = _range.first; it != _range.second; ++it)
-			{
-				_components.push_back((Mesh*)it->second);
 			}
 			return _components;
 		}
