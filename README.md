@@ -85,6 +85,7 @@ A simple OpenGL game engine.
    * verlet
 * audio
 * resource management
+ * delete cache on 0 reference
  * async loading
  * memory allocator
 * production

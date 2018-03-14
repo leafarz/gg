@@ -15,7 +15,7 @@ namespace gg { namespace graphics {
 	{
 	public:
 		SubMesh(std::vector<Vertex>& vertices, std::vector<uint>& indices, bool calculateNormals = false);
-		SubMesh(uint vao, uint vbo, uint ibo, uint indicesCount);
+		SubMesh(uint vao, uint vbo, uint ibo, GLuint indicesCount);
 		~SubMesh(void);
 
 		void draw(void) const;

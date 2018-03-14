@@ -24,21 +24,6 @@ namespace gg { namespace graphics {
 	private:
 		friend class MeshRenderer;
 
-	private:
-		struct MeshData
-		{
-		public:
-			uint vao;
-			uint vbo;
-			uint ibo;
-			uint indicesCount;
-
-			MeshData(void)
-			{ }
-			MeshData(uint vao, uint vbo, uint ibo, uint indicesCount)
-				: vao(vao), vbo(vbo), ibo(ibo), indicesCount(indicesCount)
-			{ }
-		};
 	public:
 		Mesh(void);
 		Mesh(const std::string& filePath, bool calculateNormals = false);
@@ -54,9 +39,9 @@ namespace gg { namespace graphics {
 
 	private:
 		/* Key value pairs of hash to ids created throughout the app. */
-		static std::unordered_map<uint, std::vector<MeshData>> s_MeshDataHash;
+		static std::unordered_map<uint, std::vector<SubMesh*>> s_SubMeshHash;
 
-		uint m_MeshDataHash;
+		uint m_SubMeshHash;
 		std::string m_FilePath;
 
 		// TODO: remove or update use for verts and indices

@@ -6,7 +6,7 @@
 #include "security/cryptography/crc32.h"
 
 namespace gg { namespace graphics {
-	std::unordered_map<uint, std::vector<Mesh::MeshData>> Mesh::s_MeshDataHash;
+	std::unordered_map<uint, std::vector<SubMesh*>> Mesh::s_SubMeshHash;
 
 	Mesh::Mesh(void)
 	{ }
@@ -17,22 +17,16 @@ namespace gg { namespace graphics {
 		_SYS("Processing file: \"" << m_FilePath << "\"");
 
 		// check first if file is already cached
-		//m_MeshDataHash = Crc32::getHash(m_FilePath.c_str(), m_FilePath.size());
-		//bool _isCached = s_MeshDataHash.find(m_MeshDataHash) != s_MeshDataHash.end();
+		m_SubMeshHash = Crc32::getHash(m_FilePath.c_str(), m_FilePath.size());
+		bool _isCached = s_SubMeshHash.find(m_SubMeshHash) != s_SubMeshHash.end();
 
-		//if (_isCached)
-		//{
-		//	_SYS("Fetching cached mesh data: \"" << m_FilePath << "\"");
-		//	const std::vector<MeshData>& _meshData = s_MeshDataHash[m_MeshDataHash];
-
-		//	VFOR(it, _meshData)
-		//	{
-		//		MeshData _data(*it);
-		//		m_SubMeshes.push_back(SubMesh(_data.vao, _data.vbo, _data.ibo, _data.indicesCount));
-		//	}
-
-		//	return;
-		//}
+		if (_isCached)
+		{
+			_SYS("Fetching cached mesh data: \"" << m_FilePath << "\"");
+			const std::vector<SubMesh*>& _subMeshes= s_SubMeshHash[m_SubMeshHash];
+			m_SubMeshes = _subMeshes;
+			return;
+		}
 
 		Assimp::Importer _importer;
 		const aiScene* _scene = _importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -43,8 +37,7 @@ namespace gg { namespace graphics {
 
 		processNode(_scene->mRootNode, _scene);
 
-		//setVertices(_vertices, _indices, calculateNormals);
-		//s_MeshDataHash[m_MeshDataHash] = MeshData(m_VA.getID(), m_VB.getID(), m_IB.getID(), m_IB.getCount());
+		s_SubMeshHash[m_SubMeshHash] = m_SubMeshes;
 	}
 
 	Mesh::~Mesh(void)
