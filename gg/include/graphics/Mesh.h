@@ -34,8 +34,8 @@ namespace gg { namespace graphics {
 	private:
 		void draw(void) const;
 
-		void processNode(aiNode* node, const aiScene* scene);
-		void processMesh(aiMesh* mesh);
+		void processNode(aiNode* node, const aiScene* scene, bool calculateNormals);
+		void processMesh(aiMesh* mesh, bool calculateNormals);
 
 	private:
 		/* Key value pairs of hash to ids created throughout the app. */

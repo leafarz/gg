@@ -35,7 +35,7 @@ namespace gg { namespace graphics {
 			ERROR("Error loading model from [" << filePath << ']');
 		}
 
-		processNode(_scene->mRootNode, _scene);
+		processNode(_scene->mRootNode, _scene, calculateNormals);
 
 		s_SubMeshHash[m_SubMeshHash] = m_SubMeshes;
 	}
@@ -56,20 +56,20 @@ namespace gg { namespace graphics {
 		}
 	}
 
-	void Mesh::processNode(aiNode* node, const aiScene* scene)
+	void Mesh::processNode(aiNode* node, const aiScene* scene, bool calculateNormals)
 	{
 		FORU(i, 0, node->mNumMeshes)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-			processMesh(mesh);
+			processMesh(mesh, calculateNormals);
 		}
 
 		FORU(i, 0, node->mNumChildren)
 		{
-			processNode(node->mChildren[i], scene);
+			processNode(node->mChildren[i], scene, calculateNormals);
 		}
 	}
-	void Mesh::processMesh(aiMesh* mesh)
+	void Mesh::processMesh(aiMesh* mesh, bool calculateNormals)
 	{
 		std::vector<Vertex> _verts;
 		std::vector<uint> _indices;
@@ -104,6 +104,6 @@ namespace gg { namespace graphics {
 			}
 		}
 
-		m_SubMeshes.push_back(new SubMesh(_verts, _indices, false));
+		m_SubMeshes.push_back(new SubMesh(_verts, _indices, calculateNormals));
 	}
 }/*namespace graphics*/ } // namespace gg
