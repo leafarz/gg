@@ -28,8 +28,8 @@ namespace gg { namespace graphics {
 			return;
 		}
 
-		Assimp::Importer _importer;
-		const aiScene* _scene = _importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_FlipUVs);
+		Assimp::Importer importer;
+		const aiScene* _scene = importer.ReadFile(filePath, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_JoinIdenticalVertices);
 		if (!_scene || _scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !_scene->mRootNode)
 		{
 			ERROR("Error loading model from [" << filePath << ']');
