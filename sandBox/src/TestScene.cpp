@@ -24,7 +24,7 @@ namespace gg
 		GameObject* _goDLight = new GameObject("DirectionalLight");
 		_goDLight->addComponent(_dLight);
 		_dLight->setColor(Math::Color(1.0f, 1.0f, 1.0f, 1));
-		_dLight->setIntensity(4);
+		_dLight->setIntensity(1);
 		_dLight->getGameObject()->getTransform()->setPosition(0, 0, 0);
 		_dLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(-1, -1, 0).normal());
 		add(_goDLight);

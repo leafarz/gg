@@ -13,7 +13,7 @@ out DATA
 {
 	vec3 position;
 	vec2 uv;
-	vec3 normal;
+	vec3 worldNormal;
 	vec3 color;
 } vs_out;
 
@@ -25,7 +25,7 @@ void main()
 {
     gl_Position = sys_MVP * vec4(position.x, position.y, position.z, 1.0);
 	vs_out.position = (sys_M * vec4(position,1)).xyz;
-	vs_out.normal = (sys_M * vec4(normal,0)).xyz;
+	vs_out.worldNormal = normalize((sys_M * vec4(normal,0)).xyz);
 	vs_out.color = color;
 	vs_out.uv = vec2(uv.x, 1-uv.y);
 }
@@ -40,7 +40,7 @@ in DATA
 {
 	vec3 position;
 	vec2 uv;
-	vec3 normal;
+	vec3 worldNormal;
 	vec3 color;
 } fs_in;
 
@@ -133,7 +133,7 @@ void main()
 		// directional light
 		if(sys_Lights[i].position.w == 0)
 		{
-			_result = _result + computeDirectionalLight(sys_Lights[i], fs_in.position, fs_in.normal);
+			_result = _result + computeDirectionalLight(sys_Lights[i], fs_in.position, fs_in.worldNormal);
 		}
 		// point or spotlight
 		else

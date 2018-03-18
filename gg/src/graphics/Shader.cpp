@@ -20,12 +20,14 @@ namespace gg { namespace graphics {
 		_SYS("Processing file: \"" << m_FilePath << "\"");
 		// check first if file is already cached
 		m_ShaderHash = Crc32::getHash(m_FilePath.c_str(), m_FilePath.size());
+
 		bool _isCached = s_ShaderHash.find(m_ShaderHash) != s_ShaderHash.end();
 
 		if (_isCached)
 		{
 			_SYS("Fetching cached shader: \"" << m_FilePath << "\"");
 			m_ID = s_ShaderHash[m_ShaderHash];
+			addAllUniforms();
 			return;
 		}
 
