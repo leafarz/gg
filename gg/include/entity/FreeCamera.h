@@ -17,6 +17,8 @@ namespace gg
 
 		Camera* getCamera(void);
 
+		void setMoveSpeed(float moveSpeed);
+
 		void onInit(void) override;
 		void onUpdate(void) override;
 

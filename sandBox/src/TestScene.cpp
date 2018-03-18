@@ -13,8 +13,7 @@ namespace gg
 
 	GameObject *goCube, *goTeapot, *goNano, *go2, *_goSLight;
 	bool rotateTeapot = false;
-	graphics::Shader *teapotShader, *basicShader;
-	graphics::Material* _cubeMat;
+	graphics::Shader *basicShader;
 
 	void TestScene::onInit(void)
 	{
@@ -24,28 +23,29 @@ namespace gg
 		Light *_dLight = new Light(Light::LightType::DirectionalLight);
 		GameObject* _goDLight = new GameObject("DirectionalLight");
 		_goDLight->addComponent(_dLight);
-		_dLight->setColor(Math::Color(0.5f, 0.5f, 0.5f, 1));
+		_dLight->setColor(Math::Color(1.0f, 1.0f, 1.0f, 1));
+		_dLight->setIntensity(4);
 		_dLight->getGameObject()->getTransform()->setPosition(0, 0, 0);
 		_dLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(-1, -1, 0).normal());
 		add(_goDLight);
 
-		Light *_pLight = new Light(Light::LightType::PointLight);
-		GameObject *_goPLight = new GameObject("PointLight");
-		_goPLight->addComponent(_pLight);
-		_pLight->setColor(Math::Color(1, 1, 1, 1));
-		_pLight->getGameObject()->getTransform()->setPosition(0, 2, 0);
-		_pLight->setAttenuation(0.2f, 0.2f, 0.2f);
-		add(_goPLight);
+		//Light *_pLight = new Light(Light::LightType::PointLight);
+		//GameObject *_goPLight = new GameObject("PointLight");
+		//_goPLight->addComponent(_pLight);
+		//_pLight->setColor(Math::Color(1, 1, 1, 1));
+		//_pLight->getGameObject()->getTransform()->setPosition(0, 2, 0);
+		//_pLight->setAttenuation(0.2f, 0.2f, 0.2f);
+		//add(_goPLight);
 
-		Light *_sLight = new Light(Light::LightType::SpotLight);
-		_goSLight = new GameObject("SpotLight");
-		_goSLight->addComponent(_sLight);
-		_sLight->setColor(Math::Color(0, 1, 0, 1));
-		_sLight->getGameObject()->getTransform()->setPosition(0, 1, 0);
-		_sLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(0, -1, -2).normal());
-		_sLight->setAttenuation(0.002f, 0.003f, 0.001f);
-		_sLight->setAngle(20);
-		add(_goSLight);
+		//Light *_sLight = new Light(Light::LightType::SpotLight);
+		//_goSLight = new GameObject("SpotLight");
+		//_goSLight->addComponent(_sLight);
+		//_sLight->setColor(Math::Color(0, 1, 0, 1));
+		//_sLight->getGameObject()->getTransform()->setPosition(0, 1, 0);
+		//_sLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(0, -1, -2).normal());
+		//_sLight->setAttenuation(0.002f, 0.003f, 0.001f);
+		//_sLight->setAngle(20);
+		//add(_goSLight);
 
 
 		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
@@ -134,11 +134,18 @@ namespace gg
 			3,0,12
 		};
 
+		// ************* SHARED *************
+		basicShader = new graphics::Shader("src/basic.shader");
+
+		graphics::Material* _basicMat;
+		_basicMat = new graphics::Material(basicShader);
+
+
 		// ************* CUBE *************
 		// gameobject
 		goCube = new GameObject("Cube");
 		// dont add
-		add(goCube);
+		//add(goCube);
 		//goCube->getTransform()->setPosition(-2, 0, 0);
 		goCube->getTransform()->setScale(50, 1, 50);
 
@@ -146,41 +153,35 @@ namespace gg
 		graphics::Mesh* _cubeMesh = new graphics::Mesh();
 		_cubeMesh->setVertices(_quadVerts, _quadIndices, false);
 
-		// shader, texture, material
-		basicShader = new graphics::Shader("src/basic.shader");
+		// texture
 		graphics::Texture *_tex = new graphics::Texture("src/Pikamannn.jpg");
-		_cubeMat = new graphics::Material(basicShader);
-		//_cubeMat->setTexture("test", _tex);
 
 		// meshrenderer
 		MeshRenderer* _mrCube = goCube->addComponent<MeshRenderer>();
 		_mrCube->setMesh(_cubeMesh);
-		_mrCube->setMaterial(_cubeMat);
+		_mrCube->setMaterial(_basicMat);
 
 
 		// ************* TEAPOT *************
 		// gameobject
 		goTeapot = new GameObject("Teapot");
-		//add(goTeapot);
-		goTeapot->getTransform()->setPosition(0, -1, 0);
+		add(goTeapot);
+		goTeapot->getTransform()->setPosition(0, 0, 0);
 		goTeapot->getTransform()->setScale(0.5f, 0.5f, 0.5f);
 
 		// mesh
 		graphics::Mesh* _teapotMesh = new graphics::Mesh("src/teapot.obj", true);
 
-		// shader, texture, material
-		teapotShader = new graphics::Shader("src/teapot.shader");
-		graphics::Material* _teapotMat = new graphics::Material(teapotShader);
-
 		// meshrenderer
 		MeshRenderer* _mrTeapot = goTeapot->addComponent<MeshRenderer>();
 		_mrTeapot->setMesh(_teapotMesh);
-		_mrTeapot->setMaterial(_teapotMat);
+		_mrTeapot->setMaterial(_basicMat);
 
 		
 		// ************* CAMERA *************
 		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
 		_freeCam->getTransform()->setPosition(0,2,-8);
+		_freeCam->setMoveSpeed(0.05);
 		add(_freeCam);
 		setActiveCamera(_freeCam);
 
@@ -211,11 +212,12 @@ namespace gg
 			goTeapot->getTransform()->addEulerY(static_cast<float>(Time::getDeltaTime()) * 30);
 		}
 
-		_goSLight->getTransform()->lookAt(Math::Vec3f(
-			sinf((float)Time::getCurrentTime()),
-			-0.1f,
-			cos((float)Time::getCurrentTime())
-		).normal());
+		//_goSLight->getTransform()->lookAt(Math::Vec3f(
+		//	sinf((float)Time::getCurrentTime()),
+		//	-0.1f,
+		//	cos((float)Time::getCurrentTime())
+		//).normal());
+		//goTeapot->getTransform()->setEulerY(Time::getCurrentTime() * 30);
 
 		Scene::onUpdate();
 	}

@@ -3,8 +3,7 @@
 #include <iostream>
 
 #include "util/BitMask.h"
-namespace gg
-{
+namespace gg { namespace debug {
 	ubyte Log::s_LogLevel = static_cast<ubyte>(LogLevel::Info) |
 		static_cast<ubyte>(LogLevel::Warn) |
 		static_cast<ubyte>(LogLevel::Error) |
@@ -33,4 +32,4 @@ namespace gg
 			std::cout << str;
 		}
 	}
-} // namespace gg
+}/*namespace debug*/ } // namespace gg

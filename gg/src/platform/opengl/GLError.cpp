@@ -30,7 +30,7 @@ namespace gg
 			std::stringstream _ss;
 			_ss << "-----------------------------------------------------------\nOpenGL Error: [" << _error
 				<< "] " << getErrorName(_error) << "\n" << function << "\n:[" << file << ":" << line << "]\n";
-			Log::log(_ss.str());
+			debug::Log::log(_ss.str());
 			_hasNoError = false;
 		}
 		return _hasNoError;

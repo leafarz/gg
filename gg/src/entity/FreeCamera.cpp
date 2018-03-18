@@ -32,6 +32,11 @@ namespace gg
 		return m_Camera;
 	}
 
+	void FreeCamera::setMoveSpeed(float moveSpeed)
+	{
+		m_MoveSpeed = moveSpeed;
+	}
+
 	void FreeCamera::onInit(void)
 	{
 		m_PrevMousePos = Input::getMousePosition();

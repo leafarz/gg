@@ -13,20 +13,20 @@
 	{\
 		std::stringstream _ss;\
 		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
-		Log::log(_ss.str(), LogLevel::Info);\
+		debug::Log::log(_ss.str(), debug::LogLevel::Info);\
 	}
 	/* Logs str with function name, file name and line number. */
 	#define WARN(msg)\
 	{\
 		std::stringstream _ss;\
 		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
-		Log::log(_ss.str(), LogLevel::Warn);\
+		debug::Log::log(_ss.str(), debug::LogLevel::Warn);\
 	}
 	#define _SYS(msg)\
 	{\
 		std::stringstream _ss;\
 		_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
-		Log::log(_ss.str(), LogLevel::System);\
+		debug::Log::log(_ss.str(), debug::LogLevel::System);\
 	}
 #else
 	/* Does nothing.
@@ -48,11 +48,10 @@
 {\
 	std::stringstream _ss;\
 	_ss << "-----------------------------------------------------------\n" << msg << "\n:[" << __FUNCTION__ << "()]" << "\n:[" << __FILE__ << ":" << __LINE__ << "]\n";\
-	Log::log(_ss.str(), LogLevel::Error);\
+	debug::Log::log(_ss.str(), debug::LogLevel::Error);\
 }
 
-namespace gg
-{
+namespace gg { namespace debug {
 	enum class LogLevel : ubyte
 	{
 		Info	= 1,
@@ -95,5 +94,5 @@ namespace gg
 	private:
 		static ubyte s_LogLevel;
 	}; // class Log
-} // namespace gg
+}/*namespace debug*/ } // namespace gg
 #endif
