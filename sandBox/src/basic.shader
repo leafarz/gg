@@ -86,9 +86,9 @@ vec3 computeDirectionalLight(Light light, vec3 surfacePosition, vec3 surfaceNorm
 	return light.color.xyz * light.intensity  * (fresnel(light.direction, surfaceNormal) + _spec);
 }
 
-vec3 computePointLight(Light light, vec3 surfacePos)
+vec3 computePointLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
 {
-	vec3 _posToLight = light.position.xyz - surfacePos;
+	vec3 _posToLight = light.position.xyz - surfacePosition;
 	float _posToLightDist = length(_posToLight);
 
 	float _atten = 1.0 / (
@@ -97,7 +97,9 @@ vec3 computePointLight(Light light, vec3 surfacePos)
 		light.exponentAttenuation * _posToLightDist * _posToLightDist +
 		0.00001
 	);
-	return light.color.xyz * light.intensity * _atten;
+	vec3 _lightToFragDir = normalize(surfacePosition - light.position.xyz);
+	float _spec = computeSpecular(_lightToFragDir, surfacePosition, surfaceNormal, 32);
+	return light.color.xyz * light.intensity * (_atten + _spec);
 }
 
 vec3 computeSpotLight(Light light, vec3 surfacePos)
@@ -145,7 +147,7 @@ void main()
 			}
 			else
 			{
-				_result = _result + computePointLight(sys_Lights[i], fs_in.position);
+				_result = _result + computePointLight(sys_Lights[i], fs_in.position, fs_in.worldNormal);
 			}
 		}
 	}
