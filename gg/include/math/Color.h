@@ -16,11 +16,24 @@ namespace gg { namespace Math {
 		/* Alpha component */
 		float a;
 
+		static const Color black;
+		static const Color blue;
+		static const Color brown;
+		static const Color cyan;
+		static const Color gray;
+		static const Color green;
+		static const Color magenta;
+		static const Color orange;
+		static const Color purple;
+		static const Color red;
+		static const Color yellow;
+		static const Color white;
+
 		/* Creates color with default r,g,b=0 and a=1 unless defined. */
 		Color(float r = 0, float g = 0, float b = 0, float a = 1);
 
 		/* Gets the computed scalar gray value of this color. */
-		float gray(void) const;
+		float getGray(void) const;
 		/* Gets the computed gray color value of this color. */
 		Color grayColor(void) const;
 

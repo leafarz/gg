@@ -1,18 +1,31 @@
 #include "math/Color.h"
 
 namespace gg { namespace Math {
+	const Color Color::black	= Color(0.0f,				0.0f,				0.0f,				255.0f / 255.0f);
+	const Color Color::blue		= Color(0.0f,				0.0f,				255.0f / 255.0f,	255.0f / 255.0f);
+	const Color Color::brown	= Color(165.0f / 255.0f,	42.0f/255.0f,		42.0f / 255.0f,		255.0f / 255.0f);
+	const Color Color::cyan		= Color(0.0f,				255.0f / 255.0f,	255.0f / 255.0f,	255.0f / 255.0f);
+	const Color Color::gray		= Color(128.0f / 255.0f,	128.0f / 255.0f,	128.0f / 255.0f,	255.0f / 255.0f);
+	const Color Color::green	= Color(0.0f,				255.0f / 255.0f,	0.0f,				255.0f / 255.0f);
+	const Color Color::magenta	= Color(255.0f / 255.0f,	0.0f,				255.0f / 255.0f,	255.0f / 255.0f);
+	const Color Color::orange	= Color(255.0f / 255.0f,	165.0f / 255.0f,	0.0f,				255.0f / 255.0f);
+	const Color Color::purple	= Color(128.0f / 255.0f,	0.0f,				128.0f / 255.0f,	255.0f / 255.0f);
+	const Color Color::red		= Color(255.0f / 255.0f,	0.0f,				0.0f,				255.0f / 255.0f);
+	const Color Color::yellow	= Color(255.0f / 255.0f,	255.0f / 255.0f,	0.0f,				255.0f / 255.0f);
+	const Color Color::white	= Color(255.0f / 255.0f,	255.0f / 255.0f,	255.0f / 255.0f,	255.0f / 255.0f);
+
 	Color::Color(float r, float g, float b, float a)
 		: r(r), g(g), b(b), a(a)
 	{ }
 
-	float Color::gray(void) const
+	float Color::getGray(void) const
 	{
 		return 0.299f * r + 0.587f * g + 0.114f * b;
 	}
 
 	Color Color::grayColor(void) const
 	{
-		float _gray = gray();
+		float _gray = getGray();
 		return Color(_gray, _gray, _gray, 1);
 	}
 
