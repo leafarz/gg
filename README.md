@@ -4,10 +4,9 @@ A simple OpenGL game engine.
  * SDK Version: 10.0.15063.0
 
 
-## Resources ##
-#### 1. thebennybox ####
-* [[github](https://github.com/BennyQBD)]
-* [[opengl series](https://www.youtube.com/watch?v=ss3AnSxJ2X8&list=PLEETnX-uPtBXP_B2yupUKlflXBznWIlL5)]
+## References / Resources ##
+#### 1. OpenGL ####
+* API docs - http://docs.gl/
 
 #### 2. TheCherno ####
 * [[Sparky Engine github](https://github.com/TheCherno/Sparky)]
@@ -15,10 +14,17 @@ A simple OpenGL game engine.
 * [[c++ series](https://www.youtube.com/watch?v=18c3MTX0PK0&list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)]
 * [[new openGL series](https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2)]
 
-#### 3. Joey de Vries ####
+#### 3. thebennybox ####
+* [[github](https://github.com/BennyQBD)]
+* [[opengl series](https://www.youtube.com/watch?v=ss3AnSxJ2X8&list=PLEETnX-uPtBXP_B2yupUKlflXBznWIlL5)]
+
+#### 4. Joey de Vries ####
 * [[opengl github](https://github.com/JoeyDeVries/LearnOpenGL)]
 * [[opengl tutorial](https://learnopengl.com/)]  [[learnopengl pdf](https://learnopengl.com/book/learnopengl_book.pdf)]
  * \*pdf is the more recent one
+
+#### 5. Jason Turner ####
+* [[c++ series](https://www.youtube.com/channel/UCxHAlbZQNFU2LgEtiqd2Maw)]
 
 
 ## Books ##
@@ -77,7 +83,6 @@ A simple OpenGL game engine.
  * primitive objects
 * debug
  * text ui
- * debug draws
 * physics
  * collisions
  * numerical integrations
@@ -94,7 +99,11 @@ A simple OpenGL game engine.
  * guids
 
 ## DONE ##
-* \*dirty flags
+* <span style="color:red">\*\*</span>dirty flags
+* components
+ * camera
+* debug
+ * <span style="color:red">\*\*</span>debug draws (draw line)
 * renderer
  * base renderer
    * mesh renderer
@@ -104,7 +113,5 @@ A simple OpenGL game engine.
  * shader
    * automated uniforms
    * system uniforms
-* components
- * camera
 
-\* Needs polish but will do for now.
+<span style="color:red">\*\*</span> Needs polish but will do for now.
