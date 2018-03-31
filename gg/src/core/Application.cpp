@@ -11,6 +11,8 @@
 
 namespace gg
 {
+	Application* Application::s_Instance;
+
 	Application::Application(const char* windowName, GLint width = 1280, GLint height = 720) :
 		m_TimeStep(1 / 60.0),
 		m_FixedTimeStep(1 / 60.0),
@@ -26,6 +28,7 @@ namespace gg
 		Input::init();
 		Time::s_FixedDelta = m_FixedTimeStep;
 
+		s_Instance = this;
 	}
 
 	Application::~Application(void)

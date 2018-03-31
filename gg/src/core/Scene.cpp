@@ -83,6 +83,7 @@ namespace gg
 			m_Renderer->draw(_go, _v, _p, _pv, _cameraPosition, _cameraDirection, LightSettings, m_Lights);
 		}
 
+		m_Renderer->drawDebug(_pv);
 		// render queues?
 	}
 } // namespace gg

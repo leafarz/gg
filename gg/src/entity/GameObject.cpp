@@ -18,8 +18,8 @@ namespace gg
 
 		FORU(i, 0, (int)ComponentType::MAX)
 		{
-			auto range = m_Components.equal_range((ComponentType)i);
-			for (auto it = range.first; it != range.second; ++it)
+			auto _range = m_Components.equal_range((ComponentType)i);
+			for (auto it = _range.first; it != _range.second; ++it)
 			{
 				delete &it;
 			}

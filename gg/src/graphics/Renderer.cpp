@@ -22,6 +22,8 @@ namespace gg { namespace graphics {
 		GL(glEnable(GL_DEPTH_TEST));
 		GL(glEnable(GL_TEXTURE_2D));
 		GL(glClearColor(0.1f, 0.1f, 0.3f, 0.0f));
+
+		m_DebugLine = new graphics::DebugLine();
 	}
 
 	Renderer::~Renderer(void)
@@ -210,4 +212,33 @@ namespace gg { namespace graphics {
 		_mr->draw();
 	}
 
+	/* Debug Line */
+	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color)
+	{
+		if (m_DrawLineCount < m_LineQueue.size())
+		{
+			m_LineQueue[m_DrawLineCount].from = from;
+			m_LineQueue[m_DrawLineCount].to = to;
+			m_LineQueue[m_DrawLineCount].color = color;
+		}
+		else
+		{
+			m_LineQueue.push_back({ from, to, color });
+		}
+		m_DrawLineCount++;
+	}
+
+	void Renderer::drawDebug(const Math::Mat4f& pvMatrix)
+	{
+		// nothing to draw
+		if (m_DrawLineCount == 0) { return; }
+
+		m_DebugLine->begin(pvMatrix);
+		FORU(i, 0, m_DrawLineCount)
+		{
+			const LineData& _data = m_LineQueue[i];
+			m_DebugLine->drawLine(_data.from, _data.to, _data.color);
+		}
+		m_DrawLineCount = 0;
+	}
 }/*namespace graphics*/ } // namespace gg

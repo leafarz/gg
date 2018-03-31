@@ -13,7 +13,7 @@ namespace gg { namespace graphics {
 		m_Vertices = vertices;
 		m_Indices = indices;
 
-		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex));
+		m_VB.setData(&m_Vertices.front(), m_Vertices.size() * sizeof(Vertex), false);
 		m_IB.setData(&m_Indices.front(), m_Indices.size());
 
 		VertexBufferLayout _layout = VertexBufferLayout();

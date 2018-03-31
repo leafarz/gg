@@ -19,28 +19,33 @@ namespace gg
 		Application(const char* windowName, GLint width, GLint height);
 		~Application(void);
 
-		void		run(void);
-		void		stop(void);
+		static Application* getInstance(void) { return s_Instance; }
 
-		void		addScene(Scene* scene, const std::string& sceneName, GLboolean setAsActive = false);
-		void		unloadScene(void);
-		GLboolean	setScene(const std::string& sceneName);
+		void run(void);
 
-		void		setTimeStep(GLuint fps);
-		void		setFixedTimeStep(GLuint fps);
+		Scene* getActiveScene(void) { return m_ActiveScene; }
+		void addScene(Scene* scene, const std::string& sceneName, GLboolean setAsActive = false);
+		void unloadScene(void);
+		GLboolean setScene(const std::string& sceneName);
+
+		void setTimeStep(GLuint fps);
+		void setFixedTimeStep(GLuint fps);
 
 	private:
 		Application(void) = delete;
 
+		void stop(void);
 
 	private:
-		graphics::Window*	m_Window;
-		GLdouble			m_TimeStep;
-		GLdouble			m_FixedTimeStep;
-		GLboolean			m_IsRunning;
+		static Application* s_Instance;
 
-		Scene*				m_ActiveScene;
-		bool				m_SceneIsInitialized = false;
+		graphics::Window* m_Window;
+		GLdouble m_TimeStep;
+		GLdouble m_FixedTimeStep;
+		GLboolean m_IsRunning;
+
+		Scene* m_ActiveScene;
+		bool m_SceneIsInitialized = false;
 
 		std::unordered_map<std::string, Scene*> m_Scenes;
 	}; // class Application

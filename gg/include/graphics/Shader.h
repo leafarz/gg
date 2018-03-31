@@ -16,6 +16,7 @@ namespace gg { namespace graphics {
 	private:
 		friend class Material;
 		friend class Renderer;
+		friend class Drawable;
 
 		enum class ShaderType : int8
 		{

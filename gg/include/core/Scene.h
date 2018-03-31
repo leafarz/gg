@@ -24,6 +24,8 @@ namespace gg
 		void	setActiveCamera(GameObject* gameObject);
 		Camera* getActiveCamera(void) const;
 
+		graphics::Renderer* getRenderer(void) { return m_Renderer; }
+
 		void	add(GameObject* gameObject);
 		// TODO: add remove function
 

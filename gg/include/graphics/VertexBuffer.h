@@ -26,11 +26,14 @@ namespace gg { namespace graphics {
 		/* Sets the buffer id and buffer data.
 		 * Binds the current buffer.
 		 * Will do nothing if called repeatedly.
-		 * [data]	- the data of the buffer
-		 * [size]	- the size of data in bytes
+		 * [data]			- the data of the buffer
+		 * [size]			- the size of data in bytes
+		 * [dynamicDraw]	- Flag if data will be changed often or not.
 		 */
-		void setData(const void *data, uint size);
+		void setData(const void *data, uint size, bool dynamicDraw);
 		void setData(GLuint id);
+
+		void updateData(const void *data, uint size, bool dynamicDraw);
 
 		/* Binds the current vertex buffer. */
 		void bind(void) const;

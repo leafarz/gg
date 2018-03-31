@@ -16,7 +16,7 @@ namespace gg { namespace graphics {
 	{
 		GL(glDeleteBuffers(1, &m_ID));
 	}
-	void VertexBuffer::setData(const void* data, uint size)
+	void VertexBuffer::setData(const void* data, uint size, bool dynamicDraw)
 	{
 		if (m_IsInitialized)
 		{
@@ -25,7 +25,7 @@ namespace gg { namespace graphics {
 
 		GL(glGenBuffers(1, &m_ID));
 		GL(glBindBuffer(GL_ARRAY_BUFFER, m_ID));
-		GL(glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW));
+		GL(glBufferData(GL_ARRAY_BUFFER, size, data, dynamicDraw ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW));
 
 		m_IsInitialized = true;
 	}
@@ -33,6 +33,11 @@ namespace gg { namespace graphics {
 	{
 		m_ID = id;
 		m_IsInitialized = true;
+	}
+	void VertexBuffer::updateData(const void* data, uint size, bool dynamicDraw)
+	{
+		GL(glBindBuffer(GL_ARRAY_BUFFER, m_ID));
+		GL(glBufferData(GL_ARRAY_BUFFER, size, data, dynamicDraw ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW));
 	}
 	void VertexBuffer::bind(void) const
 	{

@@ -6,11 +6,14 @@
 
 #include "core/Types.h"
 
+#include "graphics/drawables/Drawables.h"
 #include "graphics/LightSettings.h"
 
 #include "platform/opengl/GLCommon.h"
 
 #include "math/Mat4f.h"
+#include "math/Vec3f.h"
+#include "math/Color.h"
 
 namespace gg {
 // forward declarations
@@ -20,6 +23,30 @@ namespace graphics {
 	
 	class Renderer
 	{
+	private:
+		enum class SystemLightIndex : ubyte
+		{
+			Position,
+			Direction,
+			Color,
+			Intensity,
+			ConstantAttenuation,
+			LinearAttenuation,
+			ExponentAttenuation,
+			Angle
+		};
+
+		// currently for draw line debug only
+		struct LineData
+		{
+			Math::Vec3f from;
+			Math::Vec3f to;
+			Math::Color color;
+			LineData(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color)
+				: from(from), to(to), color(color)
+			{ }
+		};
+
 	public:
 		Renderer(void);
 		~Renderer(void);
@@ -34,20 +61,10 @@ namespace graphics {
 			const Math::Vec3f& cameraDirection,
 			const LightSettings& lightSettings,
 			const std::vector<Light*>& lights
-			);
+		);
 
+	/* Light */
 	private:
-		enum class SystemLightIndex : ubyte
-		{
-			Position,
-			Direction,
-			Color,
-			Intensity,
-			ConstantAttenuation,
-			LinearAttenuation,
-			ExponentAttenuation,
-			Angle
-		};
 		// MAX_LIGHTS * numOfProperties
 		const char* m_SystemLightPrefixes[8 * 8] = {
 			"sys_Lights[0].position", "sys_Lights[0].direction", "sys_Lights[0].color", "sys_Lights[0].intensity", "sys_Lights[0].constantAttenuation", "sys_Lights[0].linearAttenuation", "sys_Lights[0].exponentAttenuation", "sys_Lights[0].angle",
@@ -59,8 +76,20 @@ namespace graphics {
 			"sys_Lights[6].position", "sys_Lights[6].direction", "sys_Lights[6].color", "sys_Lights[6].intensity", "sys_Lights[6].constantAttenuation", "sys_Lights[6].linearAttenuation", "sys_Lights[6].exponentAttenuation", "sys_Lights[6].angle",
 			"sys_Lights[7].position", "sys_Lights[7].direction", "sys_Lights[7].color", "sys_Lights[7].intensity", "sys_Lights[7].constantAttenuation", "sys_Lights[7].linearAttenuation", "sys_Lights[7].exponentAttenuation", "sys_Lights[7].angle"
 		};
-	}; // class Renderer
 
+
+	/* Debug draws */
+	public:
+		/* Adds line data to queue to be drawn on render. */
+		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color);
+		/* Draws all the debugs. */
+		void drawDebug(const Math::Mat4f& pvMatrix);
+
+	private:
+		graphics::DebugLine* m_DebugLine;
+		std::vector<LineData> m_LineQueue;
+		uint m_DrawLineCount = 0;
+	}; // class Renderer
 }/*namespace graphics*/ } // namespace gg
 
 #endif
