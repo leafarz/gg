@@ -227,10 +227,6 @@ namespace gg
 
 	void TestScene::drawGrid(int length)
 	{
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::forward, Math::Color::blue);
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::up, Math::Color::green);
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::right, Math::Color::red);
-
 		FOR(i, -length, length + 1)
 		{
 			debug::drawLine(Math::Vec3f(-length, 0, i), Math::Vec3f(length, 0, i), Math::Color::gray);
@@ -239,5 +235,8 @@ namespace gg
 		{
 			debug::drawLine(Math::Vec3f(i, 0, -length), Math::Vec3f(i, 0, length), Math::Color::gray);
 		}
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::forward, Math::Color::blue, 3);
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::up, Math::Color::green, 3);
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::right, Math::Color::red, 3);
 	}
 } // namespace gg

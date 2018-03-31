@@ -42,8 +42,9 @@ namespace graphics {
 			Math::Vec3f from;
 			Math::Vec3f to;
 			Math::Color color;
-			LineData(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color)
-				: from(from), to(to), color(color)
+			float thickness;
+			LineData(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness)
+				: from(from), to(to), color(color), thickness(thickness)
 			{ }
 		};
 
@@ -81,7 +82,7 @@ namespace graphics {
 	/* Debug draws */
 	public:
 		/* Adds line data to queue to be drawn on render. */
-		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color);
+		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness);
 		/* Draws all the debugs. */
 		void drawDebug(const Math::Mat4f& pvMatrix);
 

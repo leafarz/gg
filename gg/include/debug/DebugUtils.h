@@ -6,7 +6,7 @@
 #include "math/Color.h"
 
 namespace gg { namespace debug {
-	void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color = Math::Color::white);
+	void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color = Math::Color::white, float thickness = 1);
 }/*namespace debug*/ } // namespace gg
 
 #endif

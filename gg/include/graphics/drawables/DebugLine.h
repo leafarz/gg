@@ -25,7 +25,7 @@ namespace gg { namespace graphics {
 		DebugLine(void);
 		~DebugLine(void);
 
-		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color);
+		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness);
 	}; // class DebugLine
 }/*namespace debug*/ } // namespace gg
 

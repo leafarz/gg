@@ -213,17 +213,18 @@ namespace gg { namespace graphics {
 	}
 
 	/* Debug Line */
-	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color)
+	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness)
 	{
 		if (m_DrawLineCount < m_LineQueue.size())
 		{
 			m_LineQueue[m_DrawLineCount].from = from;
 			m_LineQueue[m_DrawLineCount].to = to;
 			m_LineQueue[m_DrawLineCount].color = color;
+			m_LineQueue[m_DrawLineCount].thickness = thickness;
 		}
 		else
 		{
-			m_LineQueue.push_back({ from, to, color });
+			m_LineQueue.push_back({ from, to, color, thickness });
 		}
 		m_DrawLineCount++;
 	}
@@ -237,7 +238,7 @@ namespace gg { namespace graphics {
 		FORU(i, 0, m_DrawLineCount)
 		{
 			const LineData& _data = m_LineQueue[i];
-			m_DebugLine->drawLine(_data.from, _data.to, _data.color);
+			m_DebugLine->drawLine(_data.from, _data.to, _data.color, _data.thickness);
 		}
 		m_DrawLineCount = 0;
 	}

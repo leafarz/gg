@@ -31,11 +31,13 @@ namespace gg { namespace graphics {
 	{
 	}
 
-	void DebugLine::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color)
+	void DebugLine::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness)
 	{
 		std::vector<LineData> _data = { LineData(from, color), LineData(to, color) };
 
 		m_VB.updateData(&_data.front(), _data.size() * sizeof(LineData), true);
+
+		GL(glLineWidth(thickness));
 		GL(glDrawElements(GL_LINES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 }/*namespace debug*/ } // namespace gg
