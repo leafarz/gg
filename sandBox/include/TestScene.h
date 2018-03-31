@@ -16,6 +16,9 @@ namespace gg
 
 		void onInit(void) override;
 		void onUpdate(void) override;
+
+	private:
+		void drawGrid(int length);
 	}; // class TestScene
 } // namespace gg
 

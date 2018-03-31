@@ -1,6 +1,8 @@
 #include "TestScene.h"
 #include "core/gg.h"
+#include "debug/DebugUtils.h"
 
+#include "util/Iterators.h"
 namespace gg
 {
 	TestScene::TestScene(void)
@@ -200,6 +202,7 @@ namespace gg
 	void TestScene::onUpdate(void)
 	{
 		if (Input::getKeyDown(KEY::G))
+		drawGrid(20);
 		{
 			rotateTeapot = !rotateTeapot;
 		}
@@ -220,5 +223,21 @@ namespace gg
 		//goTeapot->getTransform()->setEulerY(Time::getCurrentTime() * 30);
 
 		Scene::onUpdate();
+	}
+
+	void TestScene::drawGrid(int length)
+	{
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::forward, Math::Color::blue);
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::up, Math::Color::green);
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::right, Math::Color::red);
+
+		FOR(i, -length, length + 1)
+		{
+			debug::drawLine(Math::Vec3f(-length, 0, i), Math::Vec3f(length, 0, i), Math::Color::gray);
+		}
+		FOR(i, -length, length + 1)
+		{
+			debug::drawLine(Math::Vec3f(i, 0, -length), Math::Vec3f(i, 0, length), Math::Color::gray);
+		}
 	}
 } // namespace gg
