@@ -1,5 +1,5 @@
-#ifndef		GG_SubMesh_H
-#define		GG_SubMesh_H
+#ifndef		GG_SUBMESH_H
+#define		GG_SUBMESH_H
 #pragma once
 
 #include <vector>
