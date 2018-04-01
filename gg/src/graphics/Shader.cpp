@@ -340,6 +340,9 @@ namespace gg { namespace graphics {
 		char _name[256];
 		bool _hasSystemLight = false;
 		GL(glGetProgramiv(m_ID, GL_ACTIVE_UNIFORMS, &_count));
+
+		std::stringstream _ss;
+		_ss << "[Uniform list]\n";
 		FORU(i, 0, (uint)_count)
 		{
 			GL(glGetActiveUniform(m_ID, i, sizeof(_name) - 1, &_len, &_num, &_type, _name));
@@ -352,7 +355,9 @@ namespace gg { namespace graphics {
 			}
 			else
 			{
-				_SYS("Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> " << _name);
+				_ss << "Adding uniform (" << _uniformLoc << ") <" << dataTypeToString(glEnumToDataType(_type)) << "> [" << _name << ']';
+				if (i < _count - 1) { _ss << '\n'; }
+
 				if (_len > 4)
 				{
 					SystemUniform _systemUniform = systemUniformStringToEnum(_name);
@@ -372,6 +377,8 @@ namespace gg { namespace graphics {
 				m_Uniforms[_name] = UniformData(glEnumToDataType(_type), _uniformLoc);
 			}
 		}
+		std::string _str = _ss.str();
+		_SYS(_str);
 	}
 
 	GLvoid Shader::setUniformi(const std::string& key, int val)
