@@ -100,6 +100,11 @@
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimpd.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)deps\gg\bin\$(PlatformTarget)\$(Configuration)\ggd.pdb" "$(TargetDir)"
+copy "$(SolutionDir)deps\glfw-3.2.1\bin\$(PlatformTarget)\$(Configuration)\glfw.pdb" "$(TargetDir)"
+copy "$(SolutionDir)deps\freetype2-2.9\bin\$(PlatformTarget)\$(Configuration)\freetype.pdb" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,6 +121,11 @@
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimpd.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)deps\gg\bin\$(PlatformTarget)\$(Configuration)\ggd.pdb" "$(TargetDir)"
+copy "$(SolutionDir)deps\glfw-3.2.1\bin\$(PlatformTarget)\$(Configuration)\glfw.pdb" "$(TargetDir)"
+copy "$(SolutionDir)deps\freetype2-2.9\bin\$(PlatformTarget)\$(Configuration)\freetype.pdb" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

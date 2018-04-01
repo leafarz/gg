@@ -34,10 +34,11 @@ A simple OpenGL game engine.
 
 
 ## Libraries used ##
-1. [(Assimp) Open Asset Import Library](http://www.assimp.org/)
-2. [(GLEW) The OpenGL Extension Wrangler Library](http://glew.sourceforge.net/)
-3. [(GLFW) OpenGL Framework](http://www.glfw.org/)
-4. [(SOIL2) Simple OpenGL Image Library 2](https://bitbucket.org/SpartanJ/soil2) based from [SOIL](http://www.lonesock.net/soil.html)
+1. [(GLEW) The OpenGL Extension Wrangler Library](http://glew.sourceforge.net/)
+2. [(GLFW) OpenGL Framework](http://www.glfw.org/)
+3. [(SOIL2) Simple OpenGL Image Library 2](https://bitbucket.org/SpartanJ/soil2) based from [SOIL](http://www.lonesock.net/soil.html)
+4. [(Assimp) Open Asset Import Library](http://www.assimp.org/)
+5. [FreeType](https://www.freetype.org/index.html)
 
 
 ## Tools used ##
