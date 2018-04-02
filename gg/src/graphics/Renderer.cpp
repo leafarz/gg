@@ -213,33 +213,32 @@ namespace gg { namespace graphics {
 	}
 
 	/* Debug Line */
-	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness)
+	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness)
 	{
-		if (m_DrawLineCount < m_LineQueue.size())
+		if (m_Buffer.find(thickness) == m_Buffer.end())
 		{
-			m_LineQueue[m_DrawLineCount].from = from;
-			m_LineQueue[m_DrawLineCount].to = to;
-			m_LineQueue[m_DrawLineCount].color = color;
-			m_LineQueue[m_DrawLineCount].thickness = thickness;
+			m_Buffer.insert({ thickness, { DebugLine::LineData(from, color), DebugLine::LineData(to, color) } });
 		}
 		else
 		{
-			m_LineQueue.push_back({ from, to, color, thickness });
+			m_Buffer[thickness].push_back(DebugLine::LineData(from, color));
+			m_Buffer[thickness].push_back(DebugLine::LineData(to, color));
 		}
-		m_DrawLineCount++;
 	}
 
 	void Renderer::drawDebug(const Math::Mat4f& pvMatrix)
 	{
-		// nothing to draw
-		if (m_DrawLineCount == 0) { return; }
-
 		m_DebugLine->begin(pvMatrix);
-		FORU(i, 0, m_DrawLineCount)
+
+		UFOR(kv, m_Buffer)
 		{
-			const LineData& _data = m_LineQueue[i];
-			m_DebugLine->drawLine(_data.from, _data.to, _data.color, _data.thickness);
+			uint _key = kv.first;
+
+			// nothing to draw
+			if (m_Buffer[_key].size() == 0) { continue; }
+
+			m_DebugLine->drawLines(m_Buffer[_key], _key);
+			m_Buffer[_key].clear();
 		}
-		m_DrawLineCount = 0;
 	}
 }/*namespace graphics*/ } // namespace gg

@@ -3,6 +3,7 @@
 #pragma once
 
 #include <vector>
+#include <unordered_map>
 
 #include "core/Types.h"
 
@@ -34,18 +35,6 @@ namespace graphics {
 			LinearAttenuation,
 			ExponentAttenuation,
 			Angle
-		};
-
-		// currently for draw line debug only
-		struct LineData
-		{
-			Math::Vec3f from;
-			Math::Vec3f to;
-			Math::Color color;
-			float thickness;
-			LineData(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness)
-				: from(from), to(to), color(color), thickness(thickness)
-			{ }
 		};
 
 	public:
@@ -82,13 +71,13 @@ namespace graphics {
 	/* Debug draws */
 	public:
 		/* Adds line data to queue to be drawn on render. */
-		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness);
+		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness);
 		/* Draws all the debugs. */
 		void drawDebug(const Math::Mat4f& pvMatrix);
 
 	private:
 		graphics::DebugLine* m_DebugLine;
-		std::vector<LineData> m_LineQueue;
+		std::unordered_map<uint, std::vector<DebugLine::LineData>> m_Buffer;
 		uint m_DrawLineCount = 0;
 	}; // class Renderer
 }/*namespace graphics*/ } // namespace gg

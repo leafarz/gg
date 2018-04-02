@@ -12,7 +12,7 @@ namespace gg { namespace graphics {
 	class Shader;
 	class DebugLine : public Drawable
 	{
-	private:
+	public:
 		struct LineData
 		{
 			Math::Vec3f position;
@@ -26,6 +26,7 @@ namespace gg { namespace graphics {
 		~DebugLine(void);
 
 		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness);
+		void drawLines(const std::vector<LineData>& lineQueue, uint thickness);
 	}; // class DebugLine
 }/*namespace debug*/ } // namespace gg
 

@@ -40,4 +40,12 @@ namespace gg { namespace graphics {
 		GL(glLineWidth(thickness));
 		GL(glDrawElements(GL_LINES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
+
+	void DebugLine::drawLines(const std::vector<LineData>& lineQueue, uint thickness)
+	{
+		m_VB.updateData(&lineQueue.front(), lineQueue.size() * sizeof(LineData), true);
+
+		GL(glLineWidth(thickness));
+		glDrawArrays(GL_LINES, 0, lineQueue.size());
+	}
 }/*namespace debug*/ } // namespace gg
