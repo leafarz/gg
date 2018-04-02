@@ -201,8 +201,9 @@ namespace gg
 	}
 	void TestScene::onUpdate(void)
 	{
-		if (Input::getKeyDown(KEY::G))
 		drawGrid(20);
+
+		if (Input::getKeyDown(KEY::G))
 		{
 			rotateTeapot = !rotateTeapot;
 		}
