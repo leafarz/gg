@@ -236,8 +236,9 @@ namespace gg
 		{
 			debug::drawLine(Math::Vec3f(i, 0, -length), Math::Vec3f(i, 0, length), Math::Color::gray);
 		}
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::forward, Math::Color::blue, 3);
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::up, Math::Color::green, 3);
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::right, Math::Color::red, 3);
+
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::forward, 5, Math::Color::blue);
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::up, 5, Math::Color::green);
+		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::right, 5, Math::Color::red);
 	}
 } // namespace gg

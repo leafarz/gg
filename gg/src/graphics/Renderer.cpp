@@ -217,12 +217,28 @@ namespace gg { namespace graphics {
 	{
 		if (m_Buffer.find(thickness) == m_Buffer.end())
 		{
-			m_Buffer.insert({ thickness, { DebugLine::LineData(from, color), DebugLine::LineData(to, color) } });
+			m_Buffer.insert({ thickness, LineDataGroup({ DebugLine::LineData(from, color), DebugLine::LineData(to, color) }) });
 		}
 		else
 		{
-			m_Buffer[thickness].push_back(DebugLine::LineData(from, color));
-			m_Buffer[thickness].push_back(DebugLine::LineData(to, color));
+			m_Buffer[thickness].add(from, color);
+			m_Buffer[thickness].add(to, color);
+		}										   
+	}
+
+	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness, float duration)
+	{
+		if (m_TimedBuffer.find(thickness) == m_TimedBuffer.end())
+		{
+			m_TimedBuffer.insert({ thickness, {
+				TimedLineData(duration, from, color),
+				TimedLineData(duration, to, color)
+			} });
+		}
+		else
+		{
+			m_TimedBuffer[thickness].push_back(TimedLineData(duration, from, color));
+			m_TimedBuffer[thickness].push_back(TimedLineData(duration, to, color));
 		}
 	}
 
@@ -235,10 +251,39 @@ namespace gg { namespace graphics {
 			uint _key = kv.first;
 
 			// nothing to draw
-			if (m_Buffer[_key].size() == 0) { continue; }
+			uint _count = m_Buffer[_key].getCount();
+			if (_count == 0) { continue; }
 
-			m_DebugLine->drawLines(m_Buffer[_key], _key);
-			m_Buffer[_key].clear();
+			m_DebugLine->drawLines(m_Buffer[_key].getLineData(), _key, _count);
+
+			m_Buffer[_key].resetCount();
 		}
+		
+		UFOR(kv, m_TimedBuffer)
+		{
+			uint _key = kv.first;
+
+			std::vector<TimedLineData>& _array = m_TimedBuffer[_key];
+			uint _count = _array.size();
+
+			if (_count == 0) { continue; }
+
+			std::vector<DebugLine::LineData> _buffer;
+			_buffer.reserve(_count);
+
+			FORU(i, 0, _count)
+			{
+				_buffer.push_back(_array[i].lineData);
+				if ((_array[i].duration-=Time::getDeltaTime()) <= 0)
+				{
+					_array.erase(_array.begin() + (i==0 ? 0 : i-1));
+					--i;
+					--_count;
+				}
+			}
+
+			m_DebugLine->drawLines(_buffer, _key, _buffer.size());
+		}
+
 	}
 }/*namespace graphics*/ } // namespace gg

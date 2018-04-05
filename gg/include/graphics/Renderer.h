@@ -37,6 +37,54 @@ namespace graphics {
 			Angle
 		};
 
+		struct LineDataGroup
+		{
+		private:
+			uint count;
+			std::vector<DebugLine::LineData> lineData;
+
+		public:
+			LineDataGroup(void)
+			{ }
+			LineDataGroup(const std::vector<DebugLine::LineData>& lineData)
+				: lineData(lineData)
+			{
+				count = lineData.size() - 1;
+			}
+
+			uint getCount(void) { return count; }
+			void resetCount(void) { count = 0; }
+			const std::vector<DebugLine::LineData>& getLineData(void) { return lineData; }
+
+			bool hasSlot(void)
+			{
+				return count < (lineData.size() - 1);
+			}
+
+			void add(const Math::Vec3f& position, const Math::Color& color)
+			{
+				if (hasSlot())
+				{
+					this->lineData[count].position = position;
+					this->lineData[count].color = color;
+				}
+				else
+				{
+					this->lineData.push_back(DebugLine::LineData(position, color));
+				}
+				count++;
+			}
+		};
+		struct TimedLineData
+		{
+			float duration;
+			DebugLine::LineData lineData;
+
+			TimedLineData(float duration, const Math::Vec3f& position, const Math::Color& color)
+				: duration(duration), lineData({position, color})
+			{ }
+		};
+
 	public:
 		Renderer(void);
 		~Renderer(void);
@@ -72,13 +120,14 @@ namespace graphics {
 	public:
 		/* Adds line data to queue to be drawn on render. */
 		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness);
+		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness, float duration);
 		/* Draws all the debugs. */
 		void drawDebug(const Math::Mat4f& pvMatrix);
 
 	private:
 		graphics::DebugLine* m_DebugLine;
-		std::unordered_map<uint, std::vector<DebugLine::LineData>> m_Buffer;
-		uint m_DrawLineCount = 0;
+		std::unordered_map<uint, LineDataGroup> m_Buffer;
+		std::unordered_map<uint, std::vector<TimedLineData>> m_TimedBuffer;
 	}; // class Renderer
 }/*namespace graphics*/ } // namespace gg
 

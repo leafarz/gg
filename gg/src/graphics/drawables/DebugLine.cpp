@@ -41,11 +41,11 @@ namespace gg { namespace graphics {
 		GL(glDrawElements(GL_LINES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
-	void DebugLine::drawLines(const std::vector<LineData>& lineQueue, uint thickness)
+	void DebugLine::drawLines(const std::vector<LineData>& lineQueue, uint thickness, uint count)
 	{
-		m_VB.updateData(&lineQueue.front(), lineQueue.size() * sizeof(LineData), true);
+		m_VB.updateData(&lineQueue.front(), count * sizeof(LineData), true);
 
 		GL(glLineWidth(thickness));
-		glDrawArrays(GL_LINES, 0, lineQueue.size());
+		glDrawArrays(GL_LINES, 0, count);
 	}
 }/*namespace debug*/ } // namespace gg
