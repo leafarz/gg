@@ -26,6 +26,9 @@ A simple OpenGL game engine.
 #### 5. Jason Turner ####
 * [[c++ series](https://www.youtube.com/channel/UCxHAlbZQNFU2LgEtiqd2Maw)]
 
+#### 6. Fonts ####
+* [[Google Fonts](https://fonts.google.com/)]
+
 
 ## Books ##
 1. **Game Engine Architecture** by Jason Gregory

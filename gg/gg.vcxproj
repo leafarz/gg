@@ -217,6 +217,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\graphics\Font.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\graphics\Mesh.h">
       <SubType>
       </SubType>
@@ -361,6 +365,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\graphics\drawables\Drawable.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Font.cpp">
       <SubType>
       </SubType>
     </ClCompile>

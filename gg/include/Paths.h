@@ -3,9 +3,11 @@
 #pragma once
 
 #if _DEBUG
-	#define ROOT_SHADER "../gg/res/shader/"
+	#define ROOT_SHADER "../gg/res/shaders/"
+	#define ROOT_FONT "../gg/res/fonts/"
 #else
-	#define ROOT_SHADER "../gg/res/shader/"
+	#define ROOT_SHADER "../gg/res/shaders/"
+	#define ROOT_FONT "../gg/res/fonts/"
 #endif
 
 #endif
