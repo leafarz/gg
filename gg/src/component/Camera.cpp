@@ -13,9 +13,19 @@ namespace gg
 	Camera::~Camera(void)
 	{ }
 
-	void Camera::setPerspectiveCamera(float fovDeg, float aspectRatio, float zNear, float zFar)
+	void Camera::setPerspective(float fovDeg, float aspectRatio, float zNear, float zFar)
 	{
 		m_ProjectionMatrix = Math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar);
+	}
+
+	void Camera::setOrthographic(float size, float zNear, float zFar)
+	{
+		m_ProjectionMatrix = Math::Mat4f::orthographicMatrix(-size, size, -size, size, zNear, zFar);
+	}
+
+	void Camera::setOrthographic(float left, float right, float bottom, float top, float zNear, float zFar)
+	{
+		m_ProjectionMatrix = Math::Mat4f::orthographicMatrix(left, right, bottom, top, zNear, zFar);
 	}
 
 	const Math::Mat4f& Camera::getProjectionMatrix(void) const

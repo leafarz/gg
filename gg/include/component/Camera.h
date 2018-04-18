@@ -19,7 +19,9 @@ namespace gg
 		static ComponentType getStaticType(void) { return ComponentType::Camera; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
-		void setPerspectiveCamera(float fovDeg, float aspectRatio, float zNear, float zFar);
+		void setPerspective(float fovDeg, float aspectRatio, float zNear, float zFar);
+		void setOrthographic(float size, float zNear, float zFar);
+		void setOrthographic(float left, float right, float bottom, float top, float zNear, float zFar);
 
 		const Math::Mat4f& getProjectionMatrix(void) const;
 		const Math::Mat4f& getViewMatrix(void);

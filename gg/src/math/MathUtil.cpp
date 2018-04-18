@@ -14,7 +14,7 @@ namespace gg { namespace Math {
 
 	float clamp(float val, float min, float max)
 	{
-		return (val > min) ? (val < max) ? val : max : min;
+		return (val < min) ? min : (val > max) ? max : val;
 	}
 
 	float lerp(float from, float to, float p)

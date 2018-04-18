@@ -19,7 +19,7 @@ namespace gg
 		: GameObject("FreeCamera")
 	{
 		m_Camera = addComponent<Camera>();
-		m_Camera->setPerspectiveCamera(fovDeg, aspectRatio, zNear, zFar);
+		m_Camera->setPerspective(fovDeg, aspectRatio, zNear, zFar);
 	}
 
 	FreeCamera::~FreeCamera(void)

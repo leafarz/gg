@@ -201,27 +201,31 @@ namespace gg { namespace Math {
 
 	Mat4f Mat4f::perspectiveMatrix(float fovDeg, float aspectRatio, float zNear, float zFar)
 	{
+		zNear = clamp(zNear, 0.1f, zFar - 0.1f);
+
 		float _tanHalfFOV = tan(fovDeg * static_cast<float>(DEG_TO_RAD_HALF));
-		float _zRange = zNear - zFar;
+		float _range = zFar - zNear;
 
 		return Mat4f(
 			1 / (aspectRatio * _tanHalfFOV),	0,					0,								0,
 			0,									1 / _tanHalfFOV,	0,								0,
-			0,									0,					-(zNear + zFar) / _zRange,		2 * zFar * zNear / _zRange,
+			0,									0,					-(zFar + zNear) / _range,		2 * zNear * zFar / _range,
 			0,									0,					1,								0
 		);
 	}
 
-	Mat4f Mat4f::orthographicMatrix(float left, float right, float bottom, float top, float near, float far)
+	Mat4f Mat4f::orthographicMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
 	{
+		zNear = clamp(zNear, zNear, zFar - 0.1f);
+
 		float _width = right - left;
 		float _height = top - bottom;
-		float _depth = far - near;
+		float _depth = zFar - zNear;
 
 		return Mat4f(
 			2 / _width,		0,				 0,				-(right + left) / _width,
 			0,				2 / _height,	 0,				-(top + bottom) / _height,
-			0,				0,				-2 / _depth,	-(far + near) / _depth,
+			0,				0,				-2 / _depth,	 (zFar + zNear) / _depth,
 			0,				0,				 0,				 1
 		);
 	}
