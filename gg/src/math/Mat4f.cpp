@@ -204,7 +204,7 @@ namespace gg { namespace Math {
 		zNear = clamp(zNear, 0.1f, zFar - 0.1f);
 
 		float _tanHalfFOV = tan(fovDeg * static_cast<float>(DEG_TO_RAD_HALF));
-		float _range = zFar - zNear;
+		float _range = zNear - zFar;
 
 		return Mat4f(
 			1 / (aspectRatio * _tanHalfFOV),	0,					0,								0,
@@ -220,7 +220,7 @@ namespace gg { namespace Math {
 
 		float _width = right - left;
 		float _height = top - bottom;
-		float _depth = zFar - zNear;
+		float _depth = zNear - zFar;
 
 		return Mat4f(
 			2 / _width,		0,				 0,				-(right + left) / _width,
