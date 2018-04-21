@@ -75,6 +75,20 @@ namespace gg
 			m_Transform->setPosition(_pos - _rot.getUp() * m_MoveSpeed);
 		}
 
+		if (m_IsEnabled && Input::getKeyDown(KEY::ESCAPE))
+		{
+			Input::setCursorMode(CURSOR_MODE::VISIBLE);
+			m_IsEnabled = false;
+		}
+		if (!m_IsEnabled && (Input::getMouseButtonDown(MOUSE::LEFT) || Input::getMouseButtonDown(MOUSE::RIGHT)))
+		{
+			m_PrevMousePos = Input::getMousePosition();
+			Input::setCursorMode(CURSOR_MODE::DISABLED);
+			m_IsEnabled = true;
+		}
+
+		if (!m_IsEnabled) { return; }
+
 		Math::Vec2f _delta = Input::getMousePosition() - m_PrevMousePos;
 
 		m_Transform->setEulerX(_euler.x + _delta.y * m_Sensitivity);
