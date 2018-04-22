@@ -77,7 +77,8 @@ namespace gg
 
 		if (Input::getKeyDown(KEY::ESCAPE))
 		{
-			if (m_IsEnabled)
+			m_IsCursorVisible = !m_IsCursorVisible;
+			if (m_IsCursorVisible)
 			{
 				Input::setCursorMode(CURSOR_MODE::VISIBLE);
 			}
@@ -86,10 +87,21 @@ namespace gg
 				m_PrevMousePos = Input::getMousePosition();
 				Input::setCursorMode(CURSOR_MODE::DISABLED);
 			}
-			m_IsEnabled = !m_IsEnabled;
 		}
 
-		if (!m_IsEnabled) { return; }
+		if (Input::getMouseButtonDown(MOUSE::RIGHT))
+		{
+			m_IsCursorVisible = false;
+			m_PrevMousePos = Input::getMousePosition();
+			Input::setCursorMode(CURSOR_MODE::DISABLED);
+		}
+		else if (Input::getMouseButtonUp(MOUSE::RIGHT))
+		{
+			m_IsCursorVisible = true;
+			Input::setCursorMode(CURSOR_MODE::VISIBLE);
+		}
+
+		if (m_IsCursorVisible) { return; }
 
 		Math::Vec2f _delta = Input::getMousePosition() - m_PrevMousePos;
 

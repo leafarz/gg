@@ -46,6 +46,6 @@ namespace gg { namespace graphics {
 		m_VB.updateData(&lineQueue.front(), count * sizeof(LineData), true);
 
 		GL(glLineWidth(thickness));
-		glDrawArrays(GL_LINES, 0, count);
+		GL(glDrawArrays(GL_LINES, 0, count));
 	}
 }/*namespace debug*/ } // namespace gg
