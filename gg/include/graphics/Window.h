@@ -20,6 +20,7 @@ namespace gg { namespace graphics {
 		std::string		setWindowTitle(void);
 		void			setTitle(const std::string& title);
 
+		GLFWwindow*		getWindow(void) { return m_Window; }
 		void			resizeWindow(GLint width, GLint height) const;
 
 		void			swapBuffers(void) const;
