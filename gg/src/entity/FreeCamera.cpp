@@ -75,16 +75,18 @@ namespace gg
 			m_Transform->setPosition(_pos - _rot.getUp() * m_MoveSpeed);
 		}
 
-		if (m_IsEnabled && Input::getKeyDown(KEY::ESCAPE))
+		if (Input::getKeyDown(KEY::ESCAPE))
 		{
-			Input::setCursorMode(CURSOR_MODE::VISIBLE);
-			m_IsEnabled = false;
-		}
-		if (!m_IsEnabled && (Input::getMouseButtonDown(MOUSE::LEFT) || Input::getMouseButtonDown(MOUSE::RIGHT)))
-		{
-			m_PrevMousePos = Input::getMousePosition();
-			Input::setCursorMode(CURSOR_MODE::DISABLED);
-			m_IsEnabled = true;
+			if (m_IsEnabled)
+			{
+				Input::setCursorMode(CURSOR_MODE::VISIBLE);
+			}
+			else
+			{
+				m_PrevMousePos = Input::getMousePosition();
+				Input::setCursorMode(CURSOR_MODE::DISABLED);
+			}
+			m_IsEnabled = !m_IsEnabled;
 		}
 
 		if (!m_IsEnabled) { return; }

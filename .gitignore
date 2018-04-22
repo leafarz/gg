@@ -42,3 +42,6 @@ Build_x86_Debug
 Build_x86_Release
 !gg/include/debug
 !gg/src/debug
+
+# imgui data for saving last window position, size, etc.
+sandBox/imgui.ini
