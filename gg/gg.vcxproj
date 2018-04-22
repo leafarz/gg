@@ -93,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(ProjectDir)ext\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)d.pdb</ProgramDataBaseFileName>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -117,7 +117,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(ProjectDir)ext\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ProgramDataBaseFileName>$(IntDir)$(ProjectName)d.pdb</ProgramDataBaseFileName>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -143,7 +143,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(ProjectDir)ext\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -152,7 +152,9 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </Link>
     <PostBuildEvent>
       <Command>rmdir "$(SolutionDir)deps\$(ProjectName)\include" /S /Q
+rmdir "$(SolutionDir)deps\$(ProjectName)\ext" /S /Q
 xcopy "$(SolutionDir)$(ProjectName)\include" "$(SolutionDir)deps\$(ProjectName)\include" /I /S
+xcopy "$(SolutionDir)$(ProjectName)\ext" "$(SolutionDir)deps\$(ProjectName)\ext" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(TargetFileName)" "$(SolutionDir)deps\$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\" /Y</Command>
     </PostBuildEvent>
     <Lib>
@@ -167,7 +169,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include\;$(ProjectDir)ext\;$(SolutionDir)deps\assimp-4.0.1\include\;$(SolutionDir)deps\glew-2.1.0\include\;$(SolutionDir)deps\glfw-3.2.1\include\;$(SolutionDir)deps\soil2-1.11\include\;$(SolutionDir)deps\freetype2-2.9\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -176,7 +178,9 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </Link>
     <PostBuildEvent>
       <Command>rmdir "$(SolutionDir)deps\$(ProjectName)\include" /S /Q
+rmdir "$(SolutionDir)deps\$(ProjectName)\ext" /S /Q
 xcopy "$(SolutionDir)$(ProjectName)\include" "$(SolutionDir)deps\$(ProjectName)\include" /I /S
+xcopy "$(SolutionDir)$(ProjectName)\ext" "$(SolutionDir)deps\$(ProjectName)\ext" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(TargetFileName)" "$(SolutionDir)deps\$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\" /Y</Command>
     </PostBuildEvent>
     <Lib>
@@ -185,6 +189,13 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ext\imgui-1.60\imconfig.h" />
+    <ClInclude Include="ext\imgui-1.60\imgui.h" />
+    <ClInclude Include="ext\imgui-1.60\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="ext\imgui-1.60\imgui_internal.h" />
+    <ClInclude Include="ext\imgui-1.60\stb_rect_pack.h" />
+    <ClInclude Include="ext\imgui-1.60\stb_textedit.h" />
+    <ClInclude Include="ext\imgui-1.60\stb_truetype.h" />
     <ClInclude Include="include\component\Camera.h">
       <SubType>
       </SubType>
@@ -344,6 +355,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ext\imgui-1.60\imgui.cpp" />
+    <ClCompile Include="ext\imgui-1.60\imgui_demo.cpp" />
+    <ClCompile Include="ext\imgui-1.60\imgui_draw.cpp" />
+    <ClCompile Include="ext\imgui-1.60\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="src\component\Camera.cpp">
       <SubType>
       </SubType>

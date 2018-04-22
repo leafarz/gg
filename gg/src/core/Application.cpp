@@ -9,6 +9,9 @@
 #include "util/Iterators.h"
 #include "util/Resource.h"
 
+#include "imgui-1.60/imgui.h"
+#include "imgui-1.60/imgui_impl_glfw_gl3.h"
+
 namespace gg
 {
 	Application* Application::s_Instance;
@@ -24,6 +27,10 @@ namespace gg
 		// glew init
 		glewExperimental = GL_TRUE;
 		if (GLenum err = glewInit() != GLEW_OK) { LOG("[Error] " << glewGetErrorString(err)); }
+
+		ImGui::CreateContext();
+		ImGui_ImplGlfwGL3_Init(m_Window->getWindow(), true);
+		ImGui::StyleColorsDark();
 
 		Input::init();
 		Time::s_FixedDelta = m_FixedTimeStep;
@@ -70,6 +77,7 @@ namespace gg
 				// update input
 				Input::update();
 				m_Window->pollEvents();
+				ImGui_ImplGlfwGL3_NewFrame();
 
 				// update delta time
 				GLdouble _rem = std::fmod(_timer, m_TimeStep);
@@ -104,6 +112,8 @@ namespace gg
 					// render
 					m_ActiveScene->onRender();
 
+					ImGui::Render();
+					ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 					// swap
 					m_Window->swapBuffers();
 				}

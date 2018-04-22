@@ -30,4 +30,8 @@
 #include "math/Vec3f.h"
 #include "math/Vec4f.h"
 
+// externals
+#include "imgui-1.60/imgui.h"
+#include "imgui-1.60/imgui_impl_glfw_gl3.h"
+
 #endif
