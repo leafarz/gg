@@ -89,6 +89,7 @@ vec3 computeDirectionalLight(Light light, vec3 surfacePosition, vec3 surfaceNorm
 vec3 computePointLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
 {
 	vec3 _posToLight = light.position.xyz - surfacePosition;
+	vec3 _posToLightDir = normalize(_posToLight);
 	float _posToLightDist = length(_posToLight);
 
 	float _atten = 1.0 / (
@@ -97,12 +98,13 @@ vec3 computePointLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
 		light.exponentAttenuation * _posToLightDist * _posToLightDist +
 		0.00001
 	);
+	float _diff = fresnel(surfaceNormal, -_posToLightDir);
 	vec3 _lightToFragDir = normalize(surfacePosition - light.position.xyz);
 	float _spec = computeSpecular(_lightToFragDir, surfacePosition, surfaceNormal, 32);
-	return light.color.xyz * light.intensity * (_atten + _spec);
+	return light.color.xyz * light.intensity * (_atten + _spec) * _diff;
 }
 
-vec3 computeSpotLight(Light light, vec3 surfacePos)
+vec3 computeSpotLight(Light light, vec3 surfacePos, vec3 surfaceNormal)
 {
 	vec3 _posToLight = light.position.xyz - surfacePos;
 	vec3 _posToLightDir = normalize(_posToLight);
@@ -112,6 +114,7 @@ vec3 computeSpotLight(Light light, vec3 surfacePos)
 	// if within cone
 	if(_dot > _angle)	// equivalent to: acos(_dot) < radians(angle)
 	{
+		float _diff = fresnel(surfaceNormal, -_posToLightDir);
 		float _posToLightDist = length(_posToLight);
 		float _spotFactor = (_dot - _angle) / _angle;
 		float _atten = 1.0 / (
@@ -120,7 +123,7 @@ vec3 computeSpotLight(Light light, vec3 surfacePos)
 			light.exponentAttenuation * _posToLightDist * _posToLightDist +
 			0.00001
 		);
-		return light.color.xyz * light.intensity * _atten * _spotFactor;
+		return light.color.xyz * light.intensity * _atten * _spotFactor * _diff;
 	}
 	else
 	{
@@ -143,7 +146,7 @@ void main()
 			// spotlight
 			if (sys_Lights[i].angle < 90.0)
 			{
-				_result = _result + computeSpotLight(sys_Lights[i], fs_in.position);
+				_result = _result + computeSpotLight(sys_Lights[i], fs_in.position, fs_in.worldNormal);
 			}
 			else
 			{
