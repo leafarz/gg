@@ -1,32 +1,28 @@
 #shader vertex
 #version 330 core
+layout (location = 0) in vec4 vertex; // <vec2 pos, vec2 uv>
+out vec2 uv;
 
-layout (location = 0) in vec3 position;
-
-out DATA
-{
-	vec4 color;
-} vs_out;
-
-uniform mat4 mvp;
-uniform vec4 color;
+uniform mat4 projection;
 
 void main()
 {
-	gl_Position = mvp * vec4(position, 1.0f);
-	vs_out.color = color;
-}
+    gl_Position = projection * vec4(vertex.xy, 0.0, 1.0);
+    uv = vertex.zw;
+} 
 
 
 #shader fragment
 #version 330 core
 
-in DATA
-{
-	vec4 color;
-} fs_in;
+in vec2 uv;
+out vec4 color;
+
+uniform sampler2D text;
+uniform vec3 textColor;
 
 void main()
-{
-	gl_FragColor = fs_in.color;
-}
+{    
+    vec4 sampled = vec4(1.0, 1.0, 1.0, texture(text, TexCoords).r);
+    color = vec4(textColor, 1.0) * sampled;
+}  

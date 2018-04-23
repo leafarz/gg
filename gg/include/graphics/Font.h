@@ -2,52 +2,39 @@
 #define		GG_FONT_H
 #pragma once
 
-#include "debug/Log.h"
-#include "Paths.h"
+#include "core/Types.h"
+#include "GL/glew.h"
 
-#include "Texture.h"
+#include <unordered_map>
 
 #include "ft2build.h"
 #include FT_FREETYPE_H
 
+// TODO: add font cache
 namespace gg { namespace graphics {
+	enum class Fonts
+	{
+		Roboto
+	};
+
 	class Font
 	{
-	public:
+	private:
 		struct Character {
-			GLuint textureID;   // ID handle of the glyph texture
+			GLuint textureID;
 			uint sizeX, sizeY;
-			uint bearingX, bearingY;
-			GLuint advance;    // Horizontal offset to advance to next glyph
+			int bearingX, bearingY;
+			uint advance;
 		};
 
-		FT_Library  library;   /* handle to library     */
-		FT_Face     face;      /* handle to face object */
-
-		Font(void)
-		{
-			FT_Error error = FT_Init_FreeType(&library);
-			error = FT_Init_FreeType(&library);
-			if (error) { ASSERT(false); }
-
-			std::string _path = ROOT_FONT + std::string("Roboto/Roboto-Regular.ttf");
-			error = FT_New_Face(library,
-				_path.c_str(),
-				0,
-				&face
-			);
-			if (error == FT_Err_Unknown_File_Format)
-			{
-				ASSERT(false);
-			}
-			else if (error)
-			{
-				ASSERT(false);
-			}
-		}
-
+	public:
+		Font(Fonts font);
 		~Font(void);
 
+	private:
+		// TODO: make static?
+		FT_Library  library;
+		FT_Face     face;
 	}; // class Font
 }/*namespace graphics*/ } // namespace gg
 
