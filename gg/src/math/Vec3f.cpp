@@ -22,6 +22,10 @@ namespace gg { namespace Math {
 		: x(x), y(y), z(z)
 	{ }
 
+	Vec3f::Vec3f(void* vec)
+		: x(((float*)(vec))[0]), y(((float*)(vec))[1]), z(((float*)(vec))[2])
+	{ }
+
 	Vec3f::Vec3f(const Vec2f& A, float z)
 		: x(A.x), y(A.y), z(z)
 	{ }

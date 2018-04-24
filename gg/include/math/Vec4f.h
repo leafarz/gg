@@ -21,6 +21,11 @@ namespace gg { namespace Math {
 
 		/* Creates vector with default x,y,z,w=0 unless defined. */
 		Vec4f(float x = 0, float y = 0, float z = 0, float w = 0);
+		/* Creates vector with any pointer (must have 4 floats).
+		 * Void pointer will be converted to float pointer and will get the
+		 * 1st, 2nd, 3rd and 4th indices, otherwise Vec4f will have unexpected values.
+		 */
+		Vec4f(void* vec);
 		/* Creates vector from x,y values of Vec2f and z,w value 0 as default unless defined.*/
 		Vec4f(const Vec2f& A, float z = 0, float w = 0);
 		/* Creates vector from x,y,z values of Vec3f and w value 0 as default unless defined.*/

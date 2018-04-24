@@ -26,6 +26,11 @@ namespace gg { namespace Math {
 
 		/* Creates vector with default x,y=0 unless defined. */
 		Vec2f(float x = 0, float y = 0);
+		/* Creates vector with any pointer (must have 2 floats).
+		 * Void pointer will be converted to float pointer and will get the
+		 * 1st and 2nd indices, otherwise Vec2f will have unexpected values.
+		 */
+		Vec2f(void* vec);
 		/* Creates vector from x,y values of Vec3f. */
 		Vec2f(const Vec3f& A);
 		/* Creates vector from x,y values of Vec4f. */

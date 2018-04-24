@@ -37,6 +37,11 @@ namespace gg { namespace Math {
 
 		/* Creates vector with default x,y,z=0 unless defined. */
 		Vec3f(float x = 0, float y = 0, float z = 0);
+		/* Creates vector with any pointer (must have 3 floats).
+		 * Void pointer will be converted to float pointer and will get the
+		 * 1st, 2nd and 3rd indices, otherwise Vec3f will have unexpected values.
+		 */
+		Vec3f(void* vec);
 		/* Creates vector from x,y values of Vec2f and z value 0 as default unless defined.*/
 		Vec3f(const Vec2f& A, float z = 0);
 		/* Creates vector from x,y,z values of Vec4f. */

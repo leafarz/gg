@@ -10,6 +10,10 @@ namespace gg { namespace Math {
 		: x(x), y(y), z(z), w(w)
 	{ }
 
+	Vec4f::Vec4f(void * vec)
+		: x(((float*)(vec))[0]), y(((float*)(vec))[1]), z(((float*)(vec))[2]), w(((float*)(vec))[3])
+	{ }
+
 	Vec4f::Vec4f(const Vec2f& A, float z, float w)
 		: x(A.x), y(A.y), z(z), w(w)
 	{ }

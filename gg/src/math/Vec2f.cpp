@@ -18,6 +18,10 @@ namespace gg { namespace Math {
 		: x(x), y(y)
 	{ }
 
+	Vec2f::Vec2f(void * vec)
+		: x(((float*)(vec))[0]), y(((float*)(vec))[1])
+	{ }
+
 	Vec2f::Vec2f(const Vec3f & A)
 		: x(A.x), y(A.y)
 	{ }
