@@ -19,6 +19,9 @@ namespace gg
 
 	private:
 		void drawGrid(int length);
+
+	private:
+		bool m_ShowGrid = true;
 	}; // class TestScene
 } // namespace gg
 
