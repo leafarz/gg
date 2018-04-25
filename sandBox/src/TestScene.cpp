@@ -219,7 +219,18 @@ namespace gg
 		go1->getTransform()->lookAt(_lookAt);
 		go1->getTransform()->setScale(_scale);
 
+		drawLightLocations();
+
 		Scene::onUpdate();
+	}
+
+	void TestScene::drawLightLocations(void)
+	{
+		const Transform* _t = goDLight->getTransform();
+		const math::Vec3f& _pos = _t->getPosition();
+		const math::Vec3f _f = _t->getForward();
+
+		debug::drawLine(_pos, _pos + _f, math::Color::yellow);
 	}
 
 	void TestScene::drawGrid(int length)

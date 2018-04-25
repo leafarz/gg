@@ -18,6 +18,7 @@ namespace gg
 		void onUpdate(void) override;
 
 	private:
+		void drawLightLocations(void);
 		void drawGrid(int length);
 
 	private:
