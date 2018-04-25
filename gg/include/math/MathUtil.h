@@ -4,7 +4,7 @@
 #include <math.h>
 #include "math/Vec3f.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	static const double PI = 3.14159265358979323846;
 
 	static const double RAD_TO_DEG		= static_cast<double>(180.0 / PI);
@@ -37,5 +37,5 @@ namespace gg { namespace Math {
 	float lerp(double from, double to, double p);
 
 	Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t);
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

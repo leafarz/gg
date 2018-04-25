@@ -31,55 +31,55 @@ namespace gg
 		static ComponentType getStaticType(void) { return ComponentType::Transform; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
-		Math::Vec3f getForward(void) const;
-		Math::Vec3f getRight(void) const;
-		Math::Vec3f getUp(void) const;
+		math::Vec3f getForward(void) const;
+		math::Vec3f getRight(void) const;
+		math::Vec3f getUp(void) const;
 
-		const Math::Vec3f& getPosition(void) const;
-		Math::Vec3f& setPositionX(float x);
-		Math::Vec3f& setPositionY(float y);
-		Math::Vec3f& setPositionZ(float z);
-		Math::Vec3f& setPosition(float x, float y, float z);
-		Math::Vec3f& setPosition(Math::Vec3f pos);
+		const math::Vec3f& getPosition(void) const;
+		math::Vec3f& setPositionX(float x);
+		math::Vec3f& setPositionY(float y);
+		math::Vec3f& setPositionZ(float z);
+		math::Vec3f& setPosition(float x, float y, float z);
+		math::Vec3f& setPosition(math::Vec3f pos);
 
-		Math::Vec3f& addPositionX(float x);
-		Math::Vec3f& addPositionY(float y);
-		Math::Vec3f& addPositionZ(float z);
-		Math::Vec3f& addPosition(float x, float y, float z);
-		Math::Vec3f& addPosition(Math::Vec3f pos);
+		math::Vec3f& addPositionX(float x);
+		math::Vec3f& addPositionY(float y);
+		math::Vec3f& addPositionZ(float z);
+		math::Vec3f& addPosition(float x, float y, float z);
+		math::Vec3f& addPosition(math::Vec3f pos);
 
-		const Math::Vec3f& getEuler(void) const;
-		Math::Vec3f& setEulerX(float x);
-		Math::Vec3f& setEulerY(float y);
-		Math::Vec3f& setEulerZ(float z);
-		Math::Vec3f& setEuler(float x, float y, float z);
-		Math::Vec3f& setEuler(Math::Vec3f euler);
+		const math::Vec3f& getEuler(void) const;
+		math::Vec3f& setEulerX(float x);
+		math::Vec3f& setEulerY(float y);
+		math::Vec3f& setEulerZ(float z);
+		math::Vec3f& setEuler(float x, float y, float z);
+		math::Vec3f& setEuler(math::Vec3f euler);
 
-		Math::Vec3f& addEulerX(float x);
-		Math::Vec3f& addEulerY(float y);
-		Math::Vec3f& addEulerZ(float z);
-		Math::Vec3f& addEuler(float x, float y, float z);
-		Math::Vec3f& addEuler(Math::Vec3f euler);
+		math::Vec3f& addEulerX(float x);
+		math::Vec3f& addEulerY(float y);
+		math::Vec3f& addEulerZ(float z);
+		math::Vec3f& addEuler(float x, float y, float z);
+		math::Vec3f& addEuler(math::Vec3f euler);
 
-		const Math::Quaternion& getRotation(void) const;
-		Math::Quaternion& setRotation(float x, float y, float z, float w);
-		Math::Quaternion& setRotation(const Math::Vec3f& axis, float deg);
-		Math::Quaternion& lookAt(const Math::Vec3f& forward, const Math::Vec3f& up = Math::Vec3f::up);
+		const math::Quaternion& getRotation(void) const;
+		math::Quaternion& setRotation(float x, float y, float z, float w);
+		math::Quaternion& setRotation(const math::Vec3f& axis, float deg);
+		math::Quaternion& lookAt(const math::Vec3f& forward, const math::Vec3f& up = math::Vec3f::up);
 
-		const Math::Vec3f& getScale(void) const;
-		Math::Vec3f& setScaleX(float x);
-		Math::Vec3f& setScaleY(float y);
-		Math::Vec3f& setScaleZ(float z);
-		Math::Vec3f& setScale(float x, float y, float z);
-		Math::Vec3f& setScale(Math::Vec3f scale);
+		const math::Vec3f& getScale(void) const;
+		math::Vec3f& setScaleX(float x);
+		math::Vec3f& setScaleY(float y);
+		math::Vec3f& setScaleZ(float z);
+		math::Vec3f& setScale(float x, float y, float z);
+		math::Vec3f& setScale(math::Vec3f scale);
 
-		Math::Vec3f& addScaleX(float x);
-		Math::Vec3f& addScaleY(float y);
-		Math::Vec3f& addScaleZ(float z);
-		Math::Vec3f& addScale(float x, float y, float z);
-		Math::Vec3f& addScale(Math::Vec3f scale);
+		math::Vec3f& addScaleX(float x);
+		math::Vec3f& addScaleY(float y);
+		math::Vec3f& addScaleZ(float z);
+		math::Vec3f& addScale(float x, float y, float z);
+		math::Vec3f& addScale(math::Vec3f scale);
 
-		const Math::Mat4f& getTransformationMatrix(void);
+		const math::Mat4f& getTransformationMatrix(void);
 
 		bool isDirty(void) const;
 
@@ -98,13 +98,13 @@ namespace gg
 		);
 
 		// TODO: check if all of these are necessary
-		Math::Vec3f m_Position;
-		Math::Vec3f m_Euler;
-		Math::Quaternion m_Rotation;
-		Math::Vec3f m_Scale;
+		math::Vec3f m_Position;
+		math::Vec3f m_Euler;
+		math::Quaternion m_Rotation;
+		math::Vec3f m_Scale;
 
-		Math::Mat4f m_TransformationMatrix;
-		Math::Mat4f m_RotMatrix;
+		math::Mat4f m_TransformationMatrix;
+		math::Mat4f m_RotMatrix;
 	}; // class Transform
 } // namespace gg
 

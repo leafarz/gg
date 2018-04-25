@@ -18,7 +18,7 @@ namespace gg { namespace graphics {
 		Drawable(void);
 		~Drawable(void);
 
-		virtual void begin(const Math::Mat4f& pvMatrix);
+		virtual void begin(const math::Mat4f& pvMatrix);
 
 	protected:
 		graphics::Shader* m_Shader;

@@ -8,7 +8,7 @@ namespace gg { namespace graphics {
 	Drawable::~Drawable(void)
 	{ }
 
-	void Drawable::begin(const Math::Mat4f& pvMatrix)
+	void Drawable::begin(const math::Mat4f& pvMatrix)
 	{
 		m_Shader->bind();
 		m_Shader->setUniform("mvp", pvMatrix, true);

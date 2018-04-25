@@ -5,7 +5,7 @@
 
 #include "math/Vec2f.h"
 #include "math/Vec3f.h"
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	Vec4f::Vec4f(float x, float y, float z, float w)
 		: x(x), y(y), z(z), w(w)
 	{ }
@@ -324,4 +324,4 @@ namespace gg { namespace Math {
 	Vec4f Vec4f::wyzx(void) const { return Vec4f(w, z, z, x); }
 	Vec4f Vec4f::wzxy(void) const { return Vec4f(w, w, x, y); }
 	Vec4f Vec4f::wzyx(void) const { return Vec4f(w, w, y, x); }
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

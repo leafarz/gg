@@ -1,7 +1,7 @@
 #include "math/MathUtil.h"
 #include <limits>
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	bool floatCmp(float a, float b, float threshold)
 	{
 		return abs(a - b) < threshold;
@@ -39,4 +39,4 @@ namespace gg { namespace Math {
 			(_poly1 * p0.z) + (_poly2 * p1.z) + (_poly3 * p2.z)
 		);
 	}
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

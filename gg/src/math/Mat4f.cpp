@@ -6,7 +6,7 @@
 #include "math/Vec3f.h"
 #include "math/Quaternion.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	const Mat4f Mat4f::identity = Mat4f(
 		1, 0, 0, 0,
 		0, 1, 0, 0,
@@ -569,4 +569,4 @@ namespace gg { namespace Math {
 			this->elements[8] * A.x + this->elements[9] * A.y + this->elements[10] * A.z + this->elements[11]
 		);
 	}
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

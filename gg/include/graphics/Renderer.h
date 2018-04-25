@@ -61,7 +61,7 @@ namespace graphics {
 				return count < (lineData.size() - 1);
 			}
 
-			void add(const Math::Vec3f& position, const Math::Color& color)
+			void add(const math::Vec3f& position, const math::Color& color)
 			{
 				if (hasSlot())
 				{
@@ -80,7 +80,7 @@ namespace graphics {
 			float duration;
 			DebugLine::LineData lineData;
 
-			TimedLineData(float duration, const Math::Vec3f& position, const Math::Color& color)
+			TimedLineData(float duration, const math::Vec3f& position, const math::Color& color)
 				: duration(duration), lineData({position, color})
 			{ }
 		};
@@ -92,11 +92,11 @@ namespace graphics {
 		void begin(void) const;
 		void draw(
 			GameObject* gameObject,
-			const Math::Mat4f& viewMatrix,
-			const Math::Mat4f& projectionMatrix,
-			const Math::Mat4f& pvMatrix,
-			const Math::Vec3f& cameraPosition,
-			const Math::Vec3f& cameraDirection,
+			const math::Mat4f& viewMatrix,
+			const math::Mat4f& projectionMatrix,
+			const math::Mat4f& pvMatrix,
+			const math::Vec3f& cameraPosition,
+			const math::Vec3f& cameraDirection,
 			const LightSettings& lightSettings,
 			const std::vector<Light*>& lights
 		);
@@ -119,10 +119,10 @@ namespace graphics {
 	/* Debug draws */
 	public:
 		/* Adds line data to queue to be drawn on render. */
-		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness);
-		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness, float duration);
+		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness);
+		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration);
 		/* Draws all the debugs. */
-		void drawDebug(const Math::Mat4f& pvMatrix);
+		void drawDebug(const math::Mat4f& pvMatrix);
 
 	private:
 		graphics::DebugLine* m_DebugLine;

@@ -70,12 +70,12 @@ namespace gg
 		// process light
 		// process game objects
 		// TODO: add children iteration
-		const Math::Mat4f& _v = m_ActiveCamera->getViewMatrix();
-		const Math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
-		const Math::Mat4f _pv = _p * _v;
+		const math::Mat4f& _v = m_ActiveCamera->getViewMatrix();
+		const math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
+		const math::Mat4f _pv = _p * _v;
 
-		const Math::Vec3f& _cameraPosition = m_ActiveCamera->getGameObject()->getTransform()->getPosition();
-		const Math::Vec3f& _cameraDirection = m_ActiveCamera->getGameObject()->getTransform()->getForward();
+		const math::Vec3f& _cameraPosition = m_ActiveCamera->getGameObject()->getTransform()->getPosition();
+		const math::Vec3f& _cameraDirection = m_ActiveCamera->getGameObject()->getTransform()->getForward();
 
 		VFOR(it, m_GameObjects)
 		{

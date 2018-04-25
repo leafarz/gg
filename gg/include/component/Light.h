@@ -34,7 +34,7 @@ namespace gg
 	public:
 		// TODO: add template lighttype
 		Light(LightType lightType);
-		Light(LightType lightType, float intensity, const Math::Color& color, float angle, const Math::Vec3f& attenuation);
+		Light(LightType lightType, float intensity, const math::Color& color, float angle, const math::Vec3f& attenuation);
 		~Light(void);
 
 		static ComponentType getStaticType(void) { return ComponentType::Light; }
@@ -52,15 +52,15 @@ namespace gg
 				m_Angle = 180;
 				break;
 			case LightType::SpotLight:
-				m_Angle = Math::clamp(m_Angle, 0, 89);
+				m_Angle = math::clamp(m_Angle, 0, 89);
 				break;
 			}
 		}
 
 		LightType getLightType(void) const { return m_LightType; }
 
-		const Math::Color& getColor(void) const { return m_Color; }
-		void setColor(Math::Color color);
+		const math::Color& getColor(void) const { return m_Color; }
+		void setColor(math::Color color);
 
 		const float getIntensity(void) const { return m_Intensity; }
 		void setIntensity(float intensity);
@@ -68,9 +68,9 @@ namespace gg
 		const float getAngle(void) const { return m_Angle; }
 		void setAngle(float angle);
 
-		const Math::Vec3f& getAttenuation(void) const { return m_Attenuation; }
+		const math::Vec3f& getAttenuation(void) const { return m_Attenuation; }
 		void setAttenuation(float constant, float linear, float exponential);
-		void setAttenuation(const Math::Vec3f& attenuation);
+		void setAttenuation(const math::Vec3f& attenuation);
 
 	private:
 		void setDirty(DirtyBits bit);
@@ -89,9 +89,9 @@ namespace gg
 		LightType m_LightType;
 
 		float m_Intensity;
-		Math::Color m_Color;
+		math::Color m_Color;
 		float m_Angle;
-		Math::Vec3f m_Attenuation;
+		math::Vec3f m_Attenuation;
 	};
 } // namespace gg
 

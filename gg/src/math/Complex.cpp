@@ -2,7 +2,7 @@
 
 #include "Math/MathUtil.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	Complex::Complex()
 		: re(0), im(0)
 	{ }
@@ -148,4 +148,4 @@ namespace gg { namespace Math {
 	{
 		return this->re * this->re + this->im * this->im;
 	}
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

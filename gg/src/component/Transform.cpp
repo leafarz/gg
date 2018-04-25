@@ -3,142 +3,142 @@
 namespace gg
 {
 	Transform::Transform(void)
-		: m_Position(Math::Vec3f(0,0,0)), m_Euler(Math::Vec3f(0, 0, 0)), m_Rotation(Math::Quaternion(0, 0, 0, 1)), m_Scale(Math::Vec3f(1, 1, 1))
+		: m_Position(math::Vec3f(0,0,0)), m_Euler(math::Vec3f(0, 0, 0)), m_Rotation(math::Quaternion(0, 0, 0, 1)), m_Scale(math::Vec3f(1, 1, 1))
 	{}
 
 	Transform::~Transform(void)
 	{}
 
-	Math::Vec3f Transform::getForward(void) const	{ return m_Rotation.getForward(); }
-	Math::Vec3f Transform::getRight(void) const		{ return m_Rotation.getRight(); }
-	Math::Vec3f Transform::getUp(void) const		{ return m_Rotation.getUp(); }
+	math::Vec3f Transform::getForward(void) const	{ return m_Rotation.getForward(); }
+	math::Vec3f Transform::getRight(void) const		{ return m_Rotation.getRight(); }
+	math::Vec3f Transform::getUp(void) const		{ return m_Rotation.getUp(); }
 
 	// Position
-	const Math::Vec3f& Transform::getPosition(void) const
+	const math::Vec3f& Transform::getPosition(void) const
 	{
 		return m_Position;
 	}
-	Math::Vec3f& Transform::setPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(x); }
-	Math::Vec3f& Transform::setPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(y); }
-	Math::Vec3f& Transform::setPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(z); }
-	Math::Vec3f& Transform::setPosition(float x, float y, float z) { setDirty(DirtyBits::Position); return m_Position.set(x, y, z); }
-	Math::Vec3f& Transform::setPosition(Math::Vec3f pos) { setDirty(DirtyBits::Position); return m_Position.set(pos); }
+	math::Vec3f& Transform::setPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(x); }
+	math::Vec3f& Transform::setPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(y); }
+	math::Vec3f& Transform::setPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(z); }
+	math::Vec3f& Transform::setPosition(float x, float y, float z) { setDirty(DirtyBits::Position); return m_Position.set(x, y, z); }
+	math::Vec3f& Transform::setPosition(math::Vec3f pos) { setDirty(DirtyBits::Position); return m_Position.set(pos); }
 
-	Math::Vec3f& Transform::addPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(m_Position.x + x); }
-	Math::Vec3f& Transform::addPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(m_Position.y + y); }
-	Math::Vec3f& Transform::addPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(m_Position.z + z); }
-	Math::Vec3f& Transform::addPosition(float x, float y, float z)
+	math::Vec3f& Transform::addPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(m_Position.x + x); }
+	math::Vec3f& Transform::addPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(m_Position.y + y); }
+	math::Vec3f& Transform::addPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(m_Position.z + z); }
+	math::Vec3f& Transform::addPosition(float x, float y, float z)
 	{
 		setDirty(DirtyBits::Position);
 		return m_Position.set( m_Position.x + x, m_Position.y + y, m_Position.z + z );
 	}
 
-	Math::Vec3f& Transform::addPosition(Math::Vec3f pos)
+	math::Vec3f& Transform::addPosition(math::Vec3f pos)
 	{
 		setDirty(DirtyBits::Position);
 		return m_Position.set(m_Position + pos);
 	}
 
 	// Euler
-	const Math::Vec3f& Transform::getEuler(void) const
+	const math::Vec3f& Transform::getEuler(void) const
 	{
 		return m_Euler;
 	}
-	Math::Vec3f& Transform::setEulerX(float x)
+	math::Vec3f& Transform::setEulerX(float x)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.setX(x);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
-	Math::Vec3f& Transform::setEulerY(float y)
+	math::Vec3f& Transform::setEulerY(float y)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.setY(y);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
-	Math::Vec3f& Transform::setEulerZ(float z)
+	math::Vec3f& Transform::setEulerZ(float z)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.setZ(z);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 
 		return m_Euler;
 	}
-	Math::Vec3f& Transform::setEuler(float x, float y, float z)
+	math::Vec3f& Transform::setEuler(float x, float y, float z)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.set(x, y, z);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
-	Math::Vec3f& Transform::setEuler(Math::Vec3f euler)
+	math::Vec3f& Transform::setEuler(math::Vec3f euler)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.set(euler);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
 
-	Math::Vec3f& Transform::addEulerX(float x)
+	math::Vec3f& Transform::addEulerX(float x)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.setX(m_Euler.x + x);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
 
-	Math::Vec3f& Transform::addEulerY(float y)
+	math::Vec3f& Transform::addEulerY(float y)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.setY(m_Euler.y + y);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
 
-	Math::Vec3f& Transform::addEulerZ(float z)
+	math::Vec3f& Transform::addEulerZ(float z)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.setZ(m_Euler.z + z);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
 
-	Math::Vec3f& Transform::addEuler(float x, float y, float z)
+	math::Vec3f& Transform::addEuler(float x, float y, float z)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.set(m_Euler.x + x, m_Euler.y + y, m_Euler.z + z);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
 
-	Math::Vec3f & Transform::addEuler(Math::Vec3f euler)
+	math::Vec3f & Transform::addEuler(math::Vec3f euler)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Euler.set(m_Euler + euler);
-		m_Rotation = Math::Quaternion::fromEulerd(m_Euler);
+		m_Rotation = math::Quaternion::fromEulerd(m_Euler);
 
 		return m_Euler;
 	}
 
 
 	// Rotation
-	const Math::Quaternion& Transform::getRotation(void) const
+	const math::Quaternion& Transform::getRotation(void) const
 	{
 		return m_Rotation;
 	}
 
-	Math::Quaternion& Transform::setRotation(float x, float y, float z, float w)
+	math::Quaternion& Transform::setRotation(float x, float y, float z, float w)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Rotation.set(x, y, z, w);
@@ -147,7 +147,7 @@ namespace gg
 		return m_Rotation;
 	}
 
-	Math::Quaternion& Transform::setRotation(const Math::Vec3f& axis, float deg)
+	math::Quaternion& Transform::setRotation(const math::Vec3f& axis, float deg)
 	{
 		setDirty(DirtyBits::Rotation);
 		m_Rotation.set(axis, deg);
@@ -156,44 +156,44 @@ namespace gg
 		return m_Rotation;
 	}
 
-	Math::Quaternion& Transform::lookAt(const Math::Vec3f& forward, const Math::Vec3f& up)
+	math::Quaternion& Transform::lookAt(const math::Vec3f& forward, const math::Vec3f& up)
 	{
 		setDirty(DirtyBits::Rotation);
-		m_Rotation = Math::Quaternion::lookRotation(forward);
+		m_Rotation = math::Quaternion::lookRotation(forward);
 		m_Euler = m_Rotation.toEulerd();
 
 		return m_Rotation;
 	}
 
 	// Scale
-	const Math::Vec3f& Transform::getScale(void) const
+	const math::Vec3f& Transform::getScale(void) const
 	{
 		return m_Scale;
 	}
-	Math::Vec3f& Transform::setScaleX(float x) { setDirty(DirtyBits::Scale); return m_Scale.setX(x); }
-	Math::Vec3f& Transform::setScaleY(float y) { setDirty(DirtyBits::Scale); return m_Scale.setY(y); }
-	Math::Vec3f& Transform::setScaleZ(float z) { setDirty(DirtyBits::Scale); return m_Scale.setZ(z); }
-	Math::Vec3f& Transform::setScale(float x, float y, float z) { setDirty(DirtyBits::Scale); return m_Scale.set(x, y, z); }
-	Math::Vec3f& Transform::setScale(Math::Vec3f scale) { setDirty(DirtyBits::Scale); return m_Scale.set(scale); }
+	math::Vec3f& Transform::setScaleX(float x) { setDirty(DirtyBits::Scale); return m_Scale.setX(x); }
+	math::Vec3f& Transform::setScaleY(float y) { setDirty(DirtyBits::Scale); return m_Scale.setY(y); }
+	math::Vec3f& Transform::setScaleZ(float z) { setDirty(DirtyBits::Scale); return m_Scale.setZ(z); }
+	math::Vec3f& Transform::setScale(float x, float y, float z) { setDirty(DirtyBits::Scale); return m_Scale.set(x, y, z); }
+	math::Vec3f& Transform::setScale(math::Vec3f scale) { setDirty(DirtyBits::Scale); return m_Scale.set(scale); }
 
-	Math::Vec3f & Transform::addScaleX(float x) { setDirty(DirtyBits::Scale); return m_Scale.setX(m_Scale.x + x); }
-	Math::Vec3f & Transform::addScaleY(float y) { setDirty(DirtyBits::Scale); return m_Scale.setY(m_Scale.y + y); }
-	Math::Vec3f & Transform::addScaleZ(float z) { setDirty(DirtyBits::Scale); return m_Scale.setZ(m_Scale.z + z); }
-	Math::Vec3f & Transform::addScale(float x, float y, float z)
+	math::Vec3f & Transform::addScaleX(float x) { setDirty(DirtyBits::Scale); return m_Scale.setX(m_Scale.x + x); }
+	math::Vec3f & Transform::addScaleY(float y) { setDirty(DirtyBits::Scale); return m_Scale.setY(m_Scale.y + y); }
+	math::Vec3f & Transform::addScaleZ(float z) { setDirty(DirtyBits::Scale); return m_Scale.setZ(m_Scale.z + z); }
+	math::Vec3f & Transform::addScale(float x, float y, float z)
 	{
 		setDirty(DirtyBits::Scale);
 		return m_Scale.set( m_Scale.x + x, m_Scale.y + y, m_Scale.z + z );
 	}
-	Math::Vec3f & Transform::addScale(Math::Vec3f scale){ setDirty(DirtyBits::Scale); return m_Scale.set(m_Scale + scale); }
+	math::Vec3f & Transform::addScale(math::Vec3f scale){ setDirty(DirtyBits::Scale); return m_Scale.set(m_Scale + scale); }
 
 
-	const Math::Mat4f& Transform::getTransformationMatrix(void)
+	const math::Mat4f& Transform::getTransformationMatrix(void)
 	{
 		bool _posBit = isDirty(DirtyBits::Position);
 		bool _rotBit = isDirty(static_cast<DirtyBits>((ubyte)DirtyBits::Euler| (ubyte)DirtyBits::Rotation));
 		bool _scaleBit = isDirty(DirtyBits::Scale);
 		
-		if (_rotBit) { m_RotMatrix = Math::Mat4f::rotationMatrix(m_Rotation); }
+		if (_rotBit) { m_RotMatrix = math::Mat4f::rotationMatrix(m_Rotation); }
 
 		if (_posBit | _rotBit | _scaleBit)
 		{
@@ -218,7 +218,7 @@ namespace gg
 			float _m23 = m_RotMatrix[11] + m_Position.z * m_RotMatrix[15];
 			float _m33 = m_RotMatrix[15];
 
-			m_TransformationMatrix = Math::Mat4f(
+			m_TransformationMatrix = math::Mat4f(
 				_m00, _m01, _m02, _m03,
 				_m10, _m11, _m12, _m13,
 				_m20, _m21, _m22, _m23,

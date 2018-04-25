@@ -48,10 +48,10 @@ namespace gg
 		static GLboolean getMouseButtonUp(MOUSE key);
 
 		/* Returns the current position of the mouse cursor. */
-		static Math::Vec2f getMousePosition(GLvoid);
+		static math::Vec2f getMousePosition(GLvoid);
 
 		/* Returns the delta of the mouse wheel. */
-		static Math::Vec2f getMouseWheelDelta(GLvoid);
+		static math::Vec2f getMouseWheelDelta(GLvoid);
 
 		/* Resets all mouse button variables values to GL_FALSE. */
 		static GLvoid clearMouseBtnInput(GLvoid);
@@ -131,10 +131,10 @@ namespace gg
 		static GLubyte s_MouseBtnUpQueue[(int)MOUSE::LAST];
 
 		/* Position of mouse in vec2f form.*/
-		static Math::Vec2f s_MousePos;
+		static math::Vec2f s_MousePos;
 
 		/* Value of mouse scroll wheel delta value */
-		static Math::Vec2f s_MouseWheelDelta;
+		static math::Vec2f s_MouseWheelDelta;
 
 		/* Counter for how many mouse buttons are pressed
 		* before going to Update function.

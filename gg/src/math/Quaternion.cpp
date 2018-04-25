@@ -6,7 +6,7 @@
 #include "math/Vec2f.h"
 #include "math/Vec3f.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	const Quaternion Quaternion::identity = Quaternion(0,0,0,1);
 
 	Quaternion::Quaternion(float x, float y, float z, float w)
@@ -318,7 +318,7 @@ namespace gg { namespace Math {
 	{
 		float _dot = Vec3f::dot(Vec3f::forward, forward);
 
-		if (abs(_dot - (-1.0f)) < FLT_EPSILON) { return Quaternion(Vec3f::up, static_cast<float>(Math::PI)); }
+		if (abs(_dot - (-1.0f)) < FLT_EPSILON) { return Quaternion(Vec3f::up, static_cast<float>(math::PI)); }
 		if (abs(_dot - ( 1.0f)) < FLT_EPSILON) { return identity; }
 
 		float _angle = (float)acos(_dot);
@@ -344,4 +344,4 @@ namespace gg { namespace Math {
 		_q.z = sy * cr * cp - cy * sr * sp;
 		return _q;
 	}
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

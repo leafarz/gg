@@ -40,12 +40,12 @@ namespace gg { namespace graphics {
 
 		void setTexture(const std::string& key, Texture* texture);
 		void setUniformf(const std::string& key, float val);
-		void setUniform(const std::string& key, const Math::Color& val);
-		void setUniform(const std::string& key, const Math::Vec3f& val);
+		void setUniform(const std::string& key, const math::Color& val);
+		void setUniform(const std::string& key, const math::Vec3f& val);
 		void setUniform(const std::string& key, float x, float y, float z);
-		void setUniform(const std::string& key, const Math::Vec4f& val);
+		void setUniform(const std::string& key, const math::Vec4f& val);
 		void setUniform(const std::string& key, float x, float y, float z, float w);
-		void setUniform(const std::string& key, const Math::Mat4f& val);
+		void setUniform(const std::string& key, const math::Mat4f& val);
 
 	private:
 		void bind(void) const;
@@ -58,9 +58,9 @@ namespace gg { namespace graphics {
 
 		std::stack<Data<Texture*>> m_Textures;
 		std::stack<Data<float>> m_Floats;
-		std::stack<Data<Math::Vec3f>> m_Vec3fs;
-		std::stack<Data<Math::Vec4f>> m_Vec4fs;
-		std::stack<Data<Math::Mat4f>> m_Mat4fs;
+		std::stack<Data<math::Vec3f>> m_Vec3fs;
+		std::stack<Data<math::Vec4f>> m_Vec4fs;
+		std::stack<Data<math::Mat4f>> m_Mat4fs;
 
 	}; // class Material
 }/*namespace graphics*/ } // namespace gg

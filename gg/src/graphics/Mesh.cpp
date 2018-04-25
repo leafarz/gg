@@ -87,9 +87,9 @@ namespace gg { namespace graphics {
 		{
 			_verts.push_back(
 				Vertex(
-					Math::Vec3f(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z),
-					(mesh->mTextureCoords[0] == nullptr)? Math::Vec2f() : Math::Vec2f(mesh->mTextureCoords[0]->x, mesh->mTextureCoords[0]->y),
-					(mesh->mNormals == nullptr)			? Math::Vec3f() : Math::Vec3f(mesh->mNormals->x, mesh->mNormals->y, mesh->mNormals->z)
+					math::Vec3f(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z),
+					(mesh->mTextureCoords[0] == nullptr)? math::Vec2f() : math::Vec2f(mesh->mTextureCoords[0]->x, mesh->mTextureCoords[0]->y),
+					(mesh->mNormals == nullptr)			? math::Vec3f() : math::Vec3f(mesh->mNormals->x, mesh->mNormals->y, mesh->mNormals->z)
 				)
 			);
 		}

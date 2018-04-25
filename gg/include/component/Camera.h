@@ -23,15 +23,15 @@ namespace gg
 		void setOrthographic(float size, float zNear, float zFar);
 		void setOrthographic(float left, float right, float bottom, float top, float zNear, float zFar);
 
-		const Math::Mat4f& getProjectionMatrix(void) const;
-		const Math::Mat4f& getViewMatrix(void);
-		const Math::Mat4f getViewProjectionMatrix(void);
+		const math::Mat4f& getProjectionMatrix(void) const;
+		const math::Mat4f& getViewMatrix(void);
+		const math::Mat4f getViewProjectionMatrix(void);
 
 		void update(void);
 
 	private:
-		Math::Mat4f m_ProjectionMatrix;
-		Math::Mat4f m_ViewMatrix;
+		math::Mat4f m_ProjectionMatrix;
+		math::Mat4f m_ViewMatrix;
 
 	}; // class Camera
 } // namespace gg

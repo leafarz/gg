@@ -7,7 +7,7 @@ namespace gg
 	Camera::Camera(void)
 	{ }
 	Camera::Camera(float fovDeg, float aspectRatio, float zNear, float zFar)
-		: m_ProjectionMatrix(Math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar))
+		: m_ProjectionMatrix(math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar))
 	{ }
 
 	Camera::~Camera(void)
@@ -15,33 +15,33 @@ namespace gg
 
 	void Camera::setPerspective(float fovDeg, float aspectRatio, float zNear, float zFar)
 	{
-		m_ProjectionMatrix = Math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar);
+		m_ProjectionMatrix = math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar);
 	}
 
 	void Camera::setOrthographic(float size, float zNear, float zFar)
 	{
-		m_ProjectionMatrix = Math::Mat4f::orthographicMatrix(-size, size, -size, size, zNear, zFar);
+		m_ProjectionMatrix = math::Mat4f::orthographicMatrix(-size, size, -size, size, zNear, zFar);
 	}
 
 	void Camera::setOrthographic(float left, float right, float bottom, float top, float zNear, float zFar)
 	{
-		m_ProjectionMatrix = Math::Mat4f::orthographicMatrix(left, right, bottom, top, zNear, zFar);
+		m_ProjectionMatrix = math::Mat4f::orthographicMatrix(left, right, bottom, top, zNear, zFar);
 	}
 
-	const Math::Mat4f& Camera::getProjectionMatrix(void) const
+	const math::Mat4f& Camera::getProjectionMatrix(void) const
 	{
 		return m_ProjectionMatrix;
 	}
 
-	const Math::Mat4f& Camera::getViewMatrix(void)
+	const math::Mat4f& Camera::getViewMatrix(void)
 	{
 		const Transform* const _t = m_GameObject->getTransform();
 
 		if (_t->isDirty())
 		{
-			const Math::Vec3f& _pos = _t->getPosition();
-			const Math::Quaternion& _q = _t->getRotation().conjugate();
-			Math::Mat4f _rotMatrix = Math::Mat4f::rotationMatrix(_q);
+			const math::Vec3f& _pos = _t->getPosition();
+			const math::Quaternion& _q = _t->getRotation().conjugate();
+			math::Mat4f _rotMatrix = math::Mat4f::rotationMatrix(_q);
 
 			// we use negative position for camera view matrix
 			float _m03 = _rotMatrix[3]  - _pos.x*_rotMatrix[0]  - _pos.y*_rotMatrix[1]  - _pos.z*_rotMatrix[2];
@@ -60,7 +60,7 @@ namespace gg
 		return m_ViewMatrix;
 	}
 
-	const Math::Mat4f Camera::getViewProjectionMatrix(void)
+	const math::Mat4f Camera::getViewProjectionMatrix(void)
 	{
 		return getProjectionMatrix() * getViewMatrix();
 	}

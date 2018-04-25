@@ -4,7 +4,7 @@
 
 #include <iomanip>
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	struct Vec3f;
 	struct Vec4f;
 	struct Vec2f
@@ -141,5 +141,5 @@ namespace gg { namespace Math {
 		static Vec2f one_;
 
 	};// struct vec2f
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

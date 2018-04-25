@@ -413,7 +413,7 @@ namespace gg { namespace graphics {
 		GL(glUniform1f(_uniformData->loc, val));
 	}
 
-	GLvoid Shader::setUniform(const std::string& key, const Math::Vec3f& val)
+	GLvoid Shader::setUniform(const std::string& key, const math::Vec3f& val)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -445,7 +445,7 @@ namespace gg { namespace graphics {
 		GL(glUniform3f(_uniformData->loc, x, y, z));
 	}
 
-	void Shader::setUniform(const std::string & key, const Math::Vec4f & val)
+	void Shader::setUniform(const std::string & key, const math::Vec4f & val)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -477,7 +477,7 @@ namespace gg { namespace graphics {
 		GL(glUniform4f(_uniformData->loc, x, y, z, w));
 	}
 
-	GLvoid Shader::setUniform(const std::string& key, const Math::Mat4f& val, bool transpose)
+	GLvoid Shader::setUniform(const std::string& key, const math::Mat4f& val, bool transpose)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
@@ -512,8 +512,8 @@ namespace gg { namespace graphics {
 
 	void Shader::setUniformi(int loc, int val) { GL(glUniform1i(loc, val)); }
 	void Shader::setUniformf(int loc, float val) { GL(glUniform1f(loc, val)); }
-	void Shader::setUniform(int loc, const Math::Vec3f& val) { GL(glUniform3f(loc, val.x, val.y, val.z)); }
+	void Shader::setUniform(int loc, const math::Vec3f& val) { GL(glUniform3f(loc, val.x, val.y, val.z)); }
 	void Shader::setUniform(int loc, float x, float y, float z) { GL(glUniform3f(loc, x, y, z)); }
-	void Shader::setUniform(int loc, const Math::Mat4f& val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val.getMatrix())); }
+	void Shader::setUniform(int loc, const math::Mat4f& val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val.getMatrix())); }
 	void Shader::setUniform(int loc, float * val, bool transpose) { GL(glUniformMatrix4fv(loc, 1, transpose, val)); }
 }/*namespace graphics*/ } // namespace gg

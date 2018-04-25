@@ -52,10 +52,10 @@ namespace gg { namespace graphics {
 			int _i1 = indices[i + 1];
 			int _i2 = indices[i + 2];
 
-			Math::Vec3f _v1 = vertices[_i1].position - vertices[_i0].position;
-			Math::Vec3f _v2 = vertices[_i2].position - vertices[_i0].position;
+			math::Vec3f _v1 = vertices[_i1].position - vertices[_i0].position;
+			math::Vec3f _v2 = vertices[_i2].position - vertices[_i0].position;
 
-			Math::Vec3f _normal = _v1.cross(_v2).normal();
+			math::Vec3f _normal = _v1.cross(_v2).normal();
 
 			vertices[_i0].normal = _normal;
 			vertices[_i1].normal = _normal;

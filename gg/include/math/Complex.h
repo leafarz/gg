@@ -4,7 +4,7 @@
 #include <math.h>
 #include <iomanip>
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	struct Complex
 	{
 	public:
@@ -64,5 +64,5 @@ namespace gg { namespace Math {
 		*/
 		double getSqrMagnitude(void) const;
 	};// struct complex
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

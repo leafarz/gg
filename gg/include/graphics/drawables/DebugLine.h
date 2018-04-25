@@ -15,9 +15,9 @@ namespace gg { namespace graphics {
 	public:
 		struct LineData
 		{
-			Math::Vec3f position;
-			Math::Color color;
-			LineData(const Math::Vec3f& position, const Math::Color& color)
+			math::Vec3f position;
+			math::Color color;
+			LineData(const math::Vec3f& position, const math::Color& color)
 				: position(position), color(color)
 			{ }
 		};
@@ -25,7 +25,7 @@ namespace gg { namespace graphics {
 		DebugLine(void);
 		~DebugLine(void);
 
-		void drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness);
+		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, float thickness);
 		void drawLines(const std::vector<LineData>& lineQueue, uint thickness, uint count);
 	}; // class DebugLine
 }/*namespace debug*/ } // namespace gg

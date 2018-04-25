@@ -4,7 +4,7 @@
 
 #include <iomanip>
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	struct Vec2f;
 	struct Vec3f;
 	struct Vec4f
@@ -241,5 +241,5 @@ namespace gg { namespace Math {
 		/* Gets the w,z,y,x values in Vec4f form. */
 		Vec4f wzyx(void) const;
 	};// struct vec4f
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

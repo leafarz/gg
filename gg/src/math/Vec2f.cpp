@@ -8,7 +8,7 @@
 #include "math/Vec3f.h"
 #include "math/Vec4f.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	const Vec2f Vec2f::up		= Vec2f(0, 1);
 	const Vec2f Vec2f::right	= Vec2f(1, 0);
 	const Vec2f Vec2f::zero		= Vec2f(0, 0);
@@ -285,4 +285,4 @@ namespace gg { namespace Math {
 		float _determinant = A.x * B.y - A.y * B.x;
 		return atan2(_determinant, _dot);
 	}
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

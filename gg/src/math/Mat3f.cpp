@@ -4,7 +4,7 @@
 #include <iostream>
 #include "math/MathUtil.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	const Mat3f Mat3f::identity = Mat3f(
 		1, 0, 0,
 		0, 1, 0,
@@ -295,4 +295,4 @@ namespace gg { namespace Math {
 		}
 		return _m;
 	}
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg

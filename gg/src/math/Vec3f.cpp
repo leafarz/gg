@@ -8,7 +8,7 @@
 #include "math/Vec2f.h"
 #include "math/Vec4f.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	const Vec3f Vec3f::up		= Vec3f( 0,  1,  0);
 	const Vec3f Vec3f::down		= Vec3f( 0, -1,  0);
 	const Vec3f Vec3f::right	= Vec3f( 1,  0,  0);
@@ -354,4 +354,4 @@ namespace gg { namespace Math {
 	Vec3f Vec3f::yzx(void) const { return Vec3f(y, z, x); }
 	Vec3f Vec3f::zxy(void) const { return Vec3f(z, x, y); }
 	Vec3f Vec3f::zyx(void) const { return Vec3f(z, y, x); }
-} /*namespace Math*/ }// namespace gg
+} /*namespace math*/ }// namespace gg

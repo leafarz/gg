@@ -33,35 +33,35 @@ namespace gg { namespace graphics {
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
 		m_Floats.push(Data<float>(key, val));
 	}
-	void Material::setUniform(const std::string& key, const Math::Color& val)
+	void Material::setUniform(const std::string& key, const math::Color& val)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Vec4fs.push(Data<Math::Vec4f>(key, Math::Vec4f(val.r, val.g, val.b, val.a)));
+		m_Vec4fs.push(Data<math::Vec4f>(key, math::Vec4f(val.r, val.g, val.b, val.a)));
 	}
-	void Material::setUniform(const std::string& key, const Math::Vec3f& val)
+	void Material::setUniform(const std::string& key, const math::Vec3f& val)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Vec3fs.push(Data<Math::Vec3f>(key, val));
+		m_Vec3fs.push(Data<math::Vec3f>(key, val));
 	}
 	void Material::setUniform(const std::string& key, float x, float y, float z)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Vec3fs.push(Data<Math::Vec3f>(key, Math::Vec3f(x, y, z)));
+		m_Vec3fs.push(Data<math::Vec3f>(key, math::Vec3f(x, y, z)));
 	}
-	void Material::setUniform(const std::string& key, const Math::Vec4f& val)
+	void Material::setUniform(const std::string& key, const math::Vec4f& val)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Vec4fs.push(Data<Math::Vec4f>(key, val));
+		m_Vec4fs.push(Data<math::Vec4f>(key, val));
 	}
 	void Material::setUniform(const std::string& key, float x, float y, float z, float w)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Vec4fs.push(Data<Math::Vec4f>(key, Math::Vec4f(x, y, z, w)));
+		m_Vec4fs.push(Data<math::Vec4f>(key, math::Vec4f(x, y, z, w)));
 	}
-	void Material::setUniform(const std::string& key, const Math::Mat4f& val)
+	void Material::setUniform(const std::string& key, const math::Mat4f& val)
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
-		m_Mat4fs.push(Data<Math::Mat4f>(key, val));
+		m_Mat4fs.push(Data<math::Mat4f>(key, val));
 	}
 
 	void Material::bind(void) const { m_Shader->bind(); }
@@ -87,19 +87,19 @@ namespace gg { namespace graphics {
 		}
 		while (!m_Vec3fs.empty())
 		{
-			Data<Math::Vec3f>& _top = m_Vec3fs.top();
+			Data<math::Vec3f>& _top = m_Vec3fs.top();
 			m_Shader->setUniform(_top.key, _top.val);
 			m_Vec3fs.pop();
 		}
 		while (!m_Vec4fs.empty())
 		{
-			Data<Math::Vec4f>& _top = m_Vec4fs.top();
+			Data<math::Vec4f>& _top = m_Vec4fs.top();
 			m_Shader->setUniform(_top.key, _top.val);
 			m_Vec4fs.pop();
 		}
 		while (!m_Mat4fs.empty())
 		{
-			Data<Math::Mat4f>& _top = m_Mat4fs.top();
+			Data<math::Mat4f>& _top = m_Mat4fs.top();
 			m_Shader->setUniform(_top.key, _top.val, true);
 			m_Mat4fs.pop();
 		}

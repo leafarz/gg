@@ -31,7 +31,7 @@ namespace gg { namespace graphics {
 	{
 	}
 
-	void DebugLine::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, float thickness)
+	void DebugLine::drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, float thickness)
 	{
 		std::vector<LineData> _data = { LineData(from, color), LineData(to, color) };
 

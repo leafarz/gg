@@ -26,16 +26,16 @@ namespace gg
 		Light *_dLight = new Light(Light::LightType::DirectionalLight);
 		goDLight = new GameObject("DirectionalLight");
 		goDLight->addComponent(_dLight);
-		_dLight->setColor(Math::Color(1.0f, 1.0f, 1.0f, 1));
+		_dLight->setColor(math::Color(1.0f, 1.0f, 1.0f, 1));
 		_dLight->setIntensity(1);
-		_dLight->getGameObject()->getTransform()->setPosition(0, 0, 0);
-		_dLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(-1, -1, 0).normal());
+		_dLight->getGameObject()->getTransform()->setPosition(0, 3, 0);
+		_dLight->getGameObject()->getTransform()->lookAt(math::Vec3f(-1, -1, 0).normal());
 		add(goDLight);
 
 		//Light *_pLight = new Light(Light::LightType::PointLight);
 		//goPLight = new GameObject("PointLight");
 		//goPLight->addComponent(_pLight);
-		//_pLight->setColor(Math::Color(1, 1, 1, 1));
+		//_pLight->setColor(math::Color(1, 1, 1, 1));
 		//_pLight->getGameObject()->getTransform()->setPosition(0, 2, 0);
 		//_pLight->setAttenuation(0.2f, 0.2f, 0.2f);
 		//add(goPLight);
@@ -43,58 +43,58 @@ namespace gg
 		//Light *_sLight = new Light(Light::LightType::SpotLight);
 		//goSLight = new GameObject("SpotLight");
 		//goSLight->addComponent(_sLight);
-		//_sLight->setColor(Math::Color(0, 1, 0, 1));
+		//_sLight->setColor(math::Color(0, 1, 0, 1));
 		//_sLight->getGameObject()->getTransform()->setPosition(0, 1, 0);
-		//_sLight->getGameObject()->getTransform()->lookAt(Math::Vec3f(0, -1, -2).normal());
+		//_sLight->getGameObject()->getTransform()->lookAt(math::Vec3f(0, -1, -2).normal());
 		//_sLight->setAttenuation(0.002f, 0.003f, 0.001f);
 		//_sLight->setAngle(20);
 		//add(goSLight);
 
 
-		Math::Vec3f _ulf = Math::Vec3f(-0.5f,  0.5f, -0.5);
-		Math::Vec3f _urf = Math::Vec3f( 0.5f,  0.5f, -0.5);
-		Math::Vec3f _llf = Math::Vec3f(-0.5f, -0.5f, -0.5);
-		Math::Vec3f _lrf = Math::Vec3f( 0.5f, -0.5f, -0.5);
+		math::Vec3f _ulf = math::Vec3f(-0.5f,  0.5f, -0.5);
+		math::Vec3f _urf = math::Vec3f( 0.5f,  0.5f, -0.5);
+		math::Vec3f _llf = math::Vec3f(-0.5f, -0.5f, -0.5);
+		math::Vec3f _lrf = math::Vec3f( 0.5f, -0.5f, -0.5);
 
-		Math::Vec3f _ulb = Math::Vec3f(-0.5f,  0.5f, 0.5);
-		Math::Vec3f _urb = Math::Vec3f( 0.5f,  0.5f, 0.5);
-		Math::Vec3f _llb = Math::Vec3f(-0.5f, -0.5f, 0.5);
-		Math::Vec3f _lrb = Math::Vec3f( 0.5f, -0.5f, 0.5);
+		math::Vec3f _ulb = math::Vec3f(-0.5f,  0.5f, 0.5);
+		math::Vec3f _urb = math::Vec3f( 0.5f,  0.5f, 0.5);
+		math::Vec3f _llb = math::Vec3f(-0.5f, -0.5f, 0.5);
+		math::Vec3f _lrb = math::Vec3f( 0.5f, -0.5f, 0.5);
 
 		std::vector<graphics::Vertex> _cubeVerts =
 		{
 			// pos	// uv					// normal						// color
-			{ _urf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Math::Color(1.0, 0.0, 0.0) }, // 00
-			{ _urf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Math::Color(1.0, 0.0, 0.0) }, // 01
-			{ _urf,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Math::Color(1.0, 0.0, 0.0) }, // 02
+			{ _urf,	math::Vec2f(0.0, 1.0),	math::Vec3f( 1.0,  0.0,  0.0),	math::Color(1.0, 0.0, 0.0) }, // 00
+			{ _urf,	math::Vec2f(1.0, 0.0),	math::Vec3f( 0.0,  1.0,  0.0),	math::Color(1.0, 0.0, 0.0) }, // 01
+			{ _urf,	math::Vec2f(1.0, 1.0),	math::Vec3f( 0.0,  0.0, -1.0),	math::Color(1.0, 0.0, 0.0) }, // 02
 
-			{ _lrf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Math::Color(0.0, 1.0, 0.0) }, // 03
-			{ _lrf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Math::Color(0.0, 1.0, 0.0) }, // 04
-			{ _lrf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Math::Color(0.0, 1.0, 0.0) }, // 05
+			{ _lrf,	math::Vec2f(0.0, 0.0),	math::Vec3f( 1.0,  0.0,  0.0),	math::Color(0.0, 1.0, 0.0) }, // 03
+			{ _lrf,	math::Vec2f(1.0, 0.0),	math::Vec3f( 0.0, -1.0,  0.0),	math::Color(0.0, 1.0, 0.0) }, // 04
+			{ _lrf,	math::Vec2f(1.0, 0.0),	math::Vec3f( 0.0,  0.0, -1.0),	math::Color(0.0, 1.0, 0.0) }, // 05
 
-			{ _llf,	Math::Vec2f(1.0, 0.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Math::Color(0.0, 0.0, 1.0) }, // 06
-			{ _llf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Math::Color(0.0, 0.0, 1.0) }, // 07
-			{ _llf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Math::Color(0.0, 0.0, 1.0) }, // 08
+			{ _llf,	math::Vec2f(1.0, 0.0),	math::Vec3f(-1.0,  0.0,  0.0),	math::Color(0.0, 0.0, 1.0) }, // 06
+			{ _llf,	math::Vec2f(0.0, 0.0),	math::Vec3f( 0.0, -1.0,  0.0),	math::Color(0.0, 0.0, 1.0) }, // 07
+			{ _llf,	math::Vec2f(0.0, 0.0),	math::Vec3f( 0.0,  0.0, -1.0),	math::Color(0.0, 0.0, 1.0) }, // 08
 
-			{ _ulf,	Math::Vec2f(1.0, 1.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Math::Color(1.0, 1.0, 1.0) }, // 09
-			{ _ulf,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Math::Color(1.0, 1.0, 1.0) }, // 10
-			{ _ulf,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0,  0.0, -1.0),	Math::Color(1.0, 1.0, 1.0) }, // 11
+			{ _ulf,	math::Vec2f(1.0, 1.0),	math::Vec3f(-1.0,  0.0,  0.0),	math::Color(1.0, 1.0, 1.0) }, // 09
+			{ _ulf,	math::Vec2f(0.0, 0.0),	math::Vec3f( 0.0,  1.0,  0.0),	math::Color(1.0, 1.0, 1.0) }, // 10
+			{ _ulf,	math::Vec2f(0.0, 1.0),	math::Vec3f( 0.0,  0.0, -1.0),	math::Color(1.0, 1.0, 1.0) }, // 11
 
-			{ _urb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Math::Color(1.0, 0.0, 0.0) }, // 12
-			{ _urb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Math::Color(1.0, 0.0, 0.0) }, // 13
-			{ _urb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Math::Color(1.0, 0.0, 0.0) }, // 14
+			{ _urb,	math::Vec2f(1.0, 1.0),	math::Vec3f( 1.0,  0.0,  0.0),	math::Color(1.0, 0.0, 0.0) }, // 12
+			{ _urb,	math::Vec2f(1.0, 1.0),	math::Vec3f( 0.0,  1.0,  0.0),	math::Color(1.0, 0.0, 0.0) }, // 13
+			{ _urb,	math::Vec2f(0.0, 1.0),	math::Vec3f( 0.0,  0.0,  1.0),	math::Color(1.0, 0.0, 0.0) }, // 14
 
-			{ _lrb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 1.0,  0.0,  0.0),	Math::Color(0.0, 1.0, 0.0) }, // 15
-			{ _lrb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Math::Color(0.0, 1.0, 0.0) }, // 16
-			{ _lrb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Math::Color(0.0, 1.0, 0.0) }, // 17
+			{ _lrb,	math::Vec2f(1.0, 0.0),	math::Vec3f( 1.0,  0.0,  0.0),	math::Color(0.0, 1.0, 0.0) }, // 15
+			{ _lrb,	math::Vec2f(1.0, 1.0),	math::Vec3f( 0.0, -1.0,  0.0),	math::Color(0.0, 1.0, 0.0) }, // 16
+			{ _lrb,	math::Vec2f(0.0, 0.0),	math::Vec3f( 0.0,  0.0,  1.0),	math::Color(0.0, 1.0, 0.0) }, // 17
 
-			{ _llb,	Math::Vec2f(0.0, 0.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Math::Color(0.0, 0.0, 1.0) }, // 18
-			{ _llb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0, -1.0,  0.0),	Math::Color(0.0, 0.0, 1.0) }, // 19
-			{ _llb,	Math::Vec2f(1.0, 0.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Math::Color(0.0, 0.0, 1.0) }, // 20
+			{ _llb,	math::Vec2f(0.0, 0.0),	math::Vec3f(-1.0,  0.0,  0.0),	math::Color(0.0, 0.0, 1.0) }, // 18
+			{ _llb,	math::Vec2f(0.0, 1.0),	math::Vec3f( 0.0, -1.0,  0.0),	math::Color(0.0, 0.0, 1.0) }, // 19
+			{ _llb,	math::Vec2f(1.0, 0.0),	math::Vec3f( 0.0,  0.0,  1.0),	math::Color(0.0, 0.0, 1.0) }, // 20
 
-			{ _ulb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f(-1.0,  0.0,  0.0),	Math::Color(1.0, 1.0, 1.0) }, // 21
-			{ _ulb,	Math::Vec2f(0.0, 1.0),	Math::Vec3f( 0.0,  1.0,  0.0),	Math::Color(1.0, 1.0, 1.0) }, // 22
-			{ _ulb,	Math::Vec2f(1.0, 1.0),	Math::Vec3f( 0.0,  0.0,  1.0),	Math::Color(1.0, 1.0, 1.0) }, // 23
+			{ _ulb,	math::Vec2f(0.0, 1.0),	math::Vec3f(-1.0,  0.0,  0.0),	math::Color(1.0, 1.0, 1.0) }, // 21
+			{ _ulb,	math::Vec2f(0.0, 1.0),	math::Vec3f( 0.0,  1.0,  0.0),	math::Color(1.0, 1.0, 1.0) }, // 22
+			{ _ulb,	math::Vec2f(1.0, 1.0),	math::Vec3f( 0.0,  0.0,  1.0),	math::Color(1.0, 1.0, 1.0) }, // 23
 		};
 		std::vector<uint> _cubeIndices =
 		{
@@ -125,10 +125,10 @@ namespace gg
 
 		std::vector<graphics::Vertex> _quadVerts =
 		{
-			{ Math::Vec3f(-0.5, 0.0, -0.5f),	Math::Vec2f(0.0, 0.0),	Math::Vec3f(0.0, 1.0, 0.0),		Math::Color(1.0, 1.0, 1.0) },
-			{ Math::Vec3f( 0.5, 0.0, -0.5f),	Math::Vec2f(1.0, 0.0),	Math::Vec3f(0.0, 1.0, 0.0),		Math::Color(1.0, 1.0, 1.0) },
-			{ Math::Vec3f(-0.5, 0.0,  0.5f),	Math::Vec2f(0.0, 1.0),	Math::Vec3f(0.0, 1.0, 0.0),		Math::Color(1.0, 1.0, 1.0) },
-			{ Math::Vec3f( 0.5, 0.0,  0.5f),	Math::Vec2f(1.0, 1.0),	Math::Vec3f(0.0, 1.0, 0.0),		Math::Color(1.0, 1.0, 1.0) }
+			{ math::Vec3f(-0.5, 0.0, -0.5f),	math::Vec2f(0.0, 0.0),	math::Vec3f(0.0, 1.0, 0.0),		math::Color(1.0, 1.0, 1.0) },
+			{ math::Vec3f( 0.5, 0.0, -0.5f),	math::Vec2f(1.0, 0.0),	math::Vec3f(0.0, 1.0, 0.0),		math::Color(1.0, 1.0, 1.0) },
+			{ math::Vec3f(-0.5, 0.0,  0.5f),	math::Vec2f(0.0, 1.0),	math::Vec3f(0.0, 1.0, 0.0),		math::Color(1.0, 1.0, 1.0) },
+			{ math::Vec3f( 0.5, 0.0,  0.5f),	math::Vec2f(1.0, 1.0),	math::Vec3f(0.0, 1.0, 0.0),		math::Color(1.0, 1.0, 1.0) }
 		};
 		std::vector<uint> _quadIndices = 
 		{
@@ -206,13 +206,13 @@ namespace gg
 		if (m_ShowGrid) { drawGrid(20); }
 
 		ImGui::InputFloat3("Position", position);
-		Math::Vec3f _position = Math::Vec3f(position);
+		math::Vec3f _position = math::Vec3f(position);
 
 		ImGui::InputFloat3("LookAt", lookAt);
-		Math::Vec3f _lookAt = Math::Vec3f(lookAt).normal();
+		math::Vec3f _lookAt = math::Vec3f(lookAt).normal();
 
 		ImGui::InputFloat3("Scale", scale);
-		Math::Vec3f _scale = Math::Vec3f(scale);
+		math::Vec3f _scale = math::Vec3f(scale);
 
 		debug::drawLine(_position, _position + _lookAt);
 		go1->getTransform()->setPosition(_position);
@@ -226,15 +226,15 @@ namespace gg
 	{
 		FOR(i, -length, length + 1)
 		{
-			debug::drawLine(Math::Vec3f(-length, 0, i), Math::Vec3f(length, 0, i), Math::Color::gray);
+			debug::drawLine(math::Vec3f(-length, 0, i), math::Vec3f(length, 0, i), math::Color::gray);
 		}
 		FOR(i, -length, length + 1)
 		{
-			debug::drawLine(Math::Vec3f(i, 0, -length), Math::Vec3f(i, 0, length), Math::Color::gray);
+			debug::drawLine(math::Vec3f(i, 0, -length), math::Vec3f(i, 0, length), math::Color::gray);
 		}
 
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::forward, 5, Math::Color::blue);
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::up, 5, Math::Color::green);
-		debug::drawLine(Math::Vec3f::zero, Math::Vec3f::right, 5, Math::Color::red);
+		debug::drawLine(math::Vec3f::zero, math::Vec3f::forward, 5, math::Color::blue);
+		debug::drawLine(math::Vec3f::zero, math::Vec3f::up, 5, math::Color::green);
+		debug::drawLine(math::Vec3f::zero, math::Vec3f::right, 5, math::Color::red);
 	}
 } // namespace gg

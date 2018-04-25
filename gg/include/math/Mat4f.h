@@ -5,7 +5,7 @@
 #include <iomanip>
 #include "math/Vec4f.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	struct Vec3f;
 	struct Quaternion;
 	struct Mat4f
@@ -122,5 +122,5 @@ namespace gg { namespace Math {
 
 		Vec3f getTransform(Vec3f A);
 	};// struct Mat4f
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

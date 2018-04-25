@@ -5,7 +5,7 @@
 #include <iomanip>
 #include "math/Vec3f.h"
 
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	struct Mat3f
 	{
 	public:
@@ -78,5 +78,5 @@ namespace gg { namespace Math {
 		/* Static function for getting transpose of the matrix M. */
 		static Mat3f getTranspose(const Mat3f& M);
 	};// struct Mat3f
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

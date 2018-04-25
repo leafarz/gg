@@ -46,9 +46,9 @@ namespace gg
 
 	void FreeCamera::onUpdate(void)
 	{
-		const Math::Vec3f& _pos = m_Transform->getPosition();
-		const Math::Quaternion& _rot = m_Transform->getRotation();
-		const Math::Vec3f& _euler = m_Transform->getEuler();
+		const math::Vec3f& _pos = m_Transform->getPosition();
+		const math::Quaternion& _rot = m_Transform->getRotation();
+		const math::Vec3f& _euler = m_Transform->getEuler();
 
 		if (Input::getKey(KEY::W))
 		{
@@ -103,7 +103,7 @@ namespace gg
 
 		if (m_IsCursorVisible) { return; }
 
-		Math::Vec2f _delta = Input::getMousePosition() - m_PrevMousePos;
+		math::Vec2f _delta = Input::getMousePosition() - m_PrevMousePos;
 
 		m_Transform->setEulerX(_euler.x + _delta.y * m_Sensitivity);
 		m_Transform->setEulerY(_euler.y + _delta.x * m_Sensitivity);
@@ -113,7 +113,7 @@ namespace gg
 		float _wheel = Input::getMouseWheelDelta().y;
 		if (_wheel != 0)
 		{
-			m_Sensitivity = Math::clamp(m_Sensitivity + _wheel * 0.01f, m_SensitivityBounds.x, m_SensitivityBounds.y);
+			m_Sensitivity = math::clamp(m_Sensitivity + _wheel * 0.01f, m_SensitivityBounds.x, m_SensitivityBounds.y);
 		}
 	}
 } // namespace gg

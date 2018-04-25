@@ -26,8 +26,8 @@ namespace gg
 
 	GLboolean	Input::s_IsMouseInputEnabled = GL_FALSE;
 
-	Math::Vec2f Input::s_MousePos;
-	Math::Vec2f Input::s_MouseWheelDelta;
+	math::Vec2f Input::s_MousePos;
+	math::Vec2f Input::s_MouseWheelDelta;
 	
 	GLvoid Input::init(GLvoid)
 	{
@@ -138,12 +138,12 @@ namespace gg
 		return s_MouseBtnUp[(GLushort)key];
 	}
 
-	Math::Vec2f Input::getMousePosition(GLvoid)
+	math::Vec2f Input::getMousePosition(GLvoid)
 	{
 		return s_MousePos;
 	}
 
-	Math::Vec2f Input::getMouseWheelDelta(GLvoid)
+	math::Vec2f Input::getMouseWheelDelta(GLvoid)
 	{
 		return s_MouseWheelDelta;
 	}

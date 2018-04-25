@@ -39,11 +39,11 @@ namespace gg { namespace graphics {
 
 	void Renderer::draw(
 		GameObject* gameObject,
-		const Math::Mat4f& viewMatrix,
-		const Math::Mat4f& projectionMatrix,
-		const Math::Mat4f& pvMatrix,
-		const Math::Vec3f& cameraPosition,
-		const Math::Vec3f& cameraDirection,
+		const math::Mat4f& viewMatrix,
+		const math::Mat4f& projectionMatrix,
+		const math::Mat4f& pvMatrix,
+		const math::Vec3f& cameraPosition,
+		const math::Vec3f& cameraDirection,
 		const LightSettings& lightSettings,
 		const std::vector<Light*>& lights)
 	{
@@ -127,8 +127,8 @@ namespace gg { namespace graphics {
 
 						if (_tLight->isDirty())
 						{
-							Math::Vec4f _pos(_tLight->getPosition(), 0);
-							Math::Vec3f _forward = _tLight->getForward();
+							math::Vec4f _pos(_tLight->getPosition(), 0);
+							math::Vec3f _forward = _tLight->getForward();
 							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
 							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _forward);
 						}
@@ -145,7 +145,7 @@ namespace gg { namespace graphics {
 
 						if (_tLight->isDirty())
 						{
-							Math::Vec4f _pos(_tLight->getPosition(), 1);
+							math::Vec4f _pos(_tLight->getPosition(), 1);
 							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
 						}
 
@@ -157,7 +157,7 @@ namespace gg { namespace graphics {
 
 						if (_light->isDirty(Light::DirtyBits::Attenuation))
 						{
-							const Math::Vec3f& _attenuation = _light->getAttenuation();
+							const math::Vec3f& _attenuation = _light->getAttenuation();
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
@@ -176,7 +176,7 @@ namespace gg { namespace graphics {
 
 						if (_tLight->isDirty())
 						{
-							Math::Vec4f _pos(_tLight->getPosition(), 1);
+							math::Vec4f _pos(_tLight->getPosition(), 1);
 							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Position)], _pos);
 							_mat->setUniform(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Direction)], _tLight->getForward());
 						}
@@ -189,7 +189,7 @@ namespace gg { namespace graphics {
 
 						if (_light->isDirty(Light::DirtyBits::Attenuation))
 						{
-							const Math::Vec3f& _attenuation = _light->getAttenuation();
+							const math::Vec3f& _attenuation = _light->getAttenuation();
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ConstantAttenuation)], _attenuation.x);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::LinearAttenuation)], _attenuation.y);
 							_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::ExponentAttenuation)], _attenuation.z);
@@ -213,7 +213,7 @@ namespace gg { namespace graphics {
 	}
 
 	/* Debug Line */
-	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness)
+	void Renderer::drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness)
 	{
 		if (m_Buffer.find(thickness) == m_Buffer.end())
 		{
@@ -226,7 +226,7 @@ namespace gg { namespace graphics {
 		}										   
 	}
 
-	void Renderer::drawLine(const Math::Vec3f& from, const Math::Vec3f& to, const Math::Color& color, uint thickness, float duration)
+	void Renderer::drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration)
 	{
 		if (m_TimedBuffer.find(thickness) == m_TimedBuffer.end())
 		{
@@ -242,7 +242,7 @@ namespace gg { namespace graphics {
 		}
 	}
 
-	void Renderer::drawDebug(const Math::Mat4f& pvMatrix)
+	void Renderer::drawDebug(const math::Mat4f& pvMatrix)
 	{
 		m_DebugLine->begin(pvMatrix);
 

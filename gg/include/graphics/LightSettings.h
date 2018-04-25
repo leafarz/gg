@@ -8,12 +8,12 @@ namespace gg { namespace graphics {
 	struct LightSettings
 	{
 	public:
-		Math::Vec3f ambientColor;
+		math::Vec3f ambientColor;
 
 		LightSettings(void)
-			: ambientColor(Math::Vec3f(0.1f, 0.1f, 0.1f))
+			: ambientColor(math::Vec3f(0.1f, 0.1f, 0.1f))
 		{ }
-		LightSettings(const Math::Vec3f& ambientColor)
+		LightSettings(const math::Vec3f& ambientColor)
 			: ambientColor(ambientColor)
 		{ }
 	}; // struct LightSettings

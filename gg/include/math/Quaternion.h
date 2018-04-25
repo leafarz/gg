@@ -9,7 +9,7 @@
 #include "Vec3f.h"
 
 // TODO: x rotation is counter cw
-namespace gg { namespace Math {
+namespace gg { namespace math {
 	struct Vec2f;
 	struct Mat4f;
 	struct Quaternion
@@ -206,5 +206,5 @@ namespace gg { namespace Math {
 		static Quaternion fromEulerd(const Vec3f& eulerd);
 
 	};// struct Quaternion
-}/*namespace Math*/ }// namespace gg
+}/*namespace math*/ }// namespace gg
 #endif

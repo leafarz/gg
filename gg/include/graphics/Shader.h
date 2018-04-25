@@ -114,18 +114,18 @@ namespace gg { namespace graphics {
 
 		void setUniformi(const std::string& key, int val);
 		void setUniformf(const std::string& key, float val);
-		void setUniform(const std::string& key, const Math::Vec3f& val);
+		void setUniform(const std::string& key, const math::Vec3f& val);
 		void setUniform(const std::string& key, float x, float y, float z);
-		void setUniform(const std::string& key, const Math::Vec4f& val);
+		void setUniform(const std::string& key, const math::Vec4f& val);
 		void setUniform(const std::string& key, float x, float y, float z, float w);
-		void setUniform(const std::string& key, const Math::Mat4f& val, bool transpose);
+		void setUniform(const std::string& key, const math::Mat4f& val, bool transpose);
 		void setUniform(const std::string& key, float* val, bool transpose);
 
 		void setUniformi(int loc, int val);
 		void setUniformf(int loc, float val);
-		void setUniform(int loc, const Math::Vec3f& val);
+		void setUniform(int loc, const math::Vec3f& val);
 		void setUniform(int loc, float x, float y, float z);
-		void setUniform(int loc, const Math::Mat4f& val, bool transpose);
+		void setUniform(int loc, const math::Mat4f& val, bool transpose);
 		void setUniform(int loc, float* val, bool transpose);
 
 	private:
