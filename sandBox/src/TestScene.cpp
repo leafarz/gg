@@ -17,19 +17,19 @@ namespace gg
 	GameObject *go1, *go2;
 	GameObject *goDLight, *goSLight, *goPLight;
 	graphics::Shader *basicShader;
-
+	Light *dLight;
 	void TestScene::onInit(void)
 	{
 		LightSettings.ambientColor.set(0.1f, 0.1f, 0.1f);
 
 		// directional light
-		Light *_dLight = new Light(Light::LightType::DirectionalLight);
+		dLight = new Light(Light::LightType::DirectionalLight);
 		goDLight = new GameObject("DirectionalLight");
-		goDLight->addComponent(_dLight);
-		_dLight->setColor(math::Color(1.0f, 1.0f, 1.0f, 1));
-		_dLight->setIntensity(1);
-		_dLight->getGameObject()->getTransform()->setPosition(0, 3, 0);
-		_dLight->getGameObject()->getTransform()->lookAt(math::Vec3f(-1, -1, 0).normal());
+		goDLight->addComponent(dLight);
+		dLight->setColor(math::Color(1.0f, 1.0f, 1.0f, 1));
+		dLight->setIntensity(1);
+		dLight->getGameObject()->getTransform()->setPosition(0, 3, 0);
+		dLight->getGameObject()->getTransform()->lookAt(math::Vec3f(-1, -1, 0).normal());
 		add(goDLight);
 
 		//Light *_pLight = new Light(Light::LightType::PointLight);
@@ -189,6 +189,12 @@ namespace gg
 		Scene::onInit();
 	}
 
+	
+	float lightColor[3] = { 1,1,1 };
+	float lightLookAt[3] = { -1,-2,1.5f };
+	float lightIntensity = 1;
+	float lightSpecular = 32;
+
 	float position[3] = { 0,1,0 };
 	float lookAt[3] = { 0,0,1 };
 	float scale[3] = { 1,1,1 };
@@ -201,10 +207,24 @@ namespace gg
 
 
 		// ------------
-
+		ImGui::Text("[World]");
 		ImGui::Checkbox("Grid", &m_ShowGrid);
 		if (m_ShowGrid) { drawGrid(20); }
 
+		ImGui::Text("\n[Directional Light]");
+		ImGui::SliderFloat("Intensity", &lightIntensity, 0, 2);
+		dLight->setIntensity(lightIntensity);
+
+		ImGui::SliderFloat("Specular", &lightSpecular, 0, 256);
+		dLight->setSpecular(lightSpecular);
+
+		ImGui::InputFloat3("Look At", lightLookAt);
+		goDLight->getTransform()->lookAt(math::Vec3f(lightLookAt).normal());
+
+		ImGui::ColorPicker3("Color", lightColor);
+		dLight->setColor(math::Color(lightColor[0], lightColor[1], lightColor[2]));
+
+		ImGui::Text("\n[Box]");
 		ImGui::InputFloat3("Position", position);
 		math::Vec3f _position = math::Vec3f(position);
 

@@ -5,11 +5,11 @@
 namespace gg
 {
 	Light::Light(LightType lightType)
-		: m_LightType(lightType), m_Intensity(1), m_Angle(lightType == LightType::PointLight ? 180.0f : 0.0f)
+		: m_LightType(lightType), m_Intensity(1), m_Angle(lightType == LightType::PointLight ? 180.0f : 0.0f), m_Specular(32)
 	{ }
 
-	Light::Light(LightType lightType, float intensity, const math::Color& color, float angle, const math::Vec3f & attenuation)
-		: m_LightType(lightType), m_Intensity(intensity), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180.0f : angle), m_Attenuation(attenuation)
+	Light::Light(LightType lightType, float intensity, const math::Color& color, float angle, const math::Vec3f& attenuation, float specular)
+		: m_LightType(lightType), m_Intensity(intensity), m_Color(color), m_Angle(lightType == LightType::PointLight ? 180.0f : angle), m_Attenuation(attenuation), m_Specular(specular)
 	{ }
 
 	Light::~Light(void)
@@ -40,6 +40,12 @@ namespace gg
 	{
 		setDirty(DirtyBits::Attenuation);
 		m_Attenuation = attenuation;
+	}
+
+	void Light::setSpecular(float specular)
+	{
+		setDirty(DirtyBits::Specular);
+		m_Specular = specular;
 	}
 
 	void Light::setDirty(DirtyBits bit)			{ m_DirtyBits = static_cast<DirtyBits>((ubyte)m_DirtyBits | (ubyte)bit); }

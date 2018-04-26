@@ -25,16 +25,18 @@ namespace graphics {
 	class Renderer
 	{
 	private:
-		enum class SystemLightIndex : ubyte
+		enum class SystemLightIndex : uint
 		{
-			Position,
-			Direction,
-			Color,
-			Intensity,
-			ConstantAttenuation,
-			LinearAttenuation,
-			ExponentAttenuation,
-			Angle
+			Position			= 0,
+			Direction			= 1,
+			Color				= 2,
+			Intensity			= 3,
+			ConstantAttenuation	= 4,
+			LinearAttenuation	= 5,
+			ExponentAttenuation	= 6,
+			Angle				= 7,
+			Specular			= 8,
+			Length				= 9
 		};
 
 		struct LineDataGroup
@@ -104,15 +106,15 @@ namespace graphics {
 	/* Light */
 	private:
 		// MAX_LIGHTS * numOfProperties
-		const char* m_SystemLightPrefixes[8 * 8] = {
-			"sys_Lights[0].position", "sys_Lights[0].direction", "sys_Lights[0].color", "sys_Lights[0].intensity", "sys_Lights[0].constantAttenuation", "sys_Lights[0].linearAttenuation", "sys_Lights[0].exponentAttenuation", "sys_Lights[0].angle",
-			"sys_Lights[1].position", "sys_Lights[1].direction", "sys_Lights[1].color", "sys_Lights[1].intensity", "sys_Lights[1].constantAttenuation", "sys_Lights[1].linearAttenuation", "sys_Lights[1].exponentAttenuation", "sys_Lights[1].angle",
-			"sys_Lights[2].position", "sys_Lights[2].direction", "sys_Lights[2].color", "sys_Lights[2].intensity", "sys_Lights[2].constantAttenuation", "sys_Lights[2].linearAttenuation", "sys_Lights[2].exponentAttenuation", "sys_Lights[2].angle",
-			"sys_Lights[3].position", "sys_Lights[3].direction", "sys_Lights[3].color", "sys_Lights[3].intensity", "sys_Lights[3].constantAttenuation", "sys_Lights[3].linearAttenuation", "sys_Lights[3].exponentAttenuation", "sys_Lights[3].angle",
-			"sys_Lights[4].position", "sys_Lights[4].direction", "sys_Lights[4].color", "sys_Lights[4].intensity", "sys_Lights[4].constantAttenuation", "sys_Lights[4].linearAttenuation", "sys_Lights[4].exponentAttenuation", "sys_Lights[4].angle",
-			"sys_Lights[5].position", "sys_Lights[5].direction", "sys_Lights[5].color", "sys_Lights[5].intensity", "sys_Lights[5].constantAttenuation", "sys_Lights[5].linearAttenuation", "sys_Lights[5].exponentAttenuation", "sys_Lights[5].angle",
-			"sys_Lights[6].position", "sys_Lights[6].direction", "sys_Lights[6].color", "sys_Lights[6].intensity", "sys_Lights[6].constantAttenuation", "sys_Lights[6].linearAttenuation", "sys_Lights[6].exponentAttenuation", "sys_Lights[6].angle",
-			"sys_Lights[7].position", "sys_Lights[7].direction", "sys_Lights[7].color", "sys_Lights[7].intensity", "sys_Lights[7].constantAttenuation", "sys_Lights[7].linearAttenuation", "sys_Lights[7].exponentAttenuation", "sys_Lights[7].angle"
+		const char* m_SystemLightPrefixes[8 * (int)SystemLightIndex::Length] = {
+			"sys_Lights[0].position", "sys_Lights[0].direction", "sys_Lights[0].color", "sys_Lights[0].intensity", "sys_Lights[0].constantAttenuation", "sys_Lights[0].linearAttenuation", "sys_Lights[0].exponentAttenuation", "sys_Lights[0].angle", "sys_Lights[0].specular",
+			"sys_Lights[1].position", "sys_Lights[1].direction", "sys_Lights[1].color", "sys_Lights[1].intensity", "sys_Lights[1].constantAttenuation", "sys_Lights[1].linearAttenuation", "sys_Lights[1].exponentAttenuation", "sys_Lights[1].angle", "sys_Lights[1].specular",
+			"sys_Lights[2].position", "sys_Lights[2].direction", "sys_Lights[2].color", "sys_Lights[2].intensity", "sys_Lights[2].constantAttenuation", "sys_Lights[2].linearAttenuation", "sys_Lights[2].exponentAttenuation", "sys_Lights[2].angle", "sys_Lights[2].specular",
+			"sys_Lights[3].position", "sys_Lights[3].direction", "sys_Lights[3].color", "sys_Lights[3].intensity", "sys_Lights[3].constantAttenuation", "sys_Lights[3].linearAttenuation", "sys_Lights[3].exponentAttenuation", "sys_Lights[3].angle", "sys_Lights[3].specular",
+			"sys_Lights[4].position", "sys_Lights[4].direction", "sys_Lights[4].color", "sys_Lights[4].intensity", "sys_Lights[4].constantAttenuation", "sys_Lights[4].linearAttenuation", "sys_Lights[4].exponentAttenuation", "sys_Lights[4].angle", "sys_Lights[4].specular",
+			"sys_Lights[5].position", "sys_Lights[5].direction", "sys_Lights[5].color", "sys_Lights[5].intensity", "sys_Lights[5].constantAttenuation", "sys_Lights[5].linearAttenuation", "sys_Lights[5].exponentAttenuation", "sys_Lights[5].angle", "sys_Lights[5].specular",
+			"sys_Lights[6].position", "sys_Lights[6].direction", "sys_Lights[6].color", "sys_Lights[6].intensity", "sys_Lights[6].constantAttenuation", "sys_Lights[6].linearAttenuation", "sys_Lights[6].exponentAttenuation", "sys_Lights[6].angle", "sys_Lights[6].specular",
+			"sys_Lights[7].position", "sys_Lights[7].direction", "sys_Lights[7].color", "sys_Lights[7].intensity", "sys_Lights[7].constantAttenuation", "sys_Lights[7].linearAttenuation", "sys_Lights[7].exponentAttenuation", "sys_Lights[7].angle", "sys_Lights[7].specular"
 		};
 
 

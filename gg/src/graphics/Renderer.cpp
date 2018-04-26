@@ -114,6 +114,12 @@ namespace gg { namespace graphics {
 						_light->clearDirty(Light::DirtyBits::Intensity);
 					}
 
+					if (_light->isDirty(Light::DirtyBits::Specular))
+					{
+						_mat->setUniformf(m_SystemLightPrefixes[_index * 8 + (int)(SystemLightIndex::Specular)], _light->getSpecular());
+						_light->clearDirty(Light::DirtyBits::Specular);
+					}
+
 					switch (_light->getLightType())
 					{
 					case Light::LightType::DirectionalLight:

@@ -58,6 +58,7 @@ struct Light
 	float exponentAttenuation;
 
 	float angle;	// spotCutoff
+	float specular;
 };
 
 uniform Light sys_Lights[MAX_LIGHTS];
@@ -76,14 +77,18 @@ float computeSpecular(vec3 lightDirection, vec3 surfacePosition, vec3 surfaceNor
 {
 	vec3 _pixelToCameraDir = normalize(surfacePosition - sys_CameraPosition);
 	vec3 _reflectedLightDir = reflect(lightDirection, surfaceNormal);
-	
-	return pow(fresnel(_pixelToCameraDir, _reflectedLightDir), power);
+
+	// for some reason when power is 0 (not sure SHURE), pow doesn't work
+	// but i just set the threshold to 1 just because i can
+	if(power < 1) 	{ return 0; }
+	else			{ return pow(fresnel(_pixelToCameraDir, _reflectedLightDir), power); }
 }
 
 vec3 computeDirectionalLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
 {
-	float _spec = computeSpecular(light.direction, surfacePosition, surfaceNormal, 32);
-	return light.color.xyz * light.intensity  * (fresnel(light.direction, surfaceNormal) + _spec);
+	float _spec = computeSpecular(light.direction, surfacePosition, surfaceNormal, light.specular);
+
+	return light.color.xyz * light.intensity * (fresnel(light.direction, surfaceNormal) + _spec);
 }
 
 vec3 computePointLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
@@ -100,7 +105,7 @@ vec3 computePointLight(Light light, vec3 surfacePosition, vec3 surfaceNormal)
 	);
 	float _diff = fresnel(surfaceNormal, -_posToLightDir);
 	vec3 _lightToFragDir = normalize(surfacePosition - light.position.xyz);
-	float _spec = computeSpecular(_lightToFragDir, surfacePosition, surfaceNormal, 32);
+	float _spec = computeSpecular(_lightToFragDir, surfacePosition, surfaceNormal, light.specular);
 	return light.color.xyz * light.intensity * (_atten + _spec) * _diff;
 }
 

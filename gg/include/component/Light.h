@@ -17,12 +17,20 @@ namespace gg
 		friend class graphics::Renderer;
 
 	private:
+		/* when adding bits:
+		 * - add to shader Light struct and implementation
+		 * - update m_DirtyBits initial value
+		 * - add member variable, get and set functions
+		 * - add to Light system uniform iteration in draw function implementation in <Renderer>
+		 * - add to m_SystemLightPrefixes in <Renderer>
+		 */
 		enum class DirtyBits : ubyte
 		{
 			Intensity	= 1 << 0,
 			Color		= 1 << 1,
 			Angle		= 1 << 2,
-			Attenuation	= 1 << 3
+			Attenuation	= 1 << 3,
+			Specular	= 1 << 4
 		};
 	public:
 		enum class LightType : ubyte
@@ -34,7 +42,7 @@ namespace gg
 	public:
 		// TODO: add template lighttype
 		Light(LightType lightType);
-		Light(LightType lightType, float intensity, const math::Color& color, float angle, const math::Vec3f& attenuation);
+		Light(LightType lightType, float intensity, const math::Color& color, float angle, const math::Vec3f& attenuation, float specular);
 		~Light(void);
 
 		static ComponentType getStaticType(void) { return ComponentType::Light; }
@@ -72,6 +80,9 @@ namespace gg
 		void setAttenuation(float constant, float linear, float exponential);
 		void setAttenuation(const math::Vec3f& attenuation);
 
+		const float getSpecular(void) const { return m_Specular; }
+		void setSpecular(float specular);
+
 	private:
 		void setDirty(DirtyBits bit);
 		void clearDirty(void);
@@ -83,14 +94,17 @@ namespace gg
 			(ubyte)DirtyBits::Intensity |
 			(ubyte)DirtyBits::Color |
 			(ubyte)DirtyBits::Angle |
-			(ubyte)DirtyBits::Attenuation
+			(ubyte)DirtyBits::Attenuation |
+			(ubyte)DirtyBits::Specular
 		);
 
 		LightType m_LightType;
 
 		float m_Intensity;
-		math::Color m_Color;
 		float m_Angle;
+		float m_Specular;
+
+		math::Color m_Color;
 		math::Vec3f m_Attenuation;
 	};
 } // namespace gg
