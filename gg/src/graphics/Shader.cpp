@@ -391,7 +391,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::SAMPLER2D)
 		{
-			WARN("Uniform mismatch!\nTrying to set sampler2D value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set sampler2D value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform1i(_uniformData->loc, val));
@@ -407,7 +407,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::FLOAT)
 		{
-			WARN("Uniform mismatch!\nTrying to set float value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set float value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform1f(_uniformData->loc, val));
@@ -423,7 +423,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::VEC3)
 		{
-			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set vec3 value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform3f(_uniformData->loc, val.x, val.y, val.z));
@@ -439,7 +439,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::VEC3)
 		{
-			WARN("Uniform mismatch!\nTrying to set vec3 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set vec3 value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform3f(_uniformData->loc, x, y, z));
@@ -455,7 +455,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::VEC4)
 		{
-			WARN("Uniform mismatch!\nTrying to set vec4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set vec4 value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform4f(_uniformData->loc, val.x, val.y, val.z, val.w));
@@ -471,7 +471,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::VEC4)
 		{
-			WARN("Uniform mismatch!\nTrying to set vec4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set vec4 value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniform4f(_uniformData->loc, x, y, z, w));
@@ -487,7 +487,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::MAT4)
 		{
-			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set mat4 value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 
@@ -504,7 +504,7 @@ namespace gg { namespace graphics {
 		}
 		else if (_uniformData->dataType != DataType::MAT4)
 		{
-			WARN("Uniform mismatch!\nTrying to set mat4 value for [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
+			WARN("Uniform mismatch!\nTrying to set mat4 value with [" + dataTypeToString(_uniformData->dataType) + "][" << key << "]!");
 			return;
 		}
 		GL(glUniformMatrix4fv(_uniformData->loc, 1, transpose, val));
