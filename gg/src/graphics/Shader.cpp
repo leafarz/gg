@@ -445,7 +445,7 @@ namespace gg { namespace graphics {
 		GL(glUniform3f(_uniformData->loc, x, y, z));
 	}
 
-	void Shader::setUniform(const std::string & key, const math::Vec4f & val)
+	void Shader::setUniform(const std::string& key, const math::Vec4f& val)
 	{
 		const UniformData* _uniformData = getUniform(key);
 		if (_uniformData == nullptr)
