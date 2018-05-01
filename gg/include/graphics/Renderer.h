@@ -121,8 +121,10 @@ namespace graphics {
 
 	/* Debug draws */
 	public:
-		/* Adds line data to queue to be drawn on render. */
+		/* Submits line data to queue to be drawn for render. */
 		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness);
+
+		/* Submits line data to queue to be drawn for render. */
 		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration);
 
 		/* Draws all the debugs. */
