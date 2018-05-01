@@ -38,7 +38,7 @@ namespace graphics {
 			Specular			= 8,
 			Length				= 9
 		};
-
+#pragma region DEBUG_STRUCTS
 		struct LineDataGroup
 		{
 		private:
@@ -86,6 +86,7 @@ namespace graphics {
 				: duration(duration), lineData({position, color})
 			{ }
 		};
+#pragma endregion
 
 	public:
 		Renderer(void);
@@ -123,13 +124,14 @@ namespace graphics {
 		/* Adds line data to queue to be drawn on render. */
 		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness);
 		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration);
+
 		/* Draws all the debugs. */
 		void drawDebug(const math::Mat4f& pvMatrix);
 
 	private:
 		graphics::DebugLine* m_DebugLine;
-		std::unordered_map<uint, LineDataGroup> m_Buffer;
-		std::unordered_map<uint, std::vector<TimedLineData>> m_TimedBuffer;
+		std::unordered_map<uint, LineDataGroup> m_LineBuffer;
+		std::unordered_map<uint, std::vector<TimedLineData>> m_TimedLineBuffer;
 	}; // class Renderer
 }/*namespace graphics*/ } // namespace gg
 

@@ -159,6 +159,7 @@ namespace gg
 		// gameobject
 		go1 = new GameObject("Cube");
 		add(go1);
+		go1->getTransform()->setScale(0.5f, 0.5f, 0.5f);
 
 		// meshrenderer
 		MeshRenderer* _mrCube = go1->addComponent<MeshRenderer>();
@@ -205,7 +206,9 @@ namespace gg
 
 	float position[3] = { 0,1,0 };
 	float lookAt[3] = { 0,0,1 };
-	float scale[3] = { 1,1,1 };
+	float scale[3] = { 0.5,0.5,0.5 };
+
+	float precision = 1;
 
 	void TestScene::onUpdate(void)
 	{
@@ -221,55 +224,55 @@ namespace gg
 		if (m_ShowGrid) { drawGrid(20); }
 
 		ImGui::Text("\n[Directional Light]");
-		ImGui::SliderFloat("[D]Intensity", &dLightIntensity, 0, 2);
-		dLight->setIntensity(dLightIntensity);
-
-		ImGui::SliderFloat("[D]Specular", &dLightSpecular, 0, 256);
-		dLight->setSpecular(dLightSpecular);
 
 		ImGui::InputFloat3("[D]Look At", dLightLookAt);
 		goDLight->getTransform()->lookAt(math::Vec3f(dLightLookAt).normal());
 
+		ImGui::SliderFloat("[D]Intensity", &dLightIntensity, 0, 2);
+		dLight->setIntensity(dLightIntensity);
+
 		ImGui::ColorEdit3("[D]Color", dLightColor);
 		dLight->setColor(math::Color(dLightColor[0], dLightColor[1], dLightColor[2]));
+
+		ImGui::SliderFloat("[D]Specular", &dLightSpecular, 0, 256);
+		dLight->setSpecular(dLightSpecular);
 
 
 
 		ImGui::Text("\n[SpotLight]");
-		ImGui::DragFloat3("[S]Position", sLightPosition, 0.5, -20, 20);
+		ImGui::DragFloat3("[S]Position", sLightPosition, 0.5, -10, 10);
 		goSLight->getTransform()->setPosition(sLightPosition);
-
-		ImGui::SliderFloat("[S]Intensity", &sLightIntensity, 0, 2);
-		sLight->setIntensity(sLightIntensity);
-
-		ImGui::SliderFloat("[S]Specular", &sLightSpecular, 0, 256);
-		sLight->setSpecular(sLightSpecular);
 
 		ImGui::InputFloat3("[S]Look At", sLightLookAt);
 		goSLight->getTransform()->lookAt(math::Vec3f(sLightLookAt).normal());
 
-		ImGui::InputFloat3("[S]Attenuation", sLightAttenuation);
-		sLight->setAttenuation(sLightAttenuation[0], sLightAttenuation[1], sLightAttenuation[2]);
-
-		ImGui::SliderFloat("[S]Angle", &sLightAngle, 0, 90);
-		sLight->setAngle(sLightAngle);
+		ImGui::SliderFloat("[S]Intensity", &sLightIntensity, 0, 2);
+		sLight->setIntensity(sLightIntensity);
 
 		ImGui::ColorEdit3("[S]Color", sLightColor);
 		sLight->setColor(math::Color(sLightColor[0], sLightColor[1], sLightColor[2]));
 
+		ImGui::SliderFloat("[S]Specular", &sLightSpecular, 0, 256);
+		sLight->setSpecular(sLightSpecular);
+
+		ImGui::InputFloat3("[S]Attenuation", sLightAttenuation);
+		sLight->setAttenuation(sLightAttenuation[0], sLightAttenuation[1], sLightAttenuation[2]);
+
+		ImGui::SliderFloat("[S]Angle", &sLightAngle, 0, 89.99f);
+		sLight->setAngle(sLightAngle);
+
 
 
 		ImGui::Text("\n[Box]");
-		ImGui::InputFloat3("Position", position);
+		ImGui::DragFloat3("Position", position, 0.1, -10, 10);
 		math::Vec3f _position = math::Vec3f(position);
 
-		ImGui::InputFloat3("LookAt", lookAt);
+		ImGui::DragFloat3("LookAt", lookAt, 0.1, -1, 1);
 		math::Vec3f _lookAt = math::Vec3f(lookAt).normal();
 
-		ImGui::InputFloat3("Scale", scale);
+		ImGui::DragFloat3("Scale", scale, 0.1, -10, 10);
 		math::Vec3f _scale = math::Vec3f(scale);
 
-		debug::drawLine(_position, _position + _lookAt);
 		go1->getTransform()->setPosition(_position);
 		go1->getTransform()->lookAt(_lookAt);
 		go1->getTransform()->setScale(_scale);
@@ -279,13 +282,22 @@ namespace gg
 		Scene::onUpdate();
 	}
 
+
 	void TestScene::drawLightLocations(void)
 	{
 		// directional light
 		const Transform* _tDLight = goDLight->getTransform();
 		const math::Vec3f& _posDLight = _tDLight->getPosition();
 		const math::Vec3f _fDLight = _tDLight->getForward();
-		debug::drawLine(_posDLight, _posDLight + _fDLight, math::Color::yellow);
+		debug::drawWireCube(_posDLight, 0.2f, _tDLight->getRotation(), math::Color::yellow);
+		debug::drawLine(_posDLight, _posDLight + _fDLight);
+
+		// spotlight
+		const Transform* _tSLight = goSLight->getTransform();
+		const math::Vec3f& _posSLight = _tSLight->getPosition();
+		const math::Vec3f _fSLight = _tSLight->getForward();
+		debug::drawWireCube(_posSLight, 0.2f, _tSLight->getRotation(), math::Color::yellow);
+		debug::drawLine(_posSLight, _posSLight + _fSLight);
 	}
 
 	void TestScene::drawGrid(int length)

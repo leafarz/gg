@@ -2,14 +2,24 @@
 #include <limits>
 
 namespace gg { namespace math {
+	float sin(float deg)
+	{
+		return std::sinf(deg * DEG_TO_RAD);
+	}
+
+	float cos(float deg)
+	{
+		return std::cosf(deg * DEG_TO_RAD);
+	}
+
 	bool floatCmp(float a, float b, float threshold)
 	{
-		return abs(a - b) < threshold;
+		return std::abs(a - b) < threshold;
 	}
 
 	bool doubleCmp(double a, double b, float threshold)
 	{
-		return abs(a - b) < threshold;
+		return std::abs(a - b) < threshold;
 	}
 
 	float clamp(float val, float min, float max)
@@ -22,9 +32,9 @@ namespace gg { namespace math {
 		return from + (to - from) * p;
 	}
 
-	float lerp(double from, double to, double p)
+	double lerp(double from, double to, double p)
 	{
-		return (float)(from + (to - from) * p);
+		return (from + (to - from) * p);
 	}
 
 	Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t)

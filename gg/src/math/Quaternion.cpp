@@ -318,8 +318,14 @@ namespace gg { namespace math {
 	{
 		float _dot = Vec3f::dot(Vec3f::forward, forward);
 
-		if (abs(_dot - (-1.0f)) < FLT_EPSILON) { return Quaternion(Vec3f::up, static_cast<float>(math::PI)); }
-		if (abs(_dot - ( 1.0f)) < FLT_EPSILON) { return identity; }
+		if (abs(_dot - (-1.0f)) < FLT_EPSILON)
+		{
+			return Quaternion(Vec3f::up, static_cast<float>(math::PI));
+		}
+		if (abs(_dot - ( 1.0f)) < FLT_EPSILON)
+		{
+			return identity;
+		}
 
 		float _angle = (float)acos(_dot);
 		Vec3f _axis = Vec3f::cross(Vec3f::forward, forward).normal();
@@ -327,7 +333,7 @@ namespace gg { namespace math {
 		return Quaternion(_axis, _angle * static_cast<float>(RAD_TO_DEG));
 	}
 
-	Quaternion Quaternion::fromEulerd(const Vec3f & eulerd)
+	Quaternion Quaternion::fromEulerd(const Vec3f& eulerd)
 	{
 		Quaternion _q;
 
@@ -342,6 +348,7 @@ namespace gg { namespace math {
 		_q.x = cy * sr * cp - sy * cr * sp;
 		_q.y = cy * cr * sp + sy * sr * cp;
 		_q.z = sy * cr * cp - cy * sr * sp;
+
 		return _q;
 	}
 }/*namespace math*/ }// namespace gg

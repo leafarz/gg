@@ -222,30 +222,30 @@ namespace gg { namespace graphics {
 	/* Debug Line */
 	void Renderer::drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness)
 	{
-		if (m_Buffer.find(thickness) == m_Buffer.end())
+		if (m_LineBuffer.find(thickness) == m_LineBuffer.end())
 		{
-			m_Buffer.insert({ thickness, LineDataGroup({ DebugLine::LineData(from, color), DebugLine::LineData(to, color) }) });
+			m_LineBuffer.insert({ thickness, LineDataGroup({ DebugLine::LineData(from, color), DebugLine::LineData(to, color) }) });
 		}
 		else
 		{
-			m_Buffer[thickness].add(from, color);
-			m_Buffer[thickness].add(to, color);
+			m_LineBuffer[thickness].add(from, color);
+			m_LineBuffer[thickness].add(to, color);
 		}										   
 	}
 
 	void Renderer::drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration)
 	{
-		if (m_TimedBuffer.find(thickness) == m_TimedBuffer.end())
+		if (m_TimedLineBuffer.find(thickness) == m_TimedLineBuffer.end())
 		{
-			m_TimedBuffer.insert({ thickness, {
+			m_TimedLineBuffer.insert({ thickness, {
 				TimedLineData(duration, from, color),
 				TimedLineData(duration, to, color)
 			} });
 		}
 		else
 		{
-			m_TimedBuffer[thickness].push_back(TimedLineData(duration, from, color));
-			m_TimedBuffer[thickness].push_back(TimedLineData(duration, to, color));
+			m_TimedLineBuffer[thickness].push_back(TimedLineData(duration, from, color));
+			m_TimedLineBuffer[thickness].push_back(TimedLineData(duration, to, color));
 		}
 	}
 
@@ -253,24 +253,24 @@ namespace gg { namespace graphics {
 	{
 		m_DebugLine->begin(pvMatrix);
 
-		UFOR(kv, m_Buffer)
+		UFOR(kv, m_LineBuffer)
 		{
 			uint _key = kv.first;
 
 			// nothing to draw
-			uint _count = m_Buffer[_key].getCount();
+			uint _count = m_LineBuffer[_key].getCount();
 			if (_count == 0) { continue; }
 
-			m_DebugLine->drawLines(m_Buffer[_key].getLineData(), _key, _count);
+			m_DebugLine->drawLines(m_LineBuffer[_key].getLineData(), _key, _count);
 
-			m_Buffer[_key].resetCount();
+			m_LineBuffer[_key].resetCount();
 		}
 		
-		UFOR(kv, m_TimedBuffer)
+		UFOR(kv, m_TimedLineBuffer)
 		{
 			uint _key = kv.first;
 
-			std::vector<TimedLineData>& _array = m_TimedBuffer[_key];
+			std::vector<TimedLineData>& _array = m_TimedLineBuffer[_key];
 			uint _count = _array.size();
 
 			if (_count == 0) { continue; }

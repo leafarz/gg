@@ -48,4 +48,4 @@ namespace gg { namespace graphics {
 		GL(glLineWidth(thickness));
 		GL(glDrawArrays(GL_LINES, 0, count));
 	}
-}/*namespace debug*/ } // namespace gg
+}/*namespace graphics*/ } // namespace gg

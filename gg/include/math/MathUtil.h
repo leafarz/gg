@@ -12,6 +12,12 @@ namespace gg { namespace math {
 	static const double RAD_TO_DEG_HALF	= static_cast<double>(90.0 / PI);
 	static const double DEG_TO_RAD_HALF	= static_cast<double>(PI / 360.0);
 
+	/* sin function with degrees input instead of radians. */
+	float sin(float deg);
+
+	/* cos function with degrees input instead of radians. */
+	float cos(float deg);
+
 	/* Compares floats within FLT_EPSILON value */
 	bool floatCmp(float a, float b, float threshold = FLT_EPSILON);
 
@@ -34,7 +40,7 @@ namespace gg { namespace math {
 		* [from] to [to] at percent [p].
 		* p: range is [0,1]
 		*/
-	float lerp(double from, double to, double p);
+	double lerp(double from, double to, double p);
 
 	Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t);
 }/*namespace math*/ }// namespace gg
