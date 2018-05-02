@@ -232,6 +232,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\graphics\FrameBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\graphics\Mesh.h">
       <SubType>
       </SubType>
@@ -272,6 +276,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="include\graphics\RenderBuffer.h" />
     <ClInclude Include="include\graphics\SubMesh.h">
       <SubType>
       </SubType>
@@ -387,6 +392,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\graphics\FrameBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\graphics\Mesh.cpp">
       <SubType>
       </SubType>
@@ -424,6 +433,7 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="src\graphics\RenderBuffer.cpp" />
     <ClCompile Include="src\graphics\SubMesh.cpp">
       <SubType>
       </SubType>

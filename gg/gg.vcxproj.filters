@@ -192,6 +192,12 @@
     <ClInclude Include="ext\imgui-1.60\stb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\FrameBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\RenderBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\math\Complex.cpp">
@@ -324,6 +330,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ext\imgui-1.60\imgui_impl_glfw_gl3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\FrameBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\RenderBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
