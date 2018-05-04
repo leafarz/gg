@@ -9,7 +9,7 @@ namespace gg { namespace graphics {
 	{
 	public:
 		/* Empty constructor.
-		 * initData() must be called to initialize data.
+		 * setData() must be called to initialize data.
 		 */
 		VertexBuffer(void);
 

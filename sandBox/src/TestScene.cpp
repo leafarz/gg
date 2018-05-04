@@ -153,6 +153,8 @@ namespace gg
 
 		// texture
 		graphics::Texture *_tex = new graphics::Texture("src/Pikamannn.jpg");
+		_tex->setFilterType(graphics::Texture::MinFilterType::Linear, graphics::Texture::MagFilterType::Linear);
+		_tex->setWrapType(graphics::Texture::WrapType::ClampToBorder);
 
 
 		// ************* GAMEOBJECT1 *************

@@ -21,15 +21,9 @@ namespace gg { namespace graphics {
 			m_ID = s_TextureHash[m_TextureHash];
 			return;
 		}
-
 		GL(glGenTextures(1, &m_ID));
 
 		GL(glBindTexture(GL_TEXTURE_2D, m_ID));
-			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER));
-			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
-
 			unsigned char* _image = SOIL_load_image(filePath.c_str(), &m_Width, &m_Height, 0, SOIL_LOAD_RGB);
 			GL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, _image));
 			GL(glGenerateMipmap(GL_TEXTURE_2D));
@@ -42,6 +36,22 @@ namespace gg { namespace graphics {
 	Texture::~Texture(void)
 	{
 		// TODO: add unreferencing
+	}
+
+	void Texture::setFilterType(MinFilterType minFilterType, MagFilterType magFilterType)
+	{
+		GL(glBindTexture(GL_TEXTURE_2D, m_ID));
+			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (uint)minFilterType));
+			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (uint)magFilterType));
+		GL(glBindTexture(GL_TEXTURE_2D, 0));
+	}
+
+	void Texture::setWrapType(WrapType wrapType)
+	{
+		GL(glBindTexture(GL_TEXTURE_2D, m_ID));
+			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, (uint)wrapType));
+			GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, (uint)wrapType));
+		GL(glBindTexture(GL_TEXTURE_2D, 0));
 	}
 
 	void Texture::bind(int samplerSlot) const
