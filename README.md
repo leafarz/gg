@@ -61,7 +61,9 @@ A simple OpenGL game engine.
 ## TODO ##
 * high prio
  * renderer
-   * shared shaders / materials
+   * frame buffers
+     * render buffers
+     * depth/color textures
    * light
      * directional light
      * point light
@@ -110,6 +112,7 @@ A simple OpenGL game engine.
 * debug
  * <span style="color:red">\*\*</span>debug draws (draw line)
 * renderer
+ * shared shaders / materials
  * base renderer
    * mesh renderer
    * model load
