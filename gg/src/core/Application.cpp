@@ -144,13 +144,16 @@ namespace gg
 		return m_ActiveScene;
 	}
 
-	void Application::addScene(Scene * scene, const std::string& sceneName, GLboolean setAsActive)
+	void Application::addScene(Scene * scene, const std::string& sceneName, bool setAsActive)
 	{
 		m_Scenes.insert({ sceneName, scene });
 
-		unloadScene();
-		m_ActiveScene = scene;
-		m_SceneIsInitialized = false;
+		if (setAsActive)
+		{
+			unloadScene();
+			m_ActiveScene = scene;
+			m_SceneIsInitialized = false;
+		}
 	}
 
 	void Application::unloadScene(void)
@@ -161,27 +164,38 @@ namespace gg
 		m_ActiveScene = nullptr;
 	}
 
-	GLboolean Application::setScene(const std::string& sceneName)
+	bool Application::setScene(const std::string& sceneName)
 	{
 		if (m_Scenes.find(sceneName) == m_Scenes.end())
 		{
 			return false;
 		}
+
 		unloadScene();
 		m_ActiveScene = m_Scenes[sceneName];
 		m_SceneIsInitialized = false;
 		return true;
 	}
 
-	void Application::setTimeStep(GLuint fps)
+	void Application::setTimeStep(uint fps)
 	{
 		m_TimeStep = 1 / (GLdouble)fps;
 	}
 
-	void Application::setFixedTimeStep(GLuint fps)
+	uint Application::getTimeStep(void) const
+	{
+		return m_TimeStep;
+	}
+
+	void Application::setFixedTimeStep(uint fps)
 	{
 		m_FixedTimeStep = 1 / (GLdouble)fps;
 		Time::s_FixedDelta = m_FixedTimeStep;
+	}
+
+	uint Application::getFixedTimeStep(void) const
+	{
+		return m_FixedTimeStep;
 	}
 
 	graphics::Window* Application::getWindow(void) const

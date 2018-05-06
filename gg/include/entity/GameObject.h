@@ -111,8 +111,16 @@ namespace gg
 
 		Transform* const getTransform(void) const;
 
+		/* Called when object is added to scene. */
 		virtual void onInit(void);
+
+		/* Called every fixed timestep (found in Application class).
+		 * May be called multiple times if time interval between frames
+		 * gets very large.
+		 */
 		virtual void onFixedUpdate(void);
+
+		/* Called every timestep (found in Application class). */
 		virtual void onUpdate(void);
 
 	protected:

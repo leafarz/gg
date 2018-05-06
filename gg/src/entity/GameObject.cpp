@@ -31,7 +31,7 @@ namespace gg
 		return m_Name;
 	}
 
-	void gg::GameObject::setParent(GameObject* parent)
+	void GameObject::setParent(GameObject* parent)
 	{
 		if (m_Parent != nullptr)
 		{
@@ -41,7 +41,7 @@ namespace gg
 		parent->m_ChildCount++;
 	}
 
-	GameObject* gg::GameObject::getParent(void) const
+	GameObject* GameObject::getParent(void) const
 	{
 		return m_Parent;
 	}
@@ -75,7 +75,7 @@ namespace gg
 		return m_Children[0];
 	}
 
-	const std::vector<GameObject*>& gg::GameObject::getChildren(void) const { return m_Children; }
+	const std::vector<GameObject*>& GameObject::getChildren(void) const { return m_Children; }
 
 	uint GameObject::getChildCount(void) const { return m_ChildCount; }
 
@@ -85,14 +85,14 @@ namespace gg
 		component->m_GameObject = this;
 	}
 
-	Transform* const gg::GameObject::getTransform(void) const
+	Transform* const GameObject::getTransform(void) const
 	{
 		return m_Transform;
 	}
-	void gg::GameObject::onInit(void)
+	void GameObject::onInit(void)
 	{ }
-	void gg::GameObject::onFixedUpdate(void)
+	void GameObject::onFixedUpdate(void)
 	{ }
-	void gg::GameObject::onUpdate(void)
+	void GameObject::onUpdate(void)
 	{ }
 } // namespace gg

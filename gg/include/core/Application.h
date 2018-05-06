@@ -24,12 +24,17 @@ namespace gg
 		void run(void);
 
 		Scene* getActiveScene(void);
-		void addScene(Scene* scene, const std::string& sceneName, GLboolean setAsActive = false);
+		/* Adds the scene to list. Calls onInit() if set as active scene before onRender. */
+		void addScene(Scene* scene, const std::string& sceneName, bool setAsActive = false);
 		void unloadScene(void);
-		GLboolean setScene(const std::string& sceneName);
+		/* Sets the scene via the scene name set. Calls onInit() of the scene before onRender. */
+		bool setScene(const std::string& sceneName);
 
-		void setTimeStep(GLuint fps);
-		void setFixedTimeStep(GLuint fps);
+		void setTimeStep(uint fps);
+		uint getTimeStep(void) const;
+
+		void setFixedTimeStep(uint fps);
+		uint getFixedTimeStep(void) const;
 
 		graphics::Window* getWindow(void) const;
 
