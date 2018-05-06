@@ -2,7 +2,7 @@
 
 namespace gg { namespace graphics {
 	Window::Window(void) :
-		m_windowTitle("")
+		m_windowTitle(""), m_Width(1280), m_Height(720)
 	{
 		/* Initialize the library */
 		if (!glfwInit()) { return; }
@@ -21,7 +21,7 @@ namespace gg { namespace graphics {
 	}
 
 	Window::Window(const std::string& windowTitle, GLint width, GLint height) :
-		m_windowTitle(windowTitle)
+		m_windowTitle(windowTitle), m_Width(width), m_Height(height)
 	{
 		/* Initialize the library */
 		if (!glfwInit()) { return; }
@@ -49,7 +49,7 @@ namespace gg { namespace graphics {
 		m_windowTitle = windowName;
 	}
 
-	std::string Window::setWindowTitle(void)
+	const std::string& Window::getWindowTitle(void)
 	{
 		return m_windowTitle;
 	}
@@ -65,7 +65,12 @@ namespace gg { namespace graphics {
 		return glfwWindowShouldClose(m_Window);
 	}
 
-	void Window::resizeWindow(GLint width, GLint height) const
+	GLFWwindow* Window::getWindow(void)
+	{
+		return m_Window;
+	}
+
+	void Window::resizeWindow(int width, int height) const
 	{
 		glfwSetWindowSize(m_Window, width, height);
 	}
@@ -80,5 +85,17 @@ namespace gg { namespace graphics {
 	{
 		/* Poll for and process events */
 		glfwPollEvents();
+	}
+	math::Vec2f Window::getSize(void) const
+	{
+		return math::Vec2f(m_Width, m_Height);
+	}
+	int Window::getWidth(void) const
+	{
+		return m_Width;
+	}
+	int Window::getHeight(void) const
+	{
+		return m_Height;
 	}
 }/*namespace graphics*/ } // namespace gg

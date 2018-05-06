@@ -125,7 +125,7 @@ namespace gg
 			// display fps for window
 			if ((_fpsTimer += _delta) >= 1)
 			{
-				m_Window->setTitle(m_Window->setWindowTitle() + " (FPS:" + std::to_string(_frameCount) + ")");
+				m_Window->setTitle(m_Window->getWindowTitle() + " (FPS:" + std::to_string(_frameCount) + ")");
 
 				_frameCount = 0;
 				_fpsTimer = 0;
@@ -137,6 +137,11 @@ namespace gg
 	{
 		if (!m_IsRunning) { return; }
 		m_IsRunning = false;
+	}
+
+	Scene* Application::getActiveScene(void)
+	{
+		return m_ActiveScene;
 	}
 
 	void Application::addScene(Scene * scene, const std::string& sceneName, GLboolean setAsActive)
@@ -177,5 +182,10 @@ namespace gg
 	{
 		m_FixedTimeStep = 1 / (GLdouble)fps;
 		Time::s_FixedDelta = m_FixedTimeStep;
+	}
+
+	graphics::Window* Application::getWindow(void) const
+	{
+		return m_Window;
 	}
 } // namespace gg

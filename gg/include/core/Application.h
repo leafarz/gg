@@ -23,13 +23,15 @@ namespace gg
 
 		void run(void);
 
-		Scene* getActiveScene(void) { return m_ActiveScene; }
+		Scene* getActiveScene(void);
 		void addScene(Scene* scene, const std::string& sceneName, GLboolean setAsActive = false);
 		void unloadScene(void);
 		GLboolean setScene(const std::string& sceneName);
 
 		void setTimeStep(GLuint fps);
 		void setFixedTimeStep(GLuint fps);
+
+		graphics::Window* getWindow(void) const;
 
 	private:
 		Application(void) = delete;
