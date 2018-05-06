@@ -13,6 +13,7 @@
 
 namespace gg { namespace graphics {
 	std::unordered_map<uint, GLuint> Shader::s_ShaderHash;
+	GLuint Shader::s_CurrentBoundID = 0;
 
 	Shader::Shader(const std::string& filePath)
 		: m_FilePath(filePath)
@@ -168,8 +169,21 @@ namespace gg { namespace graphics {
 		return m_Uniforms.find(key) != m_Uniforms.end() ? &m_Uniforms[key] : nullptr;
 	}
 
-	void Shader::bind(void) const { GL(glUseProgram(s_ShaderHash[m_ShaderHash])); }
-	void Shader::unbind(void) const { GL(glUseProgram(0)); }
+	void Shader::bind(void) const
+	{
+		GLuint _id = s_ShaderHash[m_ShaderHash];
+
+		if (_id == s_CurrentBoundID) { return; }
+
+		s_CurrentBoundID = _id;
+		GL(glUseProgram(_id));
+	}
+	void Shader::unbind(void) const
+	{
+		if (s_CurrentBoundID == 0) { return; }
+
+		GL(glUseProgram(0));
+	}
 
 	void Shader::loadShader(const std::string& filePath)
 	{

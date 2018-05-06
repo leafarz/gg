@@ -132,6 +132,9 @@ namespace gg { namespace graphics {
 		/* Key value pairs of hash to ids created throughout the app. */
 		static std::unordered_map<uint, GLuint> s_ShaderHash;
 
+		/* ID of the currently bound shader. */
+		static GLuint s_CurrentBoundID;
+
 		/* Program id created by OpenGL command.*/
 		GLuint m_ID;
 
