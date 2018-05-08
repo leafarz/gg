@@ -90,11 +90,11 @@ namespace gg { namespace graphics {
 	{
 		return math::Vec2f(m_Width, m_Height);
 	}
-	int Window::getWidth(void) const
+	uint Window::getWidth(void) const
 	{
 		return m_Width;
 	}
-	int Window::getHeight(void) const
+	uint Window::getHeight(void) const
 	{
 		return m_Height;
 	}

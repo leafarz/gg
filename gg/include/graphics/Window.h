@@ -27,8 +27,8 @@ namespace graphics {
 		void resizeWindow(int width, int height) const;
 
 		math::Vec2f getSize(void) const;
-		int getWidth(void) const;
-		int getHeight(void) const;
+		uint getWidth(void) const;
+		uint getHeight(void) const;
 
 	private:
 		Window(void);
