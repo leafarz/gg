@@ -8,12 +8,15 @@
 #include "GL/glew.h"
 #include "core/Types.h"
 
+#include "math/Vec2f.h"
+
 namespace gg { namespace graphics {
 	class Texture
 	{
 	private:
 		friend class Material;
-		friend class Renderer;
+		friend class Renderer;	// TODO: might remove?
+		friend class FrameBuffer;
 
 	public:
 		/* Minifying filter type.
@@ -93,11 +96,17 @@ namespace gg { namespace graphics {
 		};
 
 	public:
+		// TODO: update internalFormat, format and dataType params to enums in the future
+		Texture(uint width, uint height, uint internalFormat, uint format, uint dataType);
 		Texture(const std::string& filePath);
 		~Texture(void);
 
 		void setFilterType(MinFilterType minFilterType, MagFilterType magFilterType);
 		void setWrapType(WrapType wrapType);
+
+		math::Vec2f getSize(void) const;
+		int getWidth(void) const;
+		int getHeight(void) const;
 
 	private:
 		void bind(int samplerSlot = 0) const;
