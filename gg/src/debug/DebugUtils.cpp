@@ -10,11 +10,11 @@ namespace gg { namespace debug {
 	{
 		Application::getInstance()->getActiveScene()->getRenderer()->drawLine(from, to, color, 1);
 	}
-	void drawLine(const math::Vec3f& from, const math::Vec3f& to, float thickness, const math::Color& color)
+	void drawLine(const math::Vec3f& from, const math::Vec3f& to, uint thickness, const math::Color& color)
 	{
 		Application::getInstance()->getActiveScene()->getRenderer()->drawLine(from, to, color, thickness);
 	}
-	void drawLine(const math::Vec3f& from, const math::Vec3f& to, float thickness, float duration, const math::Color& color)
+	void drawLine(const math::Vec3f& from, const math::Vec3f& to, uint thickness, float duration, const math::Color& color)
 	{
 		Application::getInstance()->getActiveScene()->getRenderer()->drawLine(from, to, color, thickness, duration);
 	}
@@ -52,7 +52,7 @@ namespace gg { namespace debug {
 		drawLine(_p3, _p7, color);
 		drawLine(_p2, _p6, color);
 	}
-	void drawWireCube(const math::Vec3f& origin, float size, float thickness, const math::Color& color)
+	void drawWireCube(const math::Vec3f& origin, float size, uint thickness, const math::Color& color)
 	{
 		float _halfSize = size * 0.5f;
 
@@ -85,7 +85,7 @@ namespace gg { namespace debug {
 		drawLine(_p3, _p7, thickness, color);
 		drawLine(_p2, _p6, thickness, color);
 	}
-	void drawWireCube(const math::Vec3f& origin, float size, float thickness, float duration, const math::Color& color)
+	void drawWireCube(const math::Vec3f& origin, float size, uint thickness, float duration, const math::Color& color)
 	{
 		float _halfSize = size * 0.5f;
 
@@ -153,7 +153,7 @@ namespace gg { namespace debug {
 		drawLine(_p3, _p7, color);
 		drawLine(_p2, _p6, color);
 	}
-	void drawWireCube(const math::Vec3f& origin, float size, const math::Vec3f& euler, float thickness, const math::Color& color)
+	void drawWireCube(const math::Vec3f& origin, float size, const math::Vec3f& euler, uint thickness, const math::Color& color)
 	{
 		float _halfSize = size * 0.5f;
 
@@ -187,7 +187,7 @@ namespace gg { namespace debug {
 		drawLine(_p3, _p7, thickness, color);
 		drawLine(_p2, _p6, thickness, color);
 	}
-	void drawWireCube(const math::Vec3f& origin, float size, const math::Vec3f& euler, float thickness, float duration, const math::Color& color)
+	void drawWireCube(const math::Vec3f& origin, float size, const math::Vec3f& euler, uint thickness, float duration, const math::Color& color)
 	{
 		float _halfSize = size * 0.5f;
 
@@ -255,7 +255,7 @@ namespace gg { namespace debug {
 		drawLine(_p3, _p7, color);
 		drawLine(_p2, _p6, color);
 	}
-	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, float thickness, const math::Color& color)
+	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, uint thickness, const math::Color& color)
 	{
 		float _halfSize = size * 0.5f;
 
@@ -288,7 +288,7 @@ namespace gg { namespace debug {
 		drawLine(_p3, _p7, thickness, color);
 		drawLine(_p2, _p6, thickness, color);
 	}
-	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, float thickness, float duration, const math::Color& color)
+	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, uint thickness, float duration, const math::Color& color)
 	{
 		float _halfSize = size * 0.5f;
 

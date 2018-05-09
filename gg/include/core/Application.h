@@ -31,10 +31,10 @@ namespace gg
 		bool setScene(const std::string& sceneName);
 
 		void setTimeStep(uint fps);
-		uint getTimeStep(void) const;
+		double getTimeStep(void) const;
 
 		void setFixedTimeStep(uint fps);
-		uint getFixedTimeStep(void) const;
+		double getFixedTimeStep(void) const;
 
 		graphics::Window* getWindow(void) const;
 
@@ -47,8 +47,8 @@ namespace gg
 		static Application* s_Instance;
 
 		graphics::Window* m_Window;
-		GLdouble m_TimeStep;
-		GLdouble m_FixedTimeStep;
+		double m_TimeStep;
+		double m_FixedTimeStep;
 		GLboolean m_IsRunning;
 
 		Scene* m_ActiveScene;

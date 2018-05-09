@@ -182,7 +182,7 @@ namespace gg
 		m_TimeStep = 1 / (GLdouble)fps;
 	}
 
-	uint Application::getTimeStep(void) const
+	double Application::getTimeStep(void) const
 	{
 		return m_TimeStep;
 	}
@@ -193,7 +193,7 @@ namespace gg
 		Time::s_FixedDelta = m_FixedTimeStep;
 	}
 
-	uint Application::getFixedTimeStep(void) const
+	double Application::getFixedTimeStep(void) const
 	{
 		return m_FixedTimeStep;
 	}

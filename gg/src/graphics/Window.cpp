@@ -88,7 +88,7 @@ namespace gg { namespace graphics {
 	}
 	math::Vec2f Window::getSize(void) const
 	{
-		return math::Vec2f(m_Width, m_Height);
+		return math::Vec2f((float)m_Width, (float)m_Height);
 	}
 	uint Window::getWidth(void) const
 	{
