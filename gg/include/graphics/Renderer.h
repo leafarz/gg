@@ -92,7 +92,8 @@ namespace graphics {
 		Renderer(void);
 		~Renderer(void);
 
-		void begin(void) const;
+		void begin1(void) const;
+		void begin2(void) const;
 		void draw(
 			GameObject* gameObject,
 			const math::Mat4f& viewMatrix,
@@ -103,6 +104,7 @@ namespace graphics {
 			const LightSettings& lightSettings,
 			const std::vector<Light*>& lights
 		);
+		void draw2(const math::Mat4f& pvMatrix);
 
 	/* Light */
 	private:
@@ -129,6 +131,8 @@ namespace graphics {
 
 		/* Draws all the debugs. */
 		void drawDebug(const math::Mat4f& pvMatrix);
+
+		void clearBuffers(void);
 
 	private:
 		graphics::DebugLine* m_DebugLine;

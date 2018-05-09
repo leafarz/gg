@@ -3,6 +3,7 @@
 #include "debug/DebugUtils.h"
 
 #include "util/Iterators.h"
+#include <sstream>
 
 namespace gg
 {
@@ -173,8 +174,8 @@ namespace gg
 		// gameobject
 		go2 = new GameObject("Cube2");
 		add(go2);
-		go2->getTransform()->setPosition(0, 0, 0);
-		go2->getTransform()->setScale(0.5f, 0.5f, 0.5f);
+		go2->getTransform()->setPosition(0.5, 0.5, 0.5);
+		go2->getTransform()->setScale(50, 0.01f, 50);
 
 		// meshrenderer
 		MeshRenderer* _mrTeapot = go2->addComponent<MeshRenderer>();
@@ -183,9 +184,9 @@ namespace gg
 
 
 		// ************* CAMERA *************
-		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 1000);
+		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 100);
 		_freeCam->getTransform()->setPosition(0,2,-8);
-		_freeCam->setMoveSpeed(0.05);
+		_freeCam->setMoveSpeed(0.05f);
 		add(_freeCam);
 		setActiveCamera(_freeCam);
 		
@@ -223,6 +224,11 @@ namespace gg
 		// ------------
 		ImGui::Text("[World]");
 		ImGui::Checkbox("Grid", &m_ShowGrid);
+		math::Vec3f _cameraPos = getActiveCamera()->getGameObject()->getTransform()->getPosition();
+		std::stringstream stream;
+		stream << getActiveCamera()->getGameObject()->getTransform()->getPosition();
+		ImGui::Text(stream.str().c_str());
+
 		if (m_ShowGrid) { drawGrid(20); }
 
 		ImGui::Text("\n[Directional Light]");
@@ -266,13 +272,13 @@ namespace gg
 
 
 		ImGui::Text("\n[Box]");
-		ImGui::DragFloat3("Position", position, 0.1, -10, 10);
+		ImGui::DragFloat3("Position", position, 0.1f, -10, 10);
 		math::Vec3f _position = math::Vec3f(position);
 
-		ImGui::DragFloat3("LookAt", lookAt, 0.1, -1, 1);
+		ImGui::DragFloat3("LookAt", lookAt, 0.1f, -1, 1);
 		math::Vec3f _lookAt = math::Vec3f(lookAt).normal();
 
-		ImGui::DragFloat3("Scale", scale, 0.1, -10, 10);
+		ImGui::DragFloat3("Scale", scale, 0.1f, -10, 10);
 		math::Vec3f _scale = math::Vec3f(scale);
 
 		go1->getTransform()->setPosition(_position);
@@ -283,7 +289,6 @@ namespace gg
 
 		Scene::onUpdate();
 	}
-
 
 	void TestScene::drawLightLocations(void)
 	{
@@ -306,7 +311,7 @@ namespace gg
 	{
 		FOR(i, -length, length + 1)
 		{
-			debug::drawLine(math::Vec3f(-length, 0, i), math::Vec3f(length, 0, i), math::Color::gray);
+			debug::drawLine(math::Vec3f((float)(-length), 0, (float)i), math::Vec3f((float)length, 0, (float)i), math::Color::gray);
 		}
 		FOR(i, -length, length + 1)
 		{
