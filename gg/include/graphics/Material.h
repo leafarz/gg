@@ -9,9 +9,9 @@
 
 #include "core/Types.h"
 
+namespace gg { namespace graphics { class Texture; class Shader; } }
+
 namespace gg { namespace graphics {
-	class Texture;
-	class Shader;
 	class Material
 	{
 	private:

@@ -10,9 +10,10 @@
 #include "graphics/Window.h"
 #include "graphics/Renderer.h"
 
+namespace gg { class Scene; }
+
 namespace gg
 {
-	class Scene;
 	class Application
 	{
 	public:

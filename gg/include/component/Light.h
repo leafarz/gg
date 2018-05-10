@@ -8,9 +8,11 @@
 #include "math/Color.h"
 #include "math/MathUtil.h"
 #include "math/Vec4f.h"
+
+namespace gg { namespace graphics { class Renderer; } }
+
 namespace gg
 {
-	namespace graphics { class Renderer; }
 	class Light : public Component
 	{
 	private:

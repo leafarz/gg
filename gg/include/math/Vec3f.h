@@ -4,10 +4,9 @@
 
 #include <iomanip>
 
+namespace gg { namespace math { struct Quaternion; struct Vec2f; struct Vec4f; } }
+
 namespace gg { namespace math {
-	struct Quaternion;
-	struct Vec2f;
-	struct Vec4f;
 	struct Vec3f
 	{
 	public:

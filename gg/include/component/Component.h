@@ -4,9 +4,10 @@
 
 #include "component/ComponentType.h"
 
+namespace gg { class GameObject; }
+
 namespace gg
 {
-	class GameObject;
 	class Component
 	{
 	private:

@@ -8,9 +8,11 @@
 #include "math/Mat4f.h"
 #include "math/Quaternion.h"
 #include "math/Vec3f.h"
+
+namespace gg { namespace graphics { class Renderer; } }
+
 namespace gg
 {
-	namespace graphics { class Renderer; }
 	class Transform : public Component
 	{
 	private:

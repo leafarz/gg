@@ -5,9 +5,9 @@
 #include <iomanip>
 #include "math/Vec4f.h"
 
+namespace gg { namespace math { struct Vec3f; struct Quaternion; } }
+
 namespace gg { namespace math {
-	struct Vec3f;
-	struct Quaternion;
 	struct Mat4f
 	{
 	public:

@@ -5,9 +5,10 @@
 #include "entity/GameObject.h"
 #include "math/Vec2f.h"
 
+namespace gg { class Camera; }
+
 namespace gg
 {
-	class Camera;
 	class FreeCamera : public GameObject
 	{
 	public:

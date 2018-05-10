@@ -4,9 +4,9 @@
 
 #include <iomanip>
 
+namespace gg { namespace math { struct Vec3f; struct Vec4f; } }
+
 namespace gg { namespace math {
-	struct Vec3f;
-	struct Vec4f;
 	struct Vec2f
 	{
 	public:

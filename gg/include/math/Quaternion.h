@@ -8,10 +8,10 @@
 // dependency and remove include
 #include "Vec3f.h"
 
+namespace gg { namespace math { struct Vec2f; struct Mat4f; } }
+
 // TODO: x rotation is counter cw
 namespace gg { namespace math {
-	struct Vec2f;
-	struct Mat4f;
 	struct Quaternion
 	{
 		/* The x of the quaternion. */

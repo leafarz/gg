@@ -8,9 +8,10 @@
 
 #include "core/Types.h"
 
+namespace gg { namespace graphics { class RenderBuffer; class Texture; } }
+
 namespace gg { namespace graphics {
-	class RenderBuffer;
-	class Texture;
+	
 
 	class FrameBuffer
 	{

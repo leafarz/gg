@@ -7,9 +7,10 @@
 
 #include "component/Components.h"
 
+namespace gg { class Transform; }
+
 namespace gg
 {
-	class Transform;
 	class GameObject
 	{
 	public:

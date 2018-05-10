@@ -9,10 +9,9 @@
 
 #include "math/Vec2f.h"
 
-namespace gg {
-// forward declarations
-class Application;
-namespace graphics {
+namespace gg { class Application; }
+
+namespace gg { namespace graphics {
 	class Window
 	{
 	private:

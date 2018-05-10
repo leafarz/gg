@@ -16,11 +16,9 @@
 #include "math/Vec3f.h"
 #include "math/Color.h"
 
-namespace gg {
-// forward declarations
-class Light;
-class GameObject;
-namespace graphics {
+namespace gg { class Light; class GameObject; }
+
+namespace gg { namespace graphics {
 	
 	class Renderer
 	{

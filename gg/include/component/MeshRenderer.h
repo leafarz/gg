@@ -4,9 +4,10 @@
 
 #include "component/Component.h"
 
+namespace gg { namespace graphics { class Renderer; class Mesh; class Material; } }
+
 namespace gg
 {
-	namespace graphics { class Renderer; class Mesh; class Material; }
 	class MeshRenderer : public Component
 	{
 	private:

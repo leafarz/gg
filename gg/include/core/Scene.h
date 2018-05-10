@@ -8,12 +8,11 @@
 
 #include "math/Vec3f.h"
 
+namespace gg { class Camera; class GameObject; class Light; }
+namespace gg { namespace graphics { class Renderer; } }
+
 namespace gg
 {
-	class Camera;
-	class GameObject;
-	class Light;
-	namespace graphics { class Renderer; }
 	class Scene
 	{
 	public:

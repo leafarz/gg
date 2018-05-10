@@ -4,9 +4,10 @@
 
 #include "GLFW/glfw3.h"
 
+namespace gg { class Application; }
+
 namespace gg
 {
-	class Application;
 	class Time
 	{
 	private:

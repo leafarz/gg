@@ -16,9 +16,9 @@
 #include "assimp/scene.h"
 #include "assimp/postprocess.h"
 
-// TODO: check what should be moved to SubMesh script
+namespace gg { namespace graphics { class SubMesh; } }
+
 namespace gg { namespace graphics {
-	class SubMesh;
 	class Mesh
 	{
 	private:
