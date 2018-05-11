@@ -8,6 +8,7 @@
 #include "math/Mat4f.h"
 #include "math/Quaternion.h"
 
+namespace gg { class Camera; }
 
 namespace gg { namespace debug {
 	void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color = math::Color::white);
@@ -25,6 +26,9 @@ namespace gg { namespace debug {
 	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, const math::Color& color = math::Color::white);
 	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, uint thickness, const math::Color& color = math::Color::white);
 	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, uint thickness, float duration, const math::Color& color = math::Color::white);
+
+	void drawCameraFrustum(Camera* camera);
+	void drawCameraFrustum(const math::Vec3f& position, const math::Quaternion& rotation, float fovDeg, float aspectRatio, float zNear, float zFar);
 }/*namespace debug*/ } // namespace gg
 
 #endif

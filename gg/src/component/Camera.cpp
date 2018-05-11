@@ -7,7 +7,7 @@ namespace gg
 	Camera::Camera(void)
 	{ }
 	Camera::Camera(float fovDeg, float aspectRatio, float zNear, float zFar)
-		: m_ProjectionMatrix(math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar))
+		: m_FOV(fovDeg), m_AspectRatio(aspectRatio), m_NearClipPlane(zNear), m_FarClipPlane(zFar), m_ProjectionMatrix(math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar))
 	{ }
 
 	Camera::~Camera(void)
@@ -16,16 +16,38 @@ namespace gg
 	void Camera::setPerspective(float fovDeg, float aspectRatio, float zNear, float zFar)
 	{
 		m_ProjectionMatrix = math::Mat4f::perspectiveMatrix(fovDeg, aspectRatio, zNear, zFar);
+
+		m_FOV = fovDeg;
+		m_AspectRatio = aspectRatio;
+
+		m_NearClipPlane = zNear;
+		m_FarClipPlane = zFar;
 	}
 
 	void Camera::setOrthographic(float size, float zNear, float zFar)
 	{
 		m_ProjectionMatrix = math::Mat4f::orthographicMatrix(-size, size, -size, size, zNear, zFar);
+
+		m_Left = -size;
+		m_Right = size;
+		m_Bottom = -size;
+		m_Top = size;
+
+		m_NearClipPlane = zNear;
+		m_FarClipPlane = zFar;
 	}
 
 	void Camera::setOrthographic(float left, float right, float bottom, float top, float zNear, float zFar)
 	{
 		m_ProjectionMatrix = math::Mat4f::orthographicMatrix(left, right, bottom, top, zNear, zFar);
+
+		m_Left = left;
+		m_Right = right;
+		m_Bottom = bottom;
+		m_Top = top;
+
+		m_NearClipPlane = zNear;
+		m_FarClipPlane = zFar;
 	}
 
 	const math::Mat4f& Camera::getProjectionMatrix(void) const
@@ -63,6 +85,20 @@ namespace gg
 	const math::Mat4f Camera::getViewProjectionMatrix(void)
 	{
 		return getProjectionMatrix() * getViewMatrix();
+	}
+
+	math::Mat4f Camera::viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation)
+	{
+		math::Quaternion _q = rotation.conjugate();
+		math::Mat4f _rotMatrix = math::Mat4f::rotationMatrix(_q);
+
+		// we use negative position for camera view matrix
+		float _m03 = _rotMatrix[3]  - position.x*_rotMatrix[0]  - position.y*_rotMatrix[1]  - position.z*_rotMatrix[2];
+		float _m13 = _rotMatrix[7]  - position.x*_rotMatrix[4]  - position.y*_rotMatrix[5]  - position.z*_rotMatrix[6];
+		float _m23 = _rotMatrix[11] - position.x*_rotMatrix[8]  - position.y*_rotMatrix[9]  - position.z*_rotMatrix[10];
+		float _m33 = _rotMatrix[15] - position.x*_rotMatrix[12] - position.y*_rotMatrix[13] - position.z*_rotMatrix[14];
+
+		return _rotMatrix.set(3, _m03).set(7, _m13).set(11, _m23).set(15, _m33);
 	}
 
 	void Camera::update(void)

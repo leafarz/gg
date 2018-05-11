@@ -19,6 +19,17 @@ namespace gg
 		static ComponentType getStaticType(void) { return ComponentType::Camera; }
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
+		inline float getNearClipPlane(void) const { return m_NearClipPlane; }
+		inline float getFarClipPlane(void) const { return m_FarClipPlane; }
+
+		inline float getFOV(void) const { return m_FOV; }
+		inline float getAspectRatio(void) const { return m_AspectRatio; }
+
+		inline float getLeft(void) const { return m_Left; }
+		inline float getRight(void) const { return m_Right; }
+		inline float getBottom(void) const { return m_Bottom; }
+		inline float getTop(void) const { return m_Top; }
+
 		void setPerspective(float fovDeg, float aspectRatio, float zNear, float zFar);
 		void setOrthographic(float size, float zNear, float zFar);
 		void setOrthographic(float left, float right, float bottom, float top, float zNear, float zFar);
@@ -27,11 +38,26 @@ namespace gg
 		const math::Mat4f& getViewMatrix(void);
 		const math::Mat4f getViewProjectionMatrix(void);
 
+		static math::Mat4f viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation);
+
 		void update(void);
 
 	private:
 		math::Mat4f m_ProjectionMatrix;
 		math::Mat4f m_ViewMatrix;
+
+		float m_NearClipPlane;
+		float m_FarClipPlane;
+
+		// Perspective
+		float m_FOV;
+		float m_AspectRatio;
+
+		// Orthographic
+		float m_Left;
+		float m_Right;
+		float m_Bottom;
+		float m_Top;
 
 	}; // class Camera
 } // namespace gg
