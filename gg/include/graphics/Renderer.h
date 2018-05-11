@@ -92,6 +92,7 @@ namespace gg { namespace graphics {
 
 		void begin1(void) const;
 		void begin2(void) const;
+		// TODO: add shader param for draw?
 		void draw(
 			GameObject* gameObject,
 			const math::Mat4f& viewMatrix,

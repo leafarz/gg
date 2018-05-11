@@ -277,6 +277,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClInclude>
     <ClInclude Include="include\graphics\RenderBuffer.h" />
+    <ClInclude Include="include\graphics\RenderTarget.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="include\graphics\SubMesh.h">
       <SubType>
       </SubType>
@@ -434,6 +438,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
       </SubType>
     </ClCompile>
     <ClCompile Include="src\graphics\RenderBuffer.cpp" />
+    <ClCompile Include="src\graphics\RenderTarget.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="src\graphics\SubMesh.cpp">
       <SubType>
       </SubType>
