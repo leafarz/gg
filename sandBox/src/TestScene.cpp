@@ -287,6 +287,13 @@ namespace gg
 
 		drawLightLocations();
 
+		// draw camera frustum
+		const math::Vec3f _newCameraPosition = math::Vec3f(-4, 2, 0);
+		const math::Quaternion _newRotation = math::Quaternion::identity * math::Quaternion(math::Vec3f::up, 90);
+		Camera* _camera = getActiveCamera();
+		debug::drawCameraFrustum(_newCameraPosition, _newRotation, _camera->getFOV(), _camera->getAspectRatio(), _camera->getNearClipPlane(), _camera->getFarClipPlane(), math::Color::blue);
+
+
 		Scene::onUpdate();
 	}
 

@@ -70,29 +70,37 @@ namespace gg
 		// process light
 		// process game objects
 		// TODO: add children iteration
-		const math::Mat4f& _v = m_ActiveCamera->getViewMatrix();
 		const math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
-		const math::Mat4f _pv = _p * _v;
-
-		const math::Vec3f& _cameraPosition = m_ActiveCamera->getGameObject()->getTransform()->getPosition();
-		const math::Vec3f& _cameraDirection = m_ActiveCamera->getGameObject()->getTransform()->getForward();
 
 
 		// with custom framebuffer
 		m_Renderer->begin1();
 
+		const math::Vec3f _newCameraPosition = math::Vec3f(-4,2,0);
+		const math::Quaternion _newRotation = math::Quaternion::identity * math::Quaternion(math::Vec3f::up,90);
+		const math::Vec3f _newCameraForward = _newRotation.getForward();
+		const math::Mat4f _newView = Camera::viewMatrix(_newCameraPosition, _newRotation);
+		const math::Mat4f _newPV = _p * _newView;
 
 		// + draw scene
 		VFOR(it, m_GameObjects)
 		{
 			GameObject* _go = *it;
-			m_Renderer->draw(_go, _v, _p, _pv, _cameraPosition, _cameraDirection, LightSettings, m_Lights);
+			m_Renderer->draw(_go, _newView, _p, _newPV, _newCameraPosition, _newCameraForward, LightSettings, m_Lights);
 		}
-		m_Renderer->drawDebug(_pv);
+		m_Renderer->drawDebug(_newPV);
 		// - draw scene
+
+
+		// ---------------------------------------------------------------------------
 
 		// without custom framebuffer
 		m_Renderer->begin2();
+
+		const math::Vec3f& _cameraPosition = m_ActiveCamera->getGameObject()->getTransform()->getPosition();
+		const math::Vec3f& _cameraDirection = m_ActiveCamera->getGameObject()->getTransform()->getForward();
+		const math::Mat4f& _v = m_ActiveCamera->getViewMatrix();
+		const math::Mat4f _pv = _p * _v;
 
 		// draw the quad
 		m_Renderer->draw2(_pv);
