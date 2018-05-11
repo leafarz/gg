@@ -152,9 +152,9 @@ namespace gg { namespace math {
 
 	Mat4f Mat4f::rotationMatrix(const Vec3f& forward, const Vec3f& up)
 	{
-		Vec3f _f = forward;
+		const Vec3f& _f = forward;
 		Vec3f _r = up.cross(forward);
-		Vec3f _u = up;
+		const Vec3f& _u = up;
 
 		return Mat4f(
 			_r.x,	_r.y,	_r.z,	0,
@@ -166,10 +166,6 @@ namespace gg { namespace math {
 
 	Mat4f Mat4f::rotationMatrix(const Vec3f& forward, const Vec3f& up, const Vec3f& right)
 	{
-		Vec3f _f = forward;
-		Vec3f _r = right;
-		Vec3f _u = up;
-
 		return Mat4f(
 			right.x,	right.y,	right.z,	0,
 			up.x,		up.y,		up.z,		0,
