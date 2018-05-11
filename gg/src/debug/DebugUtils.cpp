@@ -328,7 +328,7 @@ namespace gg { namespace debug {
 		drawLine(_p2, _p6, thickness, color);
 	}
 
-	void drawCameraFrustum(Camera* camera)
+	void drawCameraFrustum(Camera* camera, const math::Color& color)
 	{
 		Transform* _tCamera = camera->getGameObject()->getTransform();
 		const math::Vec3f& _position = _tCamera->getPosition();
@@ -346,32 +346,29 @@ namespace gg { namespace debug {
 		math::Vec3f _right = _tCamera->getRight() * _width * 0.5f;
 
 		// draw cube on location of camera
-		debug::drawWireCube(_position, 0.1f, _tCamera->getRotation());
+		debug::drawWireCube(_position, 0.1f, _tCamera->getRotation(), color);
 
 		// near square
-		debug::drawLine(_position + _zNear * (_forward + _up - _right), _position + _zNear * (_forward + _up + _right));
-		debug::drawLine(_position + _zNear * (_forward - _up - _right), _position + _zNear * (_forward - _up + _right));
-		debug::drawLine(_position + _zNear * (_forward + _up - _right), _position + _zNear * (_forward - _up - _right));
-		debug::drawLine(_position + _zNear * (_forward + _up + _right), _position + _zNear * (_forward - _up + _right));
+		debug::drawLine(_position + _zNear * (_forward + _up - _right), _position + _zNear * (_forward + _up + _right), color);
+		debug::drawLine(_position + _zNear * (_forward - _up - _right), _position + _zNear * (_forward - _up + _right), color);
+		debug::drawLine(_position + _zNear * (_forward + _up - _right), _position + _zNear * (_forward - _up - _right), color);
+		debug::drawLine(_position + _zNear * (_forward + _up + _right), _position + _zNear * (_forward - _up + _right), color);
 
 		// far square
-		debug::drawLine(_position + _zFar * (_forward + _up - _right), _position + _zFar * (_forward + _up + _right));
-		debug::drawLine(_position + _zFar * (_forward - _up - _right), _position + _zFar * (_forward - _up + _right));
-		debug::drawLine(_position + _zFar * (_forward + _up - _right), _position + _zFar * (_forward - _up - _right));
-		debug::drawLine(_position + _zFar * (_forward + _up + _right), _position + _zFar * (_forward - _up + _right));
+		debug::drawLine(_position + _zFar * (_forward + _up - _right), _position + _zFar * (_forward + _up + _right), color);
+		debug::drawLine(_position + _zFar * (_forward - _up - _right), _position + _zFar * (_forward - _up + _right), color);
+		debug::drawLine(_position + _zFar * (_forward + _up - _right), _position + _zFar * (_forward - _up - _right), color);
+		debug::drawLine(_position + _zFar * (_forward + _up + _right), _position + _zFar * (_forward - _up + _right), color);
 
 		// connectors
-		debug::drawLine(_position + _zNear * (_forward + _up + _right), _position + _zFar * (_forward + _up + _right));
-		debug::drawLine(_position + _zNear * (_forward + _up - _right), _position + _zFar * (_forward + _up - _right));
-		debug::drawLine(_position + _zNear * (_forward - _up + _right), _position + _zFar * (_forward - _up + _right));
-		debug::drawLine(_position + _zNear * (_forward - _up - _right), _position + _zFar * (_forward - _up - _right));
+		debug::drawLine(_position + _zNear * (_forward + _up + _right), _position + _zFar * (_forward + _up + _right), color);
+		debug::drawLine(_position + _zNear * (_forward + _up - _right), _position + _zFar * (_forward + _up - _right), color);
+		debug::drawLine(_position + _zNear * (_forward - _up + _right), _position + _zFar * (_forward - _up + _right), color);
+		debug::drawLine(_position + _zNear * (_forward - _up - _right), _position + _zFar * (_forward - _up - _right), color);
 	}
 
-	void drawCameraFrustum(const math::Vec3f& position, const math::Quaternion& rotation, float fovDeg, float aspectRatio, float zNear, float zFar)
+	void drawCameraFrustum(const math::Vec3f& position, const math::Quaternion& rotation, float fovDeg, float aspectRatio, float zNear, float zFar, const math::Color& color)
 	{
-		// draw cube on location of camera
-		debug::drawWireCube(position, 0.1f, rotation);
-
 		float _tanHalfFOV = tan(fovDeg * static_cast<float>(math::DEG_TO_RAD_HALF));
 		float _height = 2 * _tanHalfFOV;
 		float _width = _height * aspectRatio;
@@ -380,22 +377,25 @@ namespace gg { namespace debug {
 		math::Vec3f _up = rotation.getUp() * _height * 0.5f;
 		math::Vec3f _right = rotation.getRight() * _width * 0.5f;
 
+		// draw cube on location of camera
+		debug::drawWireCube(position, 0.1f, rotation, color);
+
 		// near square
-		debug::drawLine(position + zNear * (_forward + _up - _right), position + zNear * (_forward + _up + _right));
-		debug::drawLine(position + zNear * (_forward - _up - _right), position + zNear * (_forward - _up + _right));
-		debug::drawLine(position + zNear * (_forward + _up - _right), position + zNear * (_forward - _up - _right));
-		debug::drawLine(position + zNear * (_forward + _up + _right), position + zNear * (_forward - _up + _right));
+		debug::drawLine(position + zNear * (_forward + _up - _right), position + zNear * (_forward + _up + _right), color);
+		debug::drawLine(position + zNear * (_forward - _up - _right), position + zNear * (_forward - _up + _right), color);
+		debug::drawLine(position + zNear * (_forward + _up - _right), position + zNear * (_forward - _up - _right), color);
+		debug::drawLine(position + zNear * (_forward + _up + _right), position + zNear * (_forward - _up + _right), color);
 
 		// far square
-		debug::drawLine(position + zFar * (_forward + _up - _right), position + zFar * (_forward + _up + _right));
-		debug::drawLine(position + zFar * (_forward - _up - _right), position + zFar * (_forward - _up + _right));
-		debug::drawLine(position + zFar * (_forward + _up - _right), position + zFar * (_forward - _up - _right));
-		debug::drawLine(position + zFar * (_forward + _up + _right), position + zFar * (_forward - _up + _right));
+		debug::drawLine(position + zFar * (_forward + _up - _right), position + zFar * (_forward + _up + _right), color);
+		debug::drawLine(position + zFar * (_forward - _up - _right), position + zFar * (_forward - _up + _right), color);
+		debug::drawLine(position + zFar * (_forward + _up - _right), position + zFar * (_forward - _up - _right), color);
+		debug::drawLine(position + zFar * (_forward + _up + _right), position + zFar * (_forward - _up + _right), color);
 
 		// connectors
-		debug::drawLine(position + zNear * (_forward + _up + _right), position + zFar * (_forward + _up + _right));
-		debug::drawLine(position + zNear * (_forward + _up - _right), position + zFar * (_forward + _up - _right));
-		debug::drawLine(position + zNear * (_forward - _up + _right), position + zFar * (_forward - _up + _right));
-		debug::drawLine(position + zNear * (_forward - _up - _right), position + zFar * (_forward - _up - _right));
+		debug::drawLine(position + zNear * (_forward + _up + _right), position + zFar * (_forward + _up + _right), color);
+		debug::drawLine(position + zNear * (_forward + _up - _right), position + zFar * (_forward + _up - _right), color);
+		debug::drawLine(position + zNear * (_forward - _up + _right), position + zFar * (_forward - _up + _right), color);
+		debug::drawLine(position + zNear * (_forward - _up - _right), position + zFar * (_forward - _up - _right), color);
 	}
 }/*namespace debug*/ } // namespace gg

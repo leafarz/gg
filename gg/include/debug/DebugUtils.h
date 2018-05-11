@@ -27,8 +27,8 @@ namespace gg { namespace debug {
 	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, uint thickness, const math::Color& color = math::Color::white);
 	void drawWireCube(const math::Vec3f& origin, float size, const math::Quaternion& rot, uint thickness, float duration, const math::Color& color = math::Color::white);
 
-	void drawCameraFrustum(Camera* camera);
-	void drawCameraFrustum(const math::Vec3f& position, const math::Quaternion& rotation, float fovDeg, float aspectRatio, float zNear, float zFar);
+	void drawCameraFrustum(Camera* camera, const math::Color& color = math::Color::white);
+	void drawCameraFrustum(const math::Vec3f& position, const math::Quaternion& rotation, float fovDeg, float aspectRatio, float zNear, float zFar, const math::Color& color = math::Color::white);
 }/*namespace debug*/ } // namespace gg
 
 #endif
