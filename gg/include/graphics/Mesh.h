@@ -23,6 +23,7 @@ namespace gg { namespace graphics {
 	{
 	private:
 		friend class MeshRenderer;
+		friend class Renderer;
 
 	public:
 		Mesh(void);

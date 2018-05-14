@@ -115,32 +115,13 @@ namespace gg
 		// process game objects
 		// TODO: add children iteration
 
-
-		const math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
-
-
-		// with custom framebuffer
-		m_Renderer->begin1();
-
-		const math::Vec3f _newCameraPosition = math::Vec3f(-4,2,0);
-		const math::Quaternion _newRotation = math::Quaternion::identity * math::Quaternion(math::Vec3f::up,90);
-		renderScene(_p, _newCameraPosition, _newRotation);
-
-
-		// ---------------------------------------------------------------------------
-
-		// without custom framebuffer
-		m_Renderer->begin2();
-
-		const math::Vec3f& _cameraPosition = m_ActiveCamera->getGameObject()->getTransform()->getPosition();
-		const math::Vec3f& _cameraDirection = m_ActiveCamera->getGameObject()->getTransform()->getForward();
-		const math::Mat4f& _v = m_ActiveCamera->getViewMatrix();
-		const math::Mat4f _pv = _p * _v;
-
-		// draw the quad
-		m_Renderer->draw2(_pv);
+		// begin with rendertarget
+		m_Renderer->begin();
 		renderScene(m_ActiveCamera);
 
+		// draw the quad
+		m_Renderer->beginScreen();
+		m_Renderer->drawScreen(m_ActiveCamera->getViewProjectionMatrix());
 
 		m_Renderer->clearBuffers();
 	}

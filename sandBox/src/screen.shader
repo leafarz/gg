@@ -1,40 +1,24 @@
 #shader vertex
 #version 330 core
-layout (location = 0) in vec2 position;
+layout (location = 0) in vec3 position;
 layout (location = 1) in vec2 uv;
+layout (location = 2) in vec3 normal;
 
 out DATA
 {
 	vec2 uv;
 } vs_out;
 
-uniform float mode;
-
 void main()
 {
 	vs_out.uv = uv;
 
-	float xScale = 0.4;
-	float yScale = 0.4;
-
-	if(mode == 0)
-	{
-		gl_Position = vec4(
-			position.x*xScale - (1-xScale),
-			position.y*yScale + (1-yScale),
-			0.0, 1.0
-		);     
-	}
-	else
-	{
-		gl_Position = vec4(
-			position.x*xScale - (1-xScale),
-			position.y*yScale - (1-yScale),
-			0.0, 1.0
-		);     
-	}
-	
-}  
+	gl_Position = vec4(
+		position.x,
+		position.y,
+		0.0, 1.0
+	);
+}
 
 #shader fragment
 #version 330 core
@@ -49,7 +33,10 @@ out vec4 fcolor;
 uniform sampler2D sys_ScreenTexture;
 uniform sampler2D sys_DepthTexture;
 
-uniform float mode;
+float depth(sampler2D depthTexture, vec2 uv)
+{
+	return texture(depthTexture, uv).b;
+}
 
 /* Returns the distance of current pixel to camera. */
 float linearDepth(float depth,float near, float far)
@@ -61,19 +48,6 @@ float linearDepth(float depth,float near, float far)
 
 void main()
 {
-	if(mode == 0)
-	{
-		vec3 col = texture(sys_ScreenTexture, fs_in.uv).rgb;
-		fcolor = vec4(col, 1.0);
-	}
-	else
-	{
-		float _depth = texture(sys_DepthTexture, fs_in.uv).b;
-		float _near = 0.1;
-		float _far = 100;
-		float _range = _far - _near;
-		float _linearDepth = linearDepth(_depth, _near, _far) / _range * 10;
-
-		fcolor = vec4(_linearDepth,_linearDepth,_linearDepth, 1.0);
-	}
-} 
+	vec3 col = texture(sys_ScreenTexture, fs_in.uv).rgb;
+	fcolor = vec4(col, 1.0);
+}

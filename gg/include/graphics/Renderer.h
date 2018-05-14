@@ -90,8 +90,8 @@ namespace gg { namespace graphics {
 		Renderer(void);
 		~Renderer(void);
 
-		void begin1(void) const;
-		void begin2(void) const;
+		void begin(void) const;
+		void beginScreen(void) const;
 		// TODO: add shader param for draw?
 		void draw(
 			GameObject* gameObject,
@@ -103,7 +103,7 @@ namespace gg { namespace graphics {
 			const LightSettings& lightSettings,
 			const std::vector<Light*>& lights
 		);
-		void draw2(const math::Mat4f& pvMatrix);
+		void drawScreen(const math::Mat4f& pvMatrix);
 
 	/* Light */
 	private:

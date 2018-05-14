@@ -15,22 +15,15 @@
 
 
 // TODO: temporary?
-#include "graphics/FrameBuffer.h"
-#include "graphics/RenderBuffer.h"
+#include "graphics/RenderTarget.h"
+#include "graphics/Mesh.h"
 
-#include "graphics/IndexBuffer.h"
-#include "graphics/VertexArray.h"
-#include "graphics/VertexBuffer.h"
-#include "graphics/VertexBufferLayout.h"
 
 namespace gg { namespace graphics {
 
-	VertexArray m_VAO;
-	VertexBuffer m_VBO;
-	IndexBuffer m_IB;
-
-	FrameBuffer* m_FrameBuffer;
 	Shader* m_ScreenShader;
+	RenderTarget* m_RenderTarget;
+	Mesh* m_ScreenMesh;
 
 	Renderer::Renderer(void)
 	{
@@ -49,32 +42,23 @@ namespace gg { namespace graphics {
 		m_ScreenShader->setUniformi("sys_ScreenTexture", 0);
 		m_ScreenShader->setUniformi("sys_DepthTexture", 1);
 
-		float _quadVerts[] = {
-			// positions   // texCoords
-			-1.0f,  1.0f,  0.0f, 1.0f,	// ul
-			 1.0f,  1.0f,  1.0f, 1.0f,	// ur
-			-1.0f, -1.0f,  0.0f, 0.0f,	// ll
-			 1.0f, -1.0f,  1.0f, 0.0f	// lr
+		std::vector<graphics::Vertex> _quadVerts = {
+			graphics::Vertex(math::Vec3f(-1.0f,  1.0f, 0.0f), math::Vec2f(0.0f, 1.0f), math::Vec3f::back),
+			graphics::Vertex(math::Vec3f( 1.0f,  1.0f, 0.0f), math::Vec2f(1.0f, 1.0f), math::Vec3f::back),
+			graphics::Vertex(math::Vec3f(-1.0f, -1.0f, 0.0f), math::Vec2f(0.0f, 0.0f), math::Vec3f::back),
+			graphics::Vertex(math::Vec3f( 1.0f, -1.0f, 0.0f), math::Vec2f(1.0f, 0.0f), math::Vec3f::back)
 		};
 
-		uint _quadIndices[] = {
+		std::vector<uint> _quadIndices = {
 			2, 0, 1,
 			1, 3, 2
 		};
 
-		VertexBufferLayout _layout;
-		_layout.push<float>(2);
-		_layout.push<float>(2);
+		m_ScreenMesh = new Mesh();
+		m_ScreenMesh->setVertices(_quadVerts, _quadIndices);
 
-		m_IB.setData(_quadIndices, 6);
-
-		m_VBO.setData(_quadVerts, 16 * sizeof(float), false);
-
-		m_VAO.init();
-		m_VAO.addBuffer(m_VBO, _layout);
-
-		m_FrameBuffer = new FrameBuffer();
-		m_FrameBuffer->init(1280, 720);
+		m_RenderTarget = new RenderTarget();
+		m_RenderTarget->init(1280, 720);
 
 		// draw as wireframe
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -84,37 +68,27 @@ namespace gg { namespace graphics {
 	{
 	}
 
-	void Renderer::begin1(void) const
+	void Renderer::begin(void) const
 	{
-		m_FrameBuffer->bind();
+		m_RenderTarget->bind();
 
 		GL(glClearColor(0.1f, 0.1f, 0.2f, 0.0f));
 		GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 	}
 
-	void Renderer::begin2(void) const
+	void Renderer::beginScreen(void) const
 	{
-		m_FrameBuffer->unbind();
+		m_RenderTarget->unbind();
 
-		GL(glClearColor(0.1f, 0.1f, 0.2f, 0.0f));
 		GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 	}
 
-	void Renderer::draw2(const math::Mat4f& pvMatrix)
+	void Renderer::drawScreen(const math::Mat4f& pvMatrix)
 	{
-		m_VAO.bind();
-		m_IB.bind();
-
 		m_ScreenShader->bind();
-		m_FrameBuffer->bindColorTexture(0);
-		m_FrameBuffer->bindDepthTexture(1);
+		m_RenderTarget->bindTextures();
 
-
-		m_ScreenShader->setUniformf("mode", 0);
-		glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr);
-
-		m_ScreenShader->setUniformf("mode", 1);
-		glDrawElements(GL_TRIANGLES, m_IB.getCount(), GL_UNSIGNED_INT, nullptr);
+		m_ScreenMesh->draw();
 	}
 
 	void Renderer::draw(

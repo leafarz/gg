@@ -11,11 +11,10 @@
 namespace gg { namespace graphics { class RenderBuffer; class Texture; } }
 
 namespace gg { namespace graphics {
-	
-
 	class FrameBuffer
 	{
 	private:
+		friend class RenderTarget;
 		friend class Renderer;
 
 	public:
