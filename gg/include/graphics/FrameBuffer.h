@@ -27,25 +27,15 @@ namespace gg { namespace graphics {
 		/* Generates FrameBuffer id.
 		 * Adds the color and depth textures.
 		 */
-		void init(uint width, uint height);
-
-		void addColorTexture(uint width, uint height);
-		void addDepthTexture(uint width, uint height);
-		void addRenderBuffer(uint width, uint height);
+		void init(uint width, uint height, Texture* colorTexture, Texture* depthTexture);
 
 	private:
 		void bind(void) const;
-		void bindColorTexture(uint samplerSlot) const;
-		void bindDepthTexture(uint samplerSlot) const;
 		void unbind(void) const;
 
 	private:
 		GLuint m_ID;
 		bool m_IsInitialized = false;
-
-		Texture* m_ColorTexture;
-		Texture* m_DepthTexture;
-		RenderBuffer* m_RenderBuffer;
 	}; // class FrameBuffer
 }/*namespace graphics*/ } // namespace gg
 

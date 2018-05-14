@@ -9,11 +9,47 @@ namespace gg { namespace graphics {
 
 	RenderTarget::~RenderTarget(void)
 	{
+		delete m_ColorTexture;
+		delete m_DepthTexture;
 	}
 
 	void RenderTarget::init(uint width, uint height)
 	{
-		m_FrameBuffer.init(width, height);
+		initColorTexture(width, height);
+		initDepthTexture(width, height);
+		m_FrameBuffer.init(width, height, m_ColorTexture, m_DepthTexture);
+	}
+
+	void RenderTarget::initColorTexture(uint width, uint height)
+	{
+		if (m_ColorTexture)
+		{
+			delete m_ColorTexture;
+		}
+		m_ColorTexture = new Texture(width, height, GL_RGB, GL_RGB, GL_UNSIGNED_BYTE);
+		m_ColorTexture->bind();
+		m_ColorTexture->setFilterType(Texture::MinFilterType::Linear, Texture::MagFilterType::Linear);
+		m_ColorTexture->setWrapType(Texture::WrapType::ClampToBorder);
+		m_ColorTexture->unbind();
+	}
+
+	void RenderTarget::initDepthTexture(uint width, uint height)
+	{
+		if (m_DepthTexture)
+		{
+			delete m_DepthTexture;
+		}
+		m_DepthTexture = new Texture(width, height, GL_DEPTH_COMPONENT24, GL_DEPTH_COMPONENT, GL_FLOAT);
+		m_DepthTexture->bind();
+		m_DepthTexture->setFilterType(Texture::MinFilterType::Linear, Texture::MagFilterType::Linear);
+		m_DepthTexture->setWrapType(Texture::WrapType::ClampToBorder);
+		m_DepthTexture->unbind();
+	}
+
+	void RenderTarget::initRenderBuffer(uint width, uint height)
+	{
+		if (!m_IsInitialized) { return; }
+		// TODO: add code for adding RenderBuffers
 	}
 
 	void RenderTarget::bind(void) const
@@ -23,13 +59,23 @@ namespace gg { namespace graphics {
 
 	void RenderTarget::bindTextures(void) const
 	{
-		m_FrameBuffer.bindColorTexture(0);
-		m_FrameBuffer.bindDepthTexture(1);
+		m_ColorTexture->bind(0);
+		m_DepthTexture->bind(1);
 	}
 
 	void RenderTarget::unbind(void) const
 	{
 		m_FrameBuffer.unbind();
+	}
+
+	Texture* RenderTarget::getColorTexture(void) const
+	{
+		return m_ColorTexture;
+	}
+
+	Texture* RenderTarget::getDepthTexture(void) const
+	{
+		return m_DepthTexture;
 	}
 
 

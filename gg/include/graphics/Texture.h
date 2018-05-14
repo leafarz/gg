@@ -15,7 +15,7 @@ namespace gg { namespace graphics {
 	{
 	private:
 		friend class Material;
-		friend class Renderer;	// TODO: might remove?
+		friend class RenderTarget;
 		friend class FrameBuffer;
 
 	public:
