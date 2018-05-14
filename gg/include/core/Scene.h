@@ -7,6 +7,8 @@
 #include "graphics/LightSettings.h"
 
 #include "math/Vec3f.h"
+#include "math/Mat4f.h"
+#include "math/Quaternion.h"
 
 namespace gg { class Camera; class GameObject; class Light; }
 namespace gg { namespace graphics { class Renderer; } }
@@ -15,6 +17,9 @@ namespace gg
 {
 	class Scene
 	{
+	private:
+		friend class Application;
+
 	public:
 		Scene(void);
 		~Scene(void);
@@ -28,11 +33,15 @@ namespace gg
 		void	add(GameObject* gameObject);
 		// TODO: add remove function
 
+	protected:
 		virtual void onInit(void);
 		virtual void onUnload(void);
 		virtual void onFixedUpdate(void);
 		virtual void onUpdate(void);
 		virtual void onRender(void);
+
+		virtual void renderScene(Camera* camera);
+		virtual void renderScene(const math::Mat4f& projection, const math::Vec3f& cameraPosition, const math::Quaternion& cameraRotation);
 
 	public:
 		graphics::LightSettings LightSettings;

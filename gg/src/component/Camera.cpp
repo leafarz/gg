@@ -82,9 +82,16 @@ namespace gg
 		return m_ViewMatrix;
 	}
 
-	const math::Mat4f Camera::getViewProjectionMatrix(void)
+	const math::Mat4f& Camera::getViewProjectionMatrix(void)
 	{
-		return getProjectionMatrix() * getViewMatrix();
+		const Transform* const _t = m_GameObject->getTransform();
+
+		if (_t->isDirty())
+		{
+			m_ViewProjectionMatrix = getProjectionMatrix() * getViewMatrix();
+		}
+
+		return m_ViewProjectionMatrix;
 	}
 
 	math::Mat4f Camera::viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation)

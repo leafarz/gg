@@ -36,7 +36,7 @@ namespace gg
 
 		const math::Mat4f& getProjectionMatrix(void) const;
 		const math::Mat4f& getViewMatrix(void);
-		const math::Mat4f getViewProjectionMatrix(void);
+		const math::Mat4f& getViewProjectionMatrix(void);
 
 		static math::Mat4f viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation);
 
@@ -45,6 +45,7 @@ namespace gg
 	private:
 		math::Mat4f m_ProjectionMatrix;
 		math::Mat4f m_ViewMatrix;
+		math::Mat4f m_ViewProjectionMatrix;
 
 		float m_NearClipPlane;
 		float m_FarClipPlane;

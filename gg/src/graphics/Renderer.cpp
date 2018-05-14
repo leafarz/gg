@@ -119,8 +119,8 @@ namespace gg { namespace graphics {
 
 	void Renderer::draw(
 		GameObject* gameObject,
-		const math::Mat4f& viewMatrix,
 		const math::Mat4f& projectionMatrix,
+		const math::Mat4f& viewMatrix,
 		const math::Mat4f& pvMatrix,
 		const math::Vec3f& cameraPosition,
 		const math::Vec3f& cameraDirection,

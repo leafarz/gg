@@ -47,6 +47,7 @@ namespace gg
 	void Scene::onUnload(void)
 	{
 	}
+
 	void Scene::onFixedUpdate(void)
 	{
 		VFOR(it, m_GameObjects)
@@ -70,6 +71,8 @@ namespace gg
 		// process light
 		// process game objects
 		// TODO: add children iteration
+
+
 		const math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
 
 
@@ -78,18 +81,7 @@ namespace gg
 
 		const math::Vec3f _newCameraPosition = math::Vec3f(-4,2,0);
 		const math::Quaternion _newRotation = math::Quaternion::identity * math::Quaternion(math::Vec3f::up,90);
-		const math::Vec3f _newCameraForward = _newRotation.getForward();
-		const math::Mat4f _newView = Camera::viewMatrix(_newCameraPosition, _newRotation);
-		const math::Mat4f _newPV = _p * _newView;
-
-		// + draw scene
-		VFOR(it, m_GameObjects)
-		{
-			GameObject* _go = *it;
-			m_Renderer->draw(_go, _newView, _p, _newPV, _newCameraPosition, _newCameraForward, LightSettings, m_Lights);
-		}
-		m_Renderer->drawDebug(_newPV);
-		// - draw scene
+		renderScene(_p, _newCameraPosition, _newRotation);
 
 
 		// ---------------------------------------------------------------------------
@@ -104,17 +96,44 @@ namespace gg
 
 		// draw the quad
 		m_Renderer->draw2(_pv);
-
-		// + draw scene
-		VFOR(it, m_GameObjects)
-		{
-			GameObject* _go = *it;
-			m_Renderer->draw(_go, _v, _p, _pv, _cameraPosition, _cameraDirection, LightSettings, m_Lights);
-		}
-		m_Renderer->drawDebug(_pv);
-		// - draw scene
+		renderScene(m_ActiveCamera);
 
 
 		m_Renderer->clearBuffers();
+	}
+
+	void Scene::renderScene(Camera* camera)
+	{
+		const math::Vec3f& _cameraPosition = camera->getGameObject()->getTransform()->getPosition();
+		const math::Vec3f& _cameraForward = camera->getGameObject()->getTransform()->getForward();
+
+		const math::Mat4f& _p = camera->getProjectionMatrix();
+		const math::Mat4f& _v = camera->getViewMatrix();
+		const math::Mat4f _pv = camera->getViewProjectionMatrix();
+
+		VFOR(it, m_GameObjects)
+		{
+			GameObject* _go = *it;
+			m_Renderer->draw(_go, _p, _v, _pv, _cameraPosition, _cameraForward, LightSettings, m_Lights);
+		}
+
+		m_Renderer->drawDebug(_pv);
+	}
+
+	void Scene::renderScene(const math::Mat4f& projection, const math::Vec3f& cameraPosition, const math::Quaternion& cameraRotation)
+	{
+		const math::Vec3f _cameraForward = cameraRotation.getForward();
+
+		const math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
+		const math::Mat4f& _v = Camera::viewMatrix(cameraPosition, cameraRotation);
+		const math::Mat4f _pv = _p * _v;
+
+		VFOR(it, m_GameObjects)
+		{
+			GameObject* _go = *it;
+			m_Renderer->draw(_go, _p, _v, _pv, cameraPosition, _cameraForward, LightSettings, m_Lights);
+		}
+
+		m_Renderer->drawDebug(_pv);
 	}
 } // namespace gg

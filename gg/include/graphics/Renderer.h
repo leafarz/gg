@@ -95,8 +95,8 @@ namespace gg { namespace graphics {
 		// TODO: add shader param for draw?
 		void draw(
 			GameObject* gameObject,
-			const math::Mat4f& viewMatrix,
 			const math::Mat4f& projectionMatrix,
+			const math::Mat4f& viewMatrix,
 			const math::Mat4f& pvMatrix,
 			const math::Vec3f& cameraPosition,
 			const math::Vec3f& cameraDirection,
