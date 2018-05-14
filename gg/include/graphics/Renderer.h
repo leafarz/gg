@@ -16,7 +16,9 @@
 #include "math/Vec3f.h"
 #include "math/Color.h"
 
-namespace gg { class Light; class GameObject; }
+namespace gg { class GameObject; class Light; }
+namespace gg { namespace graphics { class Material; class Mesh; class RenderTarget; } }
+
 
 namespace gg { namespace graphics {
 	
@@ -91,6 +93,7 @@ namespace gg { namespace graphics {
 		~Renderer(void);
 
 		void begin(void) const;
+		void begin(RenderTarget* renderTarget) const;
 		void beginScreen(void) const;
 		// TODO: add shader param for draw?
 		void draw(
@@ -103,9 +106,23 @@ namespace gg { namespace graphics {
 			const LightSettings& lightSettings,
 			const std::vector<Light*>& lights
 		);
-		void drawScreen(const math::Mat4f& pvMatrix);
 
-	/* Light */
+		void drawScreen(const math::Mat4f& pvMatrix);
+		void drawScreen(Material* material, const math::Mat4f& pvMatrix);
+
+
+		// DEBUG DRAWS
+		/* Submits line data to queue to be drawn for render. */
+		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness);
+
+		/* Submits line data to queue to be drawn for render. */
+		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration);
+
+		/* Draws all the debugs. */
+		void drawDebug(const math::Mat4f& pvMatrix);
+
+		void clearBuffers(void);
+
 	private:
 		// MAX_LIGHTS * numOfProperties
 		const char* m_SystemLightPrefixes[8 * (int)SystemLightIndex::Length] = {
@@ -119,21 +136,10 @@ namespace gg { namespace graphics {
 			"sys_Lights[7].position", "sys_Lights[7].direction", "sys_Lights[7].color", "sys_Lights[7].intensity", "sys_Lights[7].constantAttenuation", "sys_Lights[7].linearAttenuation", "sys_Lights[7].exponentAttenuation", "sys_Lights[7].angle", "sys_Lights[7].specular"
 		};
 
+		Material* m_DefaultScreenMaterial;
+		RenderTarget* m_DefaultRenderTarget;
+		Mesh* m_ScreenMesh;
 
-	/* Debug draws */
-	public:
-		/* Submits line data to queue to be drawn for render. */
-		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness);
-
-		/* Submits line data to queue to be drawn for render. */
-		void drawLine(const math::Vec3f& from, const math::Vec3f& to, const math::Color& color, uint thickness, float duration);
-
-		/* Draws all the debugs. */
-		void drawDebug(const math::Mat4f& pvMatrix);
-
-		void clearBuffers(void);
-
-	private:
 		graphics::DebugLine* m_DebugLine;
 		std::unordered_map<uint, LineDataGroup> m_LineBuffer;
 		std::unordered_map<uint, std::vector<TimedLineData>> m_TimedLineBuffer;

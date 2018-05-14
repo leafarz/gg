@@ -7,6 +7,8 @@
 #include "core/Types.h"
 #include "math/Mat4f.h"
 
+namespace gg { namespace graphics { class RenderTarget; } }
+
 namespace gg
 {
 	class Camera : public Component
@@ -44,6 +46,8 @@ namespace gg
 		bool isCameraActive(void);
 
 		void update(void);
+
+		void render(graphics::RenderTarget* renderTarget);
 
 		static math::Mat4f viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation);
 

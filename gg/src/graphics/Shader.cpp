@@ -173,14 +173,20 @@ namespace gg { namespace graphics {
 	{
 		GLuint _id = s_ShaderHash[m_ShaderHash];
 
-		if (_id == s_CurrentBoundID) { return; }
+		if (_id == s_CurrentBoundID)
+		{
+			return;
+		}
 
 		s_CurrentBoundID = _id;
 		GL(glUseProgram(_id));
 	}
 	void Shader::unbind(void) const
 	{
-		if (s_CurrentBoundID == 0) { return; }
+		if (s_CurrentBoundID == 0)
+		{
+			return;
+		}
 
 		GL(glUseProgram(0));
 	}

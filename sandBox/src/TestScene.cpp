@@ -5,6 +5,8 @@
 #include "util/Iterators.h"
 #include <sstream>
 
+#include "graphics/RenderTarget.h"
+
 namespace gg
 {
 	TestScene::TestScene(void)
@@ -15,10 +17,11 @@ namespace gg
 	{
 	}
 
-	GameObject *go1, *go2;
+	GameObject *go1, *go2, *go3;
 	GameObject *goDLight, *goSLight, *goPLight;
-	graphics::Shader *basicShader;
+	graphics::Shader *basicShader, *mirrorShader;
 	Light *dLight, *sLight;
+	graphics::RenderTarget* m_RenderTarget;
 
 	FreeCamera *m_FreeCamera1, *m_FreeCamera2;
 	void TestScene::onInit(void)
@@ -139,18 +142,25 @@ namespace gg
 			3, 1, 0
 		};
 
+		m_RenderTarget = new graphics::RenderTarget();
+		m_RenderTarget->init(1280, 720);
+
 		// ************* SHARED *************
 		basicShader = new graphics::Shader("src/basic.shader");
+		mirrorShader = new graphics::Shader("src/mirror.shader");
 
 		graphics::Material* _basicMat;
 		_basicMat = new graphics::Material(basicShader);
+
+		graphics::Material* _mirrorMat;
+		_mirrorMat = new graphics::Material(mirrorShader);
 
 		// mesh
 		graphics::Mesh* _cubeMesh = new graphics::Mesh();
 		_cubeMesh->setVertices(_cubeVerts, _cubeIndices, false);
 
 		graphics::Mesh* _quadMesh = new graphics::Mesh();
-		_cubeMesh->setVertices(_quadVerts, _quadIndices, false);
+		_quadMesh->setVertices(_quadVerts, _quadIndices, false);
 
 		graphics::Mesh* _teapotMesh = new graphics::Mesh("src/teapot.obj", true);
 
@@ -165,11 +175,10 @@ namespace gg
 		go1 = new GameObject("Cube");
 		add(go1);
 		go1->getTransform()->setScale(0.5f, 0.5f, 0.5f);
-
 		// meshrenderer
-		MeshRenderer* _mrCube = go1->addComponent<MeshRenderer>();
-		_mrCube->setMesh(_teapotMesh);
-		_mrCube->setMaterial(_basicMat);
+		MeshRenderer* _mrTeapot = go1->addComponent<MeshRenderer>();
+		_mrTeapot->setMesh(_teapotMesh);
+		_mrTeapot->setMaterial(_basicMat);
 
 
 		// ************* GAMEOBJECT2 *************
@@ -178,11 +187,24 @@ namespace gg
 		add(go2);
 		go2->getTransform()->setPosition(0.5, 0.5, 0.5);
 		go2->getTransform()->setScale(50, 0.01f, 50);
-
 		// meshrenderer
-		MeshRenderer* _mrTeapot = go2->addComponent<MeshRenderer>();
-		_mrTeapot->setMesh(_cubeMesh);
-		_mrTeapot->setMaterial(_basicMat);
+		MeshRenderer* _mrFloor = go2->addComponent<MeshRenderer>();
+		_mrFloor->setMesh(_cubeMesh);
+		_mrFloor->setMaterial(_basicMat);
+
+
+		//// ************* GAMEOBJECT3 *************
+		go3 = new GameObject("Renderer");
+		add(go3);
+		go3->getTransform()->setPosition(0, 2, -4);
+		go3->getTransform()->setEuler(-90,0,0);
+		go3->getTransform()->setScale(3 * 16.0f/9.0f, 3, 3);
+		// meshrenderer
+		MeshRenderer* _mrQuad = go3->addComponent<MeshRenderer>();
+		_mrQuad->setMesh(_quadMesh);
+		_mrQuad->setMaterial(_mirrorMat);
+		_mirrorMat->setTexture("sys", m_RenderTarget);
+
 
 
 		// ************* CAMERA *************
@@ -237,6 +259,8 @@ namespace gg
 		{
 			setActiveCamera(m_FreeCamera2);
 		}
+
+		m_FreeCamera2->getCamera()->render(m_RenderTarget);
 
 
 		// ------------

@@ -9,15 +9,12 @@ out DATA
 	vec2 uv;
 } vs_out;
 
+uniform mat4 sys_MVP;
 void main()
 {
 	vs_out.uv = uv;
 
-	gl_Position = vec4(
-		position.x,
-		position.y,
-		0.0, 1.0
-	);
+	gl_Position = sys_MVP * vec4(position, 1.0 );
 }
 
 #shader fragment
@@ -50,6 +47,7 @@ void main()
 {
 	vec3 _col = texture(sys_ColorTexture, fs_in.uv).rgb;
 	float _depth = depth(sys_DepthTexture, fs_in.uv);
+	float _linearDepth = linearDepth(_depth, 0.1, 100) / 99.9 * 10;
 
 	fcolor = vec4(_col, 1.0);
 }

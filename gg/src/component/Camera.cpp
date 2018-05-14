@@ -1,6 +1,11 @@
 #include "component/Camera.h"
 
+#include "core/Application.h"
+#include "core/Scene.h"
+
 #include "entity/GameObject.h"
+
+#include "graphics/RenderTarget.h"
 
 namespace gg
 {
@@ -120,5 +125,9 @@ namespace gg
 
 	void Camera::update(void)
 	{
+	}
+	void Camera::render(graphics::RenderTarget* renderTarget)
+	{
+		Application::getInstance()->getActiveScene()->render(this, renderTarget);
 	}
 } // namespace gg

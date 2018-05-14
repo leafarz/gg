@@ -7,6 +7,8 @@
 #include "entity/GameObject.h"
 
 #include "graphics/Renderer.h"
+#include "graphics/RenderTarget.h"
+
 #include "util/Iterators.h"
 
 namespace gg
@@ -80,6 +82,12 @@ namespace gg
 		VFOR(it, _light) { m_Lights.push_back(*it); }
 
 		gameObject->onInit();
+	}
+
+	void Scene::render(Camera* camera, graphics::RenderTarget* renderTarget)
+	{
+		m_Renderer->begin(renderTarget);
+		renderScene(camera);
 	}
 
 	void Scene::onInit(void)

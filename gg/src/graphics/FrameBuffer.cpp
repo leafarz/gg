@@ -47,6 +47,5 @@ namespace gg { namespace graphics {
 	void FrameBuffer::unbind(void) const
 	{
 		GL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
-		GL(glBindTexture(GL_TEXTURE_2D, 0));
 	}
 }/*namespace graphics*/ } // namespace gg

@@ -27,7 +27,7 @@ namespace gg
 		// TODO: remove component or delete?
 	}
 
-	Camera * FreeCamera::getCamera(void)
+	Camera* FreeCamera::getCamera(void)
 	{
 		return m_Camera;
 	}

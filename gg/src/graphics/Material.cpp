@@ -1,6 +1,7 @@
 #include "graphics/Material.h"
 
 #include "debug/Log.h"
+#include "graphics/RenderTarget.h"
 #include "graphics/Shader.h"
 #include "graphics/Texture.h"
 
@@ -26,6 +27,14 @@ namespace gg { namespace graphics {
 	{
 		if (!m_Shader->hasUniform(key)) { WARN("No uniform with key [" << key << ']'); return; }
 		m_Textures.push(Data<Texture*>(key, texture));
+	}
+
+	void Material::setTexture(const std::string& prefix, RenderTarget* renderTarget)
+	{
+		std::string _key1 = prefix + "_ColorTexture";
+		std::string _key2 = prefix + "_DepthTexture";
+		if (!m_Shader->hasUniform(_key1) && !m_Shader->hasUniform(_key2)) { WARN("No uniform with keys [" << _key1 << "] and [" << _key2 << ']'); return; }
+		m_RenderTargets.push(Data<RenderTarget*>(prefix, renderTarget));
 	}
 
 	void Material::setUniformf(const std::string& key, float val)
@@ -78,6 +87,22 @@ namespace gg { namespace graphics {
 			m_Shader->setUniformi(_top.key, _samplerSlot);
 			m_Textures.pop();
 			_samplerSlot++;
+		}
+		_samplerSlot = 0;
+		while (!m_RenderTargets.empty())
+		{
+			Data<RenderTarget*>& _top = m_RenderTargets.top();
+			RenderTarget* _renderTarget = _top.val;
+
+			_renderTarget->getColorTexture()->bind(_samplerSlot);
+			m_Shader->setUniformi(_top.key + "_ColorTexture", _samplerSlot);
+			_samplerSlot++;
+
+			_renderTarget->getDepthTexture()->bind(_samplerSlot);
+			m_Shader->setUniformi(_top.key + "_DepthTexture", _samplerSlot);
+			_samplerSlot++;
+
+			m_RenderTargets.pop();
 		}
 		while (!m_Floats.empty())
 		{

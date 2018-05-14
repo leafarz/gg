@@ -9,13 +9,14 @@
 
 #include "core/Types.h"
 
-namespace gg { namespace graphics { class Texture; class Shader; } }
+namespace gg { namespace graphics { class RenderTarget; class Shader; class Texture; } }
 
 namespace gg { namespace graphics {
 	class Material
 	{
 	private:
 		friend class MeshRenderer;
+		friend class Renderer;
 
 	private:
 		template<typename T>
@@ -39,6 +40,11 @@ namespace gg { namespace graphics {
 		// currently no setUniformi and is replaced by setTexture
 
 		void setTexture(const std::string& key, Texture* texture);
+		/* Sets Rendertarget with prefix and predetermined suffixes.
+		 * Uniform variable format in the shader should be
+		 * [prefix]_ColorTexture & [prefix]_DepthTexture in order to work
+		 */
+		void setTexture(const std::string& prefix, RenderTarget* renderTarget);
 		void setUniformf(const std::string& key, float val);
 		void setUniform(const std::string& key, const math::Color& val);
 		void setUniform(const std::string& key, const math::Vec3f& val);
@@ -57,6 +63,7 @@ namespace gg { namespace graphics {
 		Shader* m_Shader;
 
 		std::stack<Data<Texture*>> m_Textures;
+		std::stack<Data<RenderTarget*>> m_RenderTargets;
 		std::stack<Data<float>> m_Floats;
 		std::stack<Data<math::Vec3f>> m_Vec3fs;
 		std::stack<Data<math::Vec4f>> m_Vec4fs;

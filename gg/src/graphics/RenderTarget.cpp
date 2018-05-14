@@ -11,6 +11,7 @@ namespace gg { namespace graphics {
 	{
 		delete m_ColorTexture;
 		delete m_DepthTexture;
+		delete m_RenderBuffer;
 	}
 
 	void RenderTarget::init(uint width, uint height)
@@ -48,8 +49,11 @@ namespace gg { namespace graphics {
 
 	void RenderTarget::initRenderBuffer(uint width, uint height)
 	{
-		if (!m_IsInitialized) { return; }
 		// TODO: add code for adding RenderBuffers
+		if (m_RenderBuffer)
+		{
+			delete m_RenderBuffer;
+		}
 	}
 
 	void RenderTarget::bind(void) const
@@ -66,6 +70,12 @@ namespace gg { namespace graphics {
 	void RenderTarget::unbind(void) const
 	{
 		m_FrameBuffer.unbind();
+	}
+
+	void RenderTarget::unbindTextures(void) const
+	{
+		// unbind any texture will do
+		m_ColorTexture->unbind();
 	}
 
 	Texture* RenderTarget::getColorTexture(void) const

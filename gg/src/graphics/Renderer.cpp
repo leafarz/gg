@@ -21,10 +21,6 @@
 
 namespace gg { namespace graphics {
 
-	Shader* m_ScreenShader;
-	RenderTarget* m_RenderTarget;
-	Mesh* m_ScreenMesh;
-
 	Renderer::Renderer(void)
 	{
 		GL(glFrontFace(GL_CW));
@@ -36,11 +32,6 @@ namespace gg { namespace graphics {
 		GL(glClearColor(0.1f, 0.1f, 0.2f, 0.0f));
 
 		m_DebugLine = new graphics::DebugLine();
-
-		m_ScreenShader = new Shader("src/screen.shader");
-		m_ScreenShader->bind();
-		m_ScreenShader->setUniformi("sys_ScreenTexture", 0);
-		m_ScreenShader->setUniformi("sys_DepthTexture", 1);
 
 		std::vector<graphics::Vertex> _quadVerts = {
 			graphics::Vertex(math::Vec3f(-1.0f,  1.0f, 0.0f), math::Vec2f(0.0f, 1.0f), math::Vec3f::back),
@@ -57,8 +48,15 @@ namespace gg { namespace graphics {
 		m_ScreenMesh = new Mesh();
 		m_ScreenMesh->setVertices(_quadVerts, _quadIndices);
 
-		m_RenderTarget = new RenderTarget();
-		m_RenderTarget->init(1280, 720);
+		m_DefaultRenderTarget = new RenderTarget();
+		m_DefaultRenderTarget->init(1280, 720);
+
+		// TODO: delete
+		Shader* _shader = new Shader("src/screen.shader");
+		m_DefaultScreenMaterial = new Material(_shader);
+		m_DefaultScreenMaterial->bind();
+		m_DefaultScreenMaterial->setTexture("sys", m_DefaultRenderTarget);
+		m_DefaultScreenMaterial->unbind();
 
 		// draw as wireframe
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -66,11 +64,23 @@ namespace gg { namespace graphics {
 
 	Renderer::~Renderer(void)
 	{
+		delete m_ScreenMesh;
+		delete m_DefaultRenderTarget;
+		delete m_DefaultScreenMaterial;
+		delete m_DebugLine;
 	}
 
 	void Renderer::begin(void) const
 	{
-		m_RenderTarget->bind();
+		m_DefaultRenderTarget->bind();
+
+		GL(glClearColor(0.1f, 0.1f, 0.2f, 0.0f));
+		GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+	}
+
+	void Renderer::begin(RenderTarget* renderTarget) const
+	{
+		renderTarget->bind();
 
 		GL(glClearColor(0.1f, 0.1f, 0.2f, 0.0f));
 		GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -78,15 +88,23 @@ namespace gg { namespace graphics {
 
 	void Renderer::beginScreen(void) const
 	{
-		m_RenderTarget->unbind();
+		m_DefaultRenderTarget->unbind();
 
 		GL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 	}
 
 	void Renderer::drawScreen(const math::Mat4f& pvMatrix)
 	{
-		m_ScreenShader->bind();
-		m_RenderTarget->bindTextures();
+		m_DefaultScreenMaterial->bind();
+		m_DefaultScreenMaterial->updateUniforms();
+
+		m_ScreenMesh->draw();
+	}
+
+	void Renderer::drawScreen(Material* material, const math::Mat4f& pvMatrix)
+	{
+		material->bind();
+		material->updateUniforms();
 
 		m_ScreenMesh->draw();
 	}

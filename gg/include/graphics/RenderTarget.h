@@ -32,11 +32,10 @@ namespace gg { namespace graphics {
 		void bind(void) const;
 		void bindTextures(void) const;
 		void unbind(void) const;
+		void unbindTextures(void) const;
 		
 
 	private:
-		bool m_IsInitialized = false;
-
 		FrameBuffer m_FrameBuffer;
 		Texture* m_ColorTexture;
 		Texture* m_DepthTexture;
