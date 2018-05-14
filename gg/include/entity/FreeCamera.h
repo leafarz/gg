@@ -20,6 +20,8 @@ namespace gg
 
 		void setMoveSpeed(float moveSpeed);
 
+		void resetMousePosition(void);
+
 		void onInit(void) override;
 		void onUpdate(void) override;
 

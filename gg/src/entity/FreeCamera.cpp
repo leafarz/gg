@@ -37,15 +37,24 @@ namespace gg
 		m_MoveSpeed = moveSpeed;
 	}
 
-	void FreeCamera::onInit(void)
+	void FreeCamera::resetMousePosition(void)
 	{
 		m_PrevMousePos = Input::getMousePosition();
-
 		Input::setCursorMode(CURSOR_MODE::DISABLED);
+	}
+
+	void FreeCamera::onInit(void)
+	{
+		resetMousePosition();
 	}
 
 	void FreeCamera::onUpdate(void)
 	{
+		if (!m_Camera->isCameraActive())
+		{
+			return;
+		}
+
 		const math::Vec3f& _pos = m_Transform->getPosition();
 		const math::Quaternion& _rot = m_Transform->getRotation();
 		const math::Vec3f& _euler = m_Transform->getEuler();
@@ -84,16 +93,14 @@ namespace gg
 			}
 			else
 			{
-				m_PrevMousePos = Input::getMousePosition();
-				Input::setCursorMode(CURSOR_MODE::DISABLED);
+				resetMousePosition();
 			}
 		}
 
 		if (Input::getMouseButtonDown(MOUSE::RIGHT))
 		{
 			m_IsCursorVisible = false;
-			m_PrevMousePos = Input::getMousePosition();
-			Input::setCursorMode(CURSOR_MODE::DISABLED);
+			resetMousePosition();
 		}
 		else if (Input::getMouseButtonUp(MOUSE::RIGHT))
 		{

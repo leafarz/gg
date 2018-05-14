@@ -2,7 +2,10 @@
 
 #include "component/Camera.h"
 #include "component/Light.h"
+
+#include "entity/FreeCamera.h"
 #include "entity/GameObject.h"
+
 #include "graphics/Renderer.h"
 #include "util/Iterators.h"
 
@@ -20,12 +23,50 @@ namespace gg
 
 	void Scene::setActiveCamera(Camera* camera)
 	{
+		if (!camera)
+		{
+			return;
+		}
+
+		if (m_ActiveCamera)
+		{
+			m_ActiveCamera->setIsCameraActive(false);
+		}
+
 		m_ActiveCamera = camera;
+		m_ActiveCamera->setIsCameraActive(true);
 	}
+
+	void Scene::setActiveCamera(FreeCamera* freeCamera)
+	{
+		Camera* _camera = freeCamera->getComponent<Camera>();
+
+		if (!_camera)
+		{
+			return;
+		}
+
+		if (m_ActiveCamera)
+		{
+			m_ActiveCamera->setIsCameraActive(false);
+		}
+
+		freeCamera->resetMousePosition();
+		m_ActiveCamera = _camera;
+		m_ActiveCamera->setIsCameraActive(true);
+	}
+
 	void Scene::setActiveCamera(GameObject* gameObject)
 	{
-		m_ActiveCamera = gameObject->getComponent<Camera>();
+		Camera* _camera = gameObject->getComponent<Camera>();
+		if (!_camera)
+		{
+			return;
+		}
+
+		setActiveCamera(_camera);
 	}
+
 	Camera* Scene::getActiveCamera(void) const
 	{
 		return m_ActiveCamera;
@@ -56,6 +97,7 @@ namespace gg
 			_go->onFixedUpdate();
 		}
 	}
+
 	void Scene::onUpdate(void)
 	{
 		VFOR(it, m_GameObjects)
@@ -64,6 +106,7 @@ namespace gg
 			_go->onUpdate();
 		}
 	}
+
 	void Scene::onRender(void)
 	{
 		m_ActiveCamera->update();

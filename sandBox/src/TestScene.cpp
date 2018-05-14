@@ -19,6 +19,8 @@ namespace gg
 	GameObject *goDLight, *goSLight, *goPLight;
 	graphics::Shader *basicShader;
 	Light *dLight, *sLight;
+
+	FreeCamera *m_FreeCamera1, *m_FreeCamera2;
 	void TestScene::onInit(void)
 	{
 		LightSettings.ambientColor.set(0.1f, 0.1f, 0.1f);
@@ -184,11 +186,17 @@ namespace gg
 
 
 		// ************* CAMERA *************
-		FreeCamera* _freeCam = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 100);
-		_freeCam->getTransform()->setPosition(0,2,-8);
-		_freeCam->setMoveSpeed(0.05f);
-		add(_freeCam);
-		setActiveCamera(_freeCam);
+		m_FreeCamera1 = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 100);
+		m_FreeCamera1->getTransform()->setPosition(0,2,-8);
+		m_FreeCamera1->setMoveSpeed(0.05f);
+		add(m_FreeCamera1);
+		setActiveCamera(m_FreeCamera1);
+
+		m_FreeCamera2 = new FreeCamera(45, 16.0f / 9.0f, 0.1f, 100);
+		m_FreeCamera2->getTransform()->setPosition(-6, 2, 0);
+		m_FreeCamera2->getTransform()->lookAt(math::Vec3f::right);
+		m_FreeCamera2->setMoveSpeed(0.05f);
+		add(m_FreeCamera2);
 		
 		Scene::onInit();
 	}
@@ -215,9 +223,19 @@ namespace gg
 
 	void TestScene::onUpdate(void)
 	{
+		Scene::onUpdate();
 		if (Input::getKeyDown(KEY::R))
 		{
 			basicShader->reload();
+		}
+
+		if (Input::getKeyDown(KEY::ALPHA1))
+		{
+			setActiveCamera(m_FreeCamera1);
+		}
+		if (Input::getKeyDown(KEY::ALPHA2))
+		{
+			setActiveCamera(m_FreeCamera2);
 		}
 
 
@@ -288,13 +306,9 @@ namespace gg
 		drawLightLocations();
 
 		// draw camera frustum
-		const math::Vec3f _newCameraPosition = math::Vec3f(-4, 2, 0);
-		const math::Quaternion _newRotation = math::Quaternion::identity * math::Quaternion(math::Vec3f::up, 90);
-		Camera* _camera = getActiveCamera();
-		debug::drawCameraFrustum(_newCameraPosition, _newRotation, _camera->getFOV(), _camera->getAspectRatio(), _camera->getNearClipPlane(), _camera->getFarClipPlane(), math::Color::blue);
+		debug::drawCameraFrustum(m_FreeCamera1->getCamera(), math::Color::green);
+		debug::drawCameraFrustum(m_FreeCamera2->getCamera(), math::Color::blue);
 
-
-		Scene::onUpdate();
 	}
 
 	void TestScene::drawLightLocations(void)

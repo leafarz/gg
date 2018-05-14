@@ -10,7 +10,7 @@
 #include "math/Mat4f.h"
 #include "math/Quaternion.h"
 
-namespace gg { class Camera; class GameObject; class Light; }
+namespace gg { class Camera; class FreeCamera; class GameObject; class Light; }
 namespace gg { namespace graphics { class Renderer; } }
 
 namespace gg
@@ -24,8 +24,9 @@ namespace gg
 		Scene(void);
 		~Scene(void);
 
-		void	setActiveCamera(Camera* camera);
-		void	setActiveCamera(GameObject* gameObject);
+		void setActiveCamera(Camera* camera);
+		void setActiveCamera(GameObject* gameObject);
+		void setActiveCamera(FreeCamera* freeCamera);
 		Camera* getActiveCamera(void) const;
 
 		graphics::Renderer* getRenderer(void) { return m_Renderer; }

@@ -11,6 +11,9 @@ namespace gg
 {
 	class Camera : public Component
 	{
+	private:
+		friend class Scene;
+
 	public:
 		Camera(void);
 		Camera(float fovDeg, float aspectRatio, float zNear, float zFar);
@@ -38,9 +41,14 @@ namespace gg
 		const math::Mat4f& getViewMatrix(void);
 		const math::Mat4f& getViewProjectionMatrix(void);
 
-		static math::Mat4f viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation);
+		bool isCameraActive(void);
 
 		void update(void);
+
+		static math::Mat4f viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation);
+
+	private:
+		void setIsCameraActive(bool isCameraActive);
 
 	private:
 		math::Mat4f m_ProjectionMatrix;
@@ -60,6 +68,7 @@ namespace gg
 		float m_Bottom;
 		float m_Top;
 
+		bool m_IsCameraActive = false;
 	}; // class Camera
 } // namespace gg
 

@@ -108,6 +108,17 @@ namespace gg
 		return _rotMatrix.set(3, _m03).set(7, _m13).set(11, _m23).set(15, _m33);
 	}
 
+	void Camera::setIsCameraActive(bool isCameraActive)
+	{
+		m_IsCameraActive = isCameraActive;
+	}
+
+	bool Camera::isCameraActive(void)
+	{
+		return m_IsCameraActive;
+	}
+
 	void Camera::update(void)
-	{ }
+	{
+	}
 } // namespace gg
