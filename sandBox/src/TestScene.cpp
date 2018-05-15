@@ -24,6 +24,8 @@ namespace gg
 	graphics::RenderTarget* m_RenderTarget;
 
 	FreeCamera *m_FreeCamera1, *m_FreeCamera2;
+	graphics::Material* m_MirrorMat;
+
 	void TestScene::onInit(void)
 	{
 		LightSettings.ambientColor.set(0.1f, 0.1f, 0.1f);
@@ -152,8 +154,7 @@ namespace gg
 		graphics::Material* _basicMat;
 		_basicMat = new graphics::Material(basicShader);
 
-		graphics::Material* _mirrorMat;
-		_mirrorMat = new graphics::Material(mirrorShader);
+		m_MirrorMat = new graphics::Material(mirrorShader);
 
 		// mesh
 		graphics::Mesh* _cubeMesh = new graphics::Mesh();
@@ -202,8 +203,8 @@ namespace gg
 		// meshrenderer
 		MeshRenderer* _mrQuad = go3->addComponent<MeshRenderer>();
 		_mrQuad->setMesh(_quadMesh);
-		_mrQuad->setMaterial(_mirrorMat);
-		_mirrorMat->setTexture("sys", m_RenderTarget);
+		_mrQuad->setMaterial(m_MirrorMat);
+		m_MirrorMat->setTexture("sys", m_RenderTarget);
 
 
 
@@ -260,7 +261,7 @@ namespace gg
 			setActiveCamera(m_FreeCamera2);
 		}
 
-		m_FreeCamera2->getCamera()->render(m_RenderTarget);
+		m_FreeCamera2->getCamera()->render(m_RenderTarget, m_MirrorMat);
 
 
 		// ------------

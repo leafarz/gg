@@ -96,6 +96,7 @@ namespace gg { namespace graphics {
 	void Renderer::drawScreen(const math::Mat4f& pvMatrix)
 	{
 		m_DefaultScreenMaterial->bind();
+		m_DefaultScreenMaterial->setTexture("sys", m_DefaultRenderTarget);
 		m_DefaultScreenMaterial->updateUniforms();
 
 		m_ScreenMesh->draw();

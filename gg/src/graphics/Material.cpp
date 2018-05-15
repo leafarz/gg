@@ -33,8 +33,24 @@ namespace gg { namespace graphics {
 	{
 		std::string _key1 = prefix + "_ColorTexture";
 		std::string _key2 = prefix + "_DepthTexture";
-		if (!m_Shader->hasUniform(_key1) && !m_Shader->hasUniform(_key2)) { WARN("No uniform with keys [" << _key1 << "] and [" << _key2 << ']'); return; }
-		m_RenderTargets.push(Data<RenderTarget*>(prefix, renderTarget));
+		bool _hasUniform = false;
+
+		if (m_Shader->hasUniform(_key1))
+		{
+			_hasUniform = true;
+			m_Textures.push(Data<Texture*>(_key1, renderTarget->getColorTexture()));
+		}
+
+		if (m_Shader->hasUniform(_key2))
+		{
+			_hasUniform = true;
+			m_Textures.push(Data<Texture*>(_key2, renderTarget->getDepthTexture()));
+		}
+
+		if (!_hasUniform)
+		{
+			WARN("No uniform with keys [" << _key1 << "] and [" << _key2 << ']');
+		}
 	}
 
 	void Material::setUniformf(const std::string& key, float val)

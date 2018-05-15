@@ -6,6 +6,7 @@
 #include "entity/FreeCamera.h"
 #include "entity/GameObject.h"
 
+#include "graphics/Material.h"
 #include "graphics/Renderer.h"
 #include "graphics/RenderTarget.h"
 
@@ -84,10 +85,11 @@ namespace gg
 		gameObject->onInit();
 	}
 
-	void Scene::render(Camera* camera, graphics::RenderTarget* renderTarget)
+	void Scene::render(Camera* camera, graphics::RenderTarget* renderTarget, graphics::Material* material)
 	{
 		m_Renderer->begin(renderTarget);
 		renderScene(camera);
+		material->setTexture("sys", renderTarget);
 	}
 
 	void Scene::onInit(void)

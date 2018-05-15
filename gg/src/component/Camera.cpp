@@ -5,6 +5,7 @@
 
 #include "entity/GameObject.h"
 
+#include "graphics/Material.h"
 #include "graphics/RenderTarget.h"
 
 namespace gg
@@ -126,8 +127,8 @@ namespace gg
 	void Camera::update(void)
 	{
 	}
-	void Camera::render(graphics::RenderTarget* renderTarget)
+	void Camera::render(graphics::RenderTarget* renderTarget, graphics::Material* material)
 	{
-		Application::getInstance()->getActiveScene()->render(this, renderTarget);
+		Application::getInstance()->getActiveScene()->render(this, renderTarget, material);
 	}
 } // namespace gg

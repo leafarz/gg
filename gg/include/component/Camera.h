@@ -7,7 +7,7 @@
 #include "core/Types.h"
 #include "math/Mat4f.h"
 
-namespace gg { namespace graphics { class RenderTarget; } }
+namespace gg { namespace graphics { class Material; class RenderTarget; } }
 
 namespace gg
 {
@@ -47,7 +47,7 @@ namespace gg
 
 		void update(void);
 
-		void render(graphics::RenderTarget* renderTarget);
+		void render(graphics::RenderTarget* renderTarget, graphics::Material* material);
 
 		static math::Mat4f viewMatrix(const math::Vec3f& position, const math::Quaternion& rotation);
 

@@ -11,7 +11,7 @@
 #include "math/Quaternion.h"
 
 namespace gg { class Camera; class FreeCamera; class GameObject; class Light; }
-namespace gg { namespace graphics { class Renderer; class RenderTarget; } }
+namespace gg { namespace graphics { class Material; class Renderer; class RenderTarget; } }
 
 namespace gg
 {
@@ -34,7 +34,7 @@ namespace gg
 		void	add(GameObject* gameObject);
 		// TODO: add remove function
 
-		void render(Camera* camera, graphics::RenderTarget* renderTarget);
+		void render(Camera* camera, graphics::RenderTarget* renderTarget, graphics::Material* material);
 
 	protected:
 		virtual void onInit(void);
