@@ -108,7 +108,6 @@ namespace gg { namespace graphics {
 		);
 
 		void drawScreen(const math::Mat4f& pvMatrix);
-		void drawScreen(Material* material, const math::Mat4f& pvMatrix);
 
 
 		// DEBUG DRAWS

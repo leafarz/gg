@@ -63,7 +63,6 @@ namespace gg { namespace graphics {
 		Shader* m_Shader;
 
 		std::stack<Data<Texture*>> m_Textures;
-		std::stack<Data<RenderTarget*>> m_RenderTargets;
 		std::stack<Data<float>> m_Floats;
 		std::stack<Data<math::Vec3f>> m_Vec3fs;
 		std::stack<Data<math::Vec4f>> m_Vec4fs;

@@ -204,7 +204,6 @@ namespace gg
 		MeshRenderer* _mrQuad = go3->addComponent<MeshRenderer>();
 		_mrQuad->setMesh(_quadMesh);
 		_mrQuad->setMaterial(m_MirrorMat);
-		m_MirrorMat->setTexture("sys", m_RenderTarget);
 
 
 

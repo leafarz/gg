@@ -104,22 +104,6 @@ namespace gg { namespace graphics {
 			m_Textures.pop();
 			_samplerSlot++;
 		}
-		_samplerSlot = 0;
-		while (!m_RenderTargets.empty())
-		{
-			Data<RenderTarget*>& _top = m_RenderTargets.top();
-			RenderTarget* _renderTarget = _top.val;
-
-			_renderTarget->getColorTexture()->bind(_samplerSlot);
-			m_Shader->setUniformi(_top.key + "_ColorTexture", _samplerSlot);
-			_samplerSlot++;
-
-			_renderTarget->getDepthTexture()->bind(_samplerSlot);
-			m_Shader->setUniformi(_top.key + "_DepthTexture", _samplerSlot);
-			_samplerSlot++;
-
-			m_RenderTargets.pop();
-		}
 		while (!m_Floats.empty())
 		{
 			Data<float>& _top = m_Floats.top();

@@ -102,14 +102,6 @@ namespace gg { namespace graphics {
 		m_ScreenMesh->draw();
 	}
 
-	void Renderer::drawScreen(Material* material, const math::Mat4f& pvMatrix)
-	{
-		material->bind();
-		material->updateUniforms();
-
-		m_ScreenMesh->draw();
-	}
-
 	void Renderer::draw(
 		GameObject* gameObject,
 		const math::Mat4f& projectionMatrix,

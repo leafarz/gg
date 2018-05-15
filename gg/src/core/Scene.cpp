@@ -158,14 +158,13 @@ namespace gg
 	{
 		const math::Vec3f _cameraForward = cameraRotation.getForward();
 
-		const math::Mat4f& _p = m_ActiveCamera->getProjectionMatrix();
 		const math::Mat4f& _v = Camera::viewMatrix(cameraPosition, cameraRotation);
-		const math::Mat4f _pv = _p * _v;
+		const math::Mat4f _pv = projection * _v;
 
 		VFOR(it, m_GameObjects)
 		{
 			GameObject* _go = *it;
-			m_Renderer->draw(_go, _p, _v, _pv, cameraPosition, _cameraForward, LightSettings, m_Lights);
+			m_Renderer->draw(_go, projection, _v, _pv, cameraPosition, _cameraForward, LightSettings, m_Lights);
 		}
 
 		m_Renderer->drawDebug(_pv);
