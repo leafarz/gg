@@ -70,11 +70,6 @@ namespace gg
 		setActiveCamera(_camera);
 	}
 
-	Camera* Scene::getActiveCamera(void) const
-	{
-		return m_ActiveCamera;
-	}
-
 	void Scene::add(GameObject* gameObject)
 	{
 		m_GameObjects.push_back(gameObject);

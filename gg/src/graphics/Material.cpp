@@ -17,7 +17,6 @@ namespace gg { namespace graphics {
 	Material::~Material(void)
 	{ }
 
-	Shader* Material::getShader(void) const { return m_Shader; }
 	void Material::setShader(Shader * shader)
 	{
 		m_Shader = shader;

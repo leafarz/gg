@@ -37,7 +37,7 @@ namespace gg
 		math::Vec3f getRight(void) const;
 		math::Vec3f getUp(void) const;
 
-		const math::Vec3f& getPosition(void) const;
+		inline const math::Vec3f& getPosition(void) const { return m_Position; }
 		math::Vec3f& setPositionX(float x);
 		math::Vec3f& setPositionY(float y);
 		math::Vec3f& setPositionZ(float z);
@@ -50,7 +50,7 @@ namespace gg
 		math::Vec3f& addPosition(float x, float y, float z);
 		math::Vec3f& addPosition(math::Vec3f pos);
 
-		const math::Vec3f& getEuler(void) const;
+		inline const math::Vec3f& getEuler(void) const { return m_Euler; }
 		math::Vec3f& setEulerX(float x);
 		math::Vec3f& setEulerY(float y);
 		math::Vec3f& setEulerZ(float z);
@@ -63,12 +63,12 @@ namespace gg
 		math::Vec3f& addEuler(float x, float y, float z);
 		math::Vec3f& addEuler(math::Vec3f euler);
 
-		const math::Quaternion& getRotation(void) const;
+		inline const math::Quaternion& getRotation(void) const { return m_Rotation; }
 		math::Quaternion& setRotation(float x, float y, float z, float w);
 		math::Quaternion& setRotation(const math::Vec3f& axis, float deg);
 		math::Quaternion& lookAt(const math::Vec3f& forward, const math::Vec3f& up = math::Vec3f::up);
 
-		const math::Vec3f& getScale(void) const;
+		inline const math::Vec3f& getScale(void) const { return m_Scale; }
 		math::Vec3f& setScaleX(float x);
 		math::Vec3f& setScaleY(float y);
 		math::Vec3f& setScaleZ(float z);

@@ -17,15 +17,15 @@ namespace gg
 		GameObject(const std::string& name = "GameObject");
 		~GameObject(void);
 
-		const std::string& getName(void) const;
+		inline const std::string& getName(void) const { return m_Name; }
 
 		void setParent(GameObject* parent);
-		GameObject* getParent(void) const;
+		inline GameObject* getParent(void) const { return m_Parent; }
 
 		void addChild(GameObject* gameObject);
 		GameObject* getChild(const std::string& name) const;
 		GameObject* getChild(uint index) const;
-		const std::vector<GameObject*>& getChildren(void) const;
+		inline const std::vector<GameObject*>& getChildren(void) const { return m_Children; }
 
 		uint getChildCount(void) const;
 
@@ -110,7 +110,7 @@ namespace gg
 			return _components;
 		}
 
-		Transform* const getTransform(void) const;
+		inline Transform* const getTransform(void) const { return m_Transform; }
 
 		/* Called when object is added to scene. */
 		virtual void onInit(void);

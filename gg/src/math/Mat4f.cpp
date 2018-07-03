@@ -457,21 +457,6 @@ namespace gg { namespace math {
 			std::endl;
 	}
 
-	const float* Mat4f::getMatrix(void) const
-	{
-		return this->elements;
-	}
-
-	float Mat4f::get(int idx) const
-	{
-		return this->elements[idx];
-	}
-
-	float Mat4f::get(int m, int n) const
-	{
-		return this->elements[m * 4 + n];
-	}
-
 	Mat4f& Mat4f::set(int idx, float c)
 	{
 		this->elements[idx] = c;

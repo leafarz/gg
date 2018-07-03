@@ -22,10 +22,10 @@ namespace gg
 		virtual ComponentType getType(void) const override { return getStaticType(); }
 
 		void setMesh(graphics::Mesh* mesh);
-		graphics::Mesh* getMesh() const;
+		inline graphics::Mesh* getMesh() const { return m_Mesh; }
 
 		void setMaterial(graphics::Material* material);
-		graphics::Material* getMaterial() const;
+		inline graphics::Material* getMaterial() const { return m_Material; }
 
 	private:
 		void draw(void);

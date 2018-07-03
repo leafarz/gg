@@ -67,22 +67,22 @@ namespace gg
 			}
 		}
 
-		LightType getLightType(void) const { return m_LightType; }
+		inline LightType getLightType(void) const { return m_LightType; }
 
-		const math::Color& getColor(void) const { return m_Color; }
+		inline const math::Color& getColor(void) const { return m_Color; }
 		void setColor(math::Color color);
 
-		const float getIntensity(void) const { return m_Intensity; }
+		inline float getIntensity(void) const { return m_Intensity; }
 		void setIntensity(float intensity);
 
-		const float getAngle(void) const { return m_Angle; }
+		inline float getAngle(void) const { return m_Angle; }
 		void setAngle(float angle);
 
-		const math::Vec3f& getAttenuation(void) const { return m_Attenuation; }
+		inline const math::Vec3f& getAttenuation(void) const { return m_Attenuation; }
 		void setAttenuation(float constant, float linear, float exponential);
 		void setAttenuation(const math::Vec3f& attenuation);
 
-		const float getSpecular(void) const { return m_Specular; }
+		inline float getSpecular(void) const { return m_Specular; }
 		void setSpecular(float specular);
 
 	private:

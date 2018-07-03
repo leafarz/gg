@@ -105,8 +105,8 @@ namespace gg { namespace graphics {
 		void setWrapType(WrapType wrapType);
 
 		math::Vec2f getSize(void) const;
-		int getWidth(void) const;
-		int getHeight(void) const;
+		inline int getWidth(void) const { return m_Width; }
+		inline int getHeight(void) const { return m_Height; }
 
 	private:
 		void bind(int samplerSlot = 0) const;

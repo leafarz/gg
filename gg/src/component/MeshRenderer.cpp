@@ -19,10 +19,8 @@ namespace gg
 	}
 
 	void MeshRenderer::setMesh(graphics::Mesh* mesh) { m_Mesh = mesh; }
-	graphics::Mesh* MeshRenderer::getMesh() const { return m_Mesh; }
 
 	void MeshRenderer::setMaterial(graphics::Material* material) { m_Material = material; }
-	graphics::Material* MeshRenderer::getMaterial() const { return m_Material; }
 
 	void MeshRenderer::draw(void)
 	{

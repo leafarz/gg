@@ -78,15 +78,4 @@ namespace gg { namespace graphics {
 		m_ColorTexture->unbind();
 	}
 
-	Texture* RenderTarget::getColorTexture(void) const
-	{
-		return m_ColorTexture;
-	}
-
-	Texture* RenderTarget::getDepthTexture(void) const
-	{
-		return m_DepthTexture;
-	}
-
-
 }/*namespace graphics*/ } // namespace gg

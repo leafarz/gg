@@ -27,10 +27,6 @@ namespace gg
 		// TODO: remove component or delete?
 	}
 
-	Camera* FreeCamera::getCamera(void)
-	{
-		return m_Camera;
-	}
 
 	void FreeCamera::setMoveSpeed(float moveSpeed)
 	{

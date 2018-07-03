@@ -53,12 +53,12 @@ namespace gg { namespace math {
 		friend std::ostream& operator<<(std::ostream& out, const Mat3f& A);
 
 		/* Gets the float array of the matrix. */
-		const float* getMatrix(void) const;
+		inline const float* getMatrix(void) const { return this->elements; }
 
 		/* Gets the value of a specific cell from the matrix. */
-		float get(int idx) const;
+		inline float get(int idx) { return this->elements[idx]; }
 		/* Gets the value of a specific cell from the matrix. */
-		float get(int m, int n) const;
+		inline float get(int m, int n) const { return this->elements[m * 3 + n]; }
 
 		/* Sets the value of a specific cell from the matrix
 		 * and returns the result matrix.

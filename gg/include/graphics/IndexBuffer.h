@@ -21,8 +21,8 @@ namespace gg { namespace graphics {
 		IndexBuffer(const uint *data, uint count);
 		~IndexBuffer(void);
 
-		uint getCount(void) const { return m_Count; }
-		GLuint getID(void) const { return m_ID; }
+		inline uint getCount(void) const { return m_Count; }
+		inline GLuint getID(void) const { return m_ID; }
 
 		/* Sets the buffer id and buffer data.
 		 * Binds the current buffer.

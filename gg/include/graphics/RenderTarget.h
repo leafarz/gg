@@ -22,8 +22,8 @@ namespace gg { namespace graphics {
 		void init(uint width, uint height);
 
 	private:
-		Texture* getColorTexture(void) const;
-		Texture* getDepthTexture(void) const;
+		inline Texture* getColorTexture(void) const { return m_ColorTexture; }
+		inline Texture* getDepthTexture(void) const { return m_DepthTexture; }
 
 		void initColorTexture(uint width, uint height);
 		void initDepthTexture(uint width, uint height);

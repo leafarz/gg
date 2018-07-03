@@ -24,10 +24,11 @@ namespace gg
 		Scene(void);
 		~Scene(void);
 
+		inline Camera* getActiveCamera(void) const { return m_ActiveCamera; }
+
 		void setActiveCamera(Camera* camera);
 		void setActiveCamera(GameObject* gameObject);
 		void setActiveCamera(FreeCamera* freeCamera);
-		Camera* getActiveCamera(void) const;
 
 		graphics::Renderer* getRenderer(void) { return m_Renderer; }
 

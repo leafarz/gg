@@ -21,7 +21,7 @@ namespace gg { namespace graphics {
 		VertexBuffer(const void *data, uint size);
 		~VertexBuffer(void);
 
-		GLuint getID(void) const { return m_ID; }
+		inline GLuint getID(void) const { return m_ID; }
 
 		/* Sets the buffer id and buffer data.
 		 * Binds the current buffer.

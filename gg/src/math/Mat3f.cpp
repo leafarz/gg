@@ -211,21 +211,6 @@ namespace gg { namespace math {
 			std::endl;
 	}
 
-	const float* Mat3f::getMatrix(void) const
-	{
-		return this->elements;
-	}
-
-	float Mat3f::get(int idx) const
-	{
-		return this->elements[idx];
-	}
-
-	float Mat3f::get(int m, int n) const
-	{
-		return this->elements[m * 3 + n];
-	}
-
 	Mat3f& Mat3f::set(int idx, float c)
 	{
 		this->elements[idx] = c;

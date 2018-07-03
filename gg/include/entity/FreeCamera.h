@@ -16,7 +16,7 @@ namespace gg
 		FreeCamera(float fovDeg, float aspectRatio, float zNear, float zFar);
 		~FreeCamera(void);
 
-		Camera* getCamera(void);
+		inline Camera* getCamera(void) { return m_Camera; }
 
 		void setMoveSpeed(float moveSpeed);
 

@@ -85,12 +85,4 @@ namespace gg { namespace graphics {
 	{
 		return math::Vec2f((float)m_Width, (float)m_Height);
 	}
-	int Texture::getWidth(void) const
-	{
-		return m_Width;
-	}
-	int Texture::getHeight(void) const
-	{
-		return m_Height;
-	}
 }/*namespace graphics*/ } // namespace gg

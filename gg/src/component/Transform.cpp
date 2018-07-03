@@ -14,10 +14,6 @@ namespace gg
 	math::Vec3f Transform::getUp(void) const		{ return m_Rotation.getUp(); }
 
 	// Position
-	const math::Vec3f& Transform::getPosition(void) const
-	{
-		return m_Position;
-	}
 	math::Vec3f& Transform::setPositionX(float x) { setDirty(DirtyBits::Position); return m_Position.setX(x); }
 	math::Vec3f& Transform::setPositionY(float y) { setDirty(DirtyBits::Position); return m_Position.setY(y); }
 	math::Vec3f& Transform::setPositionZ(float z) { setDirty(DirtyBits::Position); return m_Position.setZ(z); }
@@ -40,10 +36,6 @@ namespace gg
 	}
 
 	// Euler
-	const math::Vec3f& Transform::getEuler(void) const
-	{
-		return m_Euler;
-	}
 	math::Vec3f& Transform::setEulerX(float x)
 	{
 		setDirty(DirtyBits::Rotation);
@@ -133,11 +125,6 @@ namespace gg
 
 
 	// Rotation
-	const math::Quaternion& Transform::getRotation(void) const
-	{
-		return m_Rotation;
-	}
-
 	math::Quaternion& Transform::setRotation(float x, float y, float z, float w)
 	{
 		setDirty(DirtyBits::Rotation);
@@ -166,10 +153,6 @@ namespace gg
 	}
 
 	// Scale
-	const math::Vec3f& Transform::getScale(void) const
-	{
-		return m_Scale;
-	}
 	math::Vec3f& Transform::setScaleX(float x) { setDirty(DirtyBits::Scale); return m_Scale.setX(x); }
 	math::Vec3f& Transform::setScaleY(float y) { setDirty(DirtyBits::Scale); return m_Scale.setY(y); }
 	math::Vec3f& Transform::setScaleZ(float z) { setDirty(DirtyBits::Scale); return m_Scale.setZ(z); }

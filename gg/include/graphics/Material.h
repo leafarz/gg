@@ -34,7 +34,7 @@ namespace gg { namespace graphics {
 		Material(Shader* shader);
 		~Material(void);
 
-		Shader* getShader(void) const;
+		inline Shader* getShader(void) const { return m_Shader; }
 		void setShader(Shader* shader);
 
 		// currently no setUniformi and is replaced by setTexture

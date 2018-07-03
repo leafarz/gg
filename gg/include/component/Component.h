@@ -17,7 +17,7 @@ namespace gg
 		Component(void);
 		~Component(void);
 
-		GameObject* getGameObject(void) const;
+		inline GameObject* getGameObject(void) const { return m_GameObject; }
 
 		virtual ComponentType getType(void) const { return ComponentType::None; }
 
