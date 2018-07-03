@@ -1,5 +1,6 @@
 #include "graphics/RenderTarget.h"
 
+#include "graphics/RenderBuffer.h"
 #include "graphics/Texture.h"
 
 namespace gg { namespace graphics {
