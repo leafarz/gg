@@ -1,8 +1,13 @@
 # GGEngine #
 A simple OpenGL game engine.
-* Microsoft Visual Community 2017
+
+## Prerequisites ##
+1. Microsoft Visual Community 2017
  * SDK Version: 10.0.15063.0
 
+## Running ##
+1. set sandBox as startup project
+2. run
 
 ## References / Resources ##
 #### 1. OpenGL ####
@@ -106,11 +111,11 @@ A simple OpenGL game engine.
  * guids
 
 ## DONE ##
-* <span style="color:red">\*\*</span>dirty flags
+* \*\*dirty flags
 * components
  * camera
 * debug
- * <span style="color:red">\*\*</span>debug draws (draw line)
+ * \*\*debug draws (draw line)
 * renderer
  * shared shaders / materials
  * base renderer
@@ -122,4 +127,4 @@ A simple OpenGL game engine.
    * automated uniforms
    * system uniforms
 
-<span style="color:red">\*\*</span> Needs polish but will do for now.
+\*\* Needs polish but will do for now.
