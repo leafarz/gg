@@ -10,7 +10,7 @@
 /* for loop from [a] to [b-1]
  * [var] <uint> is the index per iteration
  */
-#define FORU(var,a,b)	for(uint var = a; var < b; var++)
+#define FORU(var,a,b)	for(uint var = a; var < b; ++var)
 
 /* iterate std::vector
  * [it] is the iterator variable per iteration
