@@ -138,7 +138,7 @@ namespace gg
 
 		const math::Mat4f& _p = camera->getProjectionMatrix();
 		const math::Mat4f& _v = camera->getViewMatrix();
-		const math::Mat4f _pv = camera->getViewProjectionMatrix();
+		const math::Mat4f& _pv = camera->getViewProjectionMatrix();
 
 		VFOR(it, m_GameObjects)
 		{
