@@ -304,8 +304,8 @@ namespace gg { namespace math {
 
 	Vec3f Vec3f::rotated(const Vec3f& axis, float deg) const
 	{
-		float _sinAngle = static_cast<float>(sin(-deg * DEG_TO_RAD));
-		float _cosAngle = static_cast<float>(cos(-deg * DEG_TO_RAD));
+		float _sinAngle = static_cast<float>(sin(-deg * static_cast<float>(DEG_TO_RAD)));
+		float _cosAngle = static_cast<float>(cos(-deg * static_cast<float>(DEG_TO_RAD)));
 			
 		return this->cross(axis * _sinAngle) +				// rot on local x
 			(*this) * _cosAngle +							// rot on local z

@@ -4,12 +4,12 @@
 namespace gg { namespace math {
 	float sin(float deg)
 	{
-		return std::sinf(deg * DEG_TO_RAD);
+		return std::sinf(deg * static_cast<float>(DEG_TO_RAD));
 	}
 
 	float cos(float deg)
 	{
-		return std::cosf(deg * DEG_TO_RAD);
+		return std::cosf(deg * static_cast<float>(DEG_TO_RAD));
 	}
 
 	bool floatCmp(float a, float b, float threshold)
@@ -37,7 +37,7 @@ namespace gg { namespace math {
 		return (from + (to - from) * p);
 	}
 
-	Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t)
+	Vec3f bezier(const Vec3f& p0, const Vec3f& p1, const Vec3f& p2, float t)
 	{
 		float _poly1 = (1 - t) * (1 - t);
 		float _poly2 = (2 * t) - (2 * t * t);

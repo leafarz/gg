@@ -42,6 +42,6 @@ namespace gg { namespace math {
 		*/
 	double lerp(double from, double to, double p);
 
-	Vec3f bezier(Vec3f p0, Vec3f p1, Vec3f p2, float t);
+	Vec3f bezier(const Vec3f& p0, const Vec3f& p1, const Vec3f& p2, float t);
 }/*namespace math*/ }// namespace gg
 #endif
