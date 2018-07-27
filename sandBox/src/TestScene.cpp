@@ -148,8 +148,8 @@ namespace gg
 		m_RenderTarget->init(1280, 720);
 
 		// ************* SHARED *************
-		basicShader = new graphics::Shader("src/basic.shader");
-		mirrorShader = new graphics::Shader("src/mirror.shader");
+		basicShader = new graphics::Shader("res/shaders/basic.shader");
+		mirrorShader = new graphics::Shader("res/shaders/mirror.shader");
 
 		graphics::Material* _basicMat;
 		_basicMat = new graphics::Material(basicShader);
@@ -163,10 +163,10 @@ namespace gg
 		graphics::Mesh* _quadMesh = new graphics::Mesh();
 		_quadMesh->setVertices(_quadVerts, _quadIndices, false);
 
-		graphics::Mesh* _teapotMesh = new graphics::Mesh("src/teapot.obj", true);
+		graphics::Mesh* _teapotMesh = new graphics::Mesh("res/models/teapot.obj", true);
 
 		// texture
-		graphics::Texture *_tex = new graphics::Texture("src/Pikamannn.jpg");
+		graphics::Texture *_tex = new graphics::Texture("res/textures/Pikamannn.jpg");
 		_tex->setFilterType(graphics::Texture::MinFilterType::Linear, graphics::Texture::MagFilterType::Linear);
 		_tex->setWrapType(graphics::Texture::WrapType::ClampToBorder);
 

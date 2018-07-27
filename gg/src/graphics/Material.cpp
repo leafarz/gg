@@ -48,7 +48,7 @@ namespace gg { namespace graphics {
 
 		if (!_hasUniform)
 		{
-			WARN("No uniform with keys [" << _key1 << "] and [" << _key2 << ']');
+			WARN("Shader ["<< m_Shader->getFilePath() << "]\nNo uniform with keys [" << _key1 << "] and [" << _key2 << ']');
 		}
 	}
 

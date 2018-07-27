@@ -52,7 +52,7 @@ namespace gg { namespace graphics {
 		m_DefaultRenderTarget->init(1280, 720);
 
 		// TODO: delete
-		Shader* _shader = new Shader("src/screen.shader");
+		Shader* _shader = new Shader("res/shaders/screen.shader");
 		m_DefaultScreenMaterial = new Material(_shader);
 		m_DefaultScreenMaterial->bind();
 		m_DefaultScreenMaterial->setTexture("sys", m_DefaultRenderTarget);

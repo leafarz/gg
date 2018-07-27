@@ -153,8 +153,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <PostBuildEvent>
       <Command>rmdir "$(SolutionDir)deps\$(ProjectName)\include" /S /Q
 rmdir "$(SolutionDir)deps\$(ProjectName)\ext" /S /Q
+rmdir "$(SolutionDir)deps\$(ProjectName)\res" /S /Q
 xcopy "$(SolutionDir)$(ProjectName)\include" "$(SolutionDir)deps\$(ProjectName)\include" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\ext" "$(SolutionDir)deps\$(ProjectName)\ext" /I /S
+xcopy "$(SolutionDir)$(ProjectName)\res" "$(SolutionDir)deps\$(ProjectName)\res" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(TargetFileName)" "$(SolutionDir)deps\$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\" /Y</Command>
     </PostBuildEvent>
     <Lib>
@@ -179,8 +181,10 @@ xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(Tar
     <PostBuildEvent>
       <Command>rmdir "$(SolutionDir)deps\$(ProjectName)\include" /S /Q
 rmdir "$(SolutionDir)deps\$(ProjectName)\ext" /S /Q
+rmdir "$(SolutionDir)deps\$(ProjectName)\res" /S /Q
 xcopy "$(SolutionDir)$(ProjectName)\include" "$(SolutionDir)deps\$(ProjectName)\include" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\ext" "$(SolutionDir)deps\$(ProjectName)\ext" /I /S
+xcopy "$(SolutionDir)$(ProjectName)\res" "$(SolutionDir)deps\$(ProjectName)\res" /I /S
 xcopy "$(SolutionDir)$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\$(TargetFileName)" "$(SolutionDir)deps\$(ProjectName)\lib\$(PlatformTarget)\$(Configuration)\" /Y</Command>
     </PostBuildEvent>
     <Lib>

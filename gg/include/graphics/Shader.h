@@ -74,6 +74,8 @@ namespace gg { namespace graphics {
 		Shader(const std::string& filePath);
 		~Shader(void);
 
+		inline const std::string& getFilePath(void) const { return m_FilePath; }
+
 		std::vector<std::string> getUniforms(void) const;
 		bool hasUniform(const std::string& key) const;
 

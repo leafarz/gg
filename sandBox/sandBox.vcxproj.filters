@@ -28,7 +28,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\basic.shader" />
-    <None Include="src\teapot.shader" />
+    <None Include="res\shaders\basic.shader" />
+    <None Include="res\shaders\teapot.shader" />
+    <None Include="res\shaders\mirror.shader" />
+    <None Include="res\shaders\screen.shader" />
   </ItemGroup>
 </Project>

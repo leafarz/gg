@@ -6,8 +6,8 @@
 	#define ROOT_SHADER "../gg/res/shaders/"
 	#define ROOT_FONT "../gg/res/fonts/"
 #else
-	#define ROOT_SHADER "../gg/res/shaders/"
-	#define ROOT_FONT "../gg/res/fonts/"
+	#define ROOT_SHADER "res/gg/shaders/"
+	#define ROOT_FONT "res/gg/fonts/"
 #endif
 
 #endif

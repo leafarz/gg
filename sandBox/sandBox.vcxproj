@@ -144,7 +144,11 @@ copy "$(SolutionDir)deps\freetype2-2.9\bin\$(PlatformTarget)\$(Configuration)\fr
       <AdditionalDependencies>gg.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib;freetype.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimp.dll" "$(TargetDir)"</Command>
+      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimp.dll" "$(TargetDir)"
+rmdir  "$(TargetDir)res\" /S /Q
+mkdir "F:\Dev\Visual Studio Projects\gg\sandBox\Build_x86_Release\res\gg\"
+xcopy "$(SolutionDir)deps\gg\res" "$(TargetDir)res\gg" /I /E
+xcopy "$(ProjectDir)res" "$(TargetDir)res" /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -164,7 +168,11 @@ copy "$(SolutionDir)deps\freetype2-2.9\bin\$(PlatformTarget)\$(Configuration)\fr
       <AdditionalDependencies>gg.lib;glfw3.lib;opengl32.lib;User32.lib;Gdi32.lib;Shell32.lib;glew32s.lib;assimp.lib;soil2s.lib;freetype.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimp.dll" "$(TargetDir)"</Command>
+      <Command>copy "$(SolutionDir)deps\assimp-4.0.1\bin\$(PlatformTarget)\$(Configuration)\assimp.dll" "$(TargetDir)"
+rmdir  "$(TargetDir)res\" /S /Q
+mkdir "F:\Dev\Visual Studio Projects\gg\sandBox\Build_x86_Release\res\gg\"
+xcopy "$(SolutionDir)deps\gg\res" "$(TargetDir)res\gg" /I /E
+xcopy "$(ProjectDir)res" "$(TargetDir)res" /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -181,8 +189,10 @@ copy "$(SolutionDir)deps\freetype2-2.9\bin\$(PlatformTarget)\$(Configuration)\fr
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\basic.shader" />
-    <None Include="src\teapot.shader" />
+    <None Include="res\shaders\basic.shader" />
+    <None Include="res\shaders\mirror.shader" />
+    <None Include="res\shaders\screen.shader" />
+    <None Include="res\shaders\teapot.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
