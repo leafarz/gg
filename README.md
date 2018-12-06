@@ -1,6 +1,8 @@
 # GGEngine #
 A simple OpenGL game engine.
 
+![Image](https://raw.githubusercontent.com/leafarz/resources/master/gg_01.gif)
+
 ## Prerequisites ##
 1. Microsoft Visual Community 2017
  * SDK Version: 10.0.15063.0
