@@ -1,7 +1,7 @@
 # GGEngine #
 A simple OpenGL game engine.
 
-![Image](https://raw.githubusercontent.com/leafarz/resources/master/gg_01.gif)
+![Image](https://media.githubusercontent.com/media/leafarz/resources/master/gg_01.gif)
 
 ## Prerequisites ##
 1. Microsoft Visual Community 2017
